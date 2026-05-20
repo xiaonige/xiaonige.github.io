@@ -1,0 +1,1319 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="GitHub Copilot 完全指南：从入门到精通, 技术,编程,Java,Python,JavaScript">
+    <meta name="description" content="前言在AI大模型爆发的2023年，编程领域最具革命性的工具莫过于GitHub Copilot。这款由GitHub与OpenAI联手打造的AI编程助手，正在悄然改变每一位开发者的工作方式。有人说它是”结对编程的终极形态”，有人称它为”程序员的">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>GitHub Copilot 完全指南：从入门到精通 | 海阔天空</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/css/reward.css">
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">海阔天空</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">海阔天空</div>
+        <div class="logo-desc">
+            
+            分享技术、记录生活
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">GitHub Copilot 完全指南：从入门到精通</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/GitHub/">
+                                <span class="chip bg-color">GitHub</span>
+                            </a>
+                        
+                            <a href="/tags/Copilot/">
+                                <span class="chip bg-color">Copilot</span>
+                            </a>
+                        
+                            <a href="/tags/AI/">
+                                <span class="chip bg-color">AI</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%BC%96%E7%A8%8B%E6%95%88%E7%8E%87/">
+                                <span class="chip bg-color">编程效率</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                学习
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2026-05-20
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在AI大模型爆发的2023年，编程领域最具革命性的工具莫过于GitHub Copilot。这款由GitHub与OpenAI联手打造的AI编程助手，正在悄然改变每一位开发者的工作方式。有人说它是”结对编程的终极形态”，有人称它为”程序员的第二大脑”，但更多人还在困惑：Copilot到底能做什么？我该如何用好它？</p>
+<p>本文将带你从零开始，系统性地掌握GitHub Copilot的使用方法论。从基础安装到高级技巧，从最佳实践到避坑指南，让你真正体会AI辅助编程的威力。</p>
+<hr>
+<h2 id="一、Copilot-是什么：不只是代码补全"><a href="#一、Copilot-是什么：不只是代码补全" class="headerlink" title="一、Copilot 是什么：不只是代码补全"></a>一、Copilot 是什么：不只是代码补全</h2><h3 id="1-1-技术背景"><a href="#1-1-技术背景" class="headerlink" title="1.1 技术背景"></a>1.1 技术背景</h3><p>GitHub Copilot基于OpenAI的Codex模型训练而来，而Codex本身就是GPT系列模型的代码专精版本。它学习了来自GitHub的数十亿行公开代码，涵盖几乎所有主流编程语言和框架。与传统的代码补全工具不同，Copilot能够理解上下文语义，生成符合逻辑的完整代码片段。</p>
+<p>关键特性：</p>
+<ul>
+<li><strong>上下文感知</strong>：理解整个文件的代码结构，而非仅仅当前行</li>
+<li><strong>多语言支持</strong>：支持Python、JavaScript、TypeScript、Java、Go、Rust等数十种语言</li>
+<li><strong>自然语言编程</strong>：用注释描述需求，Copilot帮你写出代码</li>
+<li><strong>实时代码生成</strong>：边写边提示，编码效率提升显著</li>
+</ul>
+<h3 id="1-2-与传统IDE补全的区别"><a href="#1-2-与传统IDE补全的区别" class="headerlink" title="1.2 与传统IDE补全的区别"></a>1.2 与传统IDE补全的区别</h3><p>很多人会问：”IDEA、VSCode本身就有代码补全，Copilot有什么不一样？”</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>传统补全</th>
+<th>GitHub Copilot</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>补全范围</td>
+<td>当前作用域的变量、方法名</td>
+<td>完整的函数、类、算法实现</td>
+</tr>
+<tr>
+<td>理解深度</td>
+<td>语法层面</td>
+<td>语义层面（理解业务逻辑）</td>
+</tr>
+<tr>
+<td>生成能力</td>
+<td>只能补全已有内容</td>
+<td>可以创造全新的代码</td>
+</tr>
+<tr>
+<td>注释驱动</td>
+<td>不支持</td>
+<td>支持，写注释&#x3D;写代码</td>
+</tr>
+</tbody></table>
+<p>举个最简单的例子，当你在VSCode中输入：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 计算两个日期之间相差的天数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">daysBetween</span>(<span class="params">date1, date2</span>) &#123;</span><br></pre></td></tr></table></figure>
+
+<p>Copilot会自动帮你补全整个函数的实现，包括边界条件的处理。这是传统补全永远做不到的。</p>
+<hr>
+<h2 id="二、快速上手：5分钟完成配置"><a href="#二、快速上手：5分钟完成配置" class="headerlink" title="二、快速上手：5分钟完成配置"></a>二、快速上手：5分钟完成配置</h2><h3 id="2-1-订阅与激活"><a href="#2-1-订阅与激活" class="headerlink" title="2.1 订阅与激活"></a>2.1 订阅与激活</h3><p>首先你需要一个GitHub账号，然后订阅Copilot服务：</p>
+<ul>
+<li>个人用户：$10&#x2F;月 或 $100&#x2F;年</li>
+<li>学生&#x2F;教师&#x2F;开源维护者：<strong>免费</strong>（需验证身份）</li>
+<li>企业用户：$19&#x2F;用户&#x2F;月</li>
+</ul>
+<p>值得一提的是，学生认证通过后可以免费使用Copilot，这对在校学生来说是巨大的福利。</p>
+<h3 id="2-2-安装VSCode插件"><a href="#2-2-安装VSCode插件" class="headerlink" title="2.2 安装VSCode插件"></a>2.2 安装VSCode插件</h3><p>这是最主流的使用方式：</p>
+<ol>
+<li>打开VSCode的扩展市场</li>
+<li>搜索 “GitHub Copilot”</li>
+<li>点击安装，然后按照提示登录GitHub账号</li>
+<li>授权成功后，插件图标会亮起，你就可以开始使用了</li>
+</ol>
+<p>安装完成后，你会在编辑器的右下角看到一个小小的Copilot图标（类似章鱼猫的图标）。闪烁表示正在思考，静止表示准备就绪。</p>
+<h3 id="2-3-第一个Copilot程序"><a href="#2-3-第一个Copilot程序" class="headerlink" title="2.3 第一个Copilot程序"></a>2.3 第一个Copilot程序</h3><p>让我们来实际体验一下。创建一个新的Python文件，输入：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 快速排序算法实现</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">quicksort</span>(<span class="params">arr</span>):</span><br></pre></td></tr></table></figure>
+
+<p>稍等片刻，你会看到灰色的提示文字出现，这就是Copilot给出的建议。按 <code>Tab</code> 键接受建议，你会发现Copilot不仅写出了完整的快速排序实现，甚至连分区函数都帮你写好了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 快速排序算法实现</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">quicksort</span>(<span class="params">arr</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(arr) &lt;= <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> arr</span><br><span class="line">    pivot = arr[<span class="built_in">len</span>(arr) // <span class="number">2</span>]</span><br><span class="line">    left = [x <span class="keyword">for</span> x <span class="keyword">in</span> arr <span class="keyword">if</span> x &lt; pivot]</span><br><span class="line">    middle = [x <span class="keyword">for</span> x <span class="keyword">in</span> arr <span class="keyword">if</span> x == pivot]</span><br><span class="line">    right = [x <span class="keyword">for</span> x <span class="keyword">in</span> arr <span class="keyword">if</span> x &gt; pivot]</span><br><span class="line">    <span class="keyword">return</span> quicksort(left) + middle + quicksort(right)</span><br></pre></td></tr></table></figure>
+
+<p>就是这么简单。从你输入函数名到得到完整实现，整个过程不到3秒钟。</p>
+<hr>
+<h2 id="三、核心用法：四种高效编程模式"><a href="#三、核心用法：四种高效编程模式" class="headerlink" title="三、核心用法：四种高效编程模式"></a>三、核心用法：四种高效编程模式</h2><p>掌握了基础用法后，我们来深入学习Copilot的四种核心编程模式。这是我总结的最实用的四种使用场景。</p>
+<h3 id="模式一：注释驱动开发"><a href="#模式一：注释驱动开发" class="headerlink" title="模式一：注释驱动开发"></a>模式一：注释驱动开发</h3><p>这是Copilot最强大的模式。<strong>好的注释本身就是代码。</strong></p>
+<p><strong>进阶技巧：</strong> 不要只写”实现登录功能”，要写得具体：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用户登录功能：</span></span><br><span class="line"><span class="comment"># 1. 验证用户名和密码格式</span></span><br><span class="line"><span class="comment"># 2. 查询数据库比对密码（使用bcrypt验证）</span></span><br><span class="line"><span class="comment"># 3. 生成JWT token，有效期24小时</span></span><br><span class="line"><span class="comment"># 4. 返回token和用户基本信息</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">user_login</span>(<span class="params">username, password</span>):</span><br></pre></td></tr></table></figure>
+
+<p>注释越详细，生成的代码质量越高。Copilot能够理解结构化的注释，按照你的步骤一步步实现。</p>
+<p><strong>实战案例：</strong> 写一段爬虫代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 爬取豆瓣电影Top250</span></span><br><span class="line"><span class="comment"># 请求头设置User-Agent，避免被封禁</span></span><br><span class="line"><span class="comment"># 使用BeautifulSoup解析HTML</span></span><br><span class="line"><span class="comment"># 提取电影名称、评分、评价人数</span></span><br><span class="line"><span class="comment"># 翻页循环，直到爬完所有页面</span></span><br><span class="line"><span class="comment"># 结果保存到CSV文件</span></span><br></pre></td></tr></table></figure>
+
+<p>试试看，Copilot会帮你写出一整套爬虫代码，包括反爬措施和异常处理。</p>
+<h3 id="模式二：增量式开发"><a href="#模式二：增量式开发" class="headerlink" title="模式二：增量式开发"></a>模式二：增量式开发</h3><p>不要指望Copilot一次性写出几百行的完整代码，更好的方式是增量开发：</p>
+<ol>
+<li>先写函数签名和简单注释</li>
+<li>接受Copilot的建议</li>
+<li>发现问题后，在下一行补充说明</li>
+<li>让Copilot修正或补充代码</li>
+</ol>
+<p><strong>示例：</strong> 开发一个工具类</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字符串工具类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">StringUtils</span> &#123;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 反转字符串</span></span><br><span class="line">  <span class="keyword">static</span> <span class="title function_">reverse</span>(<span class="params">str</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> str.<span class="title function_">split</span>(<span class="string">&#x27;&#x27;</span>).<span class="title function_">reverse</span>().<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 新增：判断是否是回文字符串</span></span><br><span class="line">  <span class="keyword">static</span> <span class="title function_">isPalindrome</span>(<span class="params">str</span>) &#123;</span><br><span class="line">    <span class="comment">// Copilot会自动参考上面的reverse方法</span></span><br><span class="line">    <span class="keyword">return</span> str === <span class="variable language_">this</span>.<span class="title function_">reverse</span>(str);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意看，当你写第二个方法时，Copilot会”记住”你刚才定义的<code>reverse</code>方法，并自动复用它。这就是上下文感知的威力。</p>
+<h3 id="模式三：测试驱动开发（Copilot版）"><a href="#模式三：测试驱动开发（Copilot版）" class="headerlink" title="模式三：测试驱动开发（Copilot版）"></a>模式三：测试驱动开发（Copilot版）</h3><p>Copilot特别适合写单元测试。你只需要写出函数，然后让Copilot帮你写测试用例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 待测试函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">calculateDiscount</span>(<span class="params">price, discountRate</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (discountRate &lt; <span class="number">0</span> || discountRate &gt; <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;折扣率必须在0到1之间&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> price * (<span class="number">1</span> - discountRate);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 为上面的函数编写单元测试，包含：</span></span><br><span class="line"><span class="comment">// 1. 正常折扣场景</span></span><br><span class="line"><span class="comment">// 2. 折扣率为0的边界情况</span></span><br><span class="line"><span class="comment">// 3. 折扣率为1的边界情况</span></span><br><span class="line"><span class="comment">// 4. 非法折扣率的异常测试</span></span><br></pre></td></tr></table></figure>
+
+<p>Copilot会自动识别这是测试代码，并为你生成完整的测试用例，包括各种边界条件。</p>
+<h3 id="模式四：代码解释与重构"><a href="#模式四：代码解释与重构" class="headerlink" title="模式四：代码解释与重构"></a>模式四：代码解释与重构</h3><p>Copilot不仅能写代码，还能读代码。把一段你看不懂的代码粘贴进去，然后写：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 请解释下面这段代码的作用：</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">mystery_function</span>(<span class="params">data</span>):</span><br><span class="line">    <span class="keyword">return</span> [x <span class="keyword">for</span> x <span class="keyword">in</span> data <span class="keyword">if</span> x <span class="keyword">not</span> <span class="keyword">in</span> data[data.index(x)+<span class="number">1</span>:]]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解释：</span></span><br><span class="line"><span class="comment"># 这段代码实现了列表去重，同时保持元素的原始顺序</span></span><br><span class="line"><span class="comment"># 原理是只保留第一次出现的元素</span></span><br><span class="line"><span class="comment"># 可以优化为使用字典去重（Python 3.7+支持）：</span></span><br><span class="line"><span class="comment"># return list(dict.fromkeys(data))</span></span><br></pre></td></tr></table></figure>
+
+<p>你看，Copilot不仅解释了代码做了什么，还给出了优化建议。这对学习和理解陌生代码库极其有用。</p>
+<hr>
+<h2 id="四、高级技巧：让Copilot成为你的专家"><a href="#四、高级技巧：让Copilot成为你的专家" class="headerlink" title="四、高级技巧：让Copilot成为你的专家"></a>四、高级技巧：让Copilot成为你的专家</h2><h3 id="4-1-善用示例"><a href="#4-1-善用示例" class="headerlink" title="4.1 善用示例"></a>4.1 善用示例</h3><p>Copilot非常擅长从示例中学习模式。当你需要某种特定风格的代码时，先给一两个示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// API响应格式统一处理</span></span><br><span class="line"><span class="comment">// 示例：</span></span><br><span class="line"><span class="comment">// &#123; code: 200, data: &#123;...&#125;, message: &#x27;success&#x27; &#125;</span></span><br><span class="line"><span class="comment">// &#123; code: 400, data: null, message: &#x27;参数错误&#x27; &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 请按照上面的格式，写一个创建成功的响应</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">createSuccessResponse</span>(<span class="params">data</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">code</span>: <span class="number">200</span>,</span><br><span class="line">    <span class="attr">data</span>: data,</span><br><span class="line">    <span class="attr">message</span>: <span class="string">&#x27;创建成功&#x27;</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>给出示例后，后续生成的代码会严格遵循你定义的格式和风格。</p>
+<h3 id="4-2-多方案选择"><a href="#4-2-多方案选择" class="headerlink" title="4.2 多方案选择"></a>4.2 多方案选择</h3><p>Copilot常常会提供多个备选方案。使用快捷键：</p>
+<ul>
+<li><code>Tab</code>：接受当前建议</li>
+<li><code>Ctrl+]</code>：查看下一个建议</li>
+<li><code>Ctrl+[</code>：查看上一个建议</li>
+<li><code>Ctrl+Enter</code>：打开完整建议面板，查看所有10个建议</li>
+</ul>
+<p>当你不确定哪种实现更好时，多看看几个备选方案，选择最符合你需求的那一个。</p>
+<h3 id="4-3-指定技术栈"><a href="#4-3-指定技术栈" class="headerlink" title="4.3 指定技术栈"></a>4.3 指定技术栈</h3><p>当项目中使用了特定的库或框架时，明确告诉Copilot：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用React Hooks + TypeScript实现一个TodoList组件</span></span><br><span class="line"><span class="comment">// 状态管理使用useState</span></span><br><span class="line"><span class="comment">// 使用Tailwind CSS样式</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Todo</span> &#123;</span><br><span class="line">  <span class="attr">id</span>: <span class="built_in">number</span>;</span><br><span class="line">  <span class="attr">text</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">completed</span>: <span class="built_in">boolean</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">TodoList</span>(<span class="params"></span>) &#123;</span><br></pre></td></tr></table></figure>
+
+<p>Copilot会自动按照你指定的技术栈来生成代码，而不是用它默认的方式。</p>
+<h3 id="4-4-交互式问答"><a href="#4-4-交互式问答" class="headerlink" title="4.4 交互式问答"></a>4.4 交互式问答</h3><p>利用VSCode的Copilot Chat功能（需要单独安装），你可以直接与Copilot对话：</p>
+<p><strong>问：</strong> “这段代码有什么性能问题吗？”<br><strong>Copilot：</strong> 分析后指出，嵌套循环的时间复杂度是O(n²)，可以用哈希表优化到O(n)</p>
+<p><strong>问：</strong> “帮我把这个Python函数改成异步版本”<br><strong>Copilot：</strong> 自动添加async&#x2F;await，修改为异步调用</p>
+<p><strong>问：</strong> “这个正则表达式有什么问题？&#x2F;^[a-zA-Z0-9_]{3,15}$&#x2F;“<br><strong>Copilot：</strong> 解释正则的含义，指出潜在问题</p>
+<hr>
+<h2 id="五、避坑指南：Copilot的正确打开方式"><a href="#五、避坑指南：Copilot的正确打开方式" class="headerlink" title="五、避坑指南：Copilot的正确打开方式"></a>五、避坑指南：Copilot的正确打开方式</h2><h3 id="5-1-永远Review生成的代码"><a href="#5-1-永远Review生成的代码" class="headerlink" title="5.1 永远Review生成的代码"></a>5.1 永远Review生成的代码</h3><p><strong>重要的事情说三遍：不要盲目相信Copilot！不要盲目相信Copilot！不要盲目相信Copilot！</strong></p>
+<p>Copilot会犯的错误包括：</p>
+<ul>
+<li>调用不存在的API方法</li>
+<li>使用已废弃的语法</li>
+<li>边界条件考虑不周全</li>
+<li>安全漏洞（比如SQL注入）</li>
+<li>逻辑错误但代码看起来很”合理”</li>
+</ul>
+<p><strong>规则：</strong> Copilot写的每一行代码，你都要像审查同事的PR一样认真检查。</p>
+<h3 id="5-2-不要泄露敏感信息"><a href="#5-2-不要泄露敏感信息" class="headerlink" title="5.2 不要泄露敏感信息"></a>5.2 不要泄露敏感信息</h3><p>Copilot会将你的上下文代码发送到GitHub的服务器进行处理。<strong>绝对不要</strong>在启用Copilot的情况下编辑包含以下内容的文件：</p>
+<ul>
+<li>数据库密码、API密钥</li>
+<li>私钥、证书文件</li>
+<li>公司的核心机密代码</li>
+<li>用户的隐私数据</li>
+</ul>
+<p>如果是在公司环境使用，务必确认公司的安全政策允许使用AI编程工具。</p>
+<h3 id="5-3-避免过度依赖"><a href="#5-3-避免过度依赖" class="headerlink" title="5.3 避免过度依赖"></a>5.3 避免过度依赖</h3><p>Copilot是助手，不是替代者。如果你连for循环怎么写都要依赖Copilot，那你的编程能力只会退化。</p>
+<p><strong>健康的使用方式：</strong></p>
+<ul>
+<li>已知的算法，自己能写，但让Copilot帮你写节省时间</li>
+<li>未知的领域，先让Copilot写，然后仔细学习理解</li>
+<li>核心业务逻辑，自己亲手写，Copilot只做辅助</li>
+</ul>
+<h3 id="5-4-版权与法律风险"><a href="#5-4-版权与法律风险" class="headerlink" title="5.4 版权与法律风险"></a>5.4 版权与法律风险</h3><p>这是一个有争议的话题。Copilot生成的代码可能与某些开源项目的代码高度相似。虽然GitHub认为这属于”合理使用”，但在商业项目中，建议：</p>
+<ol>
+<li>对Copilot生成的代码进行代码扫描</li>
+<li>关键的核心模块尽量自己实现</li>
+<li>参考GitHub的官方版权声明</li>
+</ol>
+<hr>
+<h2 id="六、实战案例：Copilot在真实项目中的应用"><a href="#六、实战案例：Copilot在真实项目中的应用" class="headerlink" title="六、实战案例：Copilot在真实项目中的应用"></a>六、实战案例：Copilot在真实项目中的应用</h2><p>让我分享几个在实际项目中使用Copilot的真实场景。</p>
+<h3 id="案例1：快速搭建RESTful-API"><a href="#案例1：快速搭建RESTful-API" class="headerlink" title="案例1：快速搭建RESTful API"></a>案例1：快速搭建RESTful API</h3><p><strong>背景：</strong> 需要快速搭建一个CRUD的API</p>
+<p><strong>做法：</strong></p>
+<ol>
+<li>定义数据模型的接口</li>
+<li>用注释描述每个API端点的功能</li>
+<li>让Copilot生成Controller、Service、Mapper层的代码</li>
+</ol>
+<p><strong>结果：</strong> 原本需要半天的工作，2小时就完成了，而且代码结构非常规范。</p>
+<h3 id="案例2：编写数据转换脚本"><a href="#案例2：编写数据转换脚本" class="headerlink" title="案例2：编写数据转换脚本"></a>案例2：编写数据转换脚本</h3><p><strong>背景：</strong> 旧系统的数据格式需要迁移到新系统</p>
+<p><strong>做法：</strong></p>
+<ol>
+<li>给出旧格式和新格式的示例</li>
+<li>让Copilot编写转换函数</li>
+<li>让Copilot顺便写好单元测试</li>
+</ol>
+<p><strong>结果：</strong> 一百多个字段的转换，一次性写好，测试覆盖了所有边界情况。</p>
+<h3 id="案例3：学习新技术"><a href="#案例3：学习新技术" class="headerlink" title="案例3：学习新技术"></a>案例3：学习新技术</h3><p><strong>背景：</strong> 第一次使用Rust，对所有权概念不太熟悉</p>
+<p><strong>做法：</strong></p>
+<ol>
+<li>写一段有问题的Rust代码</li>
+<li>注释问”这段代码为什么编译不通过？”</li>
+<li>Copilot不仅解释了原因，还给出了修正后的代码</li>
+</ol>
+<p><strong>结果：</strong> 比翻文档快多了，而且解释得非常具体。</p>
+<hr>
+<h2 id="七、未来展望：AI编程的下一个阶段"><a href="#七、未来展望：AI编程的下一个阶段" class="headerlink" title="七、未来展望：AI编程的下一个阶段"></a>七、未来展望：AI编程的下一个阶段</h2><p>Copilot只是AI编程的起点。我们正在见证：</p>
+<ul>
+<li>Copilot X：集成GPT-4，支持更复杂的任务</li>
+<li>代码库级别的理解：不仅理解单个文件，还理解整个项目</li>
+<li>自动Debug：自动定位bug并给出修复方案</li>
+<li>自然语言需求到完整功能的实现</li>
+</ul>
+<p>但无论AI如何进化，有一件事不会改变：<strong>程序员的核心价值是思考问题和设计架构的能力，而不是打字的速度。</strong> Copilot能帮你把想法变成代码，但它不能代替你思考应该写什么代码。</p>
+<hr>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>GitHub Copilot不是银弹，但它确实是近年来最能提升程序员效率的工具。从某种意义上说，它重新定义了”编程”这件事。未来的程序员，可能不再需要记住那么多API的具体用法，而是把精力放在更高层次的架构设计和问题思考上。</p>
+<p>学会与AI协作，善用AI的力量，这将是新一代程序员的核心竞争力。但同时也要保持清醒：工具永远是工具，真正的大师，永远是那个握着工具的人。</p>
+<p>从今天开始，让Copilot成为你的编程伙伴吧。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">小倪哥</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://xiaonige.github.io/2026/05/20/2026-05-20-github-copilot-guide/">https://xiaonige.github.io/2026/05/20/2026-05-20-github-copilot-guide/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">小倪哥</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/GitHub/">
+                                    <span class="chip bg-color">GitHub</span>
+                                </a>
+                            
+                                <a href="/tags/Copilot/">
+                                    <span class="chip bg-color">Copilot</span>
+                                </a>
+                            
+                                <a href="/tags/AI/">
+                                    <span class="chip bg-color">AI</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%BC%96%E7%A8%8B%E6%95%88%E7%8E%87/">
+                                    <span class="chip bg-color">编程效率</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2026/05/20/2026-05-20-github-copilot-guide/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="GitHub Copilot 完全指南：从入门到精通">
+                        
+                        <span class="card-title">GitHub Copilot 完全指南：从入门到精通</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-05-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/GitHub/">
+                        <span class="chip bg-color">GitHub</span>
+                    </a>
+                    
+                    <a href="/tags/Copilot/">
+                        <span class="chip bg-color">Copilot</span>
+                    </a>
+                    
+                    <a href="/tags/AI/">
+                        <span class="chip bg-color">AI</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%BC%96%E7%A8%8B%E6%95%88%E7%8E%87/">
+                        <span class="chip bg-color">编程效率</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2026/05/20/hello-world/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        
+                        <span class="card-title">Hello World</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-05-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            小倪哥
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2026</span>
+            
+            <a href="/about" target="_blank">小倪哥</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
