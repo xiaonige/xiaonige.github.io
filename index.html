@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="技术,编程,Java,Python,JavaScript">
-    <meta name="description" content="分享技术、记录生活">
+    <meta name="keywords" content="海阔天空">
+    <meta name="description" content="小倪哥-博客">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +18,7 @@
 
 
     <title>海阔天空</title>
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/jpeg" href="/favicon.jpg">
     
 
 
@@ -88,8 +88,56 @@
 
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+    <!-- 今日诗词 -->
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+     <!-- 百度统计 -->
+     <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?28c8c0fcedebccbf1e2bfc8b43c2e7b5";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>        
+        
+    <!-- 加入百度自动推送JS代码，全站激活  -->
+    
+        <script>
+            (function(){
+                var bp = document.createElement('script');
+                var curProtocol = window.location.protocol.split(':')[0];
+                if (curProtocol === 'https') {
+                    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+                }
+                else {
+                    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                }
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(bp, s);
+            })();
+        </script>
 
-<meta name="generator" content="Hexo 8.1.2"></head>
+<script type="text/javascript">
+    var OriginTitile = document.title,
+        st;
+    // document.addEventListener("visibilitychange", function () {
+    //     document.hidden ? (document.title = "看不见我🙈~看不见我🙈~", clearTimeout(st)) : (document.title =
+    //         "(๑•̀ㅂ•́) ✧被发现了～", st = setTimeout(function () {
+    //             document.title = OriginTitile
+    //         }, 3e3))
+    // })
+</script>
+
+    <script type="text/javascript">
+        var windowWidth = $(window).width();
+        if (windowWidth > 992) {
+            document.write('<script type="text/javascript" src="/libs/background/ribbon-dynamic.js"><\/script>');
+        }
+    </script>
+<meta name="generator" content="Hexo 7.0.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
 
 
 <body>
@@ -134,11 +182,52 @@
   <li class="hide-on-med-and-down nav-item">
     
     <a href="/categories" class="waves-effect waves-light">
+
       
-      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
       
       <span>分类</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
     </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/work">
+          
+          <i class="fas fa-home" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>工作</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/study">
+          
+          <i class="fas fa-book" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>学习</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/music">
+          
+          <i class="fas fa-music" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>音乐</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/gallery">
+          
+          <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>图片</span>
+        </a>
+      </li>
+      
+    </ul>
     
   </li>
   
@@ -175,17 +264,6 @@
     
   </li>
   
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="/friends" class="waves-effect waves-light">
-      
-      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
-      
-      <span>友情链接</span>
-    </a>
-    
-  </li>
-  
   <li>
     <a href="#searchModal" class="modal-trigger waves-effect waves-light">
       <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
@@ -208,7 +286,7 @@
         <div class="logo-name">海阔天空</div>
         <div class="logo-desc">
             
-            分享技术、记录生活
+            小倪哥-博客
             
         </div>
     </div>
@@ -239,12 +317,56 @@
         
         <li class="m-nav-item">
 	  
-		<a href="/categories" class="waves-effect waves-light">
+		<a href="javascript:;">
 			
-			    <i class="fa-fw fas fa-bookmark"></i>
+				<i class="fa-fw fas fa-list"></i>
 			
 			分类
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
 		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/work " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-home" style="position: absolute;left:50px" ></i>
+			      
+		          <span>工作</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/study " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-book" style="position: absolute;left:50px" ></i>
+			      
+		          <span>学习</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/music " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-music" style="position: absolute;left:50px" ></i>
+			      
+		          <span>音乐</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/gallery " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
+			      
+		          <span>图片</span>
+                  </a>
+                </li>
+              
+            </ul>
           
         </li>
         
@@ -281,21 +403,10 @@
           
         </li>
         
-        <li class="m-nav-item">
-	  
-		<a href="/friends" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-address-book"></i>
-			
-			友情链接
-		</a>
-          
-        </li>
-        
         
         <li><div class="divider"></div></li>
         <li>
-            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+            <a href="https://github.com/xiaonige/xiaonige.github.io" class="waves-effect waves-light" target="_blank">
                 <i class="fab fa-github-square fa-fw"></i>Fork Me
             </a>
         </li>
@@ -352,7 +463,7 @@
     }
 </style>
 
-<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+<a href="https://github.com/xiaonige/xiaonige.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
    data-tooltip="Fork Me" data-position="left" data-delay="50">
     <svg viewBox="0 0 250 250" aria-hidden="true">
         <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
@@ -372,6 +483,13 @@
 
 <div class="carousel carousel-slider center index-cover" data-indicators="true" style="margin-top: -64px;">
     
+        <div id="prev-cover" class="left waves-effect carousel-control">
+            <i class="icon fa fa-angle-left"></i>
+        </div>
+        <div id="next-cover" class="right waves-effect carousel-control">
+            <i class="icon fa fa-angle-right"></i>
+        </div>
+    
 
     <div class="carousel-item  white-text bg-cover about-cover">
         <div class="container">
@@ -380,30 +498,15 @@
         <div class="brand">
             <div class="title center-align">
                 
-                小倪哥的技术博客
+                小倪哥博客空间
                 
             </div>
 
             <div class="description center-align">
                 
-                <span id="subtitle"></span>
-                <script src="/libs/typed/typed.js"></script>
-                <script>
-                    var typed = new Typed("#subtitle", {
-                        strings: [ 
-                            
-                                "从来没有真正的绝境, 只有心灵的迷途",
-                            
-                                "Never really desperate, only the lost of the soul",
-                            
-                        ],
-                        startDelay: 300,
-                        typeSpeed: 100,
-                        loop: true,
-                        backSpeed: 50,
-                        showCursor: true
-                    });
-                </script>
+                    <!-- 小倪哥-博客 -->
+                    <!-- 今日诗词 -->
+                    <span id="jinrishici-sentence">正在加载今日诗词....</span>
                 
             </div>
         </div>
@@ -432,19 +535,19 @@
                 </a>
 
                 
-                    <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light btn" target="_blank">
+                    <a href="https://github.com/xiaonige/xiaonige.github.io" class="waves-effect waves-light btn" target="_blank">
                         <i class="fab fa-github-alt"></i>Github
                     </a>
                 
             </div>
             <div class="cover-social-link">
-    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <a href="https://github.com/xiaonige/" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
         <i class="fab fa-github"></i>
     </a>
 
 
 
-    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <a href="mailto:991509326@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
         <i class="fas fa-envelope-open"></i>
     </a>
 
@@ -454,7 +557,7 @@
 
 
 
-    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=991509326" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 991509326" data-position="top" data-delay="50">
         <i class="fab fa-qq"></i>
     </a>
 
@@ -464,14 +567,37 @@
 
 
 
-    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
-        <i class="fas fa-rss"></i>
-    </a>
-
 </div>
         </div>
     </div>
 
+    
+        
+
+        
+            
+            <div class="carousel-item amber white-text carousel-post bg-cover"
+                 style="background-image: url('/medias/featureimages/16.jpg');">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s10 offset-s1">
+                            <div class="title center-align">初学Hexo+Github创建个人站点</div>
+                            <div class="description center-align">
+                                
+                                    天生我材必有用，千金散尽还复来。
+                                
+                            </div>
+                            <div class="cover-btns">
+                                <a href="/2023/12/26/xiaonige/" class="waves-effect waves-light btn"
+                                   target="_blank">
+                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
     
 </div>
 
@@ -550,12 +676,12 @@
                         <div class="dream">
     
     <div class="title center-align">
-        <i class="far fa-lightbulb"></i>&nbsp;&nbsp;我的梦想
+        <i class="far fa-lightbulb"></i>&nbsp;&nbsp;关于成长
     </div>
     
     <div class="row">
         <div class="col l8 offset-l2 m10 offset-m1 s10 offset-s1 center-align text">
-            不是每个人都应该像我这样去建造一座水晶大教堂，但是每个人都应该拥有自己的梦想，设计自己的梦想，追求自己的梦想，实现自己的梦想。梦想是生命的灵魂，是心灵的灯塔，是引导人走向成功的信仰。有了崇高的梦想，只要矢志不渝地追求，梦想就会成为现实，奋斗就会变成壮举，生命就会创造奇迹。——罗伯·舒乐
+            成长，是一个充满荆棘与鲜花的旅程。每一次跌倒，都是向前的动力，每一次挫折，都是成长的磨砺。不畏惧风雨，不惧怕黑暗，坚定信念，勇往直前。在成长的道路上，我们笑过、哭过、痛过、累过，但正是这些经历，塑造了今天的我们。让我们拥抱每一个挑战，珍惜每一次磨练，因为它们都是我们成长的见证。
         </div>
     </div>
 </div>
@@ -572,6 +698,41 @@
 
 
 
+
+
+<div class="title"><i class="far fa-thumbs-up"></i>&nbsp;&nbsp;推荐文章</div>
+
+<div class="row">
+
+    
+    
+    <div class="col s12" >
+        
+            <div class="post-card" style="background-image: url('/medias/featureimages/16.jpg')">
+            
+            <div class="post-body">
+                <div class="post-categories">
+                    
+                        
+                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" class="category">软件安装与配置</a>
+                        
+                    
+                </div>
+                <a href="/2023/12/26/xiaonige/">
+                    <h3 class="post-title">初学Hexo+Github创建个人站点</h3>
+                </a>
+                <p class="post-description">天生我材必有用，千金散尽还复来。</p>
+                <a href="/2023/12/26/xiaonige/" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #FF5E3A 0%, #FF2A68 100%)" target="_blank">
+                    <i class="icon far fa-eye fa-fw"></i>阅读更多
+                </a>
+            </div>
+        </div>
+    </div>
+    
+
+</div>
+
+
                     </div>
                     
                 </div>
@@ -586,146 +747,113 @@
     <article id="articles" class="container articles">
         <div class="row article-row">
             
-             <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
                     <a href="/2026/05/20/2026-05-20-openclaw-tutorial/">
                         <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="OpenClaw 完全指南：打造你的个人AI智能体平台">
-                            
-                            <span class="card-title">OpenClaw 完全指南：打造你的个人AI智能体平台</span>
+                            <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="OpenClaw 完全指南">
+                            <span class="card-title">OpenClaw 完全指南</span>
                         </div>
                     </a>
-
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
-                            
-                                前言在AI Agent爆发的2026年，我们见证了无数智能体工具的诞生。从ChatGPT到Claude，从AutoGPT到各种Agent框架，AI正在从一个简单的对话机器人演变为能够执行复杂任务的智能代理。然而，大多数工具要么功能单一，要么
-                            
+                            在AI Agent爆发的2026年，OpenClaw作为开源的个人AI智能体平台，正在重新定义我们与AI的关系。本文将带你从零开始，系统性地掌握OpenClaw的使用方法：从基础概念到核心功能，从简单对话到复杂Agent编排，从本地部署到云端扩展，让你真正拥有一个7×24小时为你工作的私人AI智能体。
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
                                 <i class="far fa-clock fa-fw icon-date"></i>2026-05-20
                             </span>
                             <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                    学习
-                                </a>
-                                
-                                
+                                <i class="fas fa-user fa-fw"></i>
+                                小倪哥
                             </span>
                         </div>
                     </div>
-
-                    
                     <div class="card-action article-tags">
-                        
                         <a href="/tags/AI-Agent/">
                             <span class="chip bg-color">AI Agent</span>
                         </a>
-                        
                         <a href="/tags/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">
                             <span class="chip bg-color">效率工具</span>
                         </a>
-                        
                         <a href="/tags/%E6%99%BA%E8%83%BD%E4%BD%93%E5%B7%A5%E5%85%B7/">
                             <span class="chip bg-color">智能体工具</span>
                         </a>
-                        
                     </div>
-                    
                 </div>
             </div>
-              <!-- 隐藏某个文章 -->
             
-             <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
                     <a href="/2026/05/20/2026-05-20-github-copilot-guide/">
                         <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="GitHub Copilot 完全指南：从入门到精通">
-                            
-                            <span class="card-title">GitHub Copilot 完全指南：从入门到精通</span>
+                            <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="GitHub Copilot 完全指南">
+                            <span class="card-title">GitHub Copilot 完全指南</span>
                         </div>
                     </a>
-
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
-                            
-                                前言在AI大模型爆发的2023年，编程领域最具革命性的工具莫过于GitHub Copilot。这款由GitHub与OpenAI联手打造的AI编程助手，正在悄然改变每一位开发者的工作方式。有人说它是”结对编程的终极形态”，有人称它为”程序员的
-                            
+                            在AI大模型爆发的2023年，编程领域最具革命性的工具莫过于GitHub Copilot。本文将带你从零开始，系统性地掌握GitHub Copilot的使用方法论。从基础安装到高级技巧，从最佳实践到避坑指南，让你真正体会AI辅助编程的威力，大幅提升开发效率。
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
                                 <i class="far fa-clock fa-fw icon-date"></i>2026-05-20
                             </span>
                             <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                    学习
-                                </a>
-                                
-                                
+                                <i class="fas fa-user fa-fw"></i>
+                                小倪哥
                             </span>
                         </div>
                     </div>
-
-                    
                     <div class="card-action article-tags">
-                        
                         <a href="/tags/GitHub/">
                             <span class="chip bg-color">GitHub</span>
                         </a>
-                        
                         <a href="/tags/Copilot/">
                             <span class="chip bg-color">Copilot</span>
                         </a>
-                        
                         <a href="/tags/AI/">
                             <span class="chip bg-color">AI</span>
                         </a>
-                        
-                        <a href="/tags/%E7%BC%96%E7%A8%8B%E6%95%88%E7%8E%87/">
-                            <span class="chip bg-color">编程效率</span>
-                        </a>
-                        
                     </div>
-                    
                 </div>
             </div>
-              <!-- 隐藏某个文章 -->
             
              <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2026/05/20/hello-world/">
+                    <a href="/2023/12/27/qiu-tu-jian-shen/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                            <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="囚徒健身">
                             
-                            <span class="card-title">Hello World</span>
+                            <span class="card-title">囚徒健身</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
+                                
+目录
+前言
+第一部分 预备
+第一章 力量之旅：启程 
+第二章 失传的技艺：老派体操 
+第三章 自身体重锻炼与现代健身方法 
+第四章 关于本书
+
+
+第二部分 六艺
+第五章 铠甲般的胸肌与钢铁般的肱三头肌 
+第六章 升降机般的大腿 
+第七章 
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2026-05-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-12-27
                             </span>
                             <span class="publish-author">
                                 
@@ -736,6 +864,175 @@
                         </div>
                     </div>
 
+                    
+                </div>
+            </div>
+              <!-- 隐藏某个文章 -->
+            
+             <!-- 隐藏某个文章 -->
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2023/12/27/golang-ru-men/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="golang入门">
+                            
+                            <span class="card-title">golang入门</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                Go 学习笔记golang语言的特性1.天然并发
+
+从语言层面支持并发
+goroute, 轻量级线程,可以轻松创建成千上万个
+基于CSP (Communicating Sequential Process) 模型实现
+
+go fmt.Pri
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-12-27
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
+                                    编程语言
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/golang/">
+                            <span class="chip bg-color">golang</span>
+                        </a>
+                        
+                        <a href="/tags/%E5%8D%9A%E5%AE%A2/">
+                            <span class="chip bg-color">博客</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+              <!-- 隐藏某个文章 -->
+            
+             <!-- 隐藏某个文章 -->
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2023/12/27/23-chong-she-ji-mo-shi/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="23种设计模式">
+                            
+                            <span class="card-title">23种设计模式</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                一、什么是设计模式设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-12-27
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-category">
+                                    设计模式
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/java/">
+                            <span class="chip bg-color">java</span>
+                        </a>
+                        
+                        <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                            <span class="chip bg-color">设计模式</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+              <!-- 隐藏某个文章 -->
+            
+             <!-- 隐藏某个文章 -->
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2023/12/26/xiaonige/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="初学Hexo+Github创建个人站点">
+                            
+                            <span class="card-title">初学Hexo+Github创建个人站点</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                天生我材必有用，千金散尽还复来。
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-12-26
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" class="post-category">
+                                    软件安装与配置
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/%E5%8D%9A%E5%AE%A2/">
+                            <span class="chip bg-color">博客</span>
+                        </a>
+                        
+                        <a href="/tags/Github/">
+                            <span class="chip bg-color">Github</span>
+                        </a>
+                        
+                        <a href="/tags/Hexo/">
+                            <span class="chip bg-color">Hexo</span>
+                        </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -786,8 +1083,8 @@
     <div class="row">
         <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
                    server="netease"
-                   type="playlist"
-                   id="503838841"
+                   type="song"
+                   id="28875146"
                    fixed='true'
                    autoplay='false'
                    theme='#42b983'
@@ -807,11 +1104,11 @@
     
 
     <div class="container row center-align"
-         style="margin-bottom: 0px !important;">
+         style="margin-bottom: 15px !important;">
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2026</span>
+                <span id="year">2023-2024</span>
             
             <a href="/about" target="_blank">小倪哥</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
@@ -819,18 +1116,21 @@
             
             <br>
             
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">74.9k</span>
+            
             
             
                 
             
             
-                <span id="busuanzi_container_site_pv">
+                <span id="busuanzi_container_site_pv" style="display: none;">
                 &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
                     <span id="busuanzi_value_site_pv" class="white-color"></span>
             </span>
             
             
-                <span id="busuanzi_container_site_uv">
+                <span id="busuanzi_container_site_uv" style="display: none;">
                 &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
                     <span id="busuanzi_value_site_uv" class="white-color"></span>
             </span>
@@ -839,17 +1139,71 @@
 
             <!-- 运行天数提醒. -->
             
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2023";
+                        var startMonth = "12";
+                        var startDate = "25";
+                        var startHour = "0";
+                        var startMinute = "0";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
             <br>
             
         </div>
         <div class="col s12 m4 l4 social-link social-statis">
-    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <a href="https://github.com/xiaonige/" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
         <i class="fab fa-github"></i>
     </a>
 
 
 
-    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <a href="mailto:991509326@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
         <i class="fas fa-envelope-open"></i>
     </a>
 
@@ -859,7 +1213,7 @@
 
 
 
-    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=991509326" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 991509326" data-position="top" data-delay="50">
         <i class="fab fa-qq"></i>
     </a>
 
@@ -869,16 +1223,30 @@
 
 
 
-    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
-        <i class="fas fa-rss"></i>
-    </a>
-
 </div>
     </div>
 </footer>
 
 <div class="progress-bar"></div>
+<script>
+    $(document).ready(function () {
 
+        var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+        var pvcountOffset = 80000;  // 初始化首次数据
+        var uvcountOffset = 20000;
+
+        function fixCount() {
+            if (document.getElementById("busuanzi_container_site_pv").style.display != "none") {
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + pvcountOffset);
+                clearInterval(int);
+            }
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + uvcountOffset); // 加上初始数据 
+                clearInterval(int); // 停止检测
+            }
+        }
+    });
+</script>
 
     <!-- 搜索遮罩框 -->
 <div id="searchModal" class="modal">
@@ -1033,6 +1401,14 @@ $(function () {
     
 
     <!-- 鼠标星星特效 -->
+     
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/libs/others/star.js"><\/script>');
+            }
+        </script>
     
 
      
