@@ -101,23 +101,13 @@ blockquote {
 }
 
 pre {
-    padding: 2rem 1rem 1rem 3rem !important;
-    border-radius: 0.35rem;
+    padding: 1rem !important;
+    border-radius: 6px;
     tab-size: 4;
 }
 
 .code-area::after {
-    content: " ";
-    position: absolute;
-    border-radius: 50%;
-    background: #ff5f56;
-    width: 12px;
-    height: 12px;
-    top: 0;
-    left: 12px;
-    margin-top: 12px;
-    -webkit-box-shadow: 20px 0 #ffbd2e, 40px 0 #27c93f;
-    box-shadow: 20px 0 #ffbd2e, 40px 0 #27c93f;
+    display: none;
 }
 
 code {
@@ -132,8 +122,8 @@ code {
 
 .code_copy {
     position: absolute;
-    top: 0.7rem;
-    right: 25px;
+    top: 0.5rem;
+    right: 0.5rem;
     z-index: 1;
     filter: invert(50%);
     cursor: pointer;
@@ -141,8 +131,8 @@ code {
 
 .codecopy_notice {
     position: absolute;
-    top: 0.7rem;
-    right: 6px;
+    top: 0.5rem;
+    right: 1.5rem;
     z-index: 1;
     filter: invert(50%);
     opacity: 0;
@@ -150,8 +140,8 @@ code {
 
 .code_lang {
     position: absolute;
-    top: 1.2rem;
-    right: 46px;
+    top: 0.6rem;
+    right: 3rem;
     line-height: 0;
     font-weight: bold;
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
