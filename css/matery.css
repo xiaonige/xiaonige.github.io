@@ -635,7 +635,7 @@ header .go-back i {
         background: rgba(233, 30, 99, 0.75);
         background: linear-gradient(45deg, rgba(233, 30, 99, 0.75) 0%, rgba(233, 30, 99, 0.65) 100%);
         background: -moz-linear-gradient(135deg, rgba(233, 30, 99, 0.75) 0%, rgba(233, 30, 99, 0.65) 100%);
-        background: -webkit-linear-gradient(135deg, rgba(2233, 30, 99, 0.75) 0%, rgba(233, 30, 99, 0.65) 100%);
+        background: -webkit-linear-gradient(135deg, rgba(233, 30, 99, 0.75) 0%, rgba(233, 30, 99, 0.65) 100%);
     }
 }
 
@@ -681,7 +681,7 @@ header .go-back i {
         background: rgba(233, 30, 99, 0.75);
         background: linear-gradient(45deg, rgba(233, 30, 99, 0.75) 0%, rgba(233, 30, 99, 0.65) 100%);
         background: -moz-linear-gradient(135deg, rgba(233, 30, 99, 0.75) 0%, rgba(233, 30, 99, 0.65) 100%);
-        background: -webkit-linear-gradient(135deg, rgba(2233, 30, 99, 0.75) 0%, rgba(233, 30, 99, 0.65) 100%);
+        background: -webkit-linear-gradient(135deg, rgba(233, 30, 99, 0.75) 0%, rgba(233, 30, 99, 0.65) 100%);
     }
 }
 
@@ -2293,4 +2293,99 @@ body.DarkMode .theme-btn:hover {
     font-family:'Font Awesome 5 Free';
     font-weight: 900;
     color: #d9534f;
+}
+
+/* ========== 代码语法高亮样式 - 修复乱码问题 ========== */
+figure.highlight {
+    background-color: #272822;
+    border-radius: 0.35rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+figure.highlight table {
+    margin: 0;
+    border: none;
+    width: 100%;
+}
+
+figure.highlight td {
+    border: none;
+    padding: 0;
+}
+
+/* 行号区域 */
+figure.highlight td.gutter {
+    text-align: right;
+    padding: 1rem 1rem 1rem 0.5rem;
+    background-color: #1e1f1c;
+    color: #90908a;
+    user-select: none;
+    border-right: 1px solid #3e3d32;
+    min-width: 3rem;
+}
+
+figure.highlight td.gutter pre {
+    margin: 0;
+    padding: 0 !important;
+    background: transparent;
+}
+
+/* 代码区域 */
+figure.highlight td.code {
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+figure.highlight td.code pre {
+    margin: 0;
+    padding: 0 !important;
+    background: transparent;
+}
+
+/* 代码行 */
+figure.highlight .line {
+    line-height: 1.6;
+    min-height: 1.6rem;
+    color: #f8f8f2;
+}
+
+/* 语法高亮颜色 (Monokai 主题) */
+figure.highlight .comment { color: #75715e; }
+figure.highlight .string { color: #e6db74; }
+figure.highlight .keyword { color: #f92672; }
+figure.highlight .function { color: #a6e22e; }
+figure.highlight .class { color: #a6e22e; }
+figure.highlight .title { color: #a6e22e; }
+figure.highlight .number { color: #ae81ff; }
+figure.highlight .literal { color: #ae81ff; }
+figure.highlight .built_in { color: #66d9ef; }
+figure.highlight .attr { color: #a6e22e; }
+figure.highlight .variable { color: #f8f8f2; }
+figure.highlight .meta { color: #f8f8f2; }
+figure.highlight .tag { color: #f92672; }
+figure.highlight .name { color: #f92672; }
+figure.highlight .subst { color: #f8f8f2; }
+figure.highlight .regexp { color: #e6db74; }
+figure.highlight .symbol { color: #66d9ef; }
+figure.highlight .bullet { color: #66d9ef; }
+figure.highlight .addition { color: #a6e22e; background-color: #1e3f25; }
+figure.highlight .deletion { color: #f92672; background-color: #4a1f27; }
+figure.highlight .link { color: #ae81ff; text-decoration: underline; }
+figure.highlight .attribute { color: #a6e22e; }
+figure.highlight .selector-tag { color: #f92672; }
+figure.highlight .selector-class { color: #a6e22e; }
+figure.highlight .selector-id { color: #a6e22e; }
+figure.highlight .selector-attr { color: #66d9ef; }
+figure.highlight .selector-pseudo { color: #66d9ef; }
+
+/* 修复 emoji 显示 */
+figure.highlight .line span {
+    display: inline;
+    font-family: inherit;
+}
+
+/* 行内代码优化 */
+code {
+    word-break: break-word;
 }
