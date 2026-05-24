@@ -1,28 +1,24 @@
 /* Here is your custom css styles. */
 
-/* ========== 代码块样式 - Markdown通用风格 ========== */
+/* ========== 代码块样式 - 简洁干净 ========== */
 
-/* 代码块容器：圆角、深色背景、无多余装饰 */
+/* 代码块容器 */
 figure.highlight {
     border-radius: 6px !important;
     margin: 1.2rem 0 !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    position: relative;
 }
 
-/* 行号栏：简洁深色侧栏 */
+/* 隐藏行号栏 */
 figure.highlight td.gutter {
-    padding: 0.8rem 0.6rem 0.8rem 0.5rem !important;
-    min-width: 2.5rem !important;
-}
-
-figure.highlight td.gutter pre .line {
-    font-size: 0.8rem !important;
-    opacity: 0.5;
+    display: none !important;
 }
 
 /* 代码内容区域 */
 figure.highlight td.code {
-    padding: 0.8rem 1rem !important;
+    padding: 1rem 1.2rem !important;
+    border: none !important;
 }
 
 figure.highlight .line {
@@ -31,30 +27,16 @@ figure.highlight .line {
     font-family: 'JetBrains Mono', 'Fira Code', Inconsolata, Monaco, Consolas, 'Courier New', monospace !important;
 }
 
-/* 复制按钮位置优化 */
-.code_copy {
-    top: 0.4rem !important;
-    right: 0.5rem !important;
-    opacity: 0.6;
-    transition: opacity 0.2s;
+/* 调整 table 无边框间隙 */
+figure.highlight table {
+    border: none !important;
 }
 
-.code_copy:hover {
-    opacity: 1;
-}
-
-/* 语言标识 */
-.code_lang {
-    top: 0.5rem !important;
-    right: 2.5rem !important;
-    font-size: 0.8rem !important;
-    opacity: 0.7;
-}
-
-/* 展开/收起按钮 */
+/* 隐藏覆盖按钮（复制、语言、展开） */
+.code_copy,
+.code_lang,
 .code-expand {
-    top: 0.3rem !important;
-    right: 0.2rem !important;
+    display: none !important;
 }
 
 /* 行内代码：类似Markdown的浅灰背景 */
