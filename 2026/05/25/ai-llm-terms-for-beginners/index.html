@@ -1,0 +1,1752 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="给小学生也能讲明白的 AI 大模型术语课：Token、上下文、记忆、Skill、MCP、ACP 到 API Key, 技术,编程,Java,Python,JavaScript">
+    <meta name="description" content="前言：先别被这些词吓住现在只要一聊 AI，大人们嘴里就会蹦出一堆听起来很高级的词：Token、上下文、记忆、Prompt、Skill、MCP、ACP、API Key、Provider、Agent、模型、Embedding、向量数据库……
+这">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>给小学生也能讲明白的 AI 大模型术语课：Token、上下文、记忆、Skill、MCP、ACP 到 API Key | 海阔天空</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/css/reward.css">
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">海阔天空</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">海阔天空</div>
+        <div class="logo-desc">
+            
+            分享技术、记录生活
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">给小学生也能讲明白的 AI 大模型术语课：Token、上下文、记忆、Skill、MCP、ACP 到 API Key</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/AI%E5%B7%A5%E5%85%B7/">
+                                <span class="chip bg-color">AI工具</span>
+                            </a>
+                        
+                            <a href="/tags/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                                <span class="chip bg-color">AI大模型</span>
+                            </a>
+                        
+                            <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">
+                                <span class="chip bg-color">人工智能</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%85%A5%E9%97%A8%E7%A7%91%E6%99%AE/">
+                                <span class="chip bg-color">入门科普</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/">
+                                <span class="chip bg-color">提示词工程</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                学习
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2026-05-25
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="前言：先别被这些词吓住"><a href="#前言：先别被这些词吓住" class="headerlink" title="前言：先别被这些词吓住"></a>前言：先别被这些词吓住</h2><p>现在只要一聊 AI，大人们嘴里就会蹦出一堆听起来很高级的词：Token、上下文、记忆、Prompt、Skill、MCP、ACP、API Key、Provider、Agent、模型、Embedding、向量数据库……</p>
+<p>这些词看起来像魔法咒语，但其实大部分都可以用生活里的例子讲清楚。如果要给小学生解释 AI 大模型，我不会一上来讲数学公式，也不会讲神经网络有多少层。那太像刚学加减法就被塞进高等数学课堂，小朋友听完只会想：老师，我能不能先去操场冷静一下？</p>
+<p>更好的方法是，把 AI 想象成一个特别会读书、特别会聊天、特别会模仿人类语言的小助手。它读过很多书，看过很多网页，学会了很多句子的规律。所以当你问它问题时，它会根据你给它的文字，猜出接下来最合适的回答。</p>
+<p>注意，这里有一个关键词：<strong>猜</strong>。</p>
+<p>AI 大模型并不是一个真正懂世界所有真相的神仙，它更像一个超级厉害的“语言接龙高手”。你给它一段话，它就根据以前学到的语言规律，接着往下说。因为它读过的东西太多，所以很多时候接得非常像专家。但它也可能接错，甚至一本正经地胡说八道。</p>
+<p>所以，学会这些专业名词的目的，不是为了装酷，而是为了更好地使用 AI：知道它擅长什么，不擅长什么；知道怎么提问，怎么检查答案；知道什么时候该相信，什么时候该让它拿证据出来。</p>
+<p>下面，我们就用大白话，把这些常见术语一个个拆开讲。</p>
+<hr>
+<h2 id="一、AI-大模型到底是什么？"><a href="#一、AI-大模型到底是什么？" class="headerlink" title="一、AI 大模型到底是什么？"></a>一、AI 大模型到底是什么？</h2><h3 id="1-1-大模型像一个“超级语言接龙机”"><a href="#1-1-大模型像一个“超级语言接龙机”" class="headerlink" title="1.1 大模型像一个“超级语言接龙机”"></a>1.1 大模型像一个“超级语言接龙机”</h3><p>我们先从“AI 大模型”说起。</p>
+<p>你可以把它想象成一个读过超级多文字的学生。这个学生读过故事书、百科全书、说明书、网页、代码、论文、聊天记录等各种内容。读得多了，它就学会了很多语言规律。</p>
+<p>比如你写：</p>
+<blockquote>
+<p>春眠不觉晓，处处闻啼……</p>
+</blockquote>
+<p>很多人会自然想到“鸟”。AI 也是这样，它会根据前面的文字，预测后面最可能出现什么。</p>
+<p>再比如你问：</p>
+<blockquote>
+<p>请解释一下太阳为什么会发光。</p>
+</blockquote>
+<p>AI 就会根据它学过的知识，组合出一段关于核聚变、光和热的解释。</p>
+<p>所以，大模型的“大”，主要体现在几个方面：</p>
+<ul>
+<li>读过的数据多</li>
+<li>参数数量多</li>
+<li>能处理的问题类型多</li>
+<li>生成文字、代码、图片说明等内容的能力强</li>
+</ul>
+<p>但它不是无所不能。它没有人类的真实经历，也不会像人一样真正“看见”“摸到”“闻到”世界。它的很多能力来自文字规律和训练数据。</p>
+<h3 id="1-2-模型不是机器人本体，而是“大脑”"><a href="#1-2-模型不是机器人本体，而是“大脑”" class="headerlink" title="1.2 模型不是机器人本体，而是“大脑”"></a>1.2 模型不是机器人本体，而是“大脑”</h3><p>很多人会把 ChatGPT、Claude、DeepSeek、豆包、通义千问这些工具直接叫做 AI。其实更准确地说：</p>
+<ul>
+<li><strong>模型</strong>像大脑</li>
+<li><strong>App 或网页</strong>像身体和界面</li>
+<li><strong>工具能力</strong>像手和脚</li>
+<li><strong>规则和提示词</strong>像老师给它的任务说明</li>
+</ul>
+<p>比如你打开一个聊天网页，输入问题，然后看到回答。你看到的是一个产品，但背后真正生成答案的是模型。</p>
+<p>这就像你用计算器算题。你看到的是计算器外壳和按钮，真正计算的是里面的芯片和程序。</p>
+<hr>
+<h2 id="二、Token：AI-眼里的“小积木”"><a href="#二、Token：AI-眼里的“小积木”" class="headerlink" title="二、Token：AI 眼里的“小积木”"></a>二、Token：AI 眼里的“小积木”</h2><h3 id="2-1-Token-不是金币，是文字小块"><a href="#2-1-Token-不是金币，是文字小块" class="headerlink" title="2.1 Token 不是金币，是文字小块"></a>2.1 Token 不是金币，是文字小块</h3><p>Token 这个词特别常见。很多平台会说：“本次消耗了多少 Token”“模型支持 128K Token 上下文”。</p>
+<p>Token 可以简单理解为：<strong>AI 处理文字时切出来的小积木</strong>。</p>
+<p>人类读一句话时，会按字、词、句子来理解。AI 不完全按汉字或单词来读，而是把文字切成一个个小块，这些小块就叫 Token。</p>
+<p>比如中文句子：</p>
+<blockquote>
+<p>我喜欢人工智能。</p>
+</blockquote>
+<p>它可能被切成类似：</p>
+<ul>
+<li>我</li>
+<li>喜欢</li>
+<li>人工</li>
+<li>智能</li>
+<li>。</li>
+</ul>
+<p>但不同模型切法不一定一样。有时一个汉字是一个 Token，有时两个字是一个 Token，有时英文单词会被拆成几段。</p>
+<h3 id="2-2-为什么-Token-重要？"><a href="#2-2-为什么-Token-重要？" class="headerlink" title="2.2 为什么 Token 重要？"></a>2.2 为什么 Token 重要？</h3><p>Token 重要，是因为 AI 的“阅读量”和“花费”通常都跟 Token 有关。</p>
+<p>你可以把 Token 想象成坐公交车的票。你让 AI 读得越多、写得越多，它消耗的票就越多。</p>
+<p>Token 影响三件事：</p>
+<ol>
+<li><p><strong>能塞进去多少内容</strong><br>如果模型最多支持 8000 Token，你就不能一次塞进去一本很厚的书。</p>
+</li>
+<li><p><strong>回答能写多长</strong><br>如果输出限制很小，AI 回答到一半可能就停了。</p>
+</li>
+<li><p><strong>使用成本</strong><br>很多 API 是按 Token 收费的。输入越多、输出越多，费用越高。</p>
+</li>
+</ol>
+<h3 id="2-3-给小学生的比喻"><a href="#2-3-给小学生的比喻" class="headerlink" title="2.3 给小学生的比喻"></a>2.3 给小学生的比喻</h3><p>假设 AI 是一个小朋友，Token 就是他面前的乐高积木。你给他的积木越多，他能搭的东西越复杂，但桌子大小有限，积木太多就放不下。</p>
+<p>所以，使用 AI 时不要把一堆没用的话全扔进去。问题越清楚，AI 越容易回答好，也更省 Token。</p>
+<hr>
+<h2 id="三、上下文：AI-的“临时黑板”"><a href="#三、上下文：AI-的“临时黑板”" class="headerlink" title="三、上下文：AI 的“临时黑板”"></a>三、上下文：AI 的“临时黑板”</h2><h3 id="3-1-上下文是什么？"><a href="#3-1-上下文是什么？" class="headerlink" title="3.1 上下文是什么？"></a>3.1 上下文是什么？</h3><p>上下文，英文叫 Context。</p>
+<p>它可以理解为：<strong>AI 当前能看到的聊天内容和资料</strong>。</p>
+<p>你和 AI 聊天时，前面说过的话、你刚上传的材料、系统给它的要求，都会放在一个临时区域里。AI 回答问题时，会参考这个区域。这个区域就像教室里的黑板。</p>
+<p>老师在黑板上写了：</p>
+<blockquote>
+<p>今天我们讨论恐龙。</p>
+</blockquote>
+<p>然后学生回答问题时，就知道现在主题是恐龙，而不是数学作业。</p>
+<p>AI 也是这样。如果你前面告诉它：</p>
+<blockquote>
+<p>请你扮演一个小学科学老师。</p>
+</blockquote>
+<p>后面你再问：</p>
+<blockquote>
+<p>解释一下这个。</p>
+</blockquote>
+<p>AI 就会根据前面的上下文，用小学科学老师的方式解释。</p>
+<h3 id="3-2-上下文窗口：黑板有多大"><a href="#3-2-上下文窗口：黑板有多大" class="headerlink" title="3.2 上下文窗口：黑板有多大"></a>3.2 上下文窗口：黑板有多大</h3><p>上下文窗口就是这块黑板的大小。</p>
+<p>有些模型黑板小，只能记住最近几页内容。有些模型黑板大，可以一次看很多资料，比如几十页、几百页。</p>
+<p>大家常说的：</p>
+<ul>
+<li>8K 上下文</li>
+<li>32K 上下文</li>
+<li>128K 上下文</li>
+<li>1M 上下文</li>
+</ul>
+<p>大概就是这块黑板能放多少 Token。</p>
+<h3 id="3-3-上下文不是永久记忆"><a href="#3-3-上下文不是永久记忆" class="headerlink" title="3.3 上下文不是永久记忆"></a>3.3 上下文不是永久记忆</h3><p>很重要的一点：<strong>上下文不等于长期记忆</strong>。</p>
+<p>上下文像临时黑板，擦掉就没了。你这次聊天里说过的内容，AI 这次能参考；换一个新聊天，它可能就不知道了。</p>
+<p>如果你希望 AI 长期记住你的偏好，比如“以后都用中文回答我”“我是小学生，请讲简单点”，那就需要记忆功能，或者把这些要求写进系统规则里。</p>
+<hr>
+<h2 id="四、Prompt：你给-AI-的“任务纸条”"><a href="#四、Prompt：你给-AI-的“任务纸条”" class="headerlink" title="四、Prompt：你给 AI 的“任务纸条”"></a>四、Prompt：你给 AI 的“任务纸条”</h2><h3 id="4-1-Prompt-是什么？"><a href="#4-1-Prompt-是什么？" class="headerlink" title="4.1 Prompt 是什么？"></a>4.1 Prompt 是什么？</h3><p>Prompt 通常翻译成“提示词”。但不要被“词”骗了，它不一定只是一个词，也可以是一句话、一段说明，甚至是一整份任务书。</p>
+<p>简单说，Prompt 就是：<strong>你告诉 AI 要做什么的那段话</strong>。</p>
+<p>比如：</p>
+<blockquote>
+<p>请用小学生能听懂的话解释黑洞。</p>
+</blockquote>
+<p>这就是一个 Prompt。</p>
+<p>更完整一点的 Prompt 可以这样写：</p>
+<blockquote>
+<p>你是一名小学科学老师。请用三年级学生能听懂的语言解释黑洞是什么。要求：不要使用太难的数学公式，多用生活比喻，最后给三个思考题。</p>
+</blockquote>
+<p>这个 Prompt 就比第一句更清楚。</p>
+<h3 id="4-2-好-Prompt-像好题目"><a href="#4-2-好-Prompt-像好题目" class="headerlink" title="4.2 好 Prompt 像好题目"></a>4.2 好 Prompt 像好题目</h3><p>如果你问 AI：</p>
+<blockquote>
+<p>写点 AI 的东西。</p>
+</blockquote>
+<p>AI 很难知道你到底想要什么。它可能写成新闻，可能写成作文，可能写成广告。</p>
+<p>如果你问：</p>
+<blockquote>
+<p>写一篇 3000 字左右的科普文章，面向小学生，主题是 AI 大模型常见术语，用大白话解释 Token、上下文、记忆、API Key 等概念，并给出日常使用建议。</p>
+</blockquote>
+<p>AI 就更容易写出你想要的内容。</p>
+<p>所以，想用好 AI，第一件事不是学什么神秘咒语，而是把需求说清楚。</p>
+<h3 id="4-3-一个简单公式"><a href="#4-3-一个简单公式" class="headerlink" title="4.3 一个简单公式"></a>4.3 一个简单公式</h3><p>好 Prompt 可以包含五个部分：</p>
+<ol>
+<li>角色：你希望 AI 扮演谁？</li>
+<li>任务：你要它做什么？</li>
+<li>背景：为什么要做？给谁看？</li>
+<li>要求：字数、风格、格式、重点</li>
+<li>检查：让它自查是否遗漏</li>
+</ol>
+<p>比如：</p>
+<blockquote>
+<p>你是一名小学信息科技老师。请给四年级学生讲解 AI 大模型。要求用生活比喻解释专业词，不少于 3000 字，分章节，有总结和使用建议。写完后检查是否覆盖 Token、上下文、记忆、Skill、MCP、ACP、API Key、Provider。</p>
+</blockquote>
+<p>这就是一个不错的 Prompt。</p>
+<hr>
+<h2 id="五、记忆：AI-的“小本本”"><a href="#五、记忆：AI-的“小本本”" class="headerlink" title="五、记忆：AI 的“小本本”"></a>五、记忆：AI 的“小本本”</h2><h3 id="5-1-记忆和上下文有什么区别？"><a href="#5-1-记忆和上下文有什么区别？" class="headerlink" title="5.1 记忆和上下文有什么区别？"></a>5.1 记忆和上下文有什么区别？</h3><p>上下文是临时黑板，记忆是小本本。</p>
+<p>黑板上的内容这节课能用，下课可能就擦掉。小本本里的内容可以下次继续看。</p>
+<p>AI 的记忆通常用来保存长期信息，比如：</p>
+<ul>
+<li>你喜欢中文回答</li>
+<li>你希望解释简单一点</li>
+<li>你常用某个代码风格</li>
+<li>你的项目名称</li>
+<li>你正在写一本书</li>
+</ul>
+<p>这样以后你再找 AI，它就不用每次重新问你一遍。</p>
+<h3 id="5-2-记忆不是越多越好"><a href="#5-2-记忆不是越多越好" class="headerlink" title="5.2 记忆不是越多越好"></a>5.2 记忆不是越多越好</h3><p>很多人觉得，AI 记得越多越聪明。其实不一定。</p>
+<p>如果小本本里写满了乱七八糟的信息，AI 可能反而会混乱。比如你以前说“我喜欢严肃风格”，后来又说“我喜欢幽默风格”，如果记忆没有更新，它可能不知道该听哪一个。</p>
+<p>所以好的记忆应该是：</p>
+<ul>
+<li>重要</li>
+<li>稳定</li>
+<li>经常会用到</li>
+<li>不涉及不该保存的隐私</li>
+</ul>
+<h3 id="5-3-日常怎么用记忆？"><a href="#5-3-日常怎么用记忆？" class="headerlink" title="5.3 日常怎么用记忆？"></a>5.3 日常怎么用记忆？</h3><p>你可以告诉 AI：</p>
+<blockquote>
+<p>以后给我解释技术问题时，请先用大白话讲一遍，再给专业解释。</p>
+</blockquote>
+<p>或者：</p>
+<blockquote>
+<p>请记住，我正在学习 Python，回答代码问题时尽量用 Python 举例。</p>
+</blockquote>
+<p>但不要随便让 AI 记住银行卡号、密码、身份证号、家庭住址等敏感信息。AI 再聪明，也不应该变成你的密码本。</p>
+<hr>
+<h2 id="六、规则：给-AI-画边界的“班规”"><a href="#六、规则：给-AI-画边界的“班规”" class="headerlink" title="六、规则：给 AI 画边界的“班规”"></a>六、规则：给 AI 画边界的“班规”</h2><h3 id="6-1-规则是什么？"><a href="#6-1-规则是什么？" class="headerlink" title="6.1 规则是什么？"></a>6.1 规则是什么？</h3><p>规则就是告诉 AI：哪些事情应该做，哪些事情不能做。</p>
+<p>在学校里，班规可能是：</p>
+<ul>
+<li>上课不要大声喧哗</li>
+<li>作业要自己完成</li>
+<li>不要欺负同学</li>
+</ul>
+<p>在 AI 系统里，规则可能是：</p>
+<ul>
+<li>回答必须使用中文</li>
+<li>不要泄露用户隐私</li>
+<li>不要编造不存在的引用</li>
+<li>不要执行危险命令</li>
+<li>写博客必须先写 Markdown 源文件</li>
+</ul>
+<p>规则能让 AI 更可靠，也更安全。</p>
+<h3 id="6-2-系统规则、开发者规则、用户规则"><a href="#6-2-系统规则、开发者规则、用户规则" class="headerlink" title="6.2 系统规则、开发者规则、用户规则"></a>6.2 系统规则、开发者规则、用户规则</h3><p>有些 AI 工具有多层规则。可以把它想象成学校里的不同要求：</p>
+<ul>
+<li><strong>系统规则</strong>：校长定的底线，所有人都要遵守</li>
+<li><strong>开发者规则</strong>：老师定的课堂要求</li>
+<li><strong>用户规则</strong>：学生这次想完成的具体任务</li>
+</ul>
+<p>如果学生说“老师，我今天不想遵守校规”，当然不行。AI 也是这样，高优先级规则不能被低优先级要求推翻。</p>
+<p>这也是为什么有时候你让 AI 做某些事，它会拒绝。不是它装高冷，而是它有安全边界。</p>
+<h3 id="6-3-规则不是麻烦，是护栏"><a href="#6-3-规则不是麻烦，是护栏" class="headerlink" title="6.3 规则不是麻烦，是护栏"></a>6.3 规则不是麻烦，是护栏</h3><p>很多人觉得规则限制了 AI。其实规则更像马路护栏。没有护栏，车可能开得更自由，但也更容易冲下悬崖。</p>
+<p>好的 AI 工具一定需要规则，尤其是当它能操作文件、运行命令、发送消息、访问网络时。</p>
+<hr>
+<h2 id="七、Skill：AI-的“技能卡”"><a href="#七、Skill：AI-的“技能卡”" class="headerlink" title="七、Skill：AI 的“技能卡”"></a>七、Skill：AI 的“技能卡”</h2><h3 id="7-1-Skill-是什么？"><a href="#7-1-Skill-是什么？" class="headerlink" title="7.1 Skill 是什么？"></a>7.1 Skill 是什么？</h3><p>Skill 可以理解为：<strong>给 AI 准备的一张专业技能卡</strong>。</p>
+<p>普通 AI 可能什么都懂一点，但做专业任务时，最好给它一份固定流程。比如：</p>
+<ul>
+<li>写博客应该怎么写、怎么发布</li>
+<li>处理 PDF 应该用什么工具</li>
+<li>查询天气应该走哪个接口</li>
+<li>做安全检查应该按什么步骤</li>
+</ul>
+<p>这些固定流程就可以做成 Skill。</p>
+<h3 id="7-2-用游戏来比喻"><a href="#7-2-用游戏来比喻" class="headerlink" title="7.2 用游戏来比喻"></a>7.2 用游戏来比喻</h3><p>如果 AI 是游戏角色，那么 Skill 就像技能书。</p>
+<p>角色本来会普通攻击，但学了“烹饪技能”，就知道怎么做饭；学了“修理技能”，就知道怎么修机器；学了“博客发布技能”，就知道先写源文件，再生成网页，再提交 GitHub。</p>
+<p>Skill 的好处是：</p>
+<ul>
+<li>减少重复说明</li>
+<li>降低出错概率</li>
+<li>保持流程一致</li>
+<li>让 AI 更像专业助手</li>
+</ul>
+<h3 id="7-3-Skill-和-Prompt-的区别"><a href="#7-3-Skill-和-Prompt-的区别" class="headerlink" title="7.3 Skill 和 Prompt 的区别"></a>7.3 Skill 和 Prompt 的区别</h3><p>Prompt 是这一次你给 AI 的任务纸条。Skill 是长期准备好的操作手册。</p>
+<p>比如你说：</p>
+<blockquote>
+<p>写一篇博客并发布。</p>
+</blockquote>
+<p>这是 Prompt。</p>
+<p>AI 看到这个任务后，加载“博客发布 Skill”，就知道具体流程：写 Markdown、检查、Hexo 生成、发布到 GitHub。</p>
+<hr>
+<h2 id="八、Tool：AI-的“工具箱”"><a href="#八、Tool：AI-的“工具箱”" class="headerlink" title="八、Tool：AI 的“工具箱”"></a>八、Tool：AI 的“工具箱”</h2><h3 id="8-1-AI-为什么需要工具？"><a href="#8-1-AI-为什么需要工具？" class="headerlink" title="8.1 AI 为什么需要工具？"></a>8.1 AI 为什么需要工具？</h3><p>大模型本身主要擅长读文字、写文字、总结、推理、生成代码。但它不一定能直接看到最新网页，也不一定能直接操作你的电脑。</p>
+<p>如果给它工具，它就能做更多事情。</p>
+<p>常见工具包括：</p>
+<ul>
+<li>搜索网页</li>
+<li>读取文件</li>
+<li>写入文件</li>
+<li>执行命令</li>
+<li>控制浏览器</li>
+<li>发送消息</li>
+<li>查询数据库</li>
+<li>调用图片生成服务</li>
+</ul>
+<p>这就像一个聪明学生，如果只有脑子，能想很多；如果再给他铅笔、尺子、电脑、实验器材，他就能完成更多任务。</p>
+<h3 id="8-2-工具越强，越要小心"><a href="#8-2-工具越强，越要小心" class="headerlink" title="8.2 工具越强，越要小心"></a>8.2 工具越强，越要小心</h3><p>如果 AI 只能聊天，说错了最多让人误会。但如果 AI 能删除文件、转账、发邮件，那就必须更谨慎。</p>
+<p>所以强工具通常需要权限控制，比如：</p>
+<ul>
+<li>危险命令要确认</li>
+<li>外发消息要提醒</li>
+<li>删除文件要小心</li>
+<li>访问隐私数据要受限制</li>
+</ul>
+<p>能行动的 AI 很有用，但也不能让它乱跑。聪明的小助手也要系安全带。</p>
+<hr>
+<h2 id="九、Agent：会自己拆任务的-AI-助手"><a href="#九、Agent：会自己拆任务的-AI-助手" class="headerlink" title="九、Agent：会自己拆任务的 AI 助手"></a>九、Agent：会自己拆任务的 AI 助手</h2><h3 id="9-1-Agent-和普通聊天-AI-有什么区别？"><a href="#9-1-Agent-和普通聊天-AI-有什么区别？" class="headerlink" title="9.1 Agent 和普通聊天 AI 有什么区别？"></a>9.1 Agent 和普通聊天 AI 有什么区别？</h3><p>普通聊天 AI 更像问答机器人。你问一句，它答一句。</p>
+<p>Agent 更像一个会做事的助手。你给它一个目标，它会自己拆步骤、用工具、检查结果，然后继续下一步。</p>
+<p>比如你说：</p>
+<blockquote>
+<p>帮我写一篇博客并发布。</p>
+</blockquote>
+<p>普通聊天 AI 可能只写文章给你。</p>
+<p>Agent 可能会这样做：</p>
+<ol>
+<li>确认主题</li>
+<li>写 Markdown 源文</li>
+<li>检查格式和字数</li>
+<li>运行 Hexo 生成网页</li>
+<li>复制生成结果</li>
+<li>提交 Git</li>
+<li>推送 GitHub</li>
+<li>给你最终链接</li>
+</ol>
+<p>这就是 Agent 的特点：不仅会说，还会做。</p>
+<h3 id="9-2-Agent-需要计划能力"><a href="#9-2-Agent-需要计划能力" class="headerlink" title="9.2 Agent 需要计划能力"></a>9.2 Agent 需要计划能力</h3><p>Agent 做复杂任务时，不能想到哪做到哪。它需要计划。</p>
+<p>就像你做手工：</p>
+<ul>
+<li>先准备材料</li>
+<li>再剪纸</li>
+<li>再粘贴</li>
+<li>最后检查</li>
+</ul>
+<p>如果顺序乱了，可能胶水还没准备就开始贴，最后一团糟。</p>
+<p>好的 Agent 会边做边检查，而不是一路狂奔。</p>
+<hr>
+<h2 id="十、MCP：让-AI-连接外部工具的“插座标准”"><a href="#十、MCP：让-AI-连接外部工具的“插座标准”" class="headerlink" title="十、MCP：让 AI 连接外部工具的“插座标准”"></a>十、MCP：让 AI 连接外部工具的“插座标准”</h2><h3 id="10-1-MCP-是什么？"><a href="#10-1-MCP-是什么？" class="headerlink" title="10.1 MCP 是什么？"></a>10.1 MCP 是什么？</h3><p>MCP 全称通常叫 Model Context Protocol，可以理解为：<strong>让 AI 模型连接外部工具和资料的一种标准协议</strong>。</p>
+<p>听起来很绕，我们换个说法。</p>
+<p>家里的电器要插电，需要插头和插座匹配。电视、冰箱、台灯虽然功能不同，但都可以通过统一插座获得电。</p>
+<p>MCP 就像 AI 世界里的“工具插座标准”。不同工具只要按这个标准接进来，AI 就能更容易使用它们。</p>
+<h3 id="10-2-MCP-能接什么？"><a href="#10-2-MCP-能接什么？" class="headerlink" title="10.2 MCP 能接什么？"></a>10.2 MCP 能接什么？</h3><p>MCP 可以让 AI 接触很多外部能力，比如：</p>
+<ul>
+<li>文件系统</li>
+<li>数据库</li>
+<li>浏览器</li>
+<li>Git 仓库</li>
+<li>日历</li>
+<li>邮件</li>
+<li>公司内部知识库</li>
+<li>第三方 API</li>
+</ul>
+<p>有了 MCP，AI 不只是凭脑袋回答，还能去查资料、读文件、调用工具。</p>
+<h3 id="10-3-给小学生的比喻"><a href="#10-3-给小学生的比喻" class="headerlink" title="10.3 给小学生的比喻"></a>10.3 给小学生的比喻</h3><p>AI 像一个坐在教室里的学生。MCP 像学校给他开的“工具窗口”。通过这个窗口，他可以去图书馆查书、去实验室拿器材、去办公室看通知。</p>
+<p>没有 MCP，他只能凭记忆回答。有了 MCP，他可以连接真实工具，做更准确的事。</p>
+<hr>
+<h2 id="十一、ACP：让-AI-编程工具协作的“对讲机”"><a href="#十一、ACP：让-AI-编程工具协作的“对讲机”" class="headerlink" title="十一、ACP：让 AI 编程工具协作的“对讲机”"></a>十一、ACP：让 AI 编程工具协作的“对讲机”</h2><h3 id="11-1-ACP-是什么？"><a href="#11-1-ACP-是什么？" class="headerlink" title="11.1 ACP 是什么？"></a>11.1 ACP 是什么？</h3><p>ACP 常见于 AI 编程助手或 Agent 系统中，可以理解为一种让 AI 与编码工具、开发环境或专门代理协作的协议或接口。</p>
+<p>如果 MCP 更像“接工具的插座”，ACP 可以理解为“和专业助手协作的对讲机”。</p>
+<p>比如你想让 AI 修改一个项目代码，它可能需要调用一个专门的编码代理。这个代理会读取项目、修改文件、运行测试、返回结果。ACP 就是让这些系统沟通的一种方式。</p>
+<h3 id="11-2-为什么需要-ACP？"><a href="#11-2-为什么需要-ACP？" class="headerlink" title="11.2 为什么需要 ACP？"></a>11.2 为什么需要 ACP？</h3><p>因为复杂任务不是一个聊天框就能搞定的。</p>
+<p>比如软件开发任务可能包括：</p>
+<ul>
+<li>理解项目结构</li>
+<li>修改多个文件</li>
+<li>运行测试</li>
+<li>修复报错</li>
+<li>生成提交说明</li>
+<li>和用户确认结果</li>
+</ul>
+<p>这些任务需要更专业的执行环境。ACP 的作用就是让 AI 可以把任务交给合适的编码代理或开发工具，并拿回结果。</p>
+<h3 id="11-3-小学生比喻"><a href="#11-3-小学生比喻" class="headerlink" title="11.3 小学生比喻"></a>11.3 小学生比喻</h3><p>假设你是班长，要完成校园科技节项目。你一个人做不完，于是用对讲机联系不同同学：</p>
+<ul>
+<li>小明负责画海报</li>
+<li>小红负责做 PPT</li>
+<li>小刚负责搬桌子</li>
+<li>小李负责检查设备</li>
+</ul>
+<p>ACP 就像这个对讲机系统，让不同角色协作完成复杂任务。</p>
+<hr>
+<h2 id="十二、API-Key：访问-AI-服务的“钥匙”"><a href="#十二、API-Key：访问-AI-服务的“钥匙”" class="headerlink" title="十二、API Key：访问 AI 服务的“钥匙”"></a>十二、API Key：访问 AI 服务的“钥匙”</h2><h3 id="12-1-API-是什么？"><a href="#12-1-API-是什么？" class="headerlink" title="12.1 API 是什么？"></a>12.1 API 是什么？</h3><p>API 可以理解为软件之间说话的接口。</p>
+<p>人和 AI 聊天，可以打开网页输入文字。程序想和 AI 聊天，就需要通过 API。</p>
+<p>比如一个学习 App 想调用大模型帮学生批改作文，它不会让程序员每天打开网页复制粘贴，而是让 App 通过 API 自动发送作文、拿回批改结果。</p>
+<h3 id="12-2-API-Key-是什么？"><a href="#12-2-API-Key-是什么？" class="headerlink" title="12.2 API Key 是什么？"></a>12.2 API Key 是什么？</h3><p>API Key 就是访问 API 的钥匙。</p>
+<p>如果没有钥匙，服务商不知道你是谁，也不知道该不该让你用。API Key 可以用来：</p>
+<ul>
+<li>识别用户身份</li>
+<li>统计用量</li>
+<li>控制权限</li>
+<li>计算费用</li>
+<li>防止别人乱用服务</li>
+</ul>
+<h3 id="12-3-API-Key-一定要保密"><a href="#12-3-API-Key-一定要保密" class="headerlink" title="12.3 API Key 一定要保密"></a>12.3 API Key 一定要保密</h3><p>API Key 很重要，千万不要随便发到网上。</p>
+<p>如果别人拿到你的 API Key，就可能冒充你使用 AI 服务，费用算在你头上。这就像别人捡到了你家的钥匙，跑进你家开空调、吃零食，最后电费还让你交。</p>
+<p>所以：</p>
+<ul>
+<li>不要把 API Key 写进公开代码仓库</li>
+<li>不要截图发到群里</li>
+<li>不要贴到博客文章里</li>
+<li>发现泄露要立刻删除或重置</li>
+</ul>
+<hr>
+<h2 id="十三、Provider：提供模型服务的“店家”"><a href="#十三、Provider：提供模型服务的“店家”" class="headerlink" title="十三、Provider：提供模型服务的“店家”"></a>十三、Provider：提供模型服务的“店家”</h2><h3 id="13-1-Provider-是什么？"><a href="#13-1-Provider-是什么？" class="headerlink" title="13.1 Provider 是什么？"></a>13.1 Provider 是什么？</h3><p>Provider 就是模型服务提供商。</p>
+<p>如果模型是菜，Provider 就是餐厅。不同餐厅提供不同菜品、价格、速度和服务。</p>
+<p>常见 Provider 包括：</p>
+<ul>
+<li>OpenAI</li>
+<li>Anthropic</li>
+<li>Google</li>
+<li>DeepSeek</li>
+<li>阿里云通义</li>
+<li>火山引擎豆包</li>
+<li>智谱</li>
+<li>月之暗面</li>
+<li>本地 Ollama</li>
+</ul>
+<p>这些 Provider 可能提供不同模型。有的擅长写作，有的擅长代码，有的便宜，有的上下文长，有的速度快。</p>
+<h3 id="13-2-Provider-和模型不是一回事"><a href="#13-2-Provider-和模型不是一回事" class="headerlink" title="13.2 Provider 和模型不是一回事"></a>13.2 Provider 和模型不是一回事</h3><p>Provider 是服务商，Model 是具体模型。</p>
+<p>比如一家餐厅可以有很多菜。Provider 也可以提供多个模型。</p>
+<p>例如：</p>
+<ul>
+<li>某 Provider 提供聊天模型</li>
+<li>提供代码模型</li>
+<li>提供图片理解模型</li>
+<li>提供 Embedding 模型</li>
+</ul>
+<p>选择 Provider 时，要看你的需求：</p>
+<ul>
+<li>要写文章？看文字能力</li>
+<li>要写代码？看代码能力</li>
+<li>要处理长文档？看上下文窗口</li>
+<li>要省钱？看价格</li>
+<li>要快？看响应速度</li>
+<li>要隐私？看是否支持本地部署</li>
+</ul>
+<hr>
+<h2 id="十四、模型参数：Temperature、Top-p、Max-Tokens"><a href="#十四、模型参数：Temperature、Top-p、Max-Tokens" class="headerlink" title="十四、模型参数：Temperature、Top-p、Max Tokens"></a>十四、模型参数：Temperature、Top-p、Max Tokens</h2><h3 id="14-1-Temperature：AI-的“想象力旋钮”"><a href="#14-1-Temperature：AI-的“想象力旋钮”" class="headerlink" title="14.1 Temperature：AI 的“想象力旋钮”"></a>14.1 Temperature：AI 的“想象力旋钮”</h3><p>Temperature 通常叫温度。它控制 AI 回答的随机程度。</p>
+<p>温度低，回答更稳、更保守。适合：</p>
+<ul>
+<li>数学</li>
+<li>代码</li>
+<li>法律条款总结</li>
+<li>严肃说明</li>
+</ul>
+<p>温度高，回答更发散、更有创意。适合：</p>
+<ul>
+<li>写故事</li>
+<li>起标题</li>
+<li>头脑风暴</li>
+<li>写广告语</li>
+</ul>
+<p>给小学生讲，可以说：Temperature 就像作文课上的想象力旋钮。旋钮小，写得规规矩矩；旋钮大，脑洞更开，但也更容易跑题。</p>
+<h3 id="14-2-Top-p：从多少候选词里挑"><a href="#14-2-Top-p：从多少候选词里挑" class="headerlink" title="14.2 Top-p：从多少候选词里挑"></a>14.2 Top-p：从多少候选词里挑</h3><p>Top-p 也是控制随机性的参数。它决定 AI 在生成下一个词时，从多大范围的候选里挑。</p>
+<p>不用记复杂公式，只要知道：它和 Temperature 一样，会影响回答是稳定还是发散。</p>
+<p>普通用户通常不用手动调它，默认值就够了。</p>
+<h3 id="14-3-Max-Tokens：最多写多长"><a href="#14-3-Max-Tokens：最多写多长" class="headerlink" title="14.3 Max Tokens：最多写多长"></a>14.3 Max Tokens：最多写多长</h3><p>Max Tokens 控制 AI 最多输出多少 Token。</p>
+<p>如果设置太小，AI 可能写到一半停住。比如你让它写 3000 字文章，却只允许输出 500 Token，那就像让同学写长作文，却只给半张纸。</p>
+<hr>
+<h2 id="十五、Embedding-和向量数据库：给文字做“数字指纹”"><a href="#十五、Embedding-和向量数据库：给文字做“数字指纹”" class="headerlink" title="十五、Embedding 和向量数据库：给文字做“数字指纹”"></a>十五、Embedding 和向量数据库：给文字做“数字指纹”</h2><h3 id="15-1-Embedding-是什么？"><a href="#15-1-Embedding-是什么？" class="headerlink" title="15.1 Embedding 是什么？"></a>15.1 Embedding 是什么？</h3><p>Embedding 可以理解为：<strong>把文字变成一串数字</strong>。</p>
+<p>为什么要这样做？因为电脑更擅长比较数字。</p>
+<p>比如这两句话：</p>
+<ul>
+<li>小狗在草地上跑。</li>
+<li>一只狗正在草坪上奔跑。</li>
+</ul>
+<p>人类一看就知道意思差不多。但电脑如果只看字面，会觉得它们很多字不同。</p>
+<p>Embedding 会把句子的意思变成数字坐标。意思相近的句子，数字位置也更近。</p>
+<h3 id="15-2-向量数据库是什么？"><a href="#15-2-向量数据库是什么？" class="headerlink" title="15.2 向量数据库是什么？"></a>15.2 向量数据库是什么？</h3><p>向量数据库就是专门存这些数字指纹的仓库。</p>
+<p>它常用于知识库问答。</p>
+<p>流程大概是：</p>
+<ol>
+<li>把很多文档切成小段</li>
+<li>把每段变成 Embedding 数字</li>
+<li>存进向量数据库</li>
+<li>用户提问时，也把问题变成数字</li>
+<li>找出意思最接近的文档片段</li>
+<li>把片段交给 AI 回答</li>
+</ol>
+<p>这就是很多“企业知识库 AI”的基本思路。</p>
+<h3 id="15-3-小学生比喻"><a href="#15-3-小学生比喻" class="headerlink" title="15.3 小学生比喻"></a>15.3 小学生比喻</h3><p>假设图书馆里有很多书。普通搜索像按书名找书；Embedding 搜索像按“意思”找书。</p>
+<p>你问“怎么让植物长得更好”，它可能找到“阳光、水分、土壤和肥料”的内容，即使原文里没有完全一样的问题。</p>
+<hr>
+<h2 id="十六、RAG：让-AI-先查资料再回答"><a href="#十六、RAG：让-AI-先查资料再回答" class="headerlink" title="十六、RAG：让 AI 先查资料再回答"></a>十六、RAG：让 AI 先查资料再回答</h2><h3 id="16-1-RAG-是什么？"><a href="#16-1-RAG-是什么？" class="headerlink" title="16.1 RAG 是什么？"></a>16.1 RAG 是什么？</h3><p>RAG 全称 Retrieval-Augmented Generation，中文常叫“检索增强生成”。</p>
+<p>大白话：<strong>先查资料，再回答</strong>。</p>
+<p>普通 AI 只靠训练时学到的知识回答，可能过时或不准确。RAG 会先从文档库、网页、数据库里找到相关资料，再让 AI 根据资料回答。</p>
+<h3 id="16-2-为什么-RAG-有用？"><a href="#16-2-为什么-RAG-有用？" class="headerlink" title="16.2 为什么 RAG 有用？"></a>16.2 为什么 RAG 有用？</h3><p>因为大模型不可能天生知道你公司昨天刚发布的新规定，也不可能记住你电脑里的私人文档。</p>
+<p>RAG 可以让 AI 临时获得这些资料。</p>
+<p>比如你上传一本校规手册，然后问：</p>
+<blockquote>
+<p>学生迟到会怎样处理？</p>
+</blockquote>
+<p>AI 先从校规手册里找到相关段落，再用大白话总结给你。</p>
+<h3 id="16-3-RAG-也会出错"><a href="#16-3-RAG-也会出错" class="headerlink" title="16.3 RAG 也会出错"></a>16.3 RAG 也会出错</h3><p>RAG 不是万能的。如果检索到的资料错了，AI 也可能跟着错。如果资料没找到，AI 可能会猜。</p>
+<p>所以好的 RAG 系统最好能告诉你：答案来自哪几段资料。</p>
+<hr>
+<h2 id="十七、幻觉：AI-一本正经地说错话"><a href="#十七、幻觉：AI-一本正经地说错话" class="headerlink" title="十七、幻觉：AI 一本正经地说错话"></a>十七、幻觉：AI 一本正经地说错话</h2><h3 id="17-1-幻觉是什么？"><a href="#17-1-幻觉是什么？" class="headerlink" title="17.1 幻觉是什么？"></a>17.1 幻觉是什么？</h3><p>AI 幻觉不是它真的看见了奇怪东西，而是指：<strong>AI 生成了看起来很像真的、但其实不可靠甚至错误的内容</strong>。</p>
+<p>比如：</p>
+<ul>
+<li>编造一本不存在的书</li>
+<li>编造一个不存在的网址</li>
+<li>编造法律条文</li>
+<li>把人物经历说错</li>
+<li>写出不能运行的代码</li>
+</ul>
+<p>它可能说得非常自信，让人误以为是真的。</p>
+<h3 id="17-2-为什么会幻觉？"><a href="#17-2-为什么会幻觉？" class="headerlink" title="17.2 为什么会幻觉？"></a>17.2 为什么会幻觉？</h3><p>因为 AI 的目标是生成“看起来合理”的文字，而不是天然保证每句话都是真理。</p>
+<p>如果它不知道答案，有时不会老实说不知道，而是根据语言规律编一个像样的答案。</p>
+<h3 id="17-3-怎么减少幻觉？"><a href="#17-3-怎么减少幻觉？" class="headerlink" title="17.3 怎么减少幻觉？"></a>17.3 怎么减少幻觉？</h3><p>你可以这样做：</p>
+<ul>
+<li>要求 AI 给出处</li>
+<li>让 AI 区分事实和推测</li>
+<li>让 AI 不确定时说“不确定”</li>
+<li>重要内容自己查证</li>
+<li>给 AI 提供可靠资料</li>
+<li>用 RAG 或搜索工具辅助</li>
+</ul>
+<p>比如你可以说：</p>
+<blockquote>
+<p>如果你不确定，请直接说不确定，不要编造。</p>
+</blockquote>
+<p>这句话很有用。</p>
+<hr>
+<h2 id="十八、模型训练、微调和蒸馏"><a href="#十八、模型训练、微调和蒸馏" class="headerlink" title="十八、模型训练、微调和蒸馏"></a>十八、模型训练、微调和蒸馏</h2><h3 id="18-1-训练：从大量例子中学习"><a href="#18-1-训练：从大量例子中学习" class="headerlink" title="18.1 训练：从大量例子中学习"></a>18.1 训练：从大量例子中学习</h3><p>训练就像让学生读大量教材和练习题。</p>
+<p>模型通过训练学会语言规律、知识模式和推理方式。训练通常非常贵，需要很多数据、很多显卡和很多时间。</p>
+<p>普通用户一般不会自己训练大模型。</p>
+<h3 id="18-2-微调：给模型补专业课"><a href="#18-2-微调：给模型补专业课" class="headerlink" title="18.2 微调：给模型补专业课"></a>18.2 微调：给模型补专业课</h3><p>微调就是在已有模型基础上，再用特定数据训练一段时间。</p>
+<p>比如一个通用模型什么都懂一点，但医院想让它更懂医学问答，就可以用医学数据微调。</p>
+<p>微调像给学生上专业补习班。</p>
+<h3 id="18-3-蒸馏：大老师教小学生"><a href="#18-3-蒸馏：大老师教小学生" class="headerlink" title="18.3 蒸馏：大老师教小学生"></a>18.3 蒸馏：大老师教小学生</h3><p>蒸馏是一种让小模型学习大模型能力的方法。</p>
+<p>大模型像经验丰富的大老师，小模型像小学生。通过学习大模型的回答方式，小模型可以变得更聪明，同时运行成本更低。</p>
+<p>这就像老师把复杂知识整理成适合学生的讲义。</p>
+<hr>
+<h2 id="十九、多模态：不只会看文字"><a href="#十九、多模态：不只会看文字" class="headerlink" title="十九、多模态：不只会看文字"></a>十九、多模态：不只会看文字</h2><h3 id="19-1-多模态是什么？"><a href="#19-1-多模态是什么？" class="headerlink" title="19.1 多模态是什么？"></a>19.1 多模态是什么？</h3><p>“模态”可以理解为信息形式。</p>
+<p>常见模态包括：</p>
+<ul>
+<li>文字</li>
+<li>图片</li>
+<li>音频</li>
+<li>视频</li>
+<li>表格</li>
+<li>代码</li>
+</ul>
+<p>多模态 AI 就是不只会处理文字，还能看图、听声音、理解视频等。</p>
+<h3 id="19-2-举几个例子"><a href="#19-2-举几个例子" class="headerlink" title="19.2 举几个例子"></a>19.2 举几个例子</h3><p>多模态 AI 可以：</p>
+<ul>
+<li>看一张数学题照片并讲解</li>
+<li>看菜谱图片判断食材</li>
+<li>听一段录音总结会议</li>
+<li>看视频找重点</li>
+<li>识别截图里的报错信息</li>
+</ul>
+<p>这让 AI 更像一个能看、能听、能读的助手。</p>
+<h3 id="19-3-仍然要检查"><a href="#19-3-仍然要检查" class="headerlink" title="19.3 仍然要检查"></a>19.3 仍然要检查</h3><p>多模态也会出错。比如图片模糊、字太小、背景复杂时，AI 可能看错。</p>
+<p>所以重要信息还是要核对。</p>
+<hr>
+<h2 id="二十、如何用好-AI-大模型？给小学生也适用的-10-条建议"><a href="#二十、如何用好-AI-大模型？给小学生也适用的-10-条建议" class="headerlink" title="二十、如何用好 AI 大模型？给小学生也适用的 10 条建议"></a>二十、如何用好 AI 大模型？给小学生也适用的 10 条建议</h2><h3 id="20-1-把问题说具体"><a href="#20-1-把问题说具体" class="headerlink" title="20.1 把问题说具体"></a>20.1 把问题说具体</h3><p>不要只说：</p>
+<blockquote>
+<p>帮我写作文。</p>
+</blockquote>
+<p>可以说：</p>
+<blockquote>
+<p>请帮我写一篇 500 字作文，题目是《我的一次科学实验》，适合四年级学生，语言自然，不要太夸张。</p>
+</blockquote>
+<p>越具体，越好用。</p>
+<h3 id="20-2-告诉-AI-你的水平"><a href="#20-2-告诉-AI-你的水平" class="headerlink" title="20.2 告诉 AI 你的水平"></a>20.2 告诉 AI 你的水平</h3><p>你可以说：</p>
+<blockquote>
+<p>我是小学生，请用简单的话解释。</p>
+</blockquote>
+<p>或者：</p>
+<blockquote>
+<p>我是初学者，请一步一步教我。</p>
+</blockquote>
+<p>AI 不知道你的水平时，可能讲得太难或太简单。</p>
+<h3 id="20-3-让-AI-举例子"><a href="#20-3-让-AI-举例子" class="headerlink" title="20.3 让 AI 举例子"></a>20.3 让 AI 举例子</h3><p>如果听不懂，就说：</p>
+<blockquote>
+<p>请举一个生活里的例子。</p>
+</blockquote>
+<p>例子能让抽象知识变得具体。</p>
+<h3 id="20-4-让-AI-换一种说法"><a href="#20-4-让-AI-换一种说法" class="headerlink" title="20.4 让 AI 换一种说法"></a>20.4 让 AI 换一种说法</h3><p>如果第一遍没懂，可以说：</p>
+<blockquote>
+<p>我没听懂，请换个更简单的比喻。</p>
+</blockquote>
+<p>好老师会换讲法，AI 也可以。</p>
+<h3 id="20-5-让-AI-先列提纲"><a href="#20-5-让-AI-先列提纲" class="headerlink" title="20.5 让 AI 先列提纲"></a>20.5 让 AI 先列提纲</h3><p>写长文章或做复杂任务时，先让 AI 列提纲，再逐段写。</p>
+<p>这就像盖房子先画图纸。</p>
+<h3 id="20-6-不要直接抄作业"><a href="#20-6-不要直接抄作业" class="headerlink" title="20.6 不要直接抄作业"></a>20.6 不要直接抄作业</h3><p>AI 可以帮你理解题目、提供思路、检查错误，但不要直接复制答案交作业。</p>
+<p>因为学习的目的不是把作业填满，而是让自己变聪明。</p>
+<p>正确用法：</p>
+<blockquote>
+<p>请提示我这道题的思路，不要直接给答案。</p>
+</blockquote>
+<h3 id="20-7-重要答案要查证"><a href="#20-7-重要答案要查证" class="headerlink" title="20.7 重要答案要查证"></a>20.7 重要答案要查证</h3><p>涉及医学、法律、考试、金钱、安全的问题，不要只听 AI。</p>
+<p>要问老师、家长、医生、专业人士，或者查权威资料。</p>
+<h3 id="20-8-保护隐私"><a href="#20-8-保护隐私" class="headerlink" title="20.8 保护隐私"></a>20.8 保护隐私</h3><p>不要告诉 AI：</p>
+<ul>
+<li>密码</li>
+<li>家庭住址</li>
+<li>身份证号</li>
+<li>银行卡号</li>
+<li>私密照片</li>
+<li>API Key</li>
+</ul>
+<p>AI 工具再方便，也不能当秘密保险箱。</p>
+<h3 id="20-9-学会追问"><a href="#20-9-学会追问" class="headerlink" title="20.9 学会追问"></a>20.9 学会追问</h3><p>一次回答不满意，可以继续问：</p>
+<ul>
+<li>为什么？</li>
+<li>有没有更简单的说法？</li>
+<li>能不能给例子？</li>
+<li>这句话有没有错误？</li>
+<li>请列出步骤。</li>
+</ul>
+<p>会追问的人，用 AI 的效果会好很多。</p>
+<h3 id="20-10-把-AI-当助手，不当主人"><a href="#20-10-把-AI-当助手，不当主人" class="headerlink" title="20.10 把 AI 当助手，不当主人"></a>20.10 把 AI 当助手，不当主人</h3><p>AI 是工具，不是大脑的替代品。</p>
+<p>你可以让它帮你查、帮你写、帮你改、帮你想，但最后判断要靠你自己。</p>
+<p>就像计算器能帮你算数，但你仍然要知道题目是什么意思。</p>
+<hr>
+<h2 id="二十一、常见术语速查"><a href="#二十一、常见术语速查" class="headerlink" title="二十一、常见术语速查"></a>二十一、常见术语速查</h2><p>最后，我们把前面讲过的词快速复习一遍。</p>
+<p><strong>AI 大模型</strong>：读过很多文字、能生成回答的智能模型。</p>
+<p><strong>Model 模型</strong>：AI 的“大脑”。</p>
+<p><strong>Token</strong>：AI 处理文字时的小积木。</p>
+<p><strong>上下文 Context</strong>：AI 当前能看到的临时信息，像黑板。</p>
+<p><strong>上下文窗口</strong>：黑板大小，决定一次能看多少内容。</p>
+<p><strong>Prompt 提示词</strong>：你给 AI 的任务说明。</p>
+<p><strong>记忆 Memory</strong>：AI 长期保存的重要信息，像小本本。</p>
+<p><strong>规则 Rules</strong>：告诉 AI 什么该做、什么不能做的边界。</p>
+<p><strong>Skill 技能</strong>：给 AI 准备的专业操作手册或技能卡。</p>
+<p><strong>Tool 工具</strong>：AI 可以调用的外部能力，比如搜索、读文件、运行命令。</p>
+<p><strong>Agent 智能体</strong>：不只聊天，还能拆任务、用工具、完成目标的 AI 助手。</p>
+<p><strong>MCP</strong>：让 AI 接入外部工具和资料的一种标准，像工具插座。</p>
+<p><strong>ACP</strong>：让 AI 编程代理或开发工具协作的接口，像对讲机。</p>
+<p><strong>API</strong>：软件之间互相说话的接口。</p>
+<p><strong>API Key</strong>：调用 API 的钥匙，必须保密。</p>
+<p><strong>Provider</strong>：模型服务提供商，像提供 AI 菜品的餐厅。</p>
+<p><strong>Temperature</strong>：控制 AI 回答随机程度的想象力旋钮。</p>
+<p><strong>Max Tokens</strong>：限制 AI 最多写多长。</p>
+<p><strong>Embedding</strong>：把文字意思变成数字指纹。</p>
+<p><strong>向量数据库</strong>：存放数字指纹、方便按意思搜索的仓库。</p>
+<p><strong>RAG</strong>：先查资料，再让 AI 回答。</p>
+<p><strong>幻觉 Hallucination</strong>：AI 一本正经地说错话。</p>
+<p><strong>多模态</strong>：AI 不只会处理文字，还能看图片、听音频、理解视频。</p>
+<hr>
+<h2 id="总结：会用-AI-的人，不是会背术语的人"><a href="#总结：会用-AI-的人，不是会背术语的人" class="headerlink" title="总结：会用 AI 的人，不是会背术语的人"></a>总结：会用 AI 的人，不是会背术语的人</h2><p>学这些术语，不是为了把自己变成“术语复读机”。真正重要的是理解：AI 大模型是一种强大的语言和工具系统，它能帮助我们学习、写作、编程、总结、创作和解决问题。</p>
+<p>但 AI 不是万能老师，也不是永远正确的百科全书。它有上下文限制，会消耗 Token，可能产生幻觉，需要规则保护，也需要工具和 Skill 才能更好地完成复杂任务。</p>
+<p>如果给小学生讲 AI，我最想说的是：</p>
+<p>AI 像一个特别聪明、特别勤快、但偶尔也会粗心的学习伙伴。你问得越清楚，它帮得越好；你越会检查，它越安全；你越愿意思考，它越能放大你的能力。</p>
+<p>未来，会用 AI 不代表不用学习。恰恰相反，会用 AI 的人更需要会提问、会判断、会表达、会验证。</p>
+<p>AI 可以帮你跑得更快，但方向盘仍然应该握在你自己手里。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">小倪哥</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://xiaonige.github.io/2026/05/25/ai-llm-terms-for-beginners/">https://xiaonige.github.io/2026/05/25/ai-llm-terms-for-beginners/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">小倪哥</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/AI%E5%B7%A5%E5%85%B7/">
+                                    <span class="chip bg-color">AI工具</span>
+                                </a>
+                            
+                                <a href="/tags/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                                    <span class="chip bg-color">AI大模型</span>
+                                </a>
+                            
+                                <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">
+                                    <span class="chip bg-color">人工智能</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%85%A5%E9%97%A8%E7%A7%91%E6%99%AE/">
+                                    <span class="chip bg-color">入门科普</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/">
+                                    <span class="chip bg-color">提示词工程</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2026/05/25/ai-llm-terms-for-beginners/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="给小学生也能讲明白的 AI 大模型术语课：Token、上下文、记忆、Skill、MCP、ACP 到 API Key">
+                        
+                        <span class="card-title">给小学生也能讲明白的 AI 大模型术语课：Token、上下文、记忆、Skill、MCP、ACP 到 API Key</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-05-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/AI%E5%B7%A5%E5%85%B7/">
+                        <span class="chip bg-color">AI工具</span>
+                    </a>
+                    
+                    <a href="/tags/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                        <span class="chip bg-color">AI大模型</span>
+                    </a>
+                    
+                    <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">
+                        <span class="chip bg-color">人工智能</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%85%A5%E9%97%A8%E7%A7%91%E6%99%AE/">
+                        <span class="chip bg-color">入门科普</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/">
+                        <span class="chip bg-color">提示词工程</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2026/05/24/hermes-agent-tutorial/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Hermes Agent 完全指南：从零搭建你的智能体助手">
+                        
+                        <span class="card-title">Hermes Agent 完全指南：从零搭建你的智能体助手</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-05-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/AI-Agent/">
+                        <span class="chip bg-color">AI Agent</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%99%BA%E8%83%BD%E4%BD%93%E5%B7%A5%E5%85%B7/">
+                        <span class="chip bg-color">智能体工具</span>
+                    </a>
+                    
+                    <a href="/tags/Hermes-Agent/">
+                        <span class="chip bg-color">Hermes Agent</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2/">
+                        <span class="chip bg-color">本地部署</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/">
+                        <span class="chip bg-color">开源工具</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2026</span>
+            
+            <a href="/about" target="_blank">小倪哥</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
