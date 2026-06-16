@@ -228,3 +228,10 @@ a { color: inherit; text-decoration: none; }
 .diagram-preview-actions button:disabled { opacity:.7; cursor:default; }
 .diagram-svg-frame { margin-top:14px; padding:14px; border-radius:8px; background:#fff; overflow:auto; box-shadow: inset 0 0 0 1px #eee; }
 .diagram-svg-frame svg { max-width:100%; height:auto; display:block; margin:auto; }
+/* Phase 7: build-time PlantUML SVG rendering */
+.plantuml-rendered { margin: 22px 0 18px; padding: 18px; border-radius: 12px; background: #fff; border: 1px solid #e7f4ee; box-shadow: 0 8px 24px rgba(0,0,0,.08); text-align: center; }
+.plantuml-rendered img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+.plantuml-rendered figcaption { margin-top: 10px; color: #777; font-size: 13px; }
+.plantuml-source-details { margin: 0 0 24px; border-radius: 10px; background: #f7faf9; border: 1px dashed rgba(66,185,131,.38); }
+.plantuml-source-details summary { cursor: pointer; padding: 12px 16px; color: #42b983; font-weight: 700; }
+.plantuml-source-details pre { margin: 0 !important; border-radius: 0 0 10px 10px; }

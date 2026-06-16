@@ -3,6 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import ArticleToc from '@/components/ArticleToc.astro';
 import PostExtras from '@/components/PostExtras.astro';
 import { getDrafts, formatDate, getWordCount, getReadingMinutes } from '@/lib/posts';
+import plantumlManifest from '../../../../public/generated/plantuml/manifest.json';
 export async function getStaticPaths() {
   const drafts = await getDrafts();
   return drafts.map((draft) => ({
@@ -11,10 +12,12 @@ export async function getStaticPaths() {
   }));
 }
 const { draft } = Astro.props;
+const slug = draft.id.replace(/\.mdx?$/, '');
 const { Content, headings } = await draft.render();
 const cover = draft.data.cover || `/medias/featureimages/${(draft.id.length % 24) + 1}.jpg`;
 const wordCount = getWordCount(draft.body || '');
 const readingMinutes = getReadingMinutes(draft.body || '');
+const plantumlImages = plantumlManifest[slug] || [];
 ---
 <BaseLayout title={`草稿预览：${draft.data.title}`} description="草稿预览页面，不代表正式发布。" image={cover} noindex={true}>
   <section class="page-hero article-hero draft-hero" style={`background-image:url('${cover}')`}>
@@ -28,13 +31,14 @@ const readingMinutes = getReadingMinutes(draft.body || '');
         <span><i class="fas fa-tags"></i> {draft.data.tags?.join('，')}</span>
         <span><i class="fas fa-font"></i> {wordCount.toLocaleString('zh-CN')} 字</span>
         <span><i class="far fa-hourglass-half"></i> 约 {readingMinutes} 分钟</span>
+        {plantumlImages.length > 0 && <span><i class="fas fa-diagram-project"></i> {plantumlImages.length} 张 PlantUML 图已预渲染</span>}
       </div>
     </div>
   </section>
   <div class="article-layout container">
-    <article class="content-card prose article-content-page draft-content">
+    <article class="content-card prose article-content-page draft-content" data-plantuml-images={JSON.stringify(plantumlImages)}>
       <div class="draft-notice">
-        <strong>草稿说明：</strong>此页面仅用于 Astro 迁移预览，不在首页、归档、标签、分类、RSS、search.xml 中出现。
+        <strong>草稿说明：</strong>此页面仅用于 Astro 迁移预览，不在首页、归档、标签、分类、RSS、search.xml 中出现。PlantUML 已在构建期预渲染为 SVG，源码默认折叠保留。
       </div>
       <Content />
     </article>
@@ -42,92 +46,44 @@ const readingMinutes = getReadingMinutes(draft.body || '');
   </div>
   <div class="container"><PostExtras post={draft} /></div>
   <script is:inline>
-    function encodePlantUml(text) {
-      function encode64(data) {
-        let r = '';
-        for (let i = 0; i < data.length; i += 3) {
-          if (i + 2 === data.length) r += append3bytes(data.charCodeAt(i), data.charCodeAt(i + 1), 0);
-          else if (i + 1 === data.length) r += append3bytes(data.charCodeAt(i), 0, 0);
-          else r += append3bytes(data.charCodeAt(i), data.charCodeAt(i + 1), data.charCodeAt(i + 2));
-        }
-        return r;
-      }
-      function append3bytes(b1, b2, b3) {
-        const c1 = b1 >> 2;
-        const c2 = ((b1 & 0x3) << 4) | (b2 >> 4);
-        const c3 = ((b2 & 0xF) << 2) | (b3 >> 6);
-        const c4 = b3 & 0x3F;
-        return encode6bit(c1 & 0x3F) + encode6bit(c2 & 0x3F) + encode6bit(c3 & 0x3F) + encode6bit(c4 & 0x3F);
-      }
-      function encode6bit(b) {
-        if (b < 10) return String.fromCharCode(48 + b);
-        b -= 10;
-        if (b < 26) return String.fromCharCode(65 + b);
-        b -= 26;
-        if (b < 26) return String.fromCharCode(97 + b);
-        b -= 26;
-        if (b === 0) return '-';
-        if (b === 1) return '_';
-        return '?';
-      }
-      // PlantUML server expects raw deflate. Browser has no native raw deflate, so preview falls back to kroki GET below.
-      return encode64(unescape(encodeURIComponent(text)));
-    }
-
+    const article = document.querySelector('.draft-content');
+    const plantumlImages = JSON.parse(article?.dataset.plantumlImages || '[]');
+    let plantumlIndex = 0;
     document.querySelectorAll('pre').forEach((pre) => {
       if (pre.querySelector('.copy-code')) return;
       const code = pre.querySelector('code');
       const lang = Array.from(code?.classList || []).find((c) => c.startsWith('language-'))?.replace('language-', '') || 'code';
-      pre.setAttribute('data-lang', lang);
+      const text = code?.innerText || '';
+      const isPlantUml = lang === 'plantuml' || text.trim().startsWith('@startuml');
+      pre.setAttribute('data-lang', isPlantUml ? 'plantuml' : lang);
       const btn = document.createElement('button');
       btn.className = 'copy-code';
       btn.type = 'button';
       btn.textContent = '复制';
       btn.addEventListener('click', async () => {
-        const text = code?.innerText || pre.innerText.replace(/^复制\n?/, '');
         try {
-          await navigator.clipboard.writeText(text);
+          await navigator.clipboard.writeText(text || pre.innerText.replace(/^复制\n?/, ''));
           btn.textContent = '已复制';
           setTimeout(() => btn.textContent = '复制', 1200);
         } catch { btn.textContent = '失败'; }
       });
       pre.appendChild(btn);
 
-      if (lang === 'plantuml') {
-        const source = code?.innerText || '';
-        const wrapper = document.createElement('div');
-        wrapper.className = 'diagram-preview-box';
-        const actions = document.createElement('div');
-        actions.className = 'diagram-preview-actions';
-        const renderBtn = document.createElement('button');
-        renderBtn.type = 'button';
-        renderBtn.textContent = '渲染 PlantUML 预览';
-        const copyHint = document.createElement('span');
-        copyHint.textContent = '使用 Kroki 在线渲染，仅预览页加载';
-        actions.append(renderBtn, copyHint);
-        wrapper.append(actions);
-        pre.insertAdjacentElement('afterend', wrapper);
-        renderBtn.addEventListener('click', async () => {
-          renderBtn.disabled = true;
-          renderBtn.textContent = '渲染中...';
-          try {
-            const res = await fetch('https://kroki.io/plantuml/svg', {
-              method: 'POST',
-              headers: { 'Content-Type': 'text/plain' },
-              body: source
-            });
-            if (!res.ok) throw new Error('render failed');
-            const svg = await res.text();
-            const frame = document.createElement('div');
-            frame.className = 'diagram-svg-frame';
-            frame.innerHTML = svg;
-            wrapper.append(frame);
-            renderBtn.textContent = '已渲染';
-          } catch (e) {
-            renderBtn.disabled = false;
-            renderBtn.textContent = '渲染失败，点击重试';
-          }
-        });
+      if (isPlantUml) {
+        const image = plantumlImages[plantumlIndex++];
+        const details = document.createElement('details');
+        details.className = 'plantuml-source-details';
+        const summary = document.createElement('summary');
+        summary.textContent = '查看 PlantUML 源码';
+        details.append(summary);
+        pre.parentNode.insertBefore(details, pre);
+        details.append(pre);
+        if (image?.src) {
+          const box = document.createElement('figure');
+          box.className = 'plantuml-rendered';
+          box.innerHTML = `<a href="${image.src}" target="_blank" rel="noopener"><img src="${image.src}" alt="PlantUML diagram ${image.index}" loading="lazy" /></a><figcaption>PlantUML 图 ${image.index} · 点击图片可新窗口查看 SVG</figcaption>`;
+          details.insertAdjacentElement('beforebegin', box);
+        }
       }
     });
   </script>
