@@ -1,0 +1,579 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="一个关注 AI、开发效率、工程实践和个人成长的技术博客。"><title>Hermes Agent 完全指南：从零搭建你的智能体助手 - 小妮哥的博客</title><link rel="icon" href="/astro-preview/favicon.png"><link rel="stylesheet" href="/astro-preview/styles.css"></head> <body> <div class="site-shell"> <header class="site-header"> <a class="brand" href="/astro-preview/"> <span class="brand-mark">小</span> <span> <strong>小妮哥的博客</strong> <em>写代码，也写生活；追热点，也追长期主义。</em> </span> </a> <nav class="nav"> <a href="/astro-preview/">首页</a><a href="/astro-preview/archives/">归档</a><a href="/astro-preview/categories/">分类</a><a href="/astro-preview/tags/">标签</a><a href="/astro-preview/search.xml">搜索索引</a> </nav> </header> <main>  <article class="content-card prose"> <p class="eyebrow">ARTICLE</p> <h1>Hermes Agent 完全指南：从零搭建你的智能体助手</h1> <div class="meta-line"> <span>2026-05-24</span> <span>·</span> <span>学习</span> <span>·</span> <span>AI Agent，Hermes Agent，智能体工具，本地部署，开源工具</span> </div> <h2 id="前言">前言</h2>
+<p>2026 年，AI Agent 已经从概念走向了全面落地。从 AutoGPT 到各种 Agent 框架，我们看到越来越多能自主执行任务的智能体。但真正能让你在本地自由部署、功能全面且开箱即用的 Agent 平台并不多见，<strong>Hermes Agent</strong> 就是其中的佼佼者。</p>
+<p>Hermes Agent 由 Nous Research 开发并开源，是一个功能极其强大的个人 AI 智能体平台。它不仅支持命令行和 TUI 交互，还能接入 Telegram、Discord、飞书等即时通讯工具，具备 Shell 执行、浏览器自动化、文件操作、网页搜索、图片生成等丰富能力。更重要的是，它完全开源，数据隐私由你掌控。</p>
+<p>本文将从零开始，手把手带你完成 Hermes Agent 的安装、配置与使用，让你真正拥有一个 7×24 小时为你工作的私人 AI 智能体。</p>
+<hr>
+<h2 id="一hermes-agent-是什么">一、Hermes Agent 是什么</h2>
+<h3 id="11-核心定位">1.1 核心定位</h3>
+<p>Hermes Agent 是一个开源的、可本地部署的 AI 智能体平台。它的核心定位是：<strong>让你拥有一个能真正行动的 AI 助手，而不仅仅是一个聊天机器人</strong>。</p>
+<p>与传统 AI 工具不同，Hermes Agent 具备以下特质：</p>
+<ul>
+<li><strong>自主行动</strong>：能执行 Shell 命令、操作浏览器、读写文件</li>
+<li><strong>多渠道接入</strong>：CLI、TUI、Telegram、Discord、飞书、Slack 等</li>
+<li><strong>模型无关</strong>：支持 OpenAI、Anthropic、Google、DeepSeek 等几乎所有主流 LLM</li>
+<li><strong>完全开源</strong>：代码公开，可审计，数据完全由你掌控</li>
+<li><strong>可扩展</strong>：通过 Skills 机制无限扩展能力边界</li>
+</ul>
+<h3 id="12-核心架构">1.2 核心架构</h3>
+<p>Hermes Agent 采用模块化架构设计，主要由以下核心组件构成：</p>
+<ul>
+<li><strong>Agent Core</strong>：核心引擎，负责任务规划、工具调用和对话管理</li>
+<li><strong>LLM Provider</strong>：模型接入层，支持多种 LLM 后端切换</li>
+<li><strong>Tool System</strong>：工具系统，包括 Shell、浏览器、文件系统、搜索等</li>
+<li><strong>Gateway</strong>：消息网关，连接各种即时通讯平台</li>
+<li><strong>Skill System</strong>：技能系统，用于扩展专业领域能力</li>
+<li><strong>Memory System</strong>：记忆系统，实现长期记忆和上下文管理</li>
+<li><strong>Tirith</strong>：安全扫描引擎，防护提示注入和凭证泄露</li>
+</ul>
+<p>这种架构让 Hermes Agent 既强大又灵活 — 你可以只使用 CLI 做本地助手，也可以部署到 VPS 上通过 Telegram 全天候使用。</p>
+<h3 id="13-为什么选择-hermes-agent">1.3 为什么选择 Hermes Agent</h3>
+<p>市面上 AI Agent 工具不少，但 Hermes Agent 有几个独特优势：</p>
+<p><strong>开箱即用的完整体验</strong>：一条命令安装，一个命令启动，不需要折腾各种依赖和配置就能获得完整的 Agent 体验。相比之下，很多框架只提供了 API 或 SDK，需要大量二次开发。</p>
+<p><strong>生产级的工具链</strong>：内置的 Tirith 安全扫描、审批模式、权限控制等功能，让它可以直接用于生产环境，而不是停留在玩具阶段。</p>
+<p><strong>真正的多模态交互</strong>：不仅能对话，还能看网页、操作浏览器、生成图片、执行代码。Agent 可以真正地 “做事” 而不是 “说话”。</p>
+<p><strong>活跃的社区生态</strong>：GitHub 上有丰富的 Skills 仓库、优化指南和社区支持，遇到问题很快能找到解决方案。</p>
+<hr>
+<h2 id="二环境准备与安装">二、环境准备与安装</h2>
+<h3 id="21-系统要求">2.1 系统要求</h3>
+<p>Hermes Agent 对硬件要求不高，以下是官方推荐的最低配置：</p>
+<ul>
+<li><strong>操作系统</strong>：Linux（推荐 Ubuntu 22.04+）、macOS 12+、WSL2（Windows）</li>
+<li><strong>CPU</strong>：1 核以上即可</li>
+<li><strong>内存</strong>：2GB 以上（推荐 4GB）</li>
+<li><strong>磁盘</strong>：10GB 可用空间</li>
+<li><strong>网络</strong>：需要访问 LLM API 的网络连接</li>
+</ul>
+<p>如果你使用本地模型（通过 Ollama 或 vLLM），则需要根据模型大小准备相应的 GPU 资源。</p>
+<p>前置依赖（安装脚本会自动处理）：</p>
+<ul>
+<li>Git</li>
+<li>Python 3.11+</li>
+<li>Node.js 18+</li>
+<li>ripgrep</li>
+<li>ffmpeg</li>
+</ul>
+<h3 id="22-一键安装推荐">2.2 一键安装（推荐）</h3>
+<p>Hermes Agent 提供了一键安装脚本，支持 Linux、macOS 和 WSL2 环境。打开终端执行：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">curl</span><span style="color:#79B8FF"> -fsSL</span><span style="color:#9ECBFF"> https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh</span><span style="color:#F97583"> |</span><span style="color:#B392F0"> bash</span></span></code></pre>
+<p>这个脚本会自动完成以下工作：</p>
+<ol>
+<li>检测操作系统和架构</li>
+<li>安装 uv（Python 包管理器）</li>
+<li>安装 Python 3.11+（如需要）</li>
+<li>安装 Node.js 18+（如需要）</li>
+<li>安装 ripgrep 和 ffmpeg</li>
+<li>克隆 Hermes Agent 仓库</li>
+<li>创建虚拟环境并安装 Python 依赖</li>
+<li>安装 hermes 命令行工具</li>
+<li>创建配置文件目录 <code>~/.hermes/</code></li>
+</ol>
+<p>安装完成后，重新加载 shell 配置：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#79B8FF">source</span><span style="color:#9ECBFF"> ~/.bashrc</span></span></code></pre>
+<p>或者如果你使用 zsh：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#79B8FF">source</span><span style="color:#9ECBFF"> ~/.zshrc</span></span></code></pre>
+<h3 id="23-windows-安装方案">2.3 Windows 安装方案</h3>
+<p>Windows 用户需要先安装 WSL2（Windows Subsystem for Linux），然后在 WSL2 中执行上述安装命令。</p>
+<p>WSL2 安装步骤：</p>
+<ol>
+<li>以管理员身份打开 PowerShell</li>
+<li>执行 <code>wsl --install</code> 安装 WSL2 和默认的 Ubuntu 发行版</li>
+<li>重启计算机</li>
+<li>启动 Ubuntu，设置用户名和密码</li>
+<li>在 Ubuntu 终端中执行一键安装命令</li>
+</ol>
+<p>如果你希望直接在 Windows 上运行（不通过 WSL2），也可以使用 PowerShell 安装脚本：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="powershell"><code><span class="line"><span style="color:#E1E4E8">irm https:</span><span style="color:#F97583">//</span><span style="color:#79B8FF">raw.githubusercontent.com</span><span style="color:#F97583">/</span><span style="color:#E1E4E8">NousResearch</span><span style="color:#F97583">/</span><span style="color:#E1E4E8">hermes</span><span style="color:#F97583">-</span><span style="color:#E1E4E8">agent</span><span style="color:#F97583">/</span><span style="color:#E1E4E8">main</span><span style="color:#F97583">/</span><span style="color:#E1E4E8">scripts</span><span style="color:#F97583">/</span><span style="color:#E1E4E8">install.ps1 </span><span style="color:#F97583">|</span><span style="color:#E1E4E8"> iex</span></span></code></pre>
+<p>但需要注意，Windows 原生模式下部分工具（如 Shell 执行）的功能可能受限，推荐使用 WSL2 方式获得完整体验。</p>
+<h3 id="24-docker-部署方案">2.4 Docker 部署方案</h3>
+<p>如果你使用 VPS 或希望环境完全隔离，Docker 是最佳选择：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> run</span><span style="color:#79B8FF"> -it</span><span style="color:#79B8FF"> --rm</span><span style="color:#79B8FF"> -v</span><span style="color:#9ECBFF"> ~/.hermes:/opt/data</span><span style="color:#9ECBFF"> nousresearch/hermes-agent</span><span style="color:#9ECBFF"> setup</span></span></code></pre>
+<p>这个命令会：</p>
+<ol>
+<li>拉取最新的 Hermes Agent Docker 镜像</li>
+<li>将宿主机 <code>~/.hermes</code> 目录挂载到容器中</li>
+<li>运行交互式设置向导</li>
+</ol>
+<p>日常使用 Docker 模式启动：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> run</span><span style="color:#79B8FF"> -it</span><span style="color:#79B8FF"> --rm</span><span style="color:#79B8FF"> -v</span><span style="color:#9ECBFF"> ~/.hermes:/opt/data</span><span style="color:#9ECBFF"> nousresearch/hermes-agent</span></span></code></pre>
+<p>对于生产环境，建议使用 docker-compose 进行编排，配置日志轮转、自动重启等：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">version</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">'3.8'</span></span>
+<span class="line"><span style="color:#85E89D">services</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  hermes</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    image</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">nousresearch/hermes-agent:latest</span></span>
+<span class="line"><span style="color:#85E89D">    container_name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">hermes</span></span>
+<span class="line"><span style="color:#85E89D">    restart</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">unless-stopped</span></span>
+<span class="line"><span style="color:#85E89D">    volumes</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">~/.hermes:/opt/data</span></span>
+<span class="line"><span style="color:#85E89D">    environment</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">OPENAI_API_KEY=${OPENAI_API_KEY}</span></span>
+<span class="line"><span style="color:#85E89D">    logging</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      driver</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">json-file</span></span>
+<span class="line"><span style="color:#85E89D">      options</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">        max-size</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">10m</span></span>
+<span class="line"><span style="color:#85E89D">        max-file</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">3</span></span></code></pre>
+<h3 id="25-验证安装">2.5 验证安装</h3>
+<p>安装完成后，验证是否成功：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">hermes</span><span style="color:#79B8FF"> --version</span></span>
+<span class="line"><span style="color:#B392F0">hermes</span><span style="color:#79B8FF"> --help</span></span></code></pre>
+<p>如果看到版本号输出，说明安装成功。如果提示 <code>command not found</code>，尝试重新加载 shell 配置或重新打开终端。</p>
+<hr>
+<h2 id="三初始配置与设置向导">三、初始配置与设置向导</h2>
+<h3 id="31-运行设置向导">3.1 运行设置向导</h3>
+<p>安装完成后，运行交互式配置向导：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">hermes</span><span style="color:#9ECBFF"> setup</span></span></code></pre>
+<p>向导会依次引导你完成以下配置：</p>
+<ol>
+<li><strong>选择 LLM 提供商</strong>：从列表中选择你使用的模型服务商</li>
+<li><strong>输入 API Key</strong>：填写你的 API 密钥</li>
+<li><strong>选择模型</strong>：选择具体使用的模型版本</li>
+<li><strong>配置消息网关</strong>：可选连接 Telegram、Discord 等平台</li>
+<li><strong>配置工具权限</strong>：设置每个工具的默认审批模式</li>
+</ol>
+<p>整个向导过程只需几分钟，完成后你就可以立即开始使用 Hermes Agent。</p>
+<h3 id="32-模型提供商配置">3.2 模型提供商配置</h3>
+<p>Hermes Agent 支持几乎所有主流 LLM 提供商，这是它的一大优势。你可以随时切换模型提供商：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">hermes</span><span style="color:#9ECBFF"> model</span></span></code></pre>
+<p>支持的提供商列表：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>提供商</th><th>配置方式</th><th>特点</th></tr></thead><tbody><tr><td>Anthropic</td><td>ANTHROPIC_API_KEY 或 OAuth</td><td>Claude 系列，长上下文，安全性好</td></tr><tr><td>OpenAI</td><td>OPENAI_API_KEY</td><td>GPT-4o 系列，生态最完善</td></tr><tr><td>OpenRouter</td><td>OPENROUTER_API_KEY</td><td>统一接口访问多种模型</td></tr><tr><td>Google Gemini</td><td>GEMINI_API_KEY 或 OAuth</td><td>性价比高，多模态强</td></tr><tr><td>DeepSeek</td><td>DEEPSEEK_API_KEY</td><td>国产模型，性价比极高</td></tr><tr><td>Nous Portal</td><td>OAuth 登录</td><td>Nous 自营服务</td></tr><tr><td>Kimi / Moonshot</td><td>MOONSHOT_API_KEY</td><td>长上下文中文优化</td></tr><tr><td>Ollama（本地）</td><td>自定义端点</td><td>完全本地运行，无需联网</td></tr><tr><td>vLLM（本地）</td><td>自定义端点</td><td>高性能本地推理</td></tr><tr><td>兼容 OpenAI 的任何服务</td><td>自定义 base_url + api_key</td><td>几乎覆盖所有国产和第三方服务</td></tr></tbody></table>
+<p>配置自定义端点：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">hermes</span><span style="color:#9ECBFF"> config</span><span style="color:#9ECBFF"> set</span><span style="color:#9ECBFF"> model.provider</span><span style="color:#9ECBFF"> custom</span></span>
+<span class="line"><span style="color:#B392F0">hermes</span><span style="color:#9ECBFF"> config</span><span style="color:#9ECBFF"> set</span><span style="color:#9ECBFF"> model.base_url</span><span style="color:#9ECBFF"> https://your-endpoint.com/v1</span></span></code></pre>
+<h3 id="33-api-key-管理">3.3 API Key 管理</h3>
+<p>API Key 属于敏感信息，Hermes Agent 将它们存储在单独的 <code>~/.hermes/.env</code> 文件中，而不是直接放在配置文件里。这样可以避免意外将密钥提交到版本控制系统。</p>
+<p><code>.env</code> 文件的内容示例：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#E1E4E8">ANTHROPIC_API_KEY</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">sk-ant-xxxxxxxxxxxx</span></span>
+<span class="line"><span style="color:#E1E4E8">OPENAI_API_KEY</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">sk-xxxxxxxxxxxx</span></span>
+<span class="line"><span style="color:#E1E4E8">OPENROUTER_API_KEY</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">sk-or-xxxxxxxxxxxx</span></span></code></pre>
+<p>你也可以使用 <code>hermes config set</code> 命令来设置密钥，工具会自动写入 <code>.env</code> 文件：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">hermes</span><span style="color:#9ECBFF"> config</span><span style="color:#9ECBFF"> set</span><span style="color:#9ECBFF"> keys.anthropic</span><span style="color:#9ECBFF"> sk-ant-xxxxxxxxxxxx</span></span></code></pre>
+<h3 id="34-配置文件详解">3.4 配置文件详解</h3>
+<p>Hermes Agent 的主要配置文件位于 <code>~/.hermes/config.yaml</code>，这是一个 YAML 格式的文件，包含所有非敏感配置项。</p>
+<p>以下是一个典型的配置文件结构：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">model</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  provider</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">anthropic</span></span>
+<span class="line"><span style="color:#85E89D">  name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">claude-sonnet-4-20250514</span></span>
+<span class="line"><span style="color:#85E89D">  max_tokens</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">4096</span></span>
+<span class="line"><span style="color:#85E89D">  temperature</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0.7</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">tools</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  terminal</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    enabled</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#85E89D">    approval</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">smart</span></span>
+<span class="line"><span style="color:#85E89D">    backend</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">native</span></span>
+<span class="line"><span style="color:#85E89D">  web_search</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    enabled</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#85E89D">  filesystem</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    enabled</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#85E89D">    allowed_paths</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">/home/user/projects</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">/tmp</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">gateway</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  telegram</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    enabled</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span></code></pre>
+<p>常用配置命令：</p>
+<ul>
+<li><code>hermes config list</code> — 查看当前所有配置</li>
+<li><code>hermes config set &#x3C;key> &#x3C;value></code> — 修改配置项</li>
+<li><code>hermes config get &#x3C;key></code> — 查看单个配置项</li>
+<li><code>hermes config reset</code> — 重置配置到默认值</li>
+</ul>
+<hr>
+<h2 id="四命令行与-tui-使用">四、命令行与 TUI 使用</h2>
+<h3 id="41-cli-基础命令">4.1 CLI 基础命令</h3>
+<p>配置完成后，在终端直接输入 <code>hermes</code> 即可进入 CLI 对话模式：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">hermes</span></span></code></pre>
+<p>CLI 模式下你可以直接输入问题或指令与 Agent 对话，和 ChatGPT 类似，但 Agent 拥有执行命令和操作系统的能力。</p>
+<p>常用命令参数：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>参数</th><th>说明</th></tr></thead><tbody><tr><td><code>hermes</code></td><td>启动 CLI 对话</td></tr><tr><td><code>hermes --tui</code></td><td>启动 TUI 界面（推荐）</td></tr><tr><td><code>hermes --continue</code></td><td>恢复上次会话</td></tr><tr><td><code>hermes --model &#x3C;name></code></td><td>临时指定模型</td></tr><tr><td><code>hermes -m "&#x3C;指令>"</code></td><td>单次指令模式</td></tr><tr><td><code>hermes session list</code></td><td>查看所有会话</td></tr><tr><td><code>hermes session delete &#x3C;id></code></td><td>删除指定会话</td></tr></tbody></table>
+<h3 id="42-tui-交互界面">4.2 TUI 交互界面</h3>
+<p>TUI（Terminal User Interface）是推荐的使用方式，提供了更丰富的交互体验：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">hermes</span><span style="color:#79B8FF"> --tui</span></span></code></pre>
+<p>TUI 界面包含：</p>
+<ul>
+<li>左侧对话列表，方便切换不同会话</li>
+<li>主区域显示对话内容，支持 Markdown 渲染</li>
+<li>底部输入框支持多行输入</li>
+<li>快捷键操作（Ctrl+N 新对话，Ctrl+D 删除等）</li>
+<li>状态栏显示当前模型和工具状态</li>
+</ul>
+<h3 id="43-对话管理">4.3 对话管理</h3>
+<p>Hermes Agent 会自动保存对话历史，你可以随时恢复之前的对话：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">hermes</span><span style="color:#79B8FF"> --continue</span><span style="color:#6A737D">        # 恢复上次对话</span></span>
+<span class="line"><span style="color:#B392F0">hermes</span><span style="color:#9ECBFF"> session</span><span style="color:#9ECBFF"> list</span><span style="color:#6A737D">    # 列出所有会话</span></span>
+<span class="line"><span style="color:#B392F0">hermes</span><span style="color:#9ECBFF"> session</span><span style="color:#9ECBFF"> load</span><span style="color:#F97583"> &#x3C;</span><span style="color:#9ECBFF">i</span><span style="color:#E1E4E8">d</span><span style="color:#F97583">></span><span style="color:#6A737D">  # 加载指定会话</span></span></code></pre>
+<p>所有会话数据存储在 <code>~/.hermes/sessions/</code> 目录下，你可以手动备份或清理。</p>
+<hr>
+<h2 id="五消息网关配置">五、消息网关配置</h2>
+<p>消息网关是 Hermes Agent 的一大亮点——通过配置，你可以在 Telegram、Discord、飞书等平台与 Agent 对话，实现随时随地使用。</p>
+<h3 id="51-telegram-集成">5.1 Telegram 集成</h3>
+<p>Telegram 是最推荐的网关方式，配置简单且稳定：</p>
+<ol>
+<li>在 Telegram 中搜索 <code>@BotFather</code>，创建新 Bot 并获取 Token</li>
+<li>运行配置命令：</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">hermes</span><span style="color:#9ECBFF"> gateway</span><span style="color:#9ECBFF"> setup</span></span>
+<span class="line"><span style="color:#6A737D"># 选择 Telegram，输入 Bot Token</span></span></code></pre>
+<ol>
+<li>启动网关：</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">hermes</span><span style="color:#9ECBFF"> gateway</span><span style="color:#9ECBFF"> run</span></span></code></pre>
+<p>之后就可以在 Telegram 中直接给你的 Bot 发消息了。所有对话都会通过 Hermes Agent 处理，并且 Agent 可以执行 Shell 命令、搜索网页等操作。</p>
+<h3 id="52-discord-集成">5.2 Discord 集成</h3>
+<p>配置 Discord 网关：</p>
+<ol>
+<li>在 Discord Developer Portal 创建应用和 Bot</li>
+<li>获取 Bot Token 并邀请到你的服务器</li>
+<li>运行 <code>hermes gateway setup</code> 选择 Discord</li>
+<li>配置完成后启动网关 <code>hermes gateway run</code></li>
+</ol>
+<p>你还可以通过 <code>allowed_user_ids</code> 配置限制哪些用户可以使用 Bot，避免被滥用：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">gateway.discord.allowed_user_ids</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#9ECBFF">"123456789"</span></span></code></pre>
+<h3 id="53-飞书集成">5.3 飞书集成</h3>
+<p>对于国内用户，飞书集成非常实用：</p>
+<ol>
+<li>在飞书开放平台创建应用</li>
+<li>开启机器人能力并获取 App ID 和 App Secret</li>
+<li>配置事件订阅（接收消息事件）</li>
+<li>运行 <code>hermes gateway setup</code> 选择 Feishu</li>
+</ol>
+<p>飞书网关支持群聊 @ 机器人以及私聊两种模式，非常适合团队使用。</p>
+<h3 id="54-多网关同时运行">5.4 多网关同时运行</h3>
+<p>Hermes Agent 支持同时运行多个网关，你可以在配置文件中启用多个：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">gateway</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  telegram</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    enabled</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#85E89D">    bot_token</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"xxx"</span></span>
+<span class="line"><span style="color:#85E89D">  discord</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    enabled</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span></code></pre>
+<p>然后运行 <code>hermes gateway run --all</code> 启动所有已启用的网关。这样你就可以在多个平台上同时使用同一个 Agent。</p>
+<hr>
+<h2 id="六核心功能详解">六、核心功能详解</h2>
+<h3 id="61-shell-命令执行">6.1 Shell 命令执行</h3>
+<p>这是 Hermes Agent 最强大的能力之一——它可以直接在终端执行命令。你可以让它做任何命令行操作：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>你：帮我看看服务器磁盘空间使用情况</span></span>
+<span class="line"><span>Agent：好的，我来检查。</span></span>
+<span class="line"><span>→ Agent 执行 df -h，分析结果并告诉你哪些分区快满了</span></span></code></pre>
+<p>Shell 执行的审批模式有三种：</p>
+<ul>
+<li><strong>manual</strong>：每次执行命令前都询问你确认（最安全）</li>
+<li><strong>smart</strong>：低风险命令自动执行，高风险命令询问（推荐）</li>
+<li><strong>off</strong>：完全信任 Agent，自动执行所有命令</li>
+</ul>
+<p>配置审批模式：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">hermes</span><span style="color:#9ECBFF"> config</span><span style="color:#9ECBFF"> set</span><span style="color:#9ECBFF"> tools.terminal.approval</span><span style="color:#9ECBFF"> smart</span></span></code></pre>
+<h3 id="62-文件系统操作">6.2 文件系统操作</h3>
+<p>Agent 可以读写、修改文件系统中的文件。你可以限制其访问范围：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">hermes</span><span style="color:#9ECBFF"> config</span><span style="color:#9ECBFF"> set</span><span style="color:#9ECBFF"> tools.filesystem.allowed_paths</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#9ECBFF">  '["/home/user/projects","/home/user/documents"]'</span></span></code></pre>
+<p>示例：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>你：帮我搜索项目里所有包含 "TODO" 的代码行，按文件归类整理</span></span>
+<span class="line"><span>Agent：让我扫描项目目录...</span></span>
+<span class="line"><span>→ Agent 递归搜索、归类并返回整理结果</span></span></code></pre>
+<h3 id="63-浏览器自动化">6.3 浏览器自动化</h3>
+<p>Hermes Agent 内置了浏览器控制能力，可以执行网页操作：</p>
+<ul>
+<li>打开网页并截取屏幕</li>
+<li>填写表单、点击按钮</li>
+<li>提取网页内容</li>
+<li>模拟登录操作</li>
+</ul>
+<p>这对于自动化办公、网页数据采集等场景非常有用：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>你：打开公司内部运维后台，帮我看看 Jenkins 构建状态</span></span>
+<span class="line"><span>Agent：好的，我打开浏览器登录后台检查...</span></span></code></pre>
+<h3 id="64-网页搜索">6.4 网页搜索</h3>
+<p>Agent 可以联网搜索信息，并在回答中结合搜索结果。这对于查询最新文档、技术问题、新闻资讯等非常有用。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">hermes</span><span style="color:#9ECBFF"> config</span><span style="color:#9ECBFF"> set</span><span style="color:#9ECBFF"> tools.web_search.enabled</span><span style="color:#79B8FF"> true</span></span></code></pre>
+<p>搜索功能默认使用 DuckDuckGo，你也可以配置其他搜索引擎。</p>
+<h3 id="65-图片生成">6.5 图片生成</h3>
+<p>如果你配置了支持图片生成的模型（通过 Anthropic、OpenAI 或本地模型），Agent 可以生成图片：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>你：帮我画一张系统架构图，展示微服务各组件之间的关系</span></span></code></pre>
+<h3 id="66-记忆系统">6.6 记忆系统</h3>
+<p>Hermes Agent 拥有长期记忆能力。它会记住你在对话中提到的重要信息，并在后续对话中使用。记忆分为：</p>
+<ul>
+<li><strong>会话记忆</strong>：当前对话的上下文（临时）</li>
+<li><strong>长期记忆</strong>：跨会话持久化存储的重要信息</li>
+<li><strong>技能记忆</strong>：与特定技能相关的知识</li>
+</ul>
+<p>你可以主动让 Agent 记住某些信息：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>你：记住我习惯用 VS Code 作为编辑器，npm 源用的是淘宝镜像</span></span>
+<span class="line"><span>Agent：好的，我记住了这些偏好设置。</span></span></code></pre>
+<p>下次新会话中，Agent 会自动应用这些记忆。记忆数据存储在 <code>~/.hermes/memory/</code> 目录下。</p>
+<h3 id="67-定时任务">6.7 定时任务</h3>
+<p>Hermes Agent 内置了 Cron 调度器，可以设置定时任务让 Agent 自动执行：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>你：每天早上9点帮我检查服务器磁盘，如果使用率超过80%就通知我</span></span>
+<span class="line"><span>Agent：好的，我已经设置了定时任务。</span></span></code></pre>
+<p>你可以在 <code>~/.hermes/cron.yaml</code> 中管理和查看所有定时任务。</p>
+<hr>
+<h2 id="七技能系统skills">七、技能系统（Skills）</h2>
+<h3 id="71-什么是-skills">7.1 什么是 Skills</h3>
+<p>Skills 是 Hermes Agent 的扩展机制，类似于 VS Code 的扩展或 Chrome 的插件。每个 Skill 赋予 Agent 特定的专业能力——比如写特定类型的代码、操作特定平台、执行特定领域的工作流。</p>
+<p>Skills 以 Python 脚本或 YAML 配置文件的形式存在，存储在 <code>~/.hermes/skills/</code> 目录下。</p>
+<h3 id="72-安装社区-skills">7.2 安装社区 Skills</h3>
+<p>Hermes 社区已经创建了大量实用的 Skills：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># 列出可用技能</span></span>
+<span class="line"><span style="color:#B392F0">hermes</span><span style="color:#9ECBFF"> skills</span><span style="color:#9ECBFF"> list-remote</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># 安装技能</span></span>
+<span class="line"><span style="color:#B392F0">hermes</span><span style="color:#9ECBFF"> skills</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> git-manager</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># 查看已安装技能</span></span>
+<span class="line"><span style="color:#B392F0">hermes</span><span style="color:#9ECBFF"> skills</span><span style="color:#9ECBFF"> list</span></span></code></pre>
+<p>社区上有哪些实用 Skill：</p>
+<ul>
+<li><strong>git-manager</strong>：自动管理 Git 仓库操作</li>
+<li><strong>docker-ops</strong>：Docker 容器管理和监控</li>
+<li><strong>db-query</strong>：自然语言查询数据库</li>
+<li><strong>weather</strong>：天气查询</li>
+<li><strong>finance</strong>：股票和财经信息查询</li>
+<li><strong>devops-deploy</strong>：自动化部署工作流</li>
+</ul>
+<h3 id="73-自定义-skill">7.3 自定义 Skill</h3>
+<p>你也可以自己编写 Skill，非常简单。一个基本的 Skill 就是一个 Python 函数，加上元数据声明：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#9ECBFF">"""</span></span>
+<span class="line"><span style="color:#9ECBFF">name: ip-info</span></span>
+<span class="line"><span style="color:#9ECBFF">description: 查询 IP 地址的地理位置和信息</span></span>
+<span class="line"><span style="color:#9ECBFF">"""</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> run</span><span style="color:#E1E4E8">(ip_address: </span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">) -> </span><span style="color:#79B8FF">dict</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#6A737D">    # 调用 IP 查询 API 并返回结果</span></span></code></pre>
+<p>将文件保存为 <code>~/.hermes/skills/ip-info.py</code>，然后在对话中 Agent 就会自动识别并使用这个 Skill。</p>
+<hr>
+<h2 id="八子-agent-与多-agent-编排">八、子 Agent 与多 Agent 编排</h2>
+<p>这是 Hermes Agent 的企业级特性——支持 Agent 分层架构。主 Agent 可以派生子 Agent 来并行处理复杂任务。</p>
+<p>例如，一个软件开发任务可以这样编排：</p>
+<ul>
+<li><strong>主 Agent</strong>：负责项目管理，拆解任务，协调子 Agent</li>
+<li><strong>子 Agent A</strong>：负责后端 API 开发</li>
+<li><strong>子 Agent B</strong>：负责前端界面开发</li>
+<li><strong>子 Agent C</strong>：负责编写测试</li>
+</ul>
+<p>你只需要告诉主 Agent 需求，它会自动拆解、分配、协调并汇总结果。这种并行工作模式大大提升了复杂任务的完成效率。</p>
+<p>子 Agent 的配置方式：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">agents</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  backend_dev</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    model</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      provider</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">anthropic</span></span>
+<span class="line"><span style="color:#85E89D">      name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">claude-sonnet-4-20250514</span></span>
+<span class="line"><span style="color:#85E89D">    system_prompt</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"你是一位资深后端开发工程师"</span></span>
+<span class="line"><span style="color:#85E89D">  frontend_dev</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    model</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      provider</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">anthropic</span></span>
+<span class="line"><span style="color:#85E89D">      name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">claude-sonnet-4-20250514</span></span>
+<span class="line"><span style="color:#85E89D">    system_prompt</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"你是一位资深前端开发工程师"</span></span></code></pre>
+<p>子 Agent 拥有独立的模型配置、系统提示词和工具集，彼此隔离但又能通过主 Agent 协调工作。</p>
+<hr>
+<h2 id="九安全与权限管理">九、安全与权限管理</h2>
+<h3 id="91-tirith-安全扫描">9.1 Tirith 安全扫描</h3>
+<p>Tirith 是 Hermes Agent 内置的安全扫描引擎，默认启用。它会在 Agent 执行 Shell 命令前扫描命令内容，检测是否存在：</p>
+<ul>
+<li><strong>提示注入攻击</strong>：恶意指令试图诱导 Agent 执行危险操作</li>
+<li><strong>凭证泄露</strong>：命令中是否包含 API Key、密码等敏感信息</li>
+<li><strong>文件破坏操作</strong>：如 rm -rf / 等危险命令</li>
+<li><strong>网络探测</strong>：异常的网络连接请求</li>
+</ul>
+<p>如果你确定命令安全但被误拦，可以手动批准执行。</p>
+<h3 id="92-审批模式">9.2 审批模式</h3>
+<p>每个工具都可以单独设置审批模式：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>模式</th><th>说明</th><th>适用场景</th></tr></thead><tbody><tr><td><code>manual</code></td><td>每次操作都需确认</td><td>高危操作、生产环境</td></tr><tr><td><code>smart</code></td><td>自动判断风险等级</td><td>日常使用（推荐）</td></tr><tr><td><code>off</code></td><td>完全信任 Agent</td><td>可信环境、开发机</td></tr></tbody></table>
+<p>配置示例：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">hermes</span><span style="color:#9ECBFF"> config</span><span style="color:#9ECBFF"> set</span><span style="color:#9ECBFF"> tools.terminal.approval</span><span style="color:#9ECBFF"> smart</span></span>
+<span class="line"><span style="color:#B392F0">hermes</span><span style="color:#9ECBFF"> config</span><span style="color:#9ECBFF"> set</span><span style="color:#9ECBFF"> tools.filesystem.approval</span><span style="color:#9ECBFF"> manual</span></span></code></pre>
+<h3 id="93-权限控制">9.3 权限控制</h3>
+<p>你可以精确控制 Agent 的权限范围：</p>
+<ul>
+<li><strong>文件系统白名单</strong>：指定 Agent 可以读写的目录</li>
+<li><strong>命令黑名单</strong>：禁止 Agent 执行的命令</li>
+<li><strong>网络访问控制</strong>：限制 Agent 可以访问的网络资源</li>
+<li><strong>用户白名单</strong>：在网关模式下限制允许与 Agent 对话的用户</li>
+</ul>
+<hr>
+<h2 id="十生产环境部署">十、生产环境部署</h2>
+<h3 id="101-vps-部署最佳实践">10.1 VPS 部署最佳实践</h3>
+<p>如果你想 7×24 小时运行 Hermes Agent，推荐在 VPS 上部署：</p>
+<ol>
+<li><strong>系统选择</strong>：Ubuntu 22.04 LTS 是最稳定的选择</li>
+<li><strong>创建专用用户</strong>：</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> useradd</span><span style="color:#79B8FF"> -m</span><span style="color:#79B8FF"> -s</span><span style="color:#9ECBFF"> /bin/bash</span><span style="color:#9ECBFF"> hermes</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#79B8FF"> -u</span><span style="color:#9ECBFF"> hermes</span><span style="color:#79B8FF"> -i</span></span></code></pre>
+<ol>
+<li><strong>安装 Hermes Agent</strong>：以 hermes 用户运行安装脚本</li>
+<li><strong>配置 systemd 服务</strong>：</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ini"><code><span class="line"><span style="color:#6A737D"># /etc/systemd/system/hermes-gateway.service</span></span>
+<span class="line"><span style="color:#B392F0">[Unit]</span></span>
+<span class="line"><span style="color:#F97583">Description</span><span style="color:#E1E4E8">=Hermes Agent Gateway</span></span>
+<span class="line"><span style="color:#F97583">After</span><span style="color:#E1E4E8">=network.target</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">[Service]</span></span>
+<span class="line"><span style="color:#F97583">Type</span><span style="color:#E1E4E8">=simple</span></span>
+<span class="line"><span style="color:#F97583">User</span><span style="color:#E1E4E8">=hermes</span></span>
+<span class="line"><span style="color:#F97583">ExecStart</span><span style="color:#E1E4E8">=/home/hermes/.local/bin/hermes gateway run --all</span></span>
+<span class="line"><span style="color:#F97583">Restart</span><span style="color:#E1E4E8">=always</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">[Install]</span></span>
+<span class="line"><span style="color:#F97583">WantedBy</span><span style="color:#E1E4E8">=multi-user.target</span></span></code></pre>
+<ol>
+<li>启动服务并设置开机自启：</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> systemctl</span><span style="color:#9ECBFF"> enable</span><span style="color:#79B8FF"> --now</span><span style="color:#9ECBFF"> hermes-gateway</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> systemctl</span><span style="color:#9ECBFF"> status</span><span style="color:#9ECBFF"> hermes-gateway</span></span></code></pre>
+<h3 id="102-端口安全">10.2 端口安全</h3>
+<p>Hermes Agent 会监听几个端口：</p>
+<ul>
+<li><code>8642</code>：API 服务端口</li>
+<li><code>9119</code>：Dashboard 端口</li>
+</ul>
+<p>如果你只通过聊天网关使用 Agent，建议在防火墙中关闭这些端口的外部访问：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> ufw</span><span style="color:#9ECBFF"> deny</span><span style="color:#79B8FF"> 8642</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> ufw</span><span style="color:#9ECBFF"> deny</span><span style="color:#79B8FF"> 9119</span></span></code></pre>
+<h3 id="103-docker-沙箱终端">10.3 Docker 沙箱终端</h3>
+<p>对于生产环境，建议使用 Docker 作为终端后端，将 Agent 执行的命令运行在隔离容器中：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">hermes</span><span style="color:#9ECBFF"> config</span><span style="color:#9ECBFF"> set</span><span style="color:#9ECBFF"> tools.terminal.backend</span><span style="color:#9ECBFF"> docker</span></span></code></pre>
+<p>这样即使 Agent 被注入恶意指令，也只会影响临时容器，不会危及宿主机安全。</p>
+<hr>
+<h2 id="十一常见问题与排错">十一、常见问题与排错</h2>
+<h3 id="q1安装失败提示-command-not-found">Q1：安装失败，提示 command not found</h3>
+<p>安装完成后找不到 <code>hermes</code> 命令。解决方案：重新加载 shell 配置或重新打开终端。如果仍然不行，检查安装脚本的输出，确认是否报错。</p>
+<h3 id="q2api-连接错误">Q2：API 连接错误</h3>
+<p>检查 API Key 是否正确配置：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">hermes</span><span style="color:#9ECBFF"> doctor</span></span></code></pre>
+<p>这个命令会诊断常见的配置问题，包括 API 连接测试。</p>
+<h3 id="q3网关无法启动">Q3：网关无法启动</h3>
+<p>检查 Token 是否正确，以及网络是否能访问到对应的平台 API。Telegram 在某些网络环境下可能需要配置代理。</p>
+<h3 id="q4agent-执行命令太慢">Q4：Agent 执行命令太慢</h3>
+<p>可以调整模型参数来平衡速度和效果：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">hermes</span><span style="color:#9ECBFF"> config</span><span style="color:#9ECBFF"> set</span><span style="color:#9ECBFF"> model.max_tokens</span><span style="color:#79B8FF"> 2048</span></span>
+<span class="line"><span style="color:#B392F0">hermes</span><span style="color:#9ECBFF"> config</span><span style="color:#9ECBFF"> set</span><span style="color:#9ECBFF"> model.temperature</span><span style="color:#79B8FF"> 0.3</span></span></code></pre>
+<p>降低 max_tokens 和 temperature 可以显著加快响应速度。</p>
+<h3 id="q5如何备份和迁移">Q5：如何备份和迁移</h3>
+<p>只需要备份 <code>~/.hermes/</code> 目录即可，包含所有配置、密钥、会话历史和记忆数据。迁移时在新机器上安装后，用备份文件覆盖此目录即可。</p>
+<hr>
+<h2 id="结语">结语</h2>
+<p>Hermes Agent 是我在 2026 年用过的最令人兴奋的 AI 工具之一。它将 LLM 的能力从”对话”延伸到”行动”，真正实现了让 AI 为你做事，而不仅仅是和你聊天。</p>
+<p>本文从安装配置到高级功能，系统性地介绍了 Hermes Agent 的方方面面。无论你是想在本地有一个编程助手，还是想部署一个团队可用的 AI 网关，Hermes Agent 都能满足你的需求。</p>
+<p>值得注意的是，Hermes Agent 仍在快速迭代中，本文所介绍的功能和配置方式可能随着版本更新而变化。建议在遇到问题时，查阅<a href="https://hermes-agent.nousresearch.com/docs/getting-started/installation">官方文档</a>获取最新信息，也可以关注 GitHub 仓库的 Release Notes 了解版本更新内容。</p>
+<p>希望这篇教程能帮助你顺利上手 Hermes Agent。如果你在安装和使用过程中遇到问题，欢迎在评论区交流讨论。</p> </article>  </main> <footer class="site-footer"> <p>© 2026 xiaonige. Built with Astro. 音乐模块预留，暂缓上线。</p> </footer> </div> </body></html>

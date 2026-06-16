@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+
+    <entry>
+      <title>给小学生也能讲明白的 AI 大模型术语课：Token、上下文、记忆、Skill、MCP、ACP 到 API Key</title>
+      <link href="/astro-preview/2026/05/25/ai-llm-terms-for-beginners/"/>
+      <url>/2026/05/25/ai-llm-terms-for-beginners/</url>
+      <content type="html"><![CDATA[前言：先别被这些词吓住 现在只要一聊 AI，大人们嘴里就会蹦出一堆听起来很高级的词：Token、上下文、记忆、Prompt、Skill、MCP、ACP、API Key、Provider、Agent、模型、Embedding、向量数据库…… 这些词看起来像魔法咒语，但其实大部分都可以用生活里的例子讲清楚。如果要给小学生解释 AI 大模型，我不会一上来讲数学公式，也不会讲神经网络有多少层。那太像刚学加减法就被塞进高等数学课堂，小朋友听完只会想：老师，我能不能先去操场冷静一下？ 更好的方法是，把 AI 想象成一个特别会读书、特别会聊天、特别会模仿人类语言的小助手。它读过很多书，看过很多网页，学会了很多句子的规律。所以当你问它问题时，它会根据你给它的文字，猜出接下来最合适的回答。 注意，这里有一个关键词：猜。 AI 大模型并不是一个真正懂世界所有真相的神仙，它更像一个超级厉害的“语言接龙高手”。你给它一段话，它就根据以前学到的语言规律，接着往下说。因为它读过的东西太多，所以很多时候接得非常像专家。但它也可能接错，甚至一本正经地胡说八道。 所以，学会这些专业名词的目的，不是为了装酷，而是为了更好…]]></content>
+    </entry>
+
+    <entry>
+      <title>Hermes Agent 完全指南：从零搭建你的智能体助手</title>
+      <link href="/astro-preview/2026/05/24/hermes-agent-tutorial/"/>
+      <url>/2026/05/24/hermes-agent-tutorial/</url>
+      <content type="html"><![CDATA[前言 2026 年，AI Agent 已经从概念走向了全面落地。从 AutoGPT 到各种 Agent 框架，我们看到越来越多能自主执行任务的智能体。但真正能让你在本地自由部署、功能全面且开箱即用的 Agent 平台并不多见，Hermes Agent 就是其中的佼佼者。 Hermes Agent 由 Nous Research 开发并开源，是一个功能极其强大的个人 AI 智能体平台。它不仅支持命令行和 TUI 交互，还能接入 Telegram、Discord、飞书等即时通讯工具，具备 Shell 执行、浏览器自动化、文件操作、网页搜索、图片生成等丰富能力。更重要的是，它完全开源，数据隐私由你掌控。 本文将从零开始，手把手带你完成 Hermes Agent 的安装、配置与使用，让你真正拥有一个 7×24 小时为你工作的私人 AI 智能体。 一、Hermes Agent 是什么 1.1 核心定位 Hermes Agent 是一个开源的、可本地部署的 AI 智能体平台。它的核心定位是：让你拥有一个能真正行动的 AI 助手，而不仅仅是一个聊天机器人。 与传统 AI 工具不同，Hermes Ag…]]></content>
+    </entry>
+
+    <entry>
+      <title>2026主流AI工具深度对比：Claude、Codex、OpenCode、OpenClaw与HermesAgent</title>
+      <link href="/astro-preview/2026/05/20/ai-tools-comparison/"/>
+      <url>/2026/05/20/ai-tools-comparison/</url>
+      <content type="html"><![CDATA[前言 2026年，AI工具已经从"尝鲜玩具"变成了"生产力必需品。无论是程序员、产品经理、数据分析师，甚至是内容创作者，每天的工作都离不开AI的辅助。然而，面对市场上的AI工具百花齐放，从通用大模型、编程助手、智能体平台，种类繁多，各有侧重。 很多开发者在选择时常常困惑： 这么多AI工具，到底该选哪个？ 什么场景用什么工具效率最高？ 它们各自的优缺点是什么？ 如何组合使用才能发挥最大威力？ 本文将深度对比当前最主流的五款AI开发工具：Claude、Codex、OpenCode、OpenClaw、HermesAgent，从多个维度进行全面剖析，帮助你在不同的工作场景下做出最合适的选择。 一、Claude：Anthropic的文档理解大师 1.1 什么是Claude Claude是由Anthropic公司开发的AI助手系列，诞生于2023年。与OpenAI的GPT系列不同，Claude从一开始就主打"安全、可控、长文本理解"。经过三代迭代后，Claude 3系列（Opus、Sonnet、Haiku）已经成为了文档处理和长上下文理解的标杆。 核心系列： Claude 3 Opus 旗舰模型，…]]></content>
+    </entry>
+
+    <entry>
+      <title>OpenClaw 完全指南：打造你的个人AI智能体平台</title>
+      <link href="/astro-preview/2026/05/20/openclaw-tutorial/"/>
+      <url>/2026/05/20/openclaw-tutorial/</url>
+      <content type="html"><![CDATA[前言 在AI Agent爆发的2026年，我们见证了无数智能体工具的诞生。从ChatGPT到Claude，从AutoGPT到各种Agent框架，AI正在从一个简单的对话机器人演变为能够执行复杂任务的智能代理。然而，大多数工具要么功能单一，要么部署复杂，要么数据隐私无法保障。 OpenClaw的出现打破了这一局面。这是一个开源的个人AI智能体平台，让你可以在自己的服务器或本地机器上部署专属的AI助手。它不仅仅是一个聊天机器人，更是一个可以控制你的设备、管理你的日程、执行自动化任务的完整AI操作系统。 本文将带你从零开始，系统性地掌握OpenClaw的使用方法。从基础概念到核心功能，从简单对话到复杂Agent编排，从本地部署到云端扩展，让你真正拥有一个7×24小时为你工作的私人AI智能体。 一、OpenClaw 是什么：重新定义个人AI 1.1 核心定位 OpenClaw的定位是「Your personal assistant」，但它与传统的个人助理有着本质的区别。官方的 slogan 很有意思："Your personal assistant, minus the passiveaggr…]]></content>
+    </entry>
+
+    <entry>
+      <title>GitHub Copilot 完全指南：从入门到精通</title>
+      <link href="/astro-preview/2026/05/20/github-copilot-guide/"/>
+      <url>/2026/05/20/github-copilot-guide/</url>
+      <content type="html"><![CDATA[前言 在AI大模型爆发的2023年，编程领域最具革命性的工具莫过于GitHub Copilot。这款由GitHub与OpenAI联手打造的AI编程助手，正在悄然改变每一位开发者的工作方式。有人说它是"结对编程的终极形态"，有人称它为"程序员的第二大脑"，但更多人还在困惑：Copilot到底能做什么？我该如何用好它？ 本文将带你从零开始，系统性地掌握GitHub Copilot的使用方法论。从基础安装到高级技巧，从最佳实践到避坑指南，让你真正体会AI辅助编程的威力。 一、Copilot 是什么：不只是代码补全 1.1 技术背景 GitHub Copilot基于OpenAI的Codex模型训练而来，而Codex本身就是GPT系列模型的代码专精版本。它学习了来自GitHub的数十亿行公开代码，涵盖几乎所有主流编程语言和框架。与传统的代码补全工具不同，Copilot能够理解上下文语义，生成符合逻辑的完整代码片段。 关键特性： 上下文感知：理解整个文件的代码结构，而非仅仅当前行 多语言支持：支持Python、JavaScript、TypeScript、Java、Go、Rust等数十种语言 自然语…]]></content>
+    </entry>
+</search>
