@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="一个关注 AI、开发效率、工程实践和个人成长的技术博客。"><title>给小学生也能讲明白的 AI 大模型术语课：Token、上下文、记忆、Skill、MCP、ACP 到 API Key - 海阔天空</title><link rel="icon" href="/astro-preview/favicon.png"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css"><link rel="stylesheet" href="/astro-preview/styles.css"></head> <body> <header class="navbar-fixed"> <nav class="top-nav" id="headNav"> <div class="nav-wrapper container"> <a class="brand-logo" href="/astro-preview/"> <img alt="LOGO" class="logo-img" src="/astro-preview/medias/logo.png"> <span class="logo-span">海阔天空</span> </a> <input id="nav-toggle" type="checkbox"> <label class="sidenav-trigger" for="nav-toggle"><i class="fas fa-bars"></i></label> <ul class="right nav-menu"> <li class="nav-item"> <a class="waves" href="/astro-preview/"> <i class="fas fa-home"></i><span>首页</span> </a> </li><li class="nav-item"> <a class="waves" href="/astro-preview/tags/"> <i class="fas fa-tags"></i><span>标签</span> </a> </li><li class="nav-item"> <a class="waves" href="/astro-preview/categories/"> <i class="fas fa-list"></i><span>分类</span> </a> </li><li class="nav-item"> <a class="waves" href="/astro-preview/archives/"> <i class="fas fa-archive"></i><span>归档</span> </a> </li><li class="nav-item"> <a class="waves disabled" href="#"> <i class="fas fa-user-circle"></i><span>关于</span> </a> </li><li class="nav-item"> <a class="waves" href="#search"> <i class="fas fa-search"></i><span>搜索</span> </a> </li> </ul> </div> </nav> </header> <main>  <article class="content-card prose"> <p class="eyebrow">ARTICLE</p> <h1>给小学生也能讲明白的 AI 大模型术语课：Token、上下文、记忆、Skill、MCP、ACP 到 API Key</h1> <div class="meta-line"> <span>2026-05-25</span> <span>·</span> <span>学习</span> <span>·</span> <span>AI大模型，人工智能，入门科普，AI工具，提示词工程</span> </div> <h2 id="前言先别被这些词吓住">前言：先别被这些词吓住</h2>
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="一个关注 AI、开发效率、工程实践和个人成长的技术博客。"><title>给小学生也能讲明白的 AI 大模型术语课：Token、上下文、记忆、Skill、MCP、ACP 到 API Key - 海阔天空</title><link rel="icon" href="/astro-preview/favicon.png"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css"><link rel="stylesheet" href="/astro-preview/styles.css"></head> <body> <header class="navbar-fixed"> <nav class="top-nav" id="headNav"> <div class="nav-wrapper container"> <a class="brand-logo" href="/astro-preview/"> <img alt="LOGO" class="logo-img" src="/astro-preview/medias/logo.png"> <span class="logo-span">海阔天空</span> </a> <input id="nav-toggle" type="checkbox"> <label class="sidenav-trigger" for="nav-toggle"><i class="fas fa-bars"></i></label> <ul class="right nav-menu"> <li class="nav-item"> <a class="waves" href="/astro-preview/"> <i class="fas fa-home"></i><span>首页</span> </a>  </li><li class="nav-item"> <a class="waves" href="/astro-preview/tags/"> <i class="fas fa-tags"></i><span>标签</span> </a>  </li><li class="nav-item"> <a class="waves" href="/astro-preview/categories/"> <i class="fas fa-list"></i><span>分类</span> </a> <ul class="sub-nav"> <li><a href="/astro-preview/categories/学习/"><i class="fas fa-book"></i><span>学习</span></a></li> <li><a href="#" class="disabled"><i class="fas fa-briefcase"></i><span>工作</span></a></li> <li><a href="#" class="disabled"><i class="fas fa-image"></i><span>图片</span></a></li> <li><a href="#" class="disabled"><i class="fas fa-music"></i><span>音乐</span></a></li> </ul> </li><li class="nav-item"> <a class="waves" href="/astro-preview/archives/"> <i class="fas fa-archive"></i><span>归档</span> </a>  </li><li class="nav-item"> <a class="waves" href="/astro-preview/about/"> <i class="fas fa-user-circle"></i><span>关于</span> </a>  </li><li class="nav-item"> <a class="waves" href="#search" data-open-search="true"> <i class="fas fa-search"></i><span>搜索</span> </a>  </li> </ul> </div> </nav> </header> <main>  <section class="page-hero article-hero" style="background-image:url('/astro-preview/medias/featureimages/6.jpg')"> <div class="cover-overlay"></div> <div class="page-hero-content container"> <h1>给小学生也能讲明白的 AI 大模型术语课：Token、上下文、记忆、Skill、MCP、ACP 到 API Key</h1> <div class="meta-line hero-meta"> <span><i class="far fa-clock"></i> 2026-05-25</span> <span><i class="fas fa-bookmark"></i> 学习</span> <span><i class="fas fa-tags"></i> AI大模型，人工智能，入门科普，AI工具，提示词工程</span> </div> </div> </section> <div class="article-layout container"> <article class="content-card prose article-content-page"> <h2 id="前言先别被这些词吓住">前言：先别被这些词吓住</h2>
 <p>现在只要一聊 AI，大人们嘴里就会蹦出一堆听起来很高级的词：Token、上下文、记忆、Prompt、Skill、MCP、ACP、API Key、Provider、Agent、模型、Embedding、向量数据库……</p>
 <p>这些词看起来像魔法咒语，但其实大部分都可以用生活里的例子讲清楚。如果要给小学生解释 AI 大模型，我不会一上来讲数学公式，也不会讲神经网络有多少层。那太像刚学加减法就被塞进高等数学课堂，小朋友听完只会想：老师，我能不能先去操场冷静一下？</p>
 <p>更好的方法是，把 AI 想象成一个特别会读书、特别会聊天、特别会模仿人类语言的小助手。它读过很多书，看过很多网页，学会了很多句子的规律。所以当你问它问题时，它会根据你给它的文字，猜出接下来最合适的回答。</p>
@@ -671,10 +671,88 @@
 <p>如果给小学生讲 AI，我最想说的是：</p>
 <p>AI 像一个特别聪明、特别勤快、但偶尔也会粗心的学习伙伴。你问得越清楚，它帮得越好；你越会检查，它越安全；你越愿意思考，它越能放大你的能力。</p>
 <p>未来，会用 AI 不代表不用学习。恰恰相反，会用 AI 的人更需要会提问、会判断、会表达、会验证。</p>
-<p>AI 可以帮你跑得更快，但方向盘仍然应该握在你自己手里。</p> </article>  </main> <footer class="page-footer bg-color"> <div class="music-placeholder"> <i class="fas fa-music"></i> <span>音乐播放器模块已预留，等主题稳定后再接入。</span> </div> <div class="footer-container"> <div class="footer-col copy-right"> <p>
+<p>AI 可以帮你跑得更快，但方向盘仍然应该握在你自己手里。</p> </article> <aside class="article-toc"><div class="toc-title"><i class="fas fa-list-ul"></i> 文章目录</div><nav><a class="depth-2" href="#前言先别被这些词吓住">前言：先别被这些词吓住</a><a class="depth-2" href="#一ai-大模型到底是什么">一、AI 大模型到底是什么？</a><a class="depth-3" href="#11-大模型像一个超级语言接龙机">1.1 大模型像一个“超级语言接龙机”</a><a class="depth-3" href="#12-模型不是机器人本体而是大脑">1.2 模型不是机器人本体，而是“大脑”</a><a class="depth-2" href="#二tokenai-眼里的小积木">二、Token：AI 眼里的“小积木”</a><a class="depth-3" href="#21-token-不是金币是文字小块">2.1 Token 不是金币，是文字小块</a><a class="depth-3" href="#22-为什么-token-重要">2.2 为什么 Token 重要？</a><a class="depth-3" href="#23-给小学生的比喻">2.3 给小学生的比喻</a><a class="depth-2" href="#三上下文ai-的临时黑板">三、上下文：AI 的“临时黑板”</a><a class="depth-3" href="#31-上下文是什么">3.1 上下文是什么？</a><a class="depth-3" href="#32-上下文窗口黑板有多大">3.2 上下文窗口：黑板有多大</a><a class="depth-3" href="#33-上下文不是永久记忆">3.3 上下文不是永久记忆</a><a class="depth-2" href="#四prompt你给-ai-的任务纸条">四、Prompt：你给 AI 的“任务纸条”</a><a class="depth-3" href="#41-prompt-是什么">4.1 Prompt 是什么？</a><a class="depth-3" href="#42-好-prompt-像好题目">4.2 好 Prompt 像好题目</a><a class="depth-3" href="#43-一个简单公式">4.3 一个简单公式</a><a class="depth-2" href="#五记忆ai-的小本本">五、记忆：AI 的“小本本”</a><a class="depth-3" href="#51-记忆和上下文有什么区别">5.1 记忆和上下文有什么区别？</a><a class="depth-3" href="#52-记忆不是越多越好">5.2 记忆不是越多越好</a><a class="depth-3" href="#53-日常怎么用记忆">5.3 日常怎么用记忆？</a><a class="depth-2" href="#六规则给-ai-画边界的班规">六、规则：给 AI 画边界的“班规”</a><a class="depth-3" href="#61-规则是什么">6.1 规则是什么？</a><a class="depth-3" href="#62-系统规则开发者规则用户规则">6.2 系统规则、开发者规则、用户规则</a><a class="depth-3" href="#63-规则不是麻烦是护栏">6.3 规则不是麻烦，是护栏</a><a class="depth-2" href="#七skillai-的技能卡">七、Skill：AI 的“技能卡”</a><a class="depth-3" href="#71-skill-是什么">7.1 Skill 是什么？</a><a class="depth-3" href="#72-用游戏来比喻">7.2 用游戏来比喻</a><a class="depth-3" href="#73-skill-和-prompt-的区别">7.3 Skill 和 Prompt 的区别</a><a class="depth-2" href="#八toolai-的工具箱">八、Tool：AI 的“工具箱”</a><a class="depth-3" href="#81-ai-为什么需要工具">8.1 AI 为什么需要工具？</a><a class="depth-3" href="#82-工具越强越要小心">8.2 工具越强，越要小心</a><a class="depth-2" href="#九agent会自己拆任务的-ai-助手">九、Agent：会自己拆任务的 AI 助手</a><a class="depth-3" href="#91-agent-和普通聊天-ai-有什么区别">9.1 Agent 和普通聊天 AI 有什么区别？</a><a class="depth-3" href="#92-agent-需要计划能力">9.2 Agent 需要计划能力</a><a class="depth-2" href="#十mcp让-ai-连接外部工具的插座标准">十、MCP：让 AI 连接外部工具的“插座标准”</a><a class="depth-3" href="#101-mcp-是什么">10.1 MCP 是什么？</a><a class="depth-3" href="#102-mcp-能接什么">10.2 MCP 能接什么？</a><a class="depth-3" href="#103-给小学生的比喻">10.3 给小学生的比喻</a><a class="depth-2" href="#十一acp让-ai-编程工具协作的对讲机">十一、ACP：让 AI 编程工具协作的“对讲机”</a><a class="depth-3" href="#111-acp-是什么">11.1 ACP 是什么？</a><a class="depth-3" href="#112-为什么需要-acp">11.2 为什么需要 ACP？</a><a class="depth-3" href="#113-小学生比喻">11.3 小学生比喻</a><a class="depth-2" href="#十二api-key访问-ai-服务的钥匙">十二、API Key：访问 AI 服务的“钥匙”</a><a class="depth-3" href="#121-api-是什么">12.1 API 是什么？</a><a class="depth-3" href="#122-api-key-是什么">12.2 API Key 是什么？</a><a class="depth-3" href="#123-api-key-一定要保密">12.3 API Key 一定要保密</a><a class="depth-2" href="#十三provider提供模型服务的店家">十三、Provider：提供模型服务的“店家”</a><a class="depth-3" href="#131-provider-是什么">13.1 Provider 是什么？</a><a class="depth-3" href="#132-provider-和模型不是一回事">13.2 Provider 和模型不是一回事</a><a class="depth-2" href="#十四模型参数temperaturetop-pmax-tokens">十四、模型参数：Temperature、Top-p、Max Tokens</a><a class="depth-3" href="#141-temperatureai-的想象力旋钮">14.1 Temperature：AI 的“想象力旋钮”</a><a class="depth-3" href="#142-top-p从多少候选词里挑">14.2 Top-p：从多少候选词里挑</a><a class="depth-3" href="#143-max-tokens最多写多长">14.3 Max Tokens：最多写多长</a><a class="depth-2" href="#十五embedding-和向量数据库给文字做数字指纹">十五、Embedding 和向量数据库：给文字做“数字指纹”</a><a class="depth-3" href="#151-embedding-是什么">15.1 Embedding 是什么？</a><a class="depth-3" href="#152-向量数据库是什么">15.2 向量数据库是什么？</a><a class="depth-3" href="#153-小学生比喻">15.3 小学生比喻</a><a class="depth-2" href="#十六rag让-ai-先查资料再回答">十六、RAG：让 AI 先查资料再回答</a><a class="depth-3" href="#161-rag-是什么">16.1 RAG 是什么？</a><a class="depth-3" href="#162-为什么-rag-有用">16.2 为什么 RAG 有用？</a><a class="depth-3" href="#163-rag-也会出错">16.3 RAG 也会出错</a><a class="depth-2" href="#十七幻觉ai-一本正经地说错话">十七、幻觉：AI 一本正经地说错话</a><a class="depth-3" href="#171-幻觉是什么">17.1 幻觉是什么？</a><a class="depth-3" href="#172-为什么会幻觉">17.2 为什么会幻觉？</a><a class="depth-3" href="#173-怎么减少幻觉">17.3 怎么减少幻觉？</a><a class="depth-2" href="#十八模型训练微调和蒸馏">十八、模型训练、微调和蒸馏</a><a class="depth-3" href="#181-训练从大量例子中学习">18.1 训练：从大量例子中学习</a><a class="depth-3" href="#182-微调给模型补专业课">18.2 微调：给模型补专业课</a><a class="depth-3" href="#183-蒸馏大老师教小学生">18.3 蒸馏：大老师教小学生</a><a class="depth-2" href="#十九多模态不只会看文字">十九、多模态：不只会看文字</a><a class="depth-3" href="#191-多模态是什么">19.1 多模态是什么？</a><a class="depth-3" href="#192-举几个例子">19.2 举几个例子</a><a class="depth-3" href="#193-仍然要检查">19.3 仍然要检查</a><a class="depth-2" href="#二十如何用好-ai-大模型给小学生也适用的-10-条建议">二十、如何用好 AI 大模型？给小学生也适用的 10 条建议</a><a class="depth-3" href="#201-把问题说具体">20.1 把问题说具体</a><a class="depth-3" href="#202-告诉-ai-你的水平">20.2 告诉 AI 你的水平</a><a class="depth-3" href="#203-让-ai-举例子">20.3 让 AI 举例子</a><a class="depth-3" href="#204-让-ai-换一种说法">20.4 让 AI 换一种说法</a><a class="depth-3" href="#205-让-ai-先列提纲">20.5 让 AI 先列提纲</a><a class="depth-3" href="#206-不要直接抄作业">20.6 不要直接抄作业</a><a class="depth-3" href="#207-重要答案要查证">20.7 重要答案要查证</a><a class="depth-3" href="#208-保护隐私">20.8 保护隐私</a><a class="depth-3" href="#209-学会追问">20.9 学会追问</a><a class="depth-3" href="#2010-把-ai-当助手不当主人">20.10 把 AI 当助手，不当主人</a><a class="depth-2" href="#二十一常见术语速查">二十一、常见术语速查</a><a class="depth-2" href="#总结会用-ai-的人不是会背术语的人">总结：会用 AI 的人，不是会背术语的人</a></nav></aside> </div> <script>
+    document.querySelectorAll('pre').forEach((pre) => {
+      if (pre.querySelector('.copy-code')) return;
+      const btn = document.createElement('button');
+      btn.className = 'copy-code';
+      btn.type = 'button';
+      btn.textContent = '复制';
+      btn.addEventListener('click', async () => {
+        const text = pre.innerText.replace(/^复制\n?/, '');
+        try {
+          await navigator.clipboard.writeText(text);
+          btn.textContent = '已复制';
+          setTimeout(() => btn.textContent = '复制', 1200);
+        } catch {
+          btn.textContent = '失败';
+        }
+      });
+      pre.appendChild(btn);
+    });
+  </script>  </main> <footer class="page-footer bg-color"> <div class="music-placeholder"> <i class="fas fa-music"></i> <span>音乐播放器模块已预留，等主题稳定后再接入。</span> </div> <div class="footer-container"> <div class="footer-col copy-right"> <p>
 Copyright © <span id="year">2023-2026</span> <a href="/astro-preview/about/">小倪哥</a>
 | Powered by <a href="https://astro.build/" target="_blank">Astro</a>
-| Inspired by <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a> </p> <p> <i class="fas fa-chart-area"></i> 站点总字数: <span class="white-color">计算中</span> <span class="split">|</span> <i class="far fa-eye"></i> 访问统计: <span class="white-color">预留</span> </p> <p id="sitetime">本站已运行 Loading ...</p> </div> <div class="footer-col footer-poem"> <strong>今日诗词</strong> <span>“天生我材必有用，千金散尽还复来。”</span> <small>—— 李白《将进酒》</small> </div> <div class="footer-col social-link social-statis"> <a title="访问我的 GitHub" href="https://github.com/xiaonige/" target="_blank"><i class="fab fa-github"></i></a> <a title="邮件联系我" href="mailto:991509326@qq.com" target="_blank"><i class="fas fa-envelope-open"></i></a> <a title="QQ 联系我" href="tencent://AddContact/?fromId=50&#38;fromSubId=1&#38;subcmd=all&#38;uin=991509326" target="_blank"><i class="fab fa-qq"></i></a> </div> </div> </footer> <button class="scroll-top" aria-label="回到顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button> <script>
+| Inspired by <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a> </p> <p> <i class="fas fa-chart-area"></i> 站点总字数: <span class="white-color">计算中</span> <span class="split">|</span> <i class="far fa-eye"></i> 访问统计: <span class="white-color">预留</span> </p> <p id="sitetime">本站已运行 Loading ...</p> </div> <div class="footer-col footer-poem"> <strong>今日诗词</strong> <span>“天生我材必有用，千金散尽还复来。”</span> <small>—— 李白《将进酒》</small> </div> <div class="footer-col social-link social-statis"> <a title="访问我的 GitHub" href="https://github.com/xiaonige/" target="_blank"><i class="fab fa-github"></i></a> <a title="邮件联系我" href="mailto:991509326@qq.com" target="_blank"><i class="fas fa-envelope-open"></i></a> <a title="QQ 联系我" href="tencent://AddContact/?fromId=50&#38;fromSubId=1&#38;subcmd=all&#38;uin=991509326" target="_blank"><i class="fab fa-qq"></i></a> </div> </div> </footer> <div class="search-modal" id="searchModal" aria-hidden="true"> <div class="search-backdrop" data-close-search></div> <div class="search-panel" role="dialog" aria-modal="true" aria-labelledby="searchTitle"> <div class="search-header"> <span class="title" id="searchTitle"><i class="fas fa-search"></i> 搜索</span> <button class="search-close" type="button" data-close-search aria-label="关闭搜索"><i class="fas fa-times"></i></button> <input class="search-input" id="searchInput" placeholder="请输入搜索关键字，例如 Astro、AI、Copilot" type="search" autocomplete="off"> </div> <div id="searchResult" class="search-result"> <p class="search-empty">输入关键词，开始搜索文章标题与摘要。</p> </div> </div> </div> <script>
+(() => {
+  const modal = document.getElementById('searchModal');
+  const input = document.getElementById('searchInput');
+  const result = document.getElementById('searchResult');
+  let entries = [];
+  let loaded = false;
+  const open = async () => {
+    modal?.classList.add('active');
+    modal?.setAttribute('aria-hidden', 'false');
+    setTimeout(() => input?.focus(), 80);
+    if (!loaded) await loadSearch();
+  };
+  const close = () => {
+    modal?.classList.remove('active');
+    modal?.setAttribute('aria-hidden', 'true');
+  };
+  async function loadSearch() {
+    loaded = true;
+    try {
+      const res = await fetch('/astro-preview/search.xml');
+      const text = await res.text();
+      const xml = new DOMParser().parseFromString(text, 'text/xml');
+      entries = Array.from(xml.querySelectorAll('entry')).map((entry) => ({
+        title: entry.querySelector('title')?.textContent || '',
+        url: entry.querySelector('url')?.textContent || entry.querySelector('link')?.getAttribute('href') || '#',
+        content: entry.querySelector('content')?.textContent || ''
+      }));
+    } catch (e) {
+      result.innerHTML = '<p class="search-empty">搜索索引加载失败，稍后再试。</p>';
+    }
+  }
+  function render(keyword) {
+    const q = keyword.trim().toLowerCase();
+    if (!q) {
+      result.innerHTML = '<p class="search-empty">输入关键词，开始搜索文章标题与摘要。</p>';
+      return;
+    }
+    const hits = entries.filter((item) => `${item.title} ${item.content}`.toLowerCase().includes(q)).slice(0, 12);
+    if (!hits.length) {
+      result.innerHTML = '<p class="search-empty">没找到匹配内容，换个关键词试试。</p>';
+      return;
+    }
+    result.innerHTML = hits.map((item) => {
+      const clean = item.content.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim().slice(0, 150);
+      return `<a class="search-hit" href="${item.url}"><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(clean)}...</span></a>`;
+    }).join('');
+  }
+  function escapeHtml(str) {
+    return str.replace(/[&<>'"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+  }
+  document.querySelectorAll('[data-open-search]').forEach((el) => el.addEventListener('click', (e) => { e.preventDefault(); open(); }));
+  document.querySelectorAll('[data-close-search]').forEach((el) => el.addEventListener('click', close));
+  input?.addEventListener('input', () => render(input.value));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') close();
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); open(); }
+  });
+})();
+</script> <button class="scroll-top" aria-label="回到顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button> <script>
       const start = new Date('2023-12-25T00:00:00+08:00');
       const now = new Date();
       const days = Math.max(0, Math.floor((now - start) / 86400000));

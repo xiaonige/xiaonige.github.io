@@ -99,3 +99,47 @@ a { color: inherit; text-decoration: none; }
   .dream-card { padding: 26px 22px; }
   .brand h1 { font-size: 42px; }
 }
+/* Matery-like interactions and article extras */
+.nav-item { position: relative; }
+.sub-nav { position: absolute; top: 64px; left: 0; min-width: 132px; list-style: none; padding: 8px 0; margin: 0; border-radius: 8px; background: rgba(255,255,255,.96); box-shadow: var(--shadow); opacity: 0; pointer-events: none; transform: translateY(8px); transition: all .18s ease; }
+.nav-item:hover .sub-nav { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.sub-nav a { color: #34495e !important; height: auto; line-height: 1.4; padding: 10px 14px !important; white-space: nowrap; }
+.sub-nav a:hover { background: rgba(66,185,131,.1); }
+.page-hero { position: relative; min-height: 360px; display: grid; place-items: center; color: #fff; background: url('/astro-preview/medias/banner/1.jpg') center/cover no-repeat, var(--bg-color-deep); margin-bottom: -58px; }
+.small-hero { min-height: 320px; }
+.article-hero { min-height: 430px; background-position: center; background-size: cover; }
+.page-hero::before { content: ""; position:absolute; inset:0; background: linear-gradient(135deg, rgba(34,184,126,.66), rgba(47,128,237,.58)); }
+.page-hero-content { position: relative; z-index: 1; text-align: center; padding-top: 64px; }
+.page-hero h1 { font-size: clamp(34px, 5vw, 54px); font-weight: 500; text-shadow: 0 3px 16px rgba(0,0,0,.35); }
+.hero-meta { justify-content: center; color: rgba(255,255,255,.92); }
+.article-layout { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 24px; align-items: start; }
+.article-content-page { width: auto; margin-top: 0; }
+.article-toc { position: sticky; top: 86px; margin-top: 0; background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px; max-height: calc(100vh - 110px); overflow: auto; }
+.toc-title { font-weight: 700; margin-bottom: 12px; color: #34495e; }
+.article-toc nav { display: grid; gap: 8px; }
+.article-toc a { color: #666; font-size: 14px; line-height: 1.45; border-left: 3px solid transparent; padding-left: 9px; }
+.article-toc a.depth-3 { margin-left: 12px; font-size: 13px; }
+.article-toc a:hover { color: #42b983; border-left-color: #42b983; }
+.prose pre { position: relative; background: #0f172a !important; color: #e2e8f0; }
+.copy-code { position: absolute; right: 10px; top: 10px; border: none; border-radius: 6px; padding: 5px 9px; color: #fff; background: rgba(66,185,131,.85); cursor: pointer; }
+.profile-box { display:flex; gap:22px; align-items:center; padding:20px; border-radius:12px; background: #f7faf9; }
+.profile-box img { width:88px; height:88px; border-radius:50%; object-fit:cover; box-shadow: 0 6px 18px rgba(0,0,0,.12); }
+.search-modal { position: fixed; inset: 0; z-index: 2000; display: none; }
+.search-modal.active { display: block; }
+.search-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.48); backdrop-filter: blur(4px); }
+.search-panel { position: relative; width: min(760px, calc(100% - 28px)); margin: 90px auto 0; background: #fff; border-radius: 12px; box-shadow: 0 24px 80px rgba(0,0,0,.28); overflow: hidden; }
+.search-header { padding: 20px; border-bottom: 1px solid #eee; }
+.search-header .title { font-size: 22px; font-weight: 700; color: #34495e; display:inline-flex; gap:8px; align-items:center; }
+.search-close { float: right; border:none; background: transparent; font-size: 18px; color: #999; cursor: pointer; }
+.search-input { width: 100%; margin-top: 16px; border: none; border-bottom: 2px solid #42b983; outline: none; padding: 12px 4px; font-size: 17px; }
+.search-result { padding: 18px 20px 24px; max-height: 58vh; overflow: auto; }
+.search-hit { display: grid; gap: 7px; padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
+.search-hit strong { color: #34495e; }
+.search-hit span, .search-empty { color: #777; line-height: 1.7; }
+@media (max-width: 980px) {
+  .article-layout { grid-template-columns: 1fr; }
+  .article-toc { position: static; order: -1; }
+  .sub-nav { position: static; opacity: 1; pointer-events: auto; transform: none; box-shadow: none; background: rgba(255,255,255,.08); display: none; }
+  .nav-item:hover .sub-nav { display: block; }
+  .sub-nav a { color: #fff !important; }
+}
