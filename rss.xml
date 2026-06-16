@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"><channel><title>海阔天空</title><description>一个关注 AI、开发效率、工程实践和个人成长的技术博客。</description><link>https://xiaonige.github.io</link>
     <item>
+      <title>Java 设计模式详解：21 种经典模式的结构、场景与代码示例</title>
+      <link>https://xiaonige.github.io/2026/06/16/design-patterns/</link>
+      <guid>https://xiaonige.github.io/2026/06/16/design-patterns/</guid>
+      <pubDate>Tue, 16 Jun 2026 15:13:00 GMT</pubDate>
+      <description>Java 设计模式详解：21 种经典模式的结构、场景与代码示例 本文只讲设计模式本身：它解决什么问题、结构是什么、Java 中如何落地、什么时候该用、什么时候别滥用。 文中的类名、对象名和流程均为通用示例，不绑定任何具体行业、公司、产品或项目。 配套 PlantUML（@startuml…@enduml）类图与流程图，可直接复制到支持 PlantUML 的工…</description>
+    </item>
+
+    <item>
       <title>给小学生也能讲明白的 AI 大模型术语课：Token、上下文、记忆、Skill、MCP、ACP 到 API Key</title>
       <link>https://xiaonige.github.io/2026/05/25/ai-llm-terms-for-beginners/</link>
       <guid>https://xiaonige.github.io/2026/05/25/ai-llm-terms-for-beginners/</guid>

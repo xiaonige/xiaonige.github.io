@@ -1,0 +1,1948 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="一个关注 AI、开发效率、工程实践和个人成长的技术博客。"><link rel="canonical" href="https://xiaonige.github.io/2026/06/16/design-patterns/"><meta property="og:title" content="Java 设计模式详解：21 种经典模式的结构、场景与代码示例 - 海阔天空"><meta property="og:description" content="一个关注 AI、开发效率、工程实践和个人成长的技术博客。"><meta property="og:type" content="website"><meta property="og:image" content="/medias/featureimages/8.jpg"><meta name="twitter:card" content="summary_large_image"><title>Java 设计模式详解：21 种经典模式的结构、场景与代码示例 - 海阔天空</title><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css"><link rel="stylesheet" href="/styles.css"></head> <body> <div class="reading-progress" id="readingProgress"></div> <header class="navbar-fixed"> <nav class="top-nav" id="headNav"> <div class="nav-wrapper container"> <a class="brand-logo" href="/"> <img alt="LOGO" class="logo-img" src="/medias/logo.png"> <span class="logo-span">海阔天空</span> </a> <input id="nav-toggle" type="checkbox"> <label class="sidenav-trigger" for="nav-toggle"><i class="fas fa-bars"></i></label> <ul class="right nav-menu"> <li class="nav-item"> <a class="waves" href="/"> <i class="fas fa-home"></i><span>首页</span> </a>  </li><li class="nav-item"> <a class="waves" href="/tags/"> <i class="fas fa-tags"></i><span>标签</span> </a>  </li><li class="nav-item"> <a class="waves" href="/categories/"> <i class="fas fa-list"></i><span>分类</span> </a> <ul class="sub-nav"> <li><a href="/categories/学习/"><i class="fas fa-book"></i><span>学习</span></a></li> <li><a href="#" class="disabled"><i class="fas fa-briefcase"></i><span>工作</span></a></li> <li><a href="#" class="disabled"><i class="fas fa-image"></i><span>图片</span></a></li> <li><a href="#" class="disabled"><i class="fas fa-music"></i><span>音乐</span></a></li> </ul> </li><li class="nav-item"> <a class="waves" href="/archives/"> <i class="fas fa-archive"></i><span>归档</span> </a>  </li><li class="nav-item"> <a class="waves" href="/about/"> <i class="fas fa-user-circle"></i><span>关于</span> </a>  </li><li class="nav-item"> <a class="waves" href="#search" data-open-search="true"> <i class="fas fa-search"></i><span>搜索</span> </a>  </li> </ul> </div> </nav> </header> <main>  <section class="page-hero article-hero" style="background-image:url('/medias/featureimages/8.jpg')"> <div class="cover-overlay"></div> <div class="page-hero-content container"> <h1>Java 设计模式详解：21 种经典模式的结构、场景与代码示例</h1> <div class="meta-line hero-meta"> <span><i class="far fa-clock"></i> 2026-06-16</span> <span><i class="fas fa-bookmark"></i> 学习</span> <span><i class="fas fa-tags"></i> Java，设计模式，PlantUML，面向对象，架构设计</span> <span><i class="fas fa-font"></i> 4,113 字</span> <span><i class="far fa-hourglass-half"></i> 约 10 分钟</span> </div> </div> </section> <div class="article-layout container"> <article class="content-card prose article-content-page" data-plantuml-images="[{&#34;index&#34;:1,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/01-0a329d178190.svg&#34;,&#34;hash&#34;:&#34;0a329d178190&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:2,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/02-2e683106ab0b.svg&#34;,&#34;hash&#34;:&#34;2e683106ab0b&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:3,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/03-7425ed590a0b.svg&#34;,&#34;hash&#34;:&#34;7425ed590a0b&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:4,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/04-7f29b58bc655.svg&#34;,&#34;hash&#34;:&#34;7f29b58bc655&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:5,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/05-6b9783f7edbe.svg&#34;,&#34;hash&#34;:&#34;6b9783f7edbe&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:6,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/06-5bec4f155353.svg&#34;,&#34;hash&#34;:&#34;5bec4f155353&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:7,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/07-864d79470161.svg&#34;,&#34;hash&#34;:&#34;864d79470161&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:8,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/08-5c4c6bd50b6f.svg&#34;,&#34;hash&#34;:&#34;5c4c6bd50b6f&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:9,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/09-0578d4f0ad2b.svg&#34;,&#34;hash&#34;:&#34;0578d4f0ad2b&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:10,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/10-f88908a49f74.svg&#34;,&#34;hash&#34;:&#34;f88908a49f74&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:11,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/11-73ce57796d5b.svg&#34;,&#34;hash&#34;:&#34;73ce57796d5b&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:12,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/12-541f46d9d997.svg&#34;,&#34;hash&#34;:&#34;541f46d9d997&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:13,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/13-a54fb2861c5b.svg&#34;,&#34;hash&#34;:&#34;a54fb2861c5b&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:14,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/14-ce9f6cd4d7c3.svg&#34;,&#34;hash&#34;:&#34;ce9f6cd4d7c3&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:15,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/15-6d0b41ae256a.svg&#34;,&#34;hash&#34;:&#34;6d0b41ae256a&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:16,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/16-d5f423c9f8d3.svg&#34;,&#34;hash&#34;:&#34;d5f423c9f8d3&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:17,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/17-99e077bf6993.svg&#34;,&#34;hash&#34;:&#34;99e077bf6993&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:18,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/18-b9c19fceba19.svg&#34;,&#34;hash&#34;:&#34;b9c19fceba19&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:19,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/19-d135293c33c7.svg&#34;,&#34;hash&#34;:&#34;d135293c33c7&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:20,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/20-8fe74c8b6e9e.svg&#34;,&#34;hash&#34;:&#34;8fe74c8b6e9e&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:21,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/21-8452b9d7d8ef.svg&#34;,&#34;hash&#34;:&#34;8452b9d7d8ef&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:22,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/22-998200720d1a.svg&#34;,&#34;hash&#34;:&#34;998200720d1a&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:23,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/23-8d4345a51953.svg&#34;,&#34;hash&#34;:&#34;8d4345a51953&#34;,&#34;kind&#34;:&#34;post&#34;},{&#34;index&#34;:24,&#34;src&#34;:&#34;/generated/plantuml/design-patterns/24-f8f8cdcc3b15.svg&#34;,&#34;hash&#34;:&#34;f8f8cdcc3b15&#34;,&#34;kind&#34;:&#34;post&#34;}]"> <h1 id="java-设计模式详解21-种经典模式的结构场景与代码示例">Java 设计模式详解：21 种经典模式的结构、场景与代码示例</h1>
+<blockquote>
+<p>本文只讲设计模式本身：它解决什么问题、结构是什么、Java 中如何落地、什么时候该用、什么时候别滥用。</p>
+<p>文中的类名、对象名和流程均为通用示例，不绑定任何具体行业、公司、产品或项目。</p>
+<p>配套 PlantUML（<code>@startuml</code>…<code>@enduml</code>）类图与流程图，可直接复制到支持 PlantUML 的工具中渲染。</p>
+<p><strong>渲染方式</strong></p>
+<ul>
+<li>VS Code 插件：<code>jebbs.plantuml</code></li>
+<li>IntelliJ 插件：<code>PlantUML integration</code></li>
+<li>命令行：<code>java -jar plantuml.jar design-patterns.md -tpng</code></li>
+<li>在线：<a href="https://www.plantuml.com/plantuml">https://www.plantuml.com/plantuml</a></li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="目录">目录</h2>
+<h3 id="一创建型模式creational5">一、创建型模式（Creational，5）</h3>
+<ol>
+<li><a href="#1-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8Fsingleton">单例模式 Singleton</a></li>
+<li><a href="#2-%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8Ffactory-method">工厂方法模式 Factory Method</a></li>
+<li><a href="#3-%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8Fabstract-factory">抽象工厂模式 Abstract Factory</a></li>
+<li><a href="#4-%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8Fbuilder">建造者模式 Builder</a></li>
+<li><a href="#5-%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8Fprototype">原型模式 Prototype</a></li>
+</ol>
+<h3 id="二结构型模式structural7">二、结构型模式（Structural，7）</h3>
+<ol start="6">
+<li><a href="#6-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8Fadapter">适配器模式 Adapter</a></li>
+<li><a href="#7-%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8Fbridge">桥接模式 Bridge</a></li>
+<li><a href="#8-%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8Fcomposite">组合模式 Composite</a></li>
+<li><a href="#9-%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8Fdecorator">装饰器模式 Decorator</a></li>
+<li><a href="#10-%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8Ffacade">外观模式 Facade</a></li>
+<li><a href="#11-%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8Fflyweight">享元模式 Flyweight</a></li>
+<li><a href="#12-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8Fproxy">代理模式 Proxy</a></li>
+</ol>
+<h3 id="三行为型模式behavioral9">三、行为型模式（Behavioral，9）</h3>
+<ol start="13">
+<li><a href="#13-%E8%81%8C%E8%B4%A3%E9%93%BE%E6%A8%A1%E5%BC%8Fchain-of-responsibility">职责链模式 Chain of Responsibility</a></li>
+<li><a href="#14-%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8Fcommand">命令模式 Command</a></li>
+<li><a href="#15-%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8Fiterator">迭代器模式 Iterator</a></li>
+<li><a href="#16-%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8Fmediator">中介者模式 Mediator</a></li>
+<li><a href="#17-%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8Fmemento">备忘录模式 Memento</a></li>
+<li><a href="#18-%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8Fobserver">观察者模式 Observer</a></li>
+<li><a href="#19-%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8Fstate">状态模式 State</a></li>
+<li><a href="#20-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8Fstrategy">策略模式 Strategy</a></li>
+<li><a href="#21-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8Ftemplate-method">模板方法模式 Template Method</a></li>
+</ol>
+<h3 id="附录">附录</h3>
+<ul>
+<li><a href="#%E9%99%84%E5%BD%95-a21-%E7%A7%8D%E6%A8%A1%E5%BC%8F%E9%80%9F%E6%9F%A5%E8%A1%A8">附录 A：21 种模式速查表</a></li>
+<li><a href="#%E9%99%84%E5%BD%95-b%E6%A8%A1%E5%BC%8F%E5%85%B3%E7%B3%BB%E5%9B%BE">附录 B：模式关系图</a></li>
+<li><a href="#%E9%99%84%E5%BD%95-c%E9%80%89%E5%9E%8B%E5%86%B3%E7%AD%96%E6%B5%81%E7%A8%8B">附录 C：选型决策流程</a></li>
+<li><a href="#%E9%99%84%E5%BD%95-d%E5%B8%B8%E8%A7%81%E8%AF%AF%E5%8C%BA">附录 D：常见误区</a></li>
+<li><a href="#%E9%99%84%E5%BD%95-eplantuml-%E9%A2%9C%E8%89%B2%E7%BA%A6%E5%AE%9A">附录 E：PlantUML 颜色约定</a></li>
+</ul>
+<hr>
+<h1 id="一创建型模式creational-patterns">一、创建型模式（Creational Patterns）</h1>
+<blockquote>
+<p>创建型模式关注“对象如何被创建”。它们把对象的构造过程和使用过程解耦，让代码更容易扩展、替换和测试。</p>
+</blockquote>
+<h2 id="1-单例模式singleton">1. 单例模式（Singleton）</h2>
+<p><strong>意图</strong>：保证一个类只有一个实例，并提供一个全局访问点。</p>
+<h3 id="类图">类图</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam class {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>  FontSize 12</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam note {</span></span>
+<span class="line"><span>  BackgroundColor #fff2cc</span></span>
+<span class="line"><span>  BorderColor #d6b656</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class Singleton #d5e8d4;line:82b366 {</span></span>
+<span class="line"><span>  -{static} instance: Singleton</span></span>
+<span class="line"><span>  -Singleton()</span></span>
+<span class="line"><span>  +{static} getInstance(): Singleton</span></span>
+<span class="line"><span>  +execute(): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>note right of Singleton</span></span>
+<span class="line"><span>  常见实现：</span></span>
+<span class="line"><span>  1. 枚举单例</span></span>
+<span class="line"><span>  2. 静态内部类</span></span>
+<span class="line"><span>  3. 双重检查锁</span></span>
+<span class="line"><span>end note</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<h3 id="java-示例">Java 示例</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> final</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> AppRegistry</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#B392F0"> AppRegistry</span><span style="color:#E1E4E8">() {}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> static</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Holder</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">        private</span><span style="color:#F97583"> static</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> AppRegistry INSTANCE </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> AppRegistry</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#E1E4E8"> AppRegistry </span><span style="color:#B392F0">getInstance</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> Holder.INSTANCE;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> register</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">key</span><span style="color:#E1E4E8">, Object </span><span style="color:#FFAB70">value</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">        // 保存全局对象引用</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="适用场景">适用场景</h3>
+<ul>
+<li>全局配置、注册表、共享资源管理器。</li>
+<li>对象创建成本较高，并且确实只需要一个实例。</li>
+<li>需要统一入口管理某类公共能力。</li>
+</ul>
+<h3 id="注意事项">注意事项</h3>
+<ul>
+<li>不要把单例当成“全局变量垃圾桶”。</li>
+<li>多线程环境要考虑安全发布问题。</li>
+<li>分布式系统中的“唯一”不能靠进程内单例保证。</li>
+</ul>
+<hr>
+<h2 id="2-工厂方法模式factory-method">2. 工厂方法模式（Factory Method）</h2>
+<p><strong>意图</strong>：定义创建对象的接口，把具体创建过程延迟到子类。</p>
+<h3 id="类图-1">类图</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam class {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>  FontSize 12</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam note {</span></span>
+<span class="line"><span>  BackgroundColor #fff2cc</span></span>
+<span class="line"><span>  BorderColor #d6b656</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>interface Product #fff2cc;line:d6b656 {</span></span>
+<span class="line"><span>  +operation(): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class ConcreteProductA #d5e8d4;line:82b366</span></span>
+<span class="line"><span>class ConcreteProductB #d5e8d4;line:82b366</span></span>
+<span class="line"><span>abstract class Creator #dae8fc;line:6c8ebf {</span></span>
+<span class="line"><span>  +createProduct(): Product</span></span>
+<span class="line"><span>  +run(): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class CreatorA #dae8fc;line:6c8ebf</span></span>
+<span class="line"><span>class CreatorB #dae8fc;line:6c8ebf</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Product &#x3C;|.. ConcreteProductA</span></span>
+<span class="line"><span>Product &#x3C;|.. ConcreteProductB</span></span>
+<span class="line"><span>Creator &#x3C;|-- CreatorA</span></span>
+<span class="line"><span>Creator &#x3C;|-- CreatorB</span></span>
+<span class="line"><span>CreatorA ..> ConcreteProductA</span></span>
+<span class="line"><span>CreatorB ..> ConcreteProductB</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<h3 id="java-示例-1">Java 示例</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">interface</span><span style="color:#B392F0"> Product</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> operation</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> TextProduct</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> Product</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> operation</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"text product"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> BinaryProduct</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> Product</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> operation</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"binary product"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">abstract</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Creator</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> run</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        Product product </span><span style="color:#F97583">=</span><span style="color:#B392F0"> createProduct</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        product.</span><span style="color:#B392F0">operation</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#F97583"> abstract</span><span style="color:#E1E4E8"> Product </span><span style="color:#B392F0">createProduct</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> TextCreator</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> Creator</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#E1E4E8"> Product </span><span style="color:#B392F0">createProduct</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> TextProduct</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> BinaryCreator</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> Creator</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#E1E4E8"> Product </span><span style="color:#B392F0">createProduct</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> BinaryProduct</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="适用场景-1">适用场景</h3>
+<ul>
+<li>需要根据不同子类创建不同产品。</li>
+<li>创建逻辑不希望散落在业务代码中。</li>
+<li>框架定义流程，扩展方提供具体对象。</li>
+</ul>
+<h3 id="注意事项-1">注意事项</h3>
+<ul>
+<li>产品种类很少且不会扩展时，简单构造函数更直接。</li>
+<li>子类过多会增加类数量，需要结合包结构控制复杂度。</li>
+</ul>
+<hr>
+<h2 id="3-抽象工厂模式abstract-factory">3. 抽象工厂模式（Abstract Factory）</h2>
+<p><strong>意图</strong>：创建一组相关或相互依赖的对象族，而不指定它们的具体类。</p>
+<h3 id="类图-2">类图</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam class {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>  FontSize 12</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam note {</span></span>
+<span class="line"><span>  BackgroundColor #fff2cc</span></span>
+<span class="line"><span>  BorderColor #d6b656</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>interface AbstractFactory #fff2cc;line:d6b656 {</span></span>
+<span class="line"><span>  +createComponentA(): ComponentA</span></span>
+<span class="line"><span>  +createComponentB(): ComponentB</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>interface ComponentA #fff2cc;line:d6b656</span></span>
+<span class="line"><span>interface ComponentB #fff2cc;line:d6b656</span></span>
+<span class="line"><span>class FamilyOneFactory #d5e8d4;line:82b366</span></span>
+<span class="line"><span>class FamilyTwoFactory #d5e8d4;line:82b366</span></span>
+<span class="line"><span>class FamilyOneA</span></span>
+<span class="line"><span>class FamilyOneB</span></span>
+<span class="line"><span>class FamilyTwoA</span></span>
+<span class="line"><span>class FamilyTwoB</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>AbstractFactory &#x3C;|.. FamilyOneFactory</span></span>
+<span class="line"><span>AbstractFactory &#x3C;|.. FamilyTwoFactory</span></span>
+<span class="line"><span>ComponentA &#x3C;|.. FamilyOneA</span></span>
+<span class="line"><span>ComponentA &#x3C;|.. FamilyTwoA</span></span>
+<span class="line"><span>ComponentB &#x3C;|.. FamilyOneB</span></span>
+<span class="line"><span>ComponentB &#x3C;|.. FamilyTwoB</span></span>
+<span class="line"><span>FamilyOneFactory ..> FamilyOneA</span></span>
+<span class="line"><span>FamilyOneFactory ..> FamilyOneB</span></span>
+<span class="line"><span>FamilyTwoFactory ..> FamilyTwoA</span></span>
+<span class="line"><span>FamilyTwoFactory ..> FamilyTwoB</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<h3 id="java-示例-2">Java 示例</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">interface</span><span style="color:#B392F0"> WidgetFactory</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    Button </span><span style="color:#B392F0">createButton</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    Panel </span><span style="color:#B392F0">createPanel</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">interface</span><span style="color:#B392F0"> Button</span><span style="color:#E1E4E8"> { </span><span style="color:#F97583">void</span><span style="color:#B392F0"> click</span><span style="color:#E1E4E8">(); }</span></span>
+<span class="line"><span style="color:#F97583">interface</span><span style="color:#B392F0"> Panel</span><span style="color:#E1E4E8"> { </span><span style="color:#F97583">void</span><span style="color:#B392F0"> render</span><span style="color:#E1E4E8">(); }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> LightWidgetFactory</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> WidgetFactory</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> Button </span><span style="color:#B392F0">createButton</span><span style="color:#E1E4E8">() { </span><span style="color:#F97583">return</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> LightButton</span><span style="color:#E1E4E8">(); }</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> Panel </span><span style="color:#B392F0">createPanel</span><span style="color:#E1E4E8">() { </span><span style="color:#F97583">return</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> LightPanel</span><span style="color:#E1E4E8">(); }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> DarkWidgetFactory</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> WidgetFactory</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> Button </span><span style="color:#B392F0">createButton</span><span style="color:#E1E4E8">() { </span><span style="color:#F97583">return</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> DarkButton</span><span style="color:#E1E4E8">(); }</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> Panel </span><span style="color:#B392F0">createPanel</span><span style="color:#E1E4E8">() { </span><span style="color:#F97583">return</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> DarkPanel</span><span style="color:#E1E4E8">(); }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> LightButton</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> Button</span><span style="color:#E1E4E8"> { </span><span style="color:#F97583">public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> click</span><span style="color:#E1E4E8">() {} }</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> DarkButton</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> Button</span><span style="color:#E1E4E8"> { </span><span style="color:#F97583">public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> click</span><span style="color:#E1E4E8">() {} }</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> LightPanel</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> Panel</span><span style="color:#E1E4E8"> { </span><span style="color:#F97583">public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> render</span><span style="color:#E1E4E8">() {} }</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> DarkPanel</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> Panel</span><span style="color:#E1E4E8"> { </span><span style="color:#F97583">public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> render</span><span style="color:#E1E4E8">() {} }</span></span></code></pre>
+<h3 id="适用场景-2">适用场景</h3>
+<ul>
+<li>需要保证一组对象风格一致、版本一致或协议一致。</li>
+<li>客户端只依赖抽象接口，不关心具体实现族。</li>
+<li>需要整体切换一批对象实现。</li>
+</ul>
+<h3 id="注意事项-2">注意事项</h3>
+<ul>
+<li>新增“产品族”容易，新增“产品等级”较麻烦。</li>
+<li>如果只创建单个对象，用工厂方法或简单工厂即可。</li>
+</ul>
+<hr>
+<h2 id="4-建造者模式builder">4. 建造者模式（Builder）</h2>
+<p><strong>意图</strong>：把复杂对象的构建过程拆分为多个步骤，使同样的构建过程可以创建不同表示。</p>
+<h3 id="类图-3">类图</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam class {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>  FontSize 12</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam note {</span></span>
+<span class="line"><span>  BackgroundColor #fff2cc</span></span>
+<span class="line"><span>  BorderColor #d6b656</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class ProductConfig #dae8fc;line:6c8ebf {</span></span>
+<span class="line"><span>  -name: String</span></span>
+<span class="line"><span>  -timeout: int</span></span>
+<span class="line"><span>  -retry: int</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class Builder #d5e8d4;line:82b366 {</span></span>
+<span class="line"><span>  +name(String): Builder</span></span>
+<span class="line"><span>  +timeout(int): Builder</span></span>
+<span class="line"><span>  +retry(int): Builder</span></span>
+<span class="line"><span>  +build(): ProductConfig</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>ProductConfig &#x3C;-- Builder</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<h3 id="java-示例-3">Java 示例</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> ProductConfig</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> String name;</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> timeout;</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> retry;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#B392F0"> ProductConfig</span><span style="color:#E1E4E8">(Builder </span><span style="color:#FFAB70">builder</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.name </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> builder.name;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.timeout </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> builder.timeout;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.retry </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> builder.retry;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Builder</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">        private</span><span style="color:#E1E4E8"> String name </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "default"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">        private</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> timeout </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1000</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">        private</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> retry </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        public</span><span style="color:#E1E4E8"> Builder </span><span style="color:#B392F0">name</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">name</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.name </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> name;</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        public</span><span style="color:#E1E4E8"> Builder </span><span style="color:#B392F0">timeout</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> timeout</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.timeout </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> timeout;</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        public</span><span style="color:#E1E4E8"> Builder </span><span style="color:#B392F0">retry</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> retry</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.retry </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> retry;</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        public</span><span style="color:#E1E4E8"> ProductConfig </span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ProductConfig</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="适用场景-3">适用场景</h3>
+<ul>
+<li>构造参数多，且有较多可选参数。</li>
+<li>对象希望不可变，但创建过程又需要逐步配置。</li>
+<li>创建过程需要校验或默认值填充。</li>
+</ul>
+<h3 id="注意事项-3">注意事项</h3>
+<ul>
+<li>简单对象不要强行 Builder 化。</li>
+<li>Builder 中应集中做参数校验，避免构建出半成品对象。</li>
+</ul>
+<hr>
+<h2 id="5-原型模式prototype">5. 原型模式（Prototype）</h2>
+<p><strong>意图</strong>：通过复制已有对象创建新对象，避免重复复杂初始化。</p>
+<h3 id="类图-4">类图</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam class {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>  FontSize 12</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam note {</span></span>
+<span class="line"><span>  BackgroundColor #fff2cc</span></span>
+<span class="line"><span>  BorderColor #d6b656</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>interface Prototype #fff2cc;line:d6b656 {</span></span>
+<span class="line"><span>  +copy(): Prototype</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class DocumentTemplate #d5e8d4;line:82b366 {</span></span>
+<span class="line"><span>  -title: String</span></span>
+<span class="line"><span>  -metadata: Map</span></span>
+<span class="line"><span>  +copy(): DocumentTemplate</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>Prototype &#x3C;|.. DocumentTemplate</span></span>
+<span class="line"><span>DocumentTemplate --> DocumentTemplate : clone/copy</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<h3 id="java-示例-4">Java 示例</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> DocumentTemplate</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> Cloneable</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> String title;</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> Map&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> metadata </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> HashMap&#x3C;>();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> DocumentTemplate </span><span style="color:#B392F0">copy</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        DocumentTemplate clone </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> DocumentTemplate</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        clone.title </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.title;</span></span>
+<span class="line"><span style="color:#E1E4E8">        clone.metadata </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> HashMap&#x3C;>(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.metadata);</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> clone;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="适用场景-4">适用场景</h3>
+<ul>
+<li>对象初始化成本高，可以先准备模板对象。</li>
+<li>需要在运行时动态复制不同配置的对象。</li>
+<li>对象结构稳定，但实例内容经常变化。</li>
+</ul>
+<h3 id="注意事项-4">注意事项</h3>
+<ul>
+<li>注意深拷贝和浅拷贝区别。</li>
+<li>包含文件、连接、线程等资源时，不应简单复制引用。</li>
+</ul>
+<hr>
+<h1 id="二结构型模式structural-patterns">二、结构型模式（Structural Patterns）</h1>
+<blockquote>
+<p>结构型模式关注“类和对象如何组合”。它们帮助我们在不破坏原有对象的情况下，扩展能力、适配接口、组织层级或降低耦合。</p>
+</blockquote>
+<h2 id="6-适配器模式adapter">6. 适配器模式（Adapter）</h2>
+<p><strong>意图</strong>：把一个类的接口转换成客户端期望的另一个接口，使原本接口不兼容的对象可以协同工作。</p>
+<h3 id="类图-5">类图</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam class {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>  FontSize 12</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam note {</span></span>
+<span class="line"><span>  BackgroundColor #fff2cc</span></span>
+<span class="line"><span>  BorderColor #d6b656</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>interface Target #fff2cc;line:d6b656 {</span></span>
+<span class="line"><span>  +request(): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class Adaptee #dae8fc;line:6c8ebf {</span></span>
+<span class="line"><span>  +specificRequest(): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class Adapter #d5e8d4;line:82b366 {</span></span>
+<span class="line"><span>  -adaptee: Adaptee</span></span>
+<span class="line"><span>  +request(): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>Target &#x3C;|.. Adapter</span></span>
+<span class="line"><span>Adapter --> Adaptee</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<h3 id="java-示例-5">Java 示例</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">interface</span><span style="color:#B392F0"> TargetClientApi</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> request</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> LegacyService</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> specificRequest</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"legacy call"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> ServiceAdapter</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> TargetClientApi</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> LegacyService legacyService;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    ServiceAdapter</span><span style="color:#E1E4E8">(LegacyService </span><span style="color:#FFAB70">legacyService</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.legacyService </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> legacyService;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> request</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        legacyService.</span><span style="color:#B392F0">specificRequest</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="适用场景-5">适用场景</h3>
+<ul>
+<li>新旧接口不兼容，但旧对象仍然有价值。</li>
+<li>接入第三方库或历史模块时，希望隔离差异。</li>
+<li>需要统一多个实现的调用入口。</li>
+</ul>
+<h3 id="注意事项-5">注意事项</h3>
+<ul>
+<li>适配器太多可能说明抽象层设计需要重审。</li>
+<li>不要在适配器中塞入大量业务逻辑，保持转换职责清晰。</li>
+</ul>
+<hr>
+<h2 id="7-桥接模式bridge">7. 桥接模式（Bridge）</h2>
+<p><strong>意图</strong>：将抽象部分与实现部分分离，使二者可以独立变化。</p>
+<h3 id="类图-6">类图</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam class {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>  FontSize 12</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam note {</span></span>
+<span class="line"><span>  BackgroundColor #fff2cc</span></span>
+<span class="line"><span>  BorderColor #d6b656</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>abstract class Abstraction #dae8fc;line:6c8ebf {</span></span>
+<span class="line"><span>  -implementor: Implementor</span></span>
+<span class="line"><span>  +operation(): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>interface Implementor #fff2cc;line:d6b656 {</span></span>
+<span class="line"><span>  +execute(): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class RefinedAbstraction #d5e8d4;line:82b366</span></span>
+<span class="line"><span>class ConcreteImplementorA</span></span>
+<span class="line"><span>class ConcreteImplementorB</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Abstraction &#x3C;|-- RefinedAbstraction</span></span>
+<span class="line"><span>Abstraction --> Implementor</span></span>
+<span class="line"><span>Implementor &#x3C;|.. ConcreteImplementorA</span></span>
+<span class="line"><span>Implementor &#x3C;|.. ConcreteImplementorB</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<h3 id="java-示例-6">Java 示例</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">interface</span><span style="color:#B392F0"> Renderer</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> render</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">content</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> ConsoleRenderer</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> Renderer</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> render</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">content</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(content);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> JsonRenderer</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> Renderer</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> render</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">content</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"{"</span><span style="color:#E1E4E8">value</span><span style="color:#9ECBFF">":"" + content + ""}"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">abstract</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Message</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> Renderer renderer;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#B392F0"> Message</span><span style="color:#E1E4E8">(Renderer </span><span style="color:#FFAB70">renderer</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.renderer </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> renderer;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    abstract</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> show</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">text</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> PlainMessage</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> Message</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    PlainMessage</span><span style="color:#E1E4E8">(Renderer </span><span style="color:#FFAB70">renderer</span><span style="color:#E1E4E8">) { </span><span style="color:#79B8FF">super</span><span style="color:#E1E4E8">(renderer); }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> show</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">text</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        renderer.</span><span style="color:#B392F0">render</span><span style="color:#E1E4E8">(text);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="适用场景-6">适用场景</h3>
+<ul>
+<li>一个对象有两个或多个独立变化维度。</li>
+<li>不希望用继承组合出大量子类。</li>
+<li>抽象层和实现层都需要独立扩展。</li>
+</ul>
+<h3 id="注意事项-6">注意事项</h3>
+<ul>
+<li>过早使用会增加理解成本。</li>
+<li>关键是识别“变化维度”，而不是为了套模式而拆类。</li>
+</ul>
+<hr>
+<h2 id="8-组合模式composite">8. 组合模式（Composite）</h2>
+<p><strong>意图</strong>：把对象组织成树形结构，让客户端以一致方式处理单个对象和对象集合。</p>
+<h3 id="类图-7">类图</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam class {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>  FontSize 12</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam note {</span></span>
+<span class="line"><span>  BackgroundColor #fff2cc</span></span>
+<span class="line"><span>  BorderColor #d6b656</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>interface Component #fff2cc;line:d6b656 {</span></span>
+<span class="line"><span>  +operation(): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class Leaf #d5e8d4;line:82b366</span></span>
+<span class="line"><span>class Composite #dae8fc;line:6c8ebf {</span></span>
+<span class="line"><span>  -children: List&#x3C;Component></span></span>
+<span class="line"><span>  +add(Component): void</span></span>
+<span class="line"><span>  +operation(): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>Component &#x3C;|.. Leaf</span></span>
+<span class="line"><span>Component &#x3C;|.. Composite</span></span>
+<span class="line"><span>Composite o--> Component</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<h3 id="java-示例-7">Java 示例</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">interface</span><span style="color:#B392F0"> Node</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> print</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">indent</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> TextNode</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> Node</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> String text;</span></span>
+<span class="line"><span style="color:#B392F0">    TextNode</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">text</span><span style="color:#E1E4E8">) { </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.text </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> text; }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> print</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">indent</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(indent </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> text);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> GroupNode</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> Node</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> List&#x3C;</span><span style="color:#F97583">Node</span><span style="color:#E1E4E8">> children </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ArrayList&#x3C;>();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> add</span><span style="color:#E1E4E8">(Node </span><span style="color:#FFAB70">node</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        children.</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(node);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> print</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">indent</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> (Node child </span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> children) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            child.</span><span style="color:#B392F0">print</span><span style="color:#E1E4E8">(indent </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> "  "</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="适用场景-7">适用场景</h3>
+<ul>
+<li>需要表达树：菜单、目录、表达式、组件层级等。</li>
+<li>客户端不想区分“单个节点”和“节点集合”。</li>
+<li>操作可以递归向下传播。</li>
+</ul>
+<h3 id="注意事项-7">注意事项</h3>
+<ul>
+<li>如果层级关系不稳定，维护树结构可能复杂。</li>
+<li>对叶子节点开放 add/remove 方法会让语义变模糊，可用透明式或安全式接口权衡。</li>
+</ul>
+<hr>
+<h2 id="9-装饰器模式decorator">9. 装饰器模式（Decorator）</h2>
+<p><strong>意图</strong>：在不修改原对象的前提下，动态叠加新功能。</p>
+<h3 id="类图-8">类图</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam class {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>  FontSize 12</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam note {</span></span>
+<span class="line"><span>  BackgroundColor #fff2cc</span></span>
+<span class="line"><span>  BorderColor #d6b656</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>interface Component #fff2cc;line:d6b656 {</span></span>
+<span class="line"><span>  +operation(): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class ConcreteComponent #d5e8d4;line:82b366</span></span>
+<span class="line"><span>abstract class Decorator #dae8fc;line:6c8ebf {</span></span>
+<span class="line"><span>  -component: Component</span></span>
+<span class="line"><span>  +operation(): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class LoggingDecorator</span></span>
+<span class="line"><span>class TimingDecorator</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Component &#x3C;|.. ConcreteComponent</span></span>
+<span class="line"><span>Component &#x3C;|.. Decorator</span></span>
+<span class="line"><span>Decorator o--> Component</span></span>
+<span class="line"><span>Decorator &#x3C;|-- LoggingDecorator</span></span>
+<span class="line"><span>Decorator &#x3C;|-- TimingDecorator</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<h3 id="java-示例-8">Java 示例</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">interface</span><span style="color:#B392F0"> Processor</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    String </span><span style="color:#B392F0">process</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">input</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> BasicProcessor</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> Processor</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> String </span><span style="color:#B392F0">process</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">input</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> input.</span><span style="color:#B392F0">trim</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">abstract</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> ProcessorDecorator</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> Processor</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> Processor delegate;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    ProcessorDecorator</span><span style="color:#E1E4E8">(Processor </span><span style="color:#FFAB70">delegate</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.delegate </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> delegate;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> UpperCaseDecorator</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> ProcessorDecorator</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    UpperCaseDecorator</span><span style="color:#E1E4E8">(Processor </span><span style="color:#FFAB70">delegate</span><span style="color:#E1E4E8">) { </span><span style="color:#79B8FF">super</span><span style="color:#E1E4E8">(delegate); }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> String </span><span style="color:#B392F0">process</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">input</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> delegate.</span><span style="color:#B392F0">process</span><span style="color:#E1E4E8">(input).</span><span style="color:#B392F0">toUpperCase</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="适用场景-8">适用场景</h3>
+<ul>
+<li>功能需要按需叠加，组合顺序也可能变化。</li>
+<li>不想通过继承产生大量子类。</li>
+<li>需要在运行时决定增强行为。</li>
+</ul>
+<h3 id="注意事项-8">注意事项</h3>
+<ul>
+<li>装饰链过长会影响调试。</li>
+<li>装饰器应保持同一接口语义，不要偷偷改变核心契约。</li>
+</ul>
+<hr>
+<h2 id="10-外观模式facade">10. 外观模式（Facade）</h2>
+<p><strong>意图</strong>：为复杂子系统提供一个统一、简洁的高层接口。</p>
+<h3 id="类图-9">类图</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam class {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>  FontSize 12</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam note {</span></span>
+<span class="line"><span>  BackgroundColor #fff2cc</span></span>
+<span class="line"><span>  BorderColor #d6b656</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class Facade #d5e8d4;line:82b366 {</span></span>
+<span class="line"><span>  -moduleA: SubsystemA</span></span>
+<span class="line"><span>  -moduleB: SubsystemB</span></span>
+<span class="line"><span>  -moduleC: SubsystemC</span></span>
+<span class="line"><span>  +execute(): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class SubsystemA</span></span>
+<span class="line"><span>class SubsystemB</span></span>
+<span class="line"><span>class SubsystemC</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Facade --> SubsystemA</span></span>
+<span class="line"><span>Facade --> SubsystemB</span></span>
+<span class="line"><span>Facade --> SubsystemC</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<h3 id="java-示例-9">Java 示例</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> ModuleA</span><span style="color:#E1E4E8"> { </span><span style="color:#F97583">void</span><span style="color:#B392F0"> stepA</span><span style="color:#E1E4E8">() {} }</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> ModuleB</span><span style="color:#E1E4E8"> { </span><span style="color:#F97583">void</span><span style="color:#B392F0"> stepB</span><span style="color:#E1E4E8">() {} }</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> ModuleC</span><span style="color:#E1E4E8"> { </span><span style="color:#F97583">void</span><span style="color:#B392F0"> stepC</span><span style="color:#E1E4E8">() {} }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> WorkflowFacade</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> ModuleA moduleA </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ModuleA</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> ModuleB moduleB </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ModuleB</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> ModuleC moduleC </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ModuleC</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> execute</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        moduleA.</span><span style="color:#B392F0">stepA</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        moduleB.</span><span style="color:#B392F0">stepB</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        moduleC.</span><span style="color:#B392F0">stepC</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="适用场景-9">适用场景</h3>
+<ul>
+<li>子系统调用步骤复杂，外部只需要一个简单入口。</li>
+<li>想降低客户端与多个模块之间的耦合。</li>
+<li>需要封装一段标准流程。</li>
+</ul>
+<h3 id="注意事项-9">注意事项</h3>
+<ul>
+<li>外观不是万能服务类，不要把所有逻辑都堆进去。</li>
+<li>子系统仍可保留细粒度接口，外观只是提供常用入口。</li>
+</ul>
+<hr>
+<h2 id="11-享元模式flyweight">11. 享元模式（Flyweight）</h2>
+<p><strong>意图</strong>：共享大量细粒度对象的内部状态，减少内存占用。</p>
+<h3 id="类图-10">类图</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam class {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>  FontSize 12</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam note {</span></span>
+<span class="line"><span>  BackgroundColor #fff2cc</span></span>
+<span class="line"><span>  BorderColor #d6b656</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class FlyweightFactory #d5e8d4;line:82b366 {</span></span>
+<span class="line"><span>  -cache: Map&#x3C;String, Flyweight></span></span>
+<span class="line"><span>  +get(key): Flyweight</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>interface Flyweight #fff2cc;line:d6b656 {</span></span>
+<span class="line"><span>  +operation(externalState): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class ConcreteFlyweight #dae8fc;line:6c8ebf {</span></span>
+<span class="line"><span>  -intrinsicState: String</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>FlyweightFactory o--> Flyweight</span></span>
+<span class="line"><span>Flyweight &#x3C;|.. ConcreteFlyweight</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<h3 id="java-示例-10">Java 示例</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">interface</span><span style="color:#B392F0"> Glyph</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> draw</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> x</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> y</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> CharacterGlyph</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> Glyph</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#F97583"> char</span><span style="color:#E1E4E8"> symbol;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    CharacterGlyph</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">char</span><span style="color:#FFAB70"> symbol</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.symbol </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> symbol;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> draw</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> x</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> y</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"%s at (%d,%d)%n"</span><span style="color:#E1E4E8">, symbol, x, y);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> GlyphFactory</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> Map&#x3C;</span><span style="color:#F97583">Character</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">Glyph</span><span style="color:#E1E4E8">> cache </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> HashMap&#x3C;>();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> Glyph </span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">char</span><span style="color:#FFAB70"> symbol</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> cache.</span><span style="color:#B392F0">computeIfAbsent</span><span style="color:#E1E4E8">(symbol, CharacterGlyph</span><span style="color:#F97583">::new</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="适用场景-10">适用场景</h3>
+<ul>
+<li>存在大量相似对象，且可拆分内部状态和外部状态。</li>
+<li>内部状态可共享，外部状态由调用方传入。</li>
+<li>对内存占用比较敏感。</li>
+</ul>
+<h3 id="注意事项-10">注意事项</h3>
+<ul>
+<li>不要为了少量对象引入享元。</li>
+<li>必须明确哪些状态可共享，哪些状态不能共享。</li>
+</ul>
+<hr>
+<h2 id="12-代理模式proxy">12. 代理模式（Proxy）</h2>
+<p><strong>意图</strong>：为目标对象提供替身，以控制访问、延迟加载、记录日志或增加保护。</p>
+<h3 id="类图-11">类图</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam class {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>  FontSize 12</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam note {</span></span>
+<span class="line"><span>  BackgroundColor #fff2cc</span></span>
+<span class="line"><span>  BorderColor #d6b656</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>interface Subject #fff2cc;line:d6b656 {</span></span>
+<span class="line"><span>  +request(): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class RealSubject #d5e8d4;line:82b366</span></span>
+<span class="line"><span>class ProxySubject #dae8fc;line:6c8ebf {</span></span>
+<span class="line"><span>  -target: RealSubject</span></span>
+<span class="line"><span>  +request(): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>Subject &#x3C;|.. RealSubject</span></span>
+<span class="line"><span>Subject &#x3C;|.. ProxySubject</span></span>
+<span class="line"><span>ProxySubject --> RealSubject</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<h3 id="java-示例-11">Java 示例</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">interface</span><span style="color:#B392F0"> Service</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> request</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> RealService</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> Service</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> request</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"real request"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> ServiceProxy</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> Service</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> Service target;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    ServiceProxy</span><span style="color:#E1E4E8">(Service </span><span style="color:#FFAB70">target</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.target </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> target;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> request</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        long</span><span style="color:#E1E4E8"> start </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> System.</span><span style="color:#B392F0">currentTimeMillis</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            target.</span><span style="color:#B392F0">request</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">finally</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"cost="</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> (System.</span><span style="color:#B392F0">currentTimeMillis</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> start));</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="适用场景-11">适用场景</h3>
+<ul>
+<li>需要控制访问权限。</li>
+<li>需要延迟创建重量级对象。</li>
+<li>需要在调用前后附加日志、监控、事务等横切能力。</li>
+</ul>
+<h3 id="注意事项-11">注意事项</h3>
+<ul>
+<li>代理和装饰器结构相似：代理强调控制访问，装饰器强调增强能力。</li>
+<li>代理层过多会让调用链变长，定位问题更困难。</li>
+</ul>
+<hr>
+<h1 id="三行为型模式behavioral-patterns">三、行为型模式（Behavioral Patterns）</h1>
+<blockquote>
+<p>行为型模式关注“对象之间如何协作”。它们帮助我们组织流程、分派职责、封装算法、解耦通知与状态变化。</p>
+</blockquote>
+<h2 id="13-职责链模式chain-of-responsibility">13. 职责链模式（Chain of Responsibility）</h2>
+<p><strong>意图</strong>：让多个处理器按链式结构依次处理请求，直到某个处理器处理完成或链路结束。</p>
+<h3 id="类图-12">类图</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam class {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>  FontSize 12</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam note {</span></span>
+<span class="line"><span>  BackgroundColor #fff2cc</span></span>
+<span class="line"><span>  BorderColor #d6b656</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class Request #fff2cc;line:d6b656</span></span>
+<span class="line"><span>abstract class Handler #dae8fc;line:6c8ebf {</span></span>
+<span class="line"><span>  -next: Handler</span></span>
+<span class="line"><span>  +setNext(Handler): Handler</span></span>
+<span class="line"><span>  +handle(Request): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class ValidationHandler</span></span>
+<span class="line"><span>class MappingHandler</span></span>
+<span class="line"><span>class ExecutionHandler</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Handler --> Handler : next</span></span>
+<span class="line"><span>Handler &#x3C;|-- ValidationHandler</span></span>
+<span class="line"><span>Handler &#x3C;|-- MappingHandler</span></span>
+<span class="line"><span>Handler &#x3C;|-- ExecutionHandler</span></span>
+<span class="line"><span>Handler ..> Request</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<h3 id="java-示例-12">Java 示例</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> RequestContext</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> Map&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">Object</span><span style="color:#E1E4E8">> attributes </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> HashMap&#x3C;>();</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">abstract</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Handler</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> Handler next;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> Handler </span><span style="color:#B392F0">setNext</span><span style="color:#E1E4E8">(Handler </span><span style="color:#FFAB70">next</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.next </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> next;</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> next;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> final</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> handle</span><span style="color:#E1E4E8">(RequestContext </span><span style="color:#FFAB70">context</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#B392F0">        doHandle</span><span style="color:#E1E4E8">(context);</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (next </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            next.</span><span style="color:#B392F0">handle</span><span style="color:#E1E4E8">(context);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#F97583"> abstract</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> doHandle</span><span style="color:#E1E4E8">(RequestContext </span><span style="color:#FFAB70">context</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> ValidateHandler</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> Handler</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> doHandle</span><span style="color:#E1E4E8">(RequestContext </span><span style="color:#FFAB70">context</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"validate"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="适用场景-12">适用场景</h3>
+<ul>
+<li>请求需要经过多个步骤处理。</li>
+<li>每个步骤可独立增删、排序或复用。</li>
+<li>不希望请求发送者知道具体处理者。</li>
+</ul>
+<h3 id="注意事项-12">注意事项</h3>
+<ul>
+<li>链路太长会增加排查成本。</li>
+<li>要明确中断规则：是每个节点都执行，还是某个节点可终止链路。</li>
+</ul>
+<hr>
+<h2 id="14-命令模式command">14. 命令模式（Command）</h2>
+<p><strong>意图</strong>：把请求封装成对象，使请求可排队、撤销、记录或组合。</p>
+<h3 id="类图-13">类图</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam class {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>  FontSize 12</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam note {</span></span>
+<span class="line"><span>  BackgroundColor #fff2cc</span></span>
+<span class="line"><span>  BorderColor #d6b656</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>interface Command #fff2cc;line:d6b656 {</span></span>
+<span class="line"><span>  +execute(): void</span></span>
+<span class="line"><span>  +undo(): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class ConcreteCommand #d5e8d4;line:82b366 {</span></span>
+<span class="line"><span>  -receiver: Receiver</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class Receiver #dae8fc;line:6c8ebf {</span></span>
+<span class="line"><span>  +action(): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class Invoker #dae8fc;line:6c8ebf {</span></span>
+<span class="line"><span>  -command: Command</span></span>
+<span class="line"><span>  +submit(): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>Command &#x3C;|.. ConcreteCommand</span></span>
+<span class="line"><span>ConcreteCommand --> Receiver</span></span>
+<span class="line"><span>Invoker --> Command</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<h3 id="java-示例-13">Java 示例</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">interface</span><span style="color:#B392F0"> Command</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> execute</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">    default</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> undo</span><span style="color:#E1E4E8">() {}</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> Receiver</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> action</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">value</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"action: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> value);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> PrintCommand</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> Command</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> Receiver receiver;</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> String value;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    PrintCommand</span><span style="color:#E1E4E8">(Receiver </span><span style="color:#FFAB70">receiver</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">value</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.receiver </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> receiver;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.value </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> value;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> execute</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        receiver.</span><span style="color:#B392F0">action</span><span style="color:#E1E4E8">(value);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> CommandQueue</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> Queue&#x3C;</span><span style="color:#F97583">Command</span><span style="color:#E1E4E8">> queue </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ArrayDeque&#x3C;>();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> add</span><span style="color:#E1E4E8">(Command </span><span style="color:#FFAB70">command</span><span style="color:#E1E4E8">) { queue.</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(command); }</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> runAll</span><span style="color:#E1E4E8">() { </span><span style="color:#F97583">while</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">queue.</span><span style="color:#B392F0">isEmpty</span><span style="color:#E1E4E8">()) queue.</span><span style="color:#B392F0">poll</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">execute</span><span style="color:#E1E4E8">(); }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="适用场景-13">适用场景</h3>
+<ul>
+<li>操作需要排队、重试、撤销或记录。</li>
+<li>调用者和执行者需要解耦。</li>
+<li>需要把一组操作组合成宏命令。</li>
+</ul>
+<h3 id="注意事项-13">注意事项</h3>
+<ul>
+<li>简单方法调用不要包装成命令对象。</li>
+<li>如果命令需要撤销，要保存足够的历史状态。</li>
+</ul>
+<hr>
+<h2 id="15-迭代器模式iterator">15. 迭代器模式（Iterator）</h2>
+<p><strong>意图</strong>：在不暴露集合内部结构的前提下，顺序访问聚合对象中的元素。</p>
+<h3 id="类图-14">类图</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam class {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>  FontSize 12</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam note {</span></span>
+<span class="line"><span>  BackgroundColor #fff2cc</span></span>
+<span class="line"><span>  BorderColor #d6b656</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>interface Iterator #fff2cc;line:d6b656 {</span></span>
+<span class="line"><span>  +hasNext(): boolean</span></span>
+<span class="line"><span>  +next(): Object</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>interface Aggregate #fff2cc;line:d6b656 {</span></span>
+<span class="line"><span>  +iterator(): Iterator</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class ConcreteAggregate #d5e8d4;line:82b366</span></span>
+<span class="line"><span>class ConcreteIterator #dae8fc;line:6c8ebf</span></span>
+<span class="line"><span>Aggregate &#x3C;|.. ConcreteAggregate</span></span>
+<span class="line"><span>Iterator &#x3C;|.. ConcreteIterator</span></span>
+<span class="line"><span>ConcreteAggregate --> ConcreteIterator</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<h3 id="java-示例-14">Java 示例</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> SimpleList</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#F97583">T</span><span style="color:#E1E4E8">> </span><span style="color:#F97583">implements</span><span style="color:#B392F0"> Iterable</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#F97583">T</span><span style="color:#E1E4E8">> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> List&#x3C;</span><span style="color:#F97583">T</span><span style="color:#E1E4E8">> values </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ArrayList&#x3C;>();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> add</span><span style="color:#E1E4E8">(T </span><span style="color:#FFAB70">value</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        values.</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(value);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> Iterator&#x3C;</span><span style="color:#F97583">T</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">iterator</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> values.</span><span style="color:#B392F0">iterator</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="适用场景-14">适用场景</h3>
+<ul>
+<li>需要遍历集合，但不想暴露内部存储结构。</li>
+<li>需要支持多种遍历方式。</li>
+<li>集合结构可能变化，但遍历接口保持稳定。</li>
+</ul>
+<h3 id="注意事项-14">注意事项</h3>
+<ul>
+<li>Java 集合框架已经内置 Iterator，通常直接使用即可。</li>
+<li>自定义迭代器要注意并发修改问题。</li>
+</ul>
+<hr>
+<h2 id="16-中介者模式mediator">16. 中介者模式（Mediator）</h2>
+<p><strong>意图</strong>：用一个中介对象封装多个对象之间的交互，降低对象之间的网状依赖。</p>
+<h3 id="类图-15">类图</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam class {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>  FontSize 12</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam note {</span></span>
+<span class="line"><span>  BackgroundColor #fff2cc</span></span>
+<span class="line"><span>  BorderColor #d6b656</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>interface Mediator #fff2cc;line:d6b656 {</span></span>
+<span class="line"><span>  +notify(sender, event): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>abstract class Colleague #dae8fc;line:6c8ebf {</span></span>
+<span class="line"><span>  -mediator: Mediator</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class ComponentA</span></span>
+<span class="line"><span>class ComponentB</span></span>
+<span class="line"><span>class ConcreteMediator #d5e8d4;line:82b366</span></span>
+<span class="line"><span>Mediator &#x3C;|.. ConcreteMediator</span></span>
+<span class="line"><span>Colleague &#x3C;|-- ComponentA</span></span>
+<span class="line"><span>Colleague &#x3C;|-- ComponentB</span></span>
+<span class="line"><span>ConcreteMediator --> ComponentA</span></span>
+<span class="line"><span>ConcreteMediator --> ComponentB</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<h3 id="java-示例-15">Java 示例</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">interface</span><span style="color:#B392F0"> Mediator</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> notify</span><span style="color:#E1E4E8">(Component </span><span style="color:#FFAB70">sender</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">abstract</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Component</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> Mediator mediator;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#B392F0"> Component</span><span style="color:#E1E4E8">(Mediator </span><span style="color:#FFAB70">mediator</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.mediator </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> mediator;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> InputComponent</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> Component</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    InputComponent</span><span style="color:#E1E4E8">(Mediator </span><span style="color:#FFAB70">mediator</span><span style="color:#E1E4E8">) { </span><span style="color:#79B8FF">super</span><span style="color:#E1E4E8">(mediator); }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> change</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        mediator.</span><span style="color:#B392F0">notify</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"changed"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> FormMediator</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> Mediator</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> notify</span><span style="color:#E1E4E8">(Component </span><span style="color:#FFAB70">sender</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(sender.</span><span style="color:#B392F0">getClass</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">getSimpleName</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> ":"</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> event);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="适用场景-15">适用场景</h3>
+<ul>
+<li>多个对象互相调用，依赖关系变成网状。</li>
+<li>需要集中协调一组组件的交互流程。</li>
+<li>组件本身希望保持简单。</li>
+</ul>
+<h3 id="注意事项-15">注意事项</h3>
+<ul>
+<li>中介者容易膨胀成“上帝对象”。</li>
+<li>适合协调交互，不适合承载所有业务规则。</li>
+</ul>
+<hr>
+<h2 id="17-备忘录模式memento">17. 备忘录模式（Memento）</h2>
+<p><strong>意图</strong>：在不破坏封装的情况下保存对象状态，并在需要时恢复。</p>
+<h3 id="类图-16">类图</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam class {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>  FontSize 12</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam note {</span></span>
+<span class="line"><span>  BackgroundColor #fff2cc</span></span>
+<span class="line"><span>  BorderColor #d6b656</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class Originator #dae8fc;line:6c8ebf {</span></span>
+<span class="line"><span>  -state: String</span></span>
+<span class="line"><span>  +save(): Memento</span></span>
+<span class="line"><span>  +restore(Memento): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class Memento #fff2cc;line:d6b656 {</span></span>
+<span class="line"><span>  -state: String</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class Caretaker #d5e8d4;line:82b366 {</span></span>
+<span class="line"><span>  -history: Stack&#x3C;Memento></span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>Originator --> Memento</span></span>
+<span class="line"><span>Caretaker o--> Memento</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<h3 id="java-示例-16">Java 示例</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> Editor</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> String content </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> ""</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> write</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">text</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        content </span><span style="color:#F97583">+=</span><span style="color:#E1E4E8"> text;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> Snapshot </span><span style="color:#B392F0">save</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Snapshot</span><span style="color:#E1E4E8">(content);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> restore</span><span style="color:#E1E4E8">(Snapshot </span><span style="color:#FFAB70">snapshot</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.content </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> snapshot.content;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Snapshot</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">        private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> String content;</span></span>
+<span class="line"><span style="color:#F97583">        private</span><span style="color:#B392F0"> Snapshot</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">content</span><span style="color:#E1E4E8">) { </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.content </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> content; }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="适用场景-16">适用场景</h3>
+<ul>
+<li>需要撤销、回滚、历史版本。</li>
+<li>不希望外部对象直接读取或修改内部状态。</li>
+<li>状态快照可被安全保存。</li>
+</ul>
+<h3 id="注意事项-16">注意事项</h3>
+<ul>
+<li>快照很大时要考虑内存成本。</li>
+<li>复杂对象可采用增量快照或命令日志替代完整快照。</li>
+</ul>
+<hr>
+<h2 id="18-观察者模式observer">18. 观察者模式（Observer）</h2>
+<p><strong>意图</strong>：对象状态变化时，自动通知依赖它的多个观察者。</p>
+<h3 id="类图-17">类图</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam class {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>  FontSize 12</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam note {</span></span>
+<span class="line"><span>  BackgroundColor #fff2cc</span></span>
+<span class="line"><span>  BorderColor #d6b656</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>interface Observer #fff2cc;line:d6b656 {</span></span>
+<span class="line"><span>  +update(Event): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class Subject #dae8fc;line:6c8ebf {</span></span>
+<span class="line"><span>  -observers: List&#x3C;Observer></span></span>
+<span class="line"><span>  +attach(Observer): void</span></span>
+<span class="line"><span>  +notify(Event): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class ObserverA</span></span>
+<span class="line"><span>class ObserverB</span></span>
+<span class="line"><span>class Event #fff2cc;line:d6b656</span></span>
+<span class="line"><span>Observer &#x3C;|.. ObserverA</span></span>
+<span class="line"><span>Observer &#x3C;|.. ObserverB</span></span>
+<span class="line"><span>Subject o--> Observer</span></span>
+<span class="line"><span>Subject ..> Event</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<h3 id="java-示例-17">Java 示例</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">interface</span><span style="color:#B392F0"> Observer</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> update</span><span style="color:#E1E4E8">(Event </span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">record</span><span style="color:#B392F0"> Event</span><span style="color:#E1E4E8">(String name, Object payload) {}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> EventSubject</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> List&#x3C;</span><span style="color:#F97583">Observer</span><span style="color:#E1E4E8">> observers </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ArrayList&#x3C;>();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> attach</span><span style="color:#E1E4E8">(Observer </span><span style="color:#FFAB70">observer</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        observers.</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(observer);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> publish</span><span style="color:#E1E4E8">(Event </span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> (Observer observer </span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> observers) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            observer.</span><span style="color:#B392F0">update</span><span style="color:#E1E4E8">(event);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="适用场景-17">适用场景</h3>
+<ul>
+<li>一个事件发生后，需要通知多个独立处理者。</li>
+<li>发布者不关心订阅者是谁。</li>
+<li>希望降低事件源与后续动作之间的耦合。</li>
+</ul>
+<h3 id="注意事项-17">注意事项</h3>
+<ul>
+<li>同步通知可能拖慢主流程。</li>
+<li>观察者异常处理、顺序、幂等性要设计清楚。</li>
+</ul>
+<hr>
+<h2 id="19-状态模式state">19. 状态模式（State）</h2>
+<p><strong>意图</strong>：把对象在不同状态下的行为封装到独立状态类中，使对象行为随状态改变而改变。</p>
+<h3 id="类图-18">类图</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam class {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>  FontSize 12</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam note {</span></span>
+<span class="line"><span>  BackgroundColor #fff2cc</span></span>
+<span class="line"><span>  BorderColor #d6b656</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>interface State #fff2cc;line:d6b656 {</span></span>
+<span class="line"><span>  +handle(Context): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class Context #dae8fc;line:6c8ebf {</span></span>
+<span class="line"><span>  -state: State</span></span>
+<span class="line"><span>  +setState(State): void</span></span>
+<span class="line"><span>  +request(): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class InitialState</span></span>
+<span class="line"><span>class RunningState</span></span>
+<span class="line"><span>class FinishedState</span></span>
+<span class="line"><span>State &#x3C;|.. InitialState</span></span>
+<span class="line"><span>State &#x3C;|.. RunningState</span></span>
+<span class="line"><span>State &#x3C;|.. FinishedState</span></span>
+<span class="line"><span>Context --> State</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<h3 id="java-示例-18">Java 示例</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">interface</span><span style="color:#B392F0"> State</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> handle</span><span style="color:#E1E4E8">(ProcessContext </span><span style="color:#FFAB70">context</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> ProcessContext</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> State state;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    ProcessContext</span><span style="color:#E1E4E8">(State </span><span style="color:#FFAB70">state</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.state </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> state;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> setState</span><span style="color:#E1E4E8">(State </span><span style="color:#FFAB70">state</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.state </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> state;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> request</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        state.</span><span style="color:#B392F0">handle</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> InitialState</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> State</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> handle</span><span style="color:#E1E4E8">(ProcessContext </span><span style="color:#FFAB70">context</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        context.</span><span style="color:#B392F0">setState</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> RunningState</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> RunningState</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> State</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> handle</span><span style="color:#E1E4E8">(ProcessContext </span><span style="color:#FFAB70">context</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        context.</span><span style="color:#B392F0">setState</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> FinishedState</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> FinishedState</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> State</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> handle</span><span style="color:#E1E4E8">(ProcessContext </span><span style="color:#FFAB70">context</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"done"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="适用场景-18">适用场景</h3>
+<ul>
+<li>对象行为依赖状态，并且状态转换规则较多。</li>
+<li>代码里出现大量 if/else 或 switch 判断状态。</li>
+<li>希望把状态行为和转换逻辑局部化。</li>
+</ul>
+<h3 id="注意事项-18">注意事项</h3>
+<ul>
+<li>状态少且逻辑简单时，枚举加 switch 更容易读。</li>
+<li>状态转换关系要集中可视化，否则类多后容易迷路。</li>
+</ul>
+<hr>
+<h2 id="20-策略模式strategy">20. 策略模式（Strategy）</h2>
+<p><strong>意图</strong>：定义一系列算法，把每个算法封装起来，并让它们可以相互替换。</p>
+<h3 id="类图-19">类图</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam class {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>  FontSize 12</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam note {</span></span>
+<span class="line"><span>  BackgroundColor #fff2cc</span></span>
+<span class="line"><span>  BorderColor #d6b656</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>interface Strategy #fff2cc;line:d6b656 {</span></span>
+<span class="line"><span>  +calculate(input): Result</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class StrategyA</span></span>
+<span class="line"><span>class StrategyB</span></span>
+<span class="line"><span>class StrategyC</span></span>
+<span class="line"><span>class Context #dae8fc;line:6c8ebf {</span></span>
+<span class="line"><span>  -strategy: Strategy</span></span>
+<span class="line"><span>  +execute(input): Result</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>Strategy &#x3C;|.. StrategyA</span></span>
+<span class="line"><span>Strategy &#x3C;|.. StrategyB</span></span>
+<span class="line"><span>Strategy &#x3C;|.. StrategyC</span></span>
+<span class="line"><span>Context --> Strategy</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<h3 id="java-示例-19">Java 示例</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">interface</span><span style="color:#B392F0"> SortStrategy</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    List&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">sort</span><span style="color:#E1E4E8">(List&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> </span><span style="color:#FFAB70">values</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> AscSortStrategy</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> SortStrategy</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> List&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">sort</span><span style="color:#E1E4E8">(List&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> </span><span style="color:#FFAB70">values</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> values.</span><span style="color:#B392F0">stream</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">sorted</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">toList</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> DescSortStrategy</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> SortStrategy</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> List&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">sort</span><span style="color:#E1E4E8">(List&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> </span><span style="color:#FFAB70">values</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> values.</span><span style="color:#B392F0">stream</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">sorted</span><span style="color:#E1E4E8">(Comparator.</span><span style="color:#B392F0">reverseOrder</span><span style="color:#E1E4E8">()).</span><span style="color:#B392F0">toList</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> SortContext</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> SortStrategy strategy;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    SortContext</span><span style="color:#E1E4E8">(SortStrategy </span><span style="color:#FFAB70">strategy</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.strategy </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> strategy;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    List&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">execute</span><span style="color:#E1E4E8">(List&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> </span><span style="color:#FFAB70">values</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> strategy.</span><span style="color:#B392F0">sort</span><span style="color:#E1E4E8">(values);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="适用场景-19">适用场景</h3>
+<ul>
+<li>多个算法可以互换。</li>
+<li>算法选择可由配置、参数或运行时条件决定。</li>
+<li>想消除一堆算法分支判断。</li>
+</ul>
+<h3 id="注意事项-19">注意事项</h3>
+<ul>
+<li>策略类太细可能造成类爆炸。</li>
+<li>客户端需要知道如何选择策略，可配合工厂或注册表。</li>
+</ul>
+<hr>
+<h2 id="21-模板方法模式template-method">21. 模板方法模式（Template Method）</h2>
+<p><strong>意图</strong>：在父类中定义算法骨架，把某些步骤延迟到子类实现。</p>
+<h3 id="类图-20">类图</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam class {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>  FontSize 12</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam note {</span></span>
+<span class="line"><span>  BackgroundColor #fff2cc</span></span>
+<span class="line"><span>  BorderColor #d6b656</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>abstract class AbstractProcess #dae8fc;line:6c8ebf {</span></span>
+<span class="line"><span>  +execute(): void</span></span>
+<span class="line"><span>  #stepOne(): void</span></span>
+<span class="line"><span>  #stepTwo(): void</span></span>
+<span class="line"><span>  #hook(): void</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class ConcreteProcessA #d5e8d4;line:82b366</span></span>
+<span class="line"><span>class ConcreteProcessB #d5e8d4;line:82b366</span></span>
+<span class="line"><span>AbstractProcess &#x3C;|-- ConcreteProcessA</span></span>
+<span class="line"><span>AbstractProcess &#x3C;|-- ConcreteProcessB</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<h3 id="java-示例-20">Java 示例</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">abstract</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> AbstractTask</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> final</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> execute</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#B392F0">        prepare</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#B392F0">        doExecute</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#B392F0">        cleanup</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> prepare</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"prepare"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#F97583"> abstract</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> doExecute</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> cleanup</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"cleanup"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> TextTask</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> AbstractTask</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> doExecute</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"text task"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="适用场景-20">适用场景</h3>
+<ul>
+<li>多个流程步骤基本一致，只有个别步骤不同。</li>
+<li>希望统一流程顺序，避免子类随意改变。</li>
+<li>框架提供骨架，扩展方实现细节。</li>
+</ul>
+<h3 id="注意事项-20">注意事项</h3>
+<ul>
+<li>父类过重会限制扩展。</li>
+<li>如果变化点很多，策略模式或组合方式可能更灵活。</li>
+</ul>
+<hr>
+<h1 id="附录-a21-种模式速查表">附录 A：21 种模式速查表</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>类型</th><th>模式</th><th>核心关键词</th><th>主要解决的问题</th></tr></thead><tbody><tr><td>创建型</td><td>Singleton</td><td>唯一实例</td><td>控制对象数量</td></tr><tr><td>创建型</td><td>Factory Method</td><td>延迟创建</td><td>子类决定创建什么</td></tr><tr><td>创建型</td><td>Abstract Factory</td><td>对象族</td><td>一组相关对象的一致创建</td></tr><tr><td>创建型</td><td>Builder</td><td>分步构建</td><td>复杂对象构造</td></tr><tr><td>创建型</td><td>Prototype</td><td>复制</td><td>基于模板创建对象</td></tr><tr><td>结构型</td><td>Adapter</td><td>接口转换</td><td>兼容旧接口或第三方接口</td></tr><tr><td>结构型</td><td>Bridge</td><td>分离维度</td><td>抽象与实现独立变化</td></tr><tr><td>结构型</td><td>Composite</td><td>树结构</td><td>统一处理单个对象和集合</td></tr><tr><td>结构型</td><td>Decorator</td><td>动态增强</td><td>不改原类扩展功能</td></tr><tr><td>结构型</td><td>Facade</td><td>统一入口</td><td>简化复杂子系统调用</td></tr><tr><td>结构型</td><td>Flyweight</td><td>共享</td><td>减少大量对象内存开销</td></tr><tr><td>结构型</td><td>Proxy</td><td>访问控制</td><td>代理目标对象调用</td></tr><tr><td>行为型</td><td>Chain</td><td>链式处理</td><td>动态组织处理步骤</td></tr><tr><td>行为型</td><td>Command</td><td>请求对象化</td><td>排队、撤销、记录操作</td></tr><tr><td>行为型</td><td>Iterator</td><td>遍历</td><td>隐藏集合内部结构</td></tr><tr><td>行为型</td><td>Mediator</td><td>集中协调</td><td>降低对象网状依赖</td></tr><tr><td>行为型</td><td>Memento</td><td>快照</td><td>保存和恢复状态</td></tr><tr><td>行为型</td><td>Observer</td><td>发布订阅</td><td>状态变化通知多个对象</td></tr><tr><td>行为型</td><td>State</td><td>状态对象</td><td>状态驱动行为变化</td></tr><tr><td>行为型</td><td>Strategy</td><td>算法替换</td><td>消除算法分支</td></tr><tr><td>行为型</td><td>Template Method</td><td>流程骨架</td><td>固定流程，开放步骤</td></tr></tbody></table>
+<hr>
+<h1 id="附录-b模式关系图">附录 B：模式关系图</h1>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam rectangle {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam package {</span></span>
+<span class="line"><span>  BackgroundColor #f8cecc</span></span>
+<span class="line"><span>  BorderColor #b85450</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>package "创建型" {</span></span>
+<span class="line"><span>  rectangle "Singleton\n唯一实例" as singleton</span></span>
+<span class="line"><span>  rectangle "Factory Method\n延迟创建" as factory</span></span>
+<span class="line"><span>  rectangle "Abstract Factory\n对象族" as abstractFactory</span></span>
+<span class="line"><span>  rectangle "Builder\n分步构建" as builder</span></span>
+<span class="line"><span>  rectangle "Prototype\n复制模板" as prototype</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>package "结构型" {</span></span>
+<span class="line"><span>  rectangle "Adapter\n接口转换" as adapter</span></span>
+<span class="line"><span>  rectangle "Bridge\n分离维度" as bridge</span></span>
+<span class="line"><span>  rectangle "Composite\n树结构" as composite</span></span>
+<span class="line"><span>  rectangle "Decorator\n动态增强" as decorator</span></span>
+<span class="line"><span>  rectangle "Facade\n统一入口" as facade</span></span>
+<span class="line"><span>  rectangle "Flyweight\n共享对象" as flyweight</span></span>
+<span class="line"><span>  rectangle "Proxy\n访问控制" as proxy</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>package "行为型" {</span></span>
+<span class="line"><span>  rectangle "Chain\n链式处理" as chain</span></span>
+<span class="line"><span>  rectangle "Command\n请求对象化" as command</span></span>
+<span class="line"><span>  rectangle "Iterator\n遍历" as iterator</span></span>
+<span class="line"><span>  rectangle "Mediator\n集中协调" as mediator</span></span>
+<span class="line"><span>  rectangle "Memento\n状态快照" as memento</span></span>
+<span class="line"><span>  rectangle "Observer\n事件通知" as observer</span></span>
+<span class="line"><span>  rectangle "State\n状态行为" as state</span></span>
+<span class="line"><span>  rectangle "Strategy\n算法替换" as strategy</span></span>
+<span class="line"><span>  rectangle "Template Method\n流程骨架" as template</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>factory --> abstractFactory : 多个产品形成对象族</span></span>
+<span class="line"><span>builder --> prototype : 都可降低复杂创建成本</span></span>
+<span class="line"><span>adapter --> facade : 都可包一层接口</span></span>
+<span class="line"><span>proxy --> decorator : 结构相似，意图不同</span></span>
+<span class="line"><span>state --> strategy : 都封装可替换行为</span></span>
+<span class="line"><span>command --> memento : 撤销常配合快照</span></span>
+<span class="line"><span>observer --> mediator : 都用于对象协作解耦</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<hr>
+<h1 id="附录-c选型决策流程">附录 C：选型决策流程</h1>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam activity {</span></span>
+<span class="line"><span>  BackgroundColor #dae8fc</span></span>
+<span class="line"><span>  BorderColor #6c8ebf</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>skinparam diamond {</span></span>
+<span class="line"><span>  BackgroundColor #fff2cc</span></span>
+<span class="line"><span>  BorderColor #d6b656</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>start</span></span>
+<span class="line"><span>:先描述变化点;</span></span>
+<span class="line"><span>if (问题在对象创建?) then (是)</span></span>
+<span class="line"><span>  if (只需要一个实例?) then (是)</span></span>
+<span class="line"><span>    :Singleton;</span></span>
+<span class="line"><span>  elseif (对象构造步骤复杂?) then (是)</span></span>
+<span class="line"><span>    :Builder;</span></span>
+<span class="line"><span>  elseif (需要创建对象族?) then (是)</span></span>
+<span class="line"><span>    :Abstract Factory;</span></span>
+<span class="line"><span>  elseif (子类决定创建对象?) then (是)</span></span>
+<span class="line"><span>    :Factory Method;</span></span>
+<span class="line"><span>  else</span></span>
+<span class="line"><span>    :Prototype;</span></span>
+<span class="line"><span>  endif</span></span>
+<span class="line"><span>elseif (问题在结构组合?) then (是)</span></span>
+<span class="line"><span>  if (接口不兼容?) then (是)</span></span>
+<span class="line"><span>    :Adapter;</span></span>
+<span class="line"><span>  elseif (需要动态增强?) then (是)</span></span>
+<span class="line"><span>    :Decorator;</span></span>
+<span class="line"><span>  elseif (需要统一入口?) then (是)</span></span>
+<span class="line"><span>    :Facade;</span></span>
+<span class="line"><span>  elseif (需要树结构?) then (是)</span></span>
+<span class="line"><span>    :Composite;</span></span>
+<span class="line"><span>  elseif (访问需要控制?) then (是)</span></span>
+<span class="line"><span>    :Proxy;</span></span>
+<span class="line"><span>  else</span></span>
+<span class="line"><span>    :Bridge / Flyweight;</span></span>
+<span class="line"><span>  endif</span></span>
+<span class="line"><span>else</span></span>
+<span class="line"><span>  if (算法可替换?) then (是)</span></span>
+<span class="line"><span>    :Strategy;</span></span>
+<span class="line"><span>  elseif (状态驱动行为?) then (是)</span></span>
+<span class="line"><span>    :State;</span></span>
+<span class="line"><span>  elseif (请求要排队/撤销?) then (是)</span></span>
+<span class="line"><span>    :Command;</span></span>
+<span class="line"><span>  elseif (多个对象需要通知?) then (是)</span></span>
+<span class="line"><span>    :Observer;</span></span>
+<span class="line"><span>  elseif (流程骨架固定?) then (是)</span></span>
+<span class="line"><span>    :Template Method;</span></span>
+<span class="line"><span>  else</span></span>
+<span class="line"><span>    :Chain / Mediator / Iterator / Memento;</span></span>
+<span class="line"><span>  endif</span></span>
+<span class="line"><span>endif</span></span>
+<span class="line"><span>stop</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<hr>
+<h1 id="附录-d常见误区">附录 D：常见误区</h1>
+<ol>
+<li>
+<p><strong>把模式当目标，而不是手段</strong><br>
+设计模式是为了解决变化和复杂度，不是为了让代码看起来“高级”。</p>
+</li>
+<li>
+<p><strong>过早抽象</strong><br>
+变化点没有出现时，强行抽象往往只会增加阅读成本。</p>
+</li>
+<li>
+<p><strong>类名直接叫 XxxPattern</strong><br>
+类名应该表达业务/技术职责，例如 <code>SortStrategy</code>、<code>ServiceProxy</code>，而不是 <code>StrategyPatternDemo</code>。</p>
+</li>
+<li>
+<p><strong>只看类图，不看意图</strong><br>
+很多模式结构相似，例如代理和装饰器，但意图完全不同。</p>
+</li>
+<li>
+<p><strong>忽视测试成本</strong><br>
+模式引入更多协作对象后，应配套单元测试覆盖关键变化点。</p>
+</li>
+</ol>
+<hr>
+<h1 id="附录-eplantuml-颜色约定">附录 E：PlantUML 颜色约定</h1>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>@startuml</span></span>
+<span class="line"><span>skinparam class {</span></span>
+<span class="line"><span>  FontName "Microsoft YaHei"</span></span>
+<span class="line"><span>  FontSize 12</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>class "接口/抽象" as A #fff2cc;line:d6b656</span></span>
+<span class="line"><span>class "核心实现" as B #d5e8d4;line:82b366</span></span>
+<span class="line"><span>class "上下文/协调者" as C #dae8fc;line:6c8ebf</span></span>
+<span class="line"><span>class "辅助对象" as D #f8cecc;line:b85450</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>A &#x3C;|.. B</span></span>
+<span class="line"><span>C --> A</span></span>
+<span class="line"><span>D ..> C</span></span>
+<span class="line"><span>@enduml</span></span></code></pre>
+<ul>
+<li>黄色：接口、抽象、契约。</li>
+<li>绿色：具体实现、核心对象。</li>
+<li>蓝色：上下文、管理器、协调者。</li>
+<li>红色：辅助对象、外部协作者或需要特别关注的对象。</li>
+</ul>
+<hr>
+<h2 id="总结">总结</h2>
+<p>设计模式的价值不在于“背会 21 个名字”，而在于识别变化点：</p>
+<ul>
+<li>创建复杂，就考虑创建型模式。</li>
+<li>结构混乱，就考虑结构型模式。</li>
+<li>协作难维护，就考虑行为型模式。</li>
+</ul>
+<p>真正好的设计通常不是一上来就套模式，而是在代码复杂度增长到某个临界点时，用恰当的模式把变化关进笼子里。模式用得好，代码像收纳盒；模式用过头，代码像套娃。区别就在于：你到底是在解决问题，还是在制造仪式感。</p> </article> <aside class="article-toc"><div class="toc-title"><i class="fas fa-list-ul"></i> 文章目录</div><nav><a class="depth-2" href="#目录">目录</a><a class="depth-3" href="#一创建型模式creational5">一、创建型模式（Creational，5）</a><a class="depth-3" href="#二结构型模式structural7">二、结构型模式（Structural，7）</a><a class="depth-3" href="#三行为型模式behavioral9">三、行为型模式（Behavioral，9）</a><a class="depth-3" href="#附录">附录</a><a class="depth-2" href="#1-单例模式singleton">1. 单例模式（Singleton）</a><a class="depth-3" href="#类图">类图</a><a class="depth-3" href="#java-示例">Java 示例</a><a class="depth-3" href="#适用场景">适用场景</a><a class="depth-3" href="#注意事项">注意事项</a><a class="depth-2" href="#2-工厂方法模式factory-method">2. 工厂方法模式（Factory Method）</a><a class="depth-3" href="#类图-1">类图</a><a class="depth-3" href="#java-示例-1">Java 示例</a><a class="depth-3" href="#适用场景-1">适用场景</a><a class="depth-3" href="#注意事项-1">注意事项</a><a class="depth-2" href="#3-抽象工厂模式abstract-factory">3. 抽象工厂模式（Abstract Factory）</a><a class="depth-3" href="#类图-2">类图</a><a class="depth-3" href="#java-示例-2">Java 示例</a><a class="depth-3" href="#适用场景-2">适用场景</a><a class="depth-3" href="#注意事项-2">注意事项</a><a class="depth-2" href="#4-建造者模式builder">4. 建造者模式（Builder）</a><a class="depth-3" href="#类图-3">类图</a><a class="depth-3" href="#java-示例-3">Java 示例</a><a class="depth-3" href="#适用场景-3">适用场景</a><a class="depth-3" href="#注意事项-3">注意事项</a><a class="depth-2" href="#5-原型模式prototype">5. 原型模式（Prototype）</a><a class="depth-3" href="#类图-4">类图</a><a class="depth-3" href="#java-示例-4">Java 示例</a><a class="depth-3" href="#适用场景-4">适用场景</a><a class="depth-3" href="#注意事项-4">注意事项</a><a class="depth-2" href="#6-适配器模式adapter">6. 适配器模式（Adapter）</a><a class="depth-3" href="#类图-5">类图</a><a class="depth-3" href="#java-示例-5">Java 示例</a><a class="depth-3" href="#适用场景-5">适用场景</a><a class="depth-3" href="#注意事项-5">注意事项</a><a class="depth-2" href="#7-桥接模式bridge">7. 桥接模式（Bridge）</a><a class="depth-3" href="#类图-6">类图</a><a class="depth-3" href="#java-示例-6">Java 示例</a><a class="depth-3" href="#适用场景-6">适用场景</a><a class="depth-3" href="#注意事项-6">注意事项</a><a class="depth-2" href="#8-组合模式composite">8. 组合模式（Composite）</a><a class="depth-3" href="#类图-7">类图</a><a class="depth-3" href="#java-示例-7">Java 示例</a><a class="depth-3" href="#适用场景-7">适用场景</a><a class="depth-3" href="#注意事项-7">注意事项</a><a class="depth-2" href="#9-装饰器模式decorator">9. 装饰器模式（Decorator）</a><a class="depth-3" href="#类图-8">类图</a><a class="depth-3" href="#java-示例-8">Java 示例</a><a class="depth-3" href="#适用场景-8">适用场景</a><a class="depth-3" href="#注意事项-8">注意事项</a><a class="depth-2" href="#10-外观模式facade">10. 外观模式（Facade）</a><a class="depth-3" href="#类图-9">类图</a><a class="depth-3" href="#java-示例-9">Java 示例</a><a class="depth-3" href="#适用场景-9">适用场景</a><a class="depth-3" href="#注意事项-9">注意事项</a><a class="depth-2" href="#11-享元模式flyweight">11. 享元模式（Flyweight）</a><a class="depth-3" href="#类图-10">类图</a><a class="depth-3" href="#java-示例-10">Java 示例</a><a class="depth-3" href="#适用场景-10">适用场景</a><a class="depth-3" href="#注意事项-10">注意事项</a><a class="depth-2" href="#12-代理模式proxy">12. 代理模式（Proxy）</a><a class="depth-3" href="#类图-11">类图</a><a class="depth-3" href="#java-示例-11">Java 示例</a><a class="depth-3" href="#适用场景-11">适用场景</a><a class="depth-3" href="#注意事项-11">注意事项</a><a class="depth-2" href="#13-职责链模式chain-of-responsibility">13. 职责链模式（Chain of Responsibility）</a><a class="depth-3" href="#类图-12">类图</a><a class="depth-3" href="#java-示例-12">Java 示例</a><a class="depth-3" href="#适用场景-12">适用场景</a><a class="depth-3" href="#注意事项-12">注意事项</a><a class="depth-2" href="#14-命令模式command">14. 命令模式（Command）</a><a class="depth-3" href="#类图-13">类图</a><a class="depth-3" href="#java-示例-13">Java 示例</a><a class="depth-3" href="#适用场景-13">适用场景</a><a class="depth-3" href="#注意事项-13">注意事项</a><a class="depth-2" href="#15-迭代器模式iterator">15. 迭代器模式（Iterator）</a><a class="depth-3" href="#类图-14">类图</a><a class="depth-3" href="#java-示例-14">Java 示例</a><a class="depth-3" href="#适用场景-14">适用场景</a><a class="depth-3" href="#注意事项-14">注意事项</a><a class="depth-2" href="#16-中介者模式mediator">16. 中介者模式（Mediator）</a><a class="depth-3" href="#类图-15">类图</a><a class="depth-3" href="#java-示例-15">Java 示例</a><a class="depth-3" href="#适用场景-15">适用场景</a><a class="depth-3" href="#注意事项-15">注意事项</a><a class="depth-2" href="#17-备忘录模式memento">17. 备忘录模式（Memento）</a><a class="depth-3" href="#类图-16">类图</a><a class="depth-3" href="#java-示例-16">Java 示例</a><a class="depth-3" href="#适用场景-16">适用场景</a><a class="depth-3" href="#注意事项-16">注意事项</a><a class="depth-2" href="#18-观察者模式observer">18. 观察者模式（Observer）</a><a class="depth-3" href="#类图-17">类图</a><a class="depth-3" href="#java-示例-17">Java 示例</a><a class="depth-3" href="#适用场景-17">适用场景</a><a class="depth-3" href="#注意事项-17">注意事项</a><a class="depth-2" href="#19-状态模式state">19. 状态模式（State）</a><a class="depth-3" href="#类图-18">类图</a><a class="depth-3" href="#java-示例-18">Java 示例</a><a class="depth-3" href="#适用场景-18">适用场景</a><a class="depth-3" href="#注意事项-18">注意事项</a><a class="depth-2" href="#20-策略模式strategy">20. 策略模式（Strategy）</a><a class="depth-3" href="#类图-19">类图</a><a class="depth-3" href="#java-示例-19">Java 示例</a><a class="depth-3" href="#适用场景-19">适用场景</a><a class="depth-3" href="#注意事项-19">注意事项</a><a class="depth-2" href="#21-模板方法模式template-method">21. 模板方法模式（Template Method）</a><a class="depth-3" href="#类图-20">类图</a><a class="depth-3" href="#java-示例-20">Java 示例</a><a class="depth-3" href="#适用场景-20">适用场景</a><a class="depth-3" href="#注意事项-20">注意事项</a><a class="depth-2" href="#总结">总结</a></nav></aside> </div> <div class="container"><section class="post-extra-card"> <div class="post-copyright"> <div class="copyright-title"><i class="fas fa-copyright"></i> 文章版权</div> <p><strong>作者：</strong>小倪哥</p> <p><strong>链接：</strong><a href="/2026/06/16/design-patterns/">/2026/06/16/design-patterns/</a></p> <p><strong>声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank">CC BY-NC-SA 4.0</a> 协议，转载请注明出处。</p> </div> <div class="comment-placeholder" id="comments"> <div> <i class="far fa-comments"></i> <strong>评论区预留</strong> <p>正式切换前可选择 Giscus / Gitalk / Twikoo。当前预览版暂不接入第三方脚本，避免干扰主站。</p> </div> </div> </section><section class="post-nav-card"> <div class="post-nav-links"> <a class="post-nav-link prev" href="/2026/05/25/ai-llm-terms-for-beginners/"><span>上一篇</span><strong>给小学生也能讲明白的 AI 大模型术语课：Token、上下文、记忆、Skill、MCP、ACP 到 API Key</strong></a> <span class="post-nav-link disabled"><span>下一篇</span><strong>已经是最新文章</strong></span> </div> <div class="related-posts"> <h2><i class="fas fa-link"></i> 相关文章</h2> <div class="related-grid"> <div class="article col" data-aos="zoom-in"> <div class="card"> <a href="/2026/05/25/ai-llm-terms-for-beginners/"> <div class="card-image" style="background-image:url('/medias/featureimages/6.jpg')"> <span class="card-title">给小学生也能讲明白的 AI 大模型术语课：Token、上下文、记忆、Skill、MCP、ACP 到 API Key</span> </div> </a> <div class="card-content article-content"> <div class="summary block-with-text">前言：先别被这些词吓住 现在只要一聊 AI，大人们嘴里就会蹦出一堆听起来很高级的词：Token、上下文、记忆、Prompt、Skill、MCP、ACP、API Key、Provider、Agent、模型、Embedding、向量数据库…… …</div> <div class="publish-info"> <span class="publish-date"><i class="far fa-clock fa-fw icon-date"></i>2026-05-25</span> <span class="publish-author"><i class="fas fa-bookmark fa-fw icon-category"></i>学习</span> </div> </div> <div class="card-action article-tags"> <a href="/tags/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B/"><span class="chip bg-color">AI大模型</span></a><a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"><span class="chip bg-color">人工智能</span></a><a href="/tags/%E5%85%A5%E9%97%A8%E7%A7%91%E6%99%AE/"><span class="chip bg-color">入门科普</span></a><a href="/tags/AI%E5%B7%A5%E5%85%B7/"><span class="chip bg-color">AI工具</span></a><a href="/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/"><span class="chip bg-color">提示词工程</span></a> </div> </div> </div><div class="article col" data-aos="zoom-in"> <div class="card"> <a href="/2026/05/24/hermes-agent-tutorial/"> <div class="card-image" style="background-image:url('/medias/featureimages/5.jpg')"> <span class="card-title">Hermes Agent 完全指南：从零搭建你的智能体助手</span> </div> </a> <div class="card-content article-content"> <div class="summary block-with-text">前言 2026 年，AI Agent 已经从概念走向了全面落地。从 AutoGPT 到各种 Agent 框架，我们看到越来越多能自主执行任务的智能体。但真正能让你在本地自由部署、功能全面且开箱即用的 Agent 平台并不多见，Hermes …</div> <div class="publish-info"> <span class="publish-date"><i class="far fa-clock fa-fw icon-date"></i>2026-05-24</span> <span class="publish-author"><i class="fas fa-bookmark fa-fw icon-category"></i>学习</span> </div> </div> <div class="card-action article-tags"> <a href="/tags/AI%20Agent/"><span class="chip bg-color">AI Agent</span></a><a href="/tags/Hermes%20Agent/"><span class="chip bg-color">Hermes Agent</span></a><a href="/tags/%E6%99%BA%E8%83%BD%E4%BD%93%E5%B7%A5%E5%85%B7/"><span class="chip bg-color">智能体工具</span></a><a href="/tags/%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2/"><span class="chip bg-color">本地部署</span></a><a href="/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/"><span class="chip bg-color">开源工具</span></a> </div> </div> </div><div class="article col" data-aos="zoom-in"> <div class="card"> <a href="/2026/05/20/2026-05-20-ai-tools-comparison/"> <div class="card-image" style="background-image:url('/medias/featureimages/22.jpg')"> <span class="card-title">2026主流AI工具深度对比：Claude、Codex、OpenCode、OpenClaw与HermesAgent</span> </div> </a> <div class="card-content article-content"> <div class="summary block-with-text">前言 2026年，AI工具已经从&quot;尝鲜玩具&quot;变成了&quot;生产力必需品。无论是程序员、产品经理、数据分析师，甚至是内容创作者，每天的工作都离不开AI的辅助。然而，面对市场上的AI工具百花齐放，从通用大模型、编程助手、智能体平台，种类繁多，各有侧重…</div> <div class="publish-info"> <span class="publish-date"><i class="far fa-clock fa-fw icon-date"></i>2026-05-20</span> <span class="publish-author"><i class="fas fa-bookmark fa-fw icon-category"></i>学习</span> </div> </div> <div class="card-action article-tags"> <a href="/tags/AI%E5%B7%A5%E5%85%B7/"><span class="chip bg-color">AI工具</span></a><a href="/tags/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/"><span class="chip bg-color">效率工具</span></a><a href="/tags/%E6%99%BA%E8%83%BD%E4%BD%93/"><span class="chip bg-color">智能体</span></a><a href="/tags/%E6%8A%80%E6%9C%AF%E5%AF%B9%E6%AF%94/"><span class="chip bg-color">技术对比</span></a> </div> </div> </div> </div> </div> </section></div> <script>
+    const article = document.querySelector('.article-content-page');
+    const plantumlImages = JSON.parse(article?.dataset.plantumlImages || '[]');
+    let plantumlIndex = 0;
+    document.querySelectorAll('pre').forEach((pre) => {
+      if (pre.querySelector('.copy-code')) return;
+      const code = pre.querySelector('code');
+      const lang = Array.from(code?.classList || []).find((c) => c.startsWith('language-'))?.replace('language-', '') || 'code';
+      const text = code?.innerText || '';
+      const isPlantUml = lang === 'plantuml' || text.trim().startsWith('@startuml');
+      pre.setAttribute('data-lang', isPlantUml ? 'plantuml' : lang);
+      const btn = document.createElement('button');
+      btn.className = 'copy-code';
+      btn.type = 'button';
+      btn.textContent = '复制';
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(text || pre.innerText.replace(/^复制\n?/, ''));
+          btn.textContent = '已复制';
+          setTimeout(() => btn.textContent = '复制', 1200);
+        } catch {
+          btn.textContent = '失败';
+        }
+      });
+      pre.appendChild(btn);
+
+      if (isPlantUml) {
+        const image = plantumlImages[plantumlIndex++];
+        const details = document.createElement('details');
+        details.className = 'plantuml-source-details';
+        const summary = document.createElement('summary');
+        summary.textContent = '查看 PlantUML 源码';
+        details.append(summary);
+        pre.parentNode.insertBefore(details, pre);
+        details.append(pre);
+        if (image?.src) {
+          const box = document.createElement('figure');
+          box.className = 'plantuml-rendered';
+          box.innerHTML = `<a href="${image.src}" target="_blank" rel="noopener"><img src="${image.src}" alt="PlantUML diagram ${image.index}" loading="lazy" /></a><figcaption>PlantUML 图 ${image.index} · 点击图片可新窗口查看 SVG</figcaption>`;
+          details.insertAdjacentElement('beforebegin', box);
+        }
+      }
+      if (lang === 'mermaid') {
+        pre.classList.add('mermaid-source');
+      }
+    });
+  </script>  </main> <footer class="page-footer bg-color"> <div class="music-placeholder"> <i class="fas fa-music"></i> <span>音乐播放器模块已预留，等主题稳定后再接入。</span> </div> <div class="footer-container"> <div class="footer-col copy-right"> <p>
+Copyright © <span id="year">2023-2026</span> <a href="/about/">小倪哥</a>
+| Powered by <a href="https://astro.build/" target="_blank">Astro</a>
+| Inspired by <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a> </p> <p> <i class="fas fa-chart-area"></i> 站点总字数: <span class="white-color" id="totalWords">计算中</span> <span class="split">|</span> <i class="fas fa-book"></i> 文章总数: <span class="white-color" id="totalPosts">计算中</span> <span class="split">|</span> <i class="far fa-eye"></i> 访问统计: <span class="white-color">预留</span> </p> <p id="sitetime">本站已运行 Loading ...</p> </div> <div class="footer-col footer-poem"> <strong>今日诗词</strong> <span>“天生我材必有用，千金散尽还复来。”</span> <small>—— 李白《将进酒》</small> </div> <div class="footer-col social-link social-statis"> <a title="访问我的 GitHub" href="https://github.com/xiaonige/" target="_blank"><i class="fab fa-github"></i></a> <a title="邮件联系我" href="mailto:991509326@qq.com" target="_blank"><i class="fas fa-envelope-open"></i></a> <a title="QQ 联系我" href="tencent://AddContact/?fromId=50&#38;fromSubId=1&#38;subcmd=all&#38;uin=991509326" target="_blank"><i class="fab fa-qq"></i></a> </div> </div> </footer> <div class="search-modal" id="searchModal" aria-hidden="true"> <div class="search-backdrop" data-close-search></div> <div class="search-panel" role="dialog" aria-modal="true" aria-labelledby="searchTitle"> <div class="search-header"> <span class="title" id="searchTitle"><i class="fas fa-search"></i> 搜索</span> <button class="search-close" type="button" data-close-search aria-label="关闭搜索"><i class="fas fa-times"></i></button> <input class="search-input" id="searchInput" placeholder="请输入搜索关键字，例如 Astro、AI、Copilot" type="search" autocomplete="off"> </div> <div id="searchResult" class="search-result"> <p class="search-empty">输入关键词，开始搜索文章标题与摘要。</p> </div> </div> </div> <script>
+(() => {
+  const modal = document.getElementById('searchModal');
+  const input = document.getElementById('searchInput');
+  const result = document.getElementById('searchResult');
+  let entries = [];
+  let loaded = false;
+  const open = async () => {
+    modal?.classList.add('active');
+    modal?.setAttribute('aria-hidden', 'false');
+    setTimeout(() => input?.focus(), 80);
+    if (!loaded) await loadSearch();
+  };
+  const close = () => {
+    modal?.classList.remove('active');
+    modal?.setAttribute('aria-hidden', 'true');
+  };
+  async function loadSearch() {
+    loaded = true;
+    try {
+      const res = await fetch('/search.xml');
+      const text = await res.text();
+      const xml = new DOMParser().parseFromString(text, 'text/xml');
+      entries = Array.from(xml.querySelectorAll('entry')).map((entry) => ({
+        title: entry.querySelector('title')?.textContent || '',
+        url: entry.querySelector('url')?.textContent || entry.querySelector('link')?.getAttribute('href') || '#',
+        content: entry.querySelector('content')?.textContent || ''
+      }));
+    } catch (e) {
+      result.innerHTML = '<p class="search-empty">搜索索引加载失败，稍后再试。</p>';
+    }
+  }
+  function render(keyword) {
+    const q = keyword.trim().toLowerCase();
+    if (!q) {
+      result.innerHTML = '<p class="search-empty">输入关键词，开始搜索文章标题与摘要。</p>';
+      return;
+    }
+    const hits = entries.filter((item) => `${item.title} ${item.content}`.toLowerCase().includes(q)).slice(0, 12);
+    if (!hits.length) {
+      result.innerHTML = '<p class="search-empty">没找到匹配内容，换个关键词试试。</p>';
+      return;
+    }
+    result.innerHTML = hits.map((item) => {
+      const clean = item.content.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim().slice(0, 150);
+      return `<a class="search-hit" href="${item.url}"><strong>${highlight(item.title, q)}</strong><span>${highlight(clean, q)}...</span></a>`;
+    }).join('');
+  }
+  function highlight(str, q) {
+    const safe = escapeHtml(str);
+    const escaped = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return safe.replace(new RegExp(`(${escaped})`, 'ig'), '<mark>$1</mark>');
+  }
+  function escapeHtml(str) {
+    return str.replace(/[&<>'"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+  }
+  document.querySelectorAll('[data-open-search]').forEach((el) => el.addEventListener('click', (e) => { e.preventDefault(); open(); }));
+  document.querySelectorAll('[data-close-search]').forEach((el) => el.addEventListener('click', close));
+  input?.addEventListener('input', () => render(input.value));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') close();
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); open(); }
+  });
+})();
+</script> <button class="scroll-top" aria-label="回到顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button> <script>
+      const start = new Date('2023-12-25T00:00:00+08:00');
+      const now = new Date();
+      const days = Math.max(0, Math.floor((now - start) / 86400000));
+      const el = document.getElementById('sitetime');
+      if (el) el.textContent = `本站已运行 ${days} 天`;
+      const y = document.getElementById('year');
+      if (y) y.textContent = `2023-${now.getFullYear()}`;
+
+      // Load site stats.
+      fetch('/site-data.json').then(r => r.json()).then((data) => {
+        const words = document.getElementById('totalWords');
+        const posts = document.getElementById('totalPosts');
+        if (words) words.textContent = Number(data.totalWords || 0).toLocaleString('zh-CN');
+        if (posts) posts.textContent = Number(data.posts || 0).toLocaleString('zh-CN');
+      }).catch(() => {});
+
+      // Matery-like: daily/random banner background.
+      const cover = document.querySelector('.matery-cover');
+      if (cover) {
+        const idx = now.getDay();
+        cover.style.backgroundImage = `url('/medias/banner/${idx}.jpg'), linear-gradient(135deg,#20c997,#2f80ed,#9b51e0)`;
+      }
+
+      // Nav becomes denser after scrolling.
+      const nav = document.getElementById('headNav');
+      const onScroll = () => nav?.classList.toggle('nav-scrolled', window.scrollY > 30);
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      // Reading progress.
+      const progress = document.getElementById('readingProgress');
+      const updateProgress = () => {
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = total > 0 ? Math.min(100, Math.max(0, window.scrollY / total * 100)) : 0;
+        if (progress) progress.style.width = `${ratio}%`;
+      };
+      updateProgress();
+      window.addEventListener('scroll', updateProgress, { passive: true });
+
+      // TOC active state.
+      const tocLinks = Array.from(document.querySelectorAll('.article-toc a'));
+      const headings = tocLinks.map((a) => document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1)))).filter(Boolean);
+      const updateToc = () => {
+        let active = headings[0];
+        for (const h of headings) {
+          if (h.getBoundingClientRect().top < 130) active = h;
+          else break;
+        }
+        tocLinks.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === `#${active?.id}`));
+      };
+      if (tocLinks.length) {
+        updateToc();
+        window.addEventListener('scroll', updateToc, { passive: true });
+      }
+    </script> </body> </html>
