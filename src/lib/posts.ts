@@ -2,10 +2,16 @@ import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
 export type Post = CollectionEntry<'posts'>;
+export type Draft = CollectionEntry<'drafts'>;
 
 export async function getPosts() {
   const posts = await getCollection('posts', ({ data }) => !data.draft);
   return posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+}
+
+export async function getDrafts() {
+  const drafts = await getCollection('drafts');
+  return drafts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 }
 
 export function getSlug(post: Post) {

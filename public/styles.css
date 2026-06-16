@@ -217,3 +217,14 @@ a { color: inherit; text-decoration: none; }
   .article-toc nav { max-height: 220px; overflow: auto; }
   .footer-container .split { display: none; }
 }
+/* Phase 6: draft preview and PlantUML render helper */
+.draft-hero::before { background: linear-gradient(135deg, rgba(155,81,224,.7), rgba(47,128,237,.58)); }
+.draft-badge { display:inline-flex; align-items:center; gap:8px; padding:8px 14px; margin-bottom:14px; border-radius:999px; background:rgba(255,255,255,.2); border:1px solid rgba(255,255,255,.38); font-size:14px; }
+.draft-notice { padding:14px 16px; margin-bottom:22px; border-left:4px solid #9b51e0; background:#fbf7ff; color:#68409a; border-radius:8px; }
+.draft-content { border-top: 4px solid #9b51e0; }
+.diagram-preview-box { margin: -10px 0 24px; padding: 14px; border-radius: 10px; background:#f7faf9; border:1px dashed rgba(66,185,131,.45); }
+.diagram-preview-actions { display:flex; flex-wrap:wrap; align-items:center; gap:12px; color:#777; font-size:13px; }
+.diagram-preview-actions button { border:none; border-radius:999px; padding:8px 14px; color:#fff; background:linear-gradient(to right,#42b983,#2f80ed); cursor:pointer; }
+.diagram-preview-actions button:disabled { opacity:.7; cursor:default; }
+.diagram-svg-frame { margin-top:14px; padding:14px; border-radius:8px; background:#fff; overflow:auto; box-shadow: inset 0 0 0 1px #eee; }
+.diagram-svg-frame svg { max-width:100%; height:auto; display:block; margin:auto; }
