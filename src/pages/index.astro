@@ -4,19 +4,28 @@ import PoemHero from '@/components/PoemHero.astro';
 import PostCard from '@/components/PostCard.astro';
 import { getPosts } from '@/lib/posts';
 const posts = await getPosts();
+const featured = posts.slice(0, 2);
 ---
 <BaseLayout>
   <PoemHero postsCount={posts.length} />
-  <section id="latest-posts">
-    <div class="section-head">
-      <div>
-        <h2>最新文章</h2>
-        <p>卡片式首页，先保留核心阅读体验；音乐模块稍后再补。</p>
+  <div class="index-card" id="indexCard">
+    <div class="container">
+      <div class="dream-card card-panel">
+        <div class="title center-align"><i class="far fa-lightbulb"></i> 关于成长</div>
+        <p>成长，是一个充满荆棘与鲜花的旅程。每一次跌倒，都是向前的动力；每一次复盘，都是下一次出发的坐标。</p>
       </div>
-      <a class="btn ghost" href="/archives/">全部归档</a>
+      <section class="recommend card-panel">
+        <div class="section-title"><i class="far fa-thumbs-up"></i> 推荐文章</div>
+        <div class="recommend-grid">
+          {featured.map((post) => <PostCard post={post} featured />)}
+        </div>
+      </section>
     </div>
-    <div class="post-grid">
-      {posts.map((post, index) => <PostCard post={post} featured={index === 0} />)}
+  </div>
+  <article class="container articles" id="articles">
+    <div class="section-title all-posts"><i class="fas fa-newspaper"></i> 最新文章</div>
+    <div class="row article-row">
+      {posts.map((post) => <PostCard post={post} />)}
     </div>
-  </section>
+  </article>
 </BaseLayout>

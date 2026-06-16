@@ -2,20 +2,25 @@
 import { site } from '@/lib/site';
 const { postsCount = 0 } = Astro.props;
 ---
-<section class="hero">
-  <div class="hero-copy">
-    <p class="eyebrow">XIAONIGE · ASTRO BLOG</p>
-    <h1>把复杂问题写清楚，把长期热爱留下来。</h1>
-    <p class="hero-subtitle">一个更轻、更快、更安全的 GitHub Pages 博客发布器试点。</p>
-    <div class="hero-actions">
-      <a class="btn primary" href="#latest-posts">看最新文章</a>
-      <a class="btn ghost" href="/archives/">浏览归档</a>
+<section class="matery-cover bg-cover">
+  <div class="cover-overlay"></div>
+  <div class="cover-content container">
+    <div class="brand center-align">
+      <h1>{site.blogTitle}</h1>
+      <div class="description center-align">
+        <span>{site.poem.text}</span>
+      </div>
+      <p class="poem-from">{site.poem.from}</p>
     </div>
+    <div class="cover-btns">
+      <a class="waves-effect btn" href="#indexCard"><i class="fa fa-angle-double-down"></i> 开始阅读</a>
+      <a class="waves-effect btn github" href={site.social.github} target="_blank"><i class="fab fa-github-alt"></i> Github</a>
+    </div>
+    <div class="cover-social-link">
+      <a title="GitHub" href={site.social.github} target="_blank"><i class="fab fa-github"></i></a>
+      <a title="Email" href={site.social.email} target="_blank"><i class="fas fa-envelope-open"></i></a>
+      <a title="QQ" href={site.social.qq} target="_blank"><i class="fab fa-qq"></i></a>
+    </div>
+    <div class="cover-stats">已迁移文章 {postsCount} 篇 · Astro 预览版 · 音乐暂缓</div>
   </div>
-  <aside class="poem-card">
-    <span>今日诗词</span>
-    <blockquote>“{site.poem.text}”</blockquote>
-    <cite>—— {site.poem.from}</cite>
-    <small>已迁移文章 {postsCount} 篇 · 音乐模块预留</small>
-  </aside>
 </section>

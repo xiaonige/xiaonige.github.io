@@ -11,28 +11,75 @@ const fullTitle = title === site.title ? title : `${title} - ${site.title}`;
     <meta name="description" content={description} />
     <title>{fullTitle}</title>
     <link rel="icon" href="/favicon.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" />
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <div class="site-shell">
-      <header class="site-header">
-        <a class="brand" href="/">
-          <span class="brand-mark">小</span>
-          <span>
-            <strong>{site.title}</strong>
-            <em>{site.subtitle}</em>
-          </span>
-        </a>
-        <nav class="nav">
-          {site.nav.map((item) => <a href={item.href}>{item.label}</a>)}
-        </nav>
-      </header>
-      <main>
-        <slot />
-      </main>
-      <footer class="site-footer">
-        <p>© {new Date().getFullYear()} {site.author}. Built with Astro. 音乐模块预留，暂缓上线。</p>
-      </footer>
-    </div>
+    <header class="navbar-fixed">
+      <nav class="top-nav" id="headNav">
+        <div class="nav-wrapper container">
+          <a class="brand-logo" href="/">
+            <img alt="LOGO" class="logo-img" src="/medias/logo.png" />
+            <span class="logo-span">{site.title}</span>
+          </a>
+          <input id="nav-toggle" type="checkbox" />
+          <label class="sidenav-trigger" for="nav-toggle"><i class="fas fa-bars"></i></label>
+          <ul class="right nav-menu">
+            {site.nav.map((item) => (
+              <li class="nav-item">
+                <a class:list={["waves", { disabled: item.disabled }]} href={item.disabled ? '#' : item.href}>
+                  <i class={item.icon}></i><span>{item.label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="page-footer bg-color">
+      <div class="music-placeholder">
+        <i class="fas fa-music"></i>
+        <span>音乐播放器模块已预留，等主题稳定后再接入。</span>
+      </div>
+      <div class="footer-container">
+        <div class="footer-col copy-right">
+          <p>
+            Copyright © <span id="year">2023-2026</span>
+            <a href="/about/">{site.author}</a>
+            | Powered by <a href="https://astro.build/" target="_blank">Astro</a>
+            | Inspired by <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+          </p>
+          <p>
+            <i class="fas fa-chart-area"></i> 站点总字数: <span class="white-color">计算中</span>
+            <span class="split">|</span>
+            <i class="far fa-eye"></i> 访问统计: <span class="white-color">预留</span>
+          </p>
+          <p id="sitetime">本站已运行 Loading ...</p>
+        </div>
+        <div class="footer-col footer-poem">
+          <strong>今日诗词</strong>
+          <span>“{site.poem.text}”</span>
+          <small>—— {site.poem.from}</small>
+        </div>
+        <div class="footer-col social-link social-statis">
+          <a title="访问我的 GitHub" href={site.social.github} target="_blank"><i class="fab fa-github"></i></a>
+          <a title="邮件联系我" href={site.social.email} target="_blank"><i class="fas fa-envelope-open"></i></a>
+          <a title="QQ 联系我" href={site.social.qq} target="_blank"><i class="fab fa-qq"></i></a>
+        </div>
+      </div>
+    </footer>
+    <button class="scroll-top" aria-label="回到顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+    <script is:inline>
+      const start = new Date('2023-12-25T00:00:00+08:00');
+      const now = new Date();
+      const days = Math.max(0, Math.floor((now - start) / 86400000));
+      const el = document.getElementById('sitetime');
+      if (el) el.textContent = `本站已运行 ${days} 天`;
+      const y = document.getElementById('year');
+      if (y) y.textContent = `2023-${now.getFullYear()}`;
+    </script>
   </body>
 </html>
