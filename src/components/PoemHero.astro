@@ -1,6 +1,5 @@
 ---
 import { site } from '@/lib/site';
-const { postsCount = 0 } = Astro.props;
 ---
 <section class="matery-cover bg-cover">
   <div class="cover-overlay"></div>
@@ -21,6 +20,5 @@ const { postsCount = 0 } = Astro.props;
       <a title="Email" href={site.social.email} target="_blank"><i class="fas fa-envelope-open"></i></a>
       <a title="QQ" href={site.social.qq} target="_blank"><i class="fab fa-qq"></i></a>
     </div>
-    <div class="cover-stats">已迁移文章 {postsCount} 篇 · Astro 预览版 · 音乐暂缓</div>
   </div>
 </section>

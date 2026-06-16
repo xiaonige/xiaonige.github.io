@@ -15,7 +15,7 @@
     "publish:preview": "node scripts/publish-preview.mjs",
     "build:core": "npm run scan && npm run render:plantuml && astro build",
     "build:preview": "INCLUDE_DRAFTS=true npm run build:core && npm run check:links",
-    "build:formal": "INCLUDE_DRAFTS=false npm run build:core && rm -rf dist/drafts dist/generated && npm run check:links && npm run check:urls",
+    "build:formal": "INCLUDE_DRAFTS=false npm run build:core && rm -rf dist/drafts && npm run check:links && npm run check:urls",
     "check:urls": "node scripts/check-url-compat.mjs"
   },
   "dependencies": {

@@ -4,6 +4,7 @@ import ArticleToc from '@/components/ArticleToc.astro';
 import PostNav from '@/components/PostNav.astro';
 import PostExtras from '@/components/PostExtras.astro';
 import { getPosts, getSlug, formatDate, getDateParts, getWordCount, getReadingMinutes, getAdjacentPosts, getRelatedPosts } from '@/lib/posts';
+import plantumlManifest from '../../../../../../public/generated/plantuml/manifest.json';
 export async function getStaticPaths() {
   const posts = await getPosts();
   return posts.map((post) => {
@@ -21,6 +22,8 @@ export async function getStaticPaths() {
 }
 const { post, posts } = Astro.props;
 const { Content, headings } = await post.render();
+const slug = getSlug(post);
+const plantumlImages = plantumlManifest[slug] || [];
 const cover = post.data.cover || `/medias/featureimages/${post.id.length % 24}.jpg`;
 const wordCount = getWordCount(post.body || '');
 const readingMinutes = getReadingMinutes(post.body || '');
@@ -42,26 +45,30 @@ const related = getRelatedPosts(posts, post);
     </div>
   </section>
   <div class="article-layout container">
-    <article class="content-card prose article-content-page">
+    <article class="content-card prose article-content-page" data-plantuml-images={JSON.stringify(plantumlImages)}>
       <Content />
     </article>
     <ArticleToc headings={headings} />
   </div>
   <div class="container"><PostExtras post={post} /><PostNav newer={newer} older={older} related={related} /></div>
   <script is:inline>
+    const article = document.querySelector('.article-content-page');
+    const plantumlImages = JSON.parse(article?.dataset.plantumlImages || '[]');
+    let plantumlIndex = 0;
     document.querySelectorAll('pre').forEach((pre) => {
       if (pre.querySelector('.copy-code')) return;
       const code = pre.querySelector('code');
       const lang = Array.from(code?.classList || []).find((c) => c.startsWith('language-'))?.replace('language-', '') || 'code';
-      pre.setAttribute('data-lang', lang);
+      const text = code?.innerText || '';
+      const isPlantUml = lang === 'plantuml' || text.trim().startsWith('@startuml');
+      pre.setAttribute('data-lang', isPlantUml ? 'plantuml' : lang);
       const btn = document.createElement('button');
       btn.className = 'copy-code';
       btn.type = 'button';
       btn.textContent = '复制';
       btn.addEventListener('click', async () => {
-        const text = code?.innerText || pre.innerText.replace(/^复制\n?/, '');
         try {
-          await navigator.clipboard.writeText(text);
+          await navigator.clipboard.writeText(text || pre.innerText.replace(/^复制\n?/, ''));
           btn.textContent = '已复制';
           setTimeout(() => btn.textContent = '复制', 1200);
         } catch {
@@ -70,18 +77,21 @@ const related = getRelatedPosts(posts, post);
       });
       pre.appendChild(btn);
 
-      if (lang === 'plantuml') {
-        const tools = document.createElement('div');
-        tools.className = 'diagram-tools';
-        const online = document.createElement('a');
-        online.href = 'https://www.plantuml.com/plantuml/uml/';
-        online.target = '_blank';
-        online.rel = 'noopener';
-        online.textContent = 'PlantUML 在线渲染';
-        const hint = document.createElement('span');
-        hint.textContent = '复制源码后可粘贴渲染';
-        tools.append(online, hint);
-        pre.appendChild(tools);
+      if (isPlantUml) {
+        const image = plantumlImages[plantumlIndex++];
+        const details = document.createElement('details');
+        details.className = 'plantuml-source-details';
+        const summary = document.createElement('summary');
+        summary.textContent = '查看 PlantUML 源码';
+        details.append(summary);
+        pre.parentNode.insertBefore(details, pre);
+        details.append(pre);
+        if (image?.src) {
+          const box = document.createElement('figure');
+          box.className = 'plantuml-rendered';
+          box.innerHTML = `<a href="${image.src}" target="_blank" rel="noopener"><img src="${image.src}" alt="PlantUML diagram ${image.index}" loading="lazy" /></a><figcaption>PlantUML 图 ${image.index} · 点击图片可新窗口查看 SVG</figcaption>`;
+          details.insertAdjacentElement('beforebegin', box);
+        }
       }
       if (lang === 'mermaid') {
         pre.classList.add('mermaid-source');
