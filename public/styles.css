@@ -197,3 +197,23 @@ a { color: inherit; text-decoration: none; }
   .post-nav-links, .related-grid { grid-template-columns: 1fr; }
   .prose pre[data-lang="plantuml"]::after { display:none; }
 }
+/* Phase 5: copyright, comment placeholder, diagram helpers, footer real stats */
+.post-extra-card { margin: 0 0 24px; display: grid; gap: 18px; }
+.post-copyright, .comment-placeholder { background: #fff; border-radius: 12px; box-shadow: var(--shadow); padding: 22px 24px; }
+.copyright-title { font-size: 20px; font-weight: 700; color: #34495e; margin-bottom: 12px; }
+.post-copyright p { margin: 8px 0; color: #666; line-height: 1.75; }
+.post-copyright a { color: #42b983; word-break: break-all; }
+.comment-placeholder { min-height: 130px; display: grid; place-items: center; text-align: center; border: 1px dashed rgba(66,185,131,.45); background: linear-gradient(180deg,#fff,#f8fffb); }
+.comment-placeholder i { font-size: 30px; color: #42b983; margin-right: 8px; }
+.comment-placeholder strong { color: #34495e; font-size: 20px; }
+.comment-placeholder p { color: #777; margin: 10px 0 0; line-height: 1.7; }
+.diagram-tools { position: absolute; left: 12px; right: 12px; bottom: 10px; display: flex; justify-content: space-between; gap: 12px; font-size: 12px; color: rgba(255,255,255,.58); pointer-events: none; }
+.diagram-tools a { color: #86efac; pointer-events: auto; }
+.prose pre[data-lang="plantuml"] { padding-bottom: 42px; }
+.prose pre[data-lang="mermaid"] { border: 1px solid rgba(47,128,237,.45); }
+.prose pre[data-lang="mermaid"]::after { content: "Mermaid 源码，后续可接入前端自动渲染"; position: absolute; right: 68px; top: 10px; color: rgba(255,255,255,.55); font-size: 12px; }
+@media (max-width: 980px) {
+  .article-toc { max-height: 280px; }
+  .article-toc nav { max-height: 220px; overflow: auto; }
+  .footer-container .split { display: none; }
+}

@@ -1,0 +1,21 @@
+---
+import { site } from '@/lib/site';
+import { getPostUrl } from '@/lib/posts';
+const { post } = Astro.props;
+const url = getPostUrl(post);
+---
+<section class="post-extra-card">
+  <div class="post-copyright">
+    <div class="copyright-title"><i class="fas fa-copyright"></i> 文章版权</div>
+    <p><strong>作者：</strong>{site.author}</p>
+    <p><strong>链接：</strong><a href={url}>{url}</a></p>
+    <p><strong>声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank">CC BY-NC-SA 4.0</a> 协议，转载请注明出处。</p>
+  </div>
+  <div class="comment-placeholder" id="comments">
+    <div>
+      <i class="far fa-comments"></i>
+      <strong>评论区预留</strong>
+      <p>正式切换前可选择 Giscus / Gitalk / Twikoo。当前预览版暂不接入第三方脚本，避免干扰主站。</p>
+    </div>
+  </div>
+</section>

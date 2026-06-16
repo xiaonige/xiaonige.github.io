@@ -70,7 +70,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site || 'https://xiaonige.gi
             | Inspired by <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
           </p>
           <p>
-            <i class="fas fa-chart-area"></i> 站点总字数: <span class="white-color">计算中</span>
+            <i class="fas fa-chart-area"></i> 站点总字数: <span class="white-color" id="totalWords">计算中</span>
+            <span class="split">|</span>
+            <i class="fas fa-book"></i> 文章总数: <span class="white-color" id="totalPosts">计算中</span>
             <span class="split">|</span>
             <i class="far fa-eye"></i> 访问统计: <span class="white-color">预留</span>
           </p>
@@ -98,6 +100,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site || 'https://xiaonige.gi
       if (el) el.textContent = `本站已运行 ${days} 天`;
       const y = document.getElementById('year');
       if (y) y.textContent = `2023-${now.getFullYear()}`;
+
+      // Load site stats.
+      fetch('/site-data.json').then(r => r.json()).then((data) => {
+        const words = document.getElementById('totalWords');
+        const posts = document.getElementById('totalPosts');
+        if (words) words.textContent = Number(data.totalWords || 0).toLocaleString('zh-CN');
+        if (posts) posts.textContent = Number(data.posts || 0).toLocaleString('zh-CN');
+      }).catch(() => {});
 
       // Matery-like: daily/random banner background.
       const cover = document.querySelector('.matery-cover');

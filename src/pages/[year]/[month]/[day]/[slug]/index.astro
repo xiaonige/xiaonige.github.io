@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ArticleToc from '@/components/ArticleToc.astro';
 import PostNav from '@/components/PostNav.astro';
+import PostExtras from '@/components/PostExtras.astro';
 import { getPosts, formatDate, getDateParts, getWordCount, getReadingMinutes, getAdjacentPosts, getRelatedPosts } from '@/lib/posts';
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -46,7 +47,7 @@ const related = getRelatedPosts(posts, post);
     </article>
     <ArticleToc headings={headings} />
   </div>
-  <div class="container"><PostNav newer={newer} older={older} related={related} /></div>
+  <div class="container"><PostExtras post={post} /><PostNav newer={newer} older={older} related={related} /></div>
   <script is:inline>
     document.querySelectorAll('pre').forEach((pre) => {
       if (pre.querySelector('.copy-code')) return;
@@ -68,6 +69,23 @@ const related = getRelatedPosts(posts, post);
         }
       });
       pre.appendChild(btn);
+
+      if (lang === 'plantuml') {
+        const tools = document.createElement('div');
+        tools.className = 'diagram-tools';
+        const online = document.createElement('a');
+        online.href = 'https://www.plantuml.com/plantuml/uml/';
+        online.target = '_blank';
+        online.rel = 'noopener';
+        online.textContent = 'PlantUML 在线渲染';
+        const hint = document.createElement('span');
+        hint.textContent = '复制源码后可粘贴渲染';
+        tools.append(online, hint);
+        pre.appendChild(tools);
+      }
+      if (lang === 'mermaid') {
+        pre.classList.add('mermaid-source');
+      }
     });
   </script>
 </BaseLayout>
