@@ -18,24 +18,24 @@
 
     <item>
       <title>2026主流AI工具深度对比：Claude、Codex、OpenCode、OpenClaw与HermesAgent</title>
-      <link>https://xiaonige.github.io/astro-preview/2026/05/20/ai-tools-comparison/</link>
-      <guid>https://xiaonige.github.io/astro-preview/2026/05/20/ai-tools-comparison/</guid>
+      <link>https://xiaonige.github.io/astro-preview/2026/05/20/2026-05-20-ai-tools-comparison/</link>
+      <guid>https://xiaonige.github.io/astro-preview/2026/05/20/2026-05-20-ai-tools-comparison/</guid>
       <pubDate>Wed, 20 May 2026 16:00:00 GMT</pubDate>
       <description>前言 2026年，AI工具已经从&quot;尝鲜玩具&quot;变成了&quot;生产力必需品。无论是程序员、产品经理、数据分析师，甚至是内容创作者，每天的工作都离不开AI的辅助。然而，面对市场上的AI工具百花齐放，从通用大模型、编程助手、智能体平台，种类繁多，各有侧重。 很多开发者在选择时常常困惑： 这么多AI工具，到底该选哪个？ 什么场景用什么工具效率最高？ 它们各自的优缺点是什么？…</description>
     </item>
 
     <item>
       <title>OpenClaw 完全指南：打造你的个人AI智能体平台</title>
-      <link>https://xiaonige.github.io/astro-preview/2026/05/20/openclaw-tutorial/</link>
-      <guid>https://xiaonige.github.io/astro-preview/2026/05/20/openclaw-tutorial/</guid>
+      <link>https://xiaonige.github.io/astro-preview/2026/05/20/2026-05-20-openclaw-tutorial/</link>
+      <guid>https://xiaonige.github.io/astro-preview/2026/05/20/2026-05-20-openclaw-tutorial/</guid>
       <pubDate>Wed, 20 May 2026 15:30:00 GMT</pubDate>
       <description>前言 在AI Agent爆发的2026年，我们见证了无数智能体工具的诞生。从ChatGPT到Claude，从AutoGPT到各种Agent框架，AI正在从一个简单的对话机器人演变为能够执行复杂任务的智能代理。然而，大多数工具要么功能单一，要么部署复杂，要么数据隐私无法保障。 OpenClaw的出现打破了这一局面。这是一个开源的个人AI智能体平台，让你可以在自…</description>
     </item>
 
     <item>
       <title>GitHub Copilot 完全指南：从入门到精通</title>
-      <link>https://xiaonige.github.io/astro-preview/2026/05/20/github-copilot-guide/</link>
-      <guid>https://xiaonige.github.io/astro-preview/2026/05/20/github-copilot-guide/</guid>
+      <link>https://xiaonige.github.io/astro-preview/2026/05/20/2026-05-20-github-copilot-guide/</link>
+      <guid>https://xiaonige.github.io/astro-preview/2026/05/20/2026-05-20-github-copilot-guide/</guid>
       <pubDate>Wed, 20 May 2026 15:00:00 GMT</pubDate>
       <description>前言 在AI大模型爆发的2023年，编程领域最具革命性的工具莫过于GitHub Copilot。这款由GitHub与OpenAI联手打造的AI编程助手，正在悄然改变每一位开发者的工作方式。有人说它是&quot;结对编程的终极形态&quot;，有人称它为&quot;程序员的第二大脑&quot;，但更多人还在困惑：Copilot到底能做什么？我该如何用好它？ 本文将带你从零开始，系统性地掌握GitHu…</description>
     </item>
