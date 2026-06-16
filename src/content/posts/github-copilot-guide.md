@@ -1,5 +1,6 @@
 ---
 title: GitHub Copilot 完全指南：从入门到精通
+legacySlug: 2026-05-20-github-copilot-guide
 date: 2026-05-20 15:00:00
 categories:
   - 学习

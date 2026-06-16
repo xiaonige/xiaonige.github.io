@@ -15,7 +15,7 @@ export async function getDrafts() {
 }
 
 export function getSlug(post: Post) {
-  return post.id.replace(/\.mdx?$/, '');
+  return post.data.legacySlug || post.id.replace(/\.mdx?$/, '');
 }
 
 export function getDateParts(date: Date) {

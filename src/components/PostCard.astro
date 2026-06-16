@@ -2,7 +2,7 @@
 import { formatDate, getExcerpt, getPostUrl } from '@/lib/posts';
 const { post, featured = false } = Astro.props;
 const url = getPostUrl(post);
-const cover = post.data.cover || `/medias/featureimages/${(post.id.length % 24) + 1}.jpg`;
+const cover = post.data.cover || `/medias/featureimages/${post.id.length % 24}.jpg`;
 const excerpt = post.data.description || getExcerpt(post.body || '', featured ? 190 : 120);
 ---
 <div class:list={["article", "col", { featured }]} data-aos="zoom-in">

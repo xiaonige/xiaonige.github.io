@@ -5,6 +5,7 @@ import PostExtras from '@/components/PostExtras.astro';
 import { getDrafts, formatDate, getWordCount, getReadingMinutes } from '@/lib/posts';
 import plantumlManifest from '../../../../public/generated/plantuml/manifest.json';
 export async function getStaticPaths() {
+  if (process.env.INCLUDE_DRAFTS !== 'true') return [];
   const drafts = await getDrafts();
   return drafts.map((draft) => ({
     params: { slug: draft.id.replace(/\.mdx?$/, '') },
@@ -14,7 +15,7 @@ export async function getStaticPaths() {
 const { draft } = Astro.props;
 const slug = draft.id.replace(/\.mdx?$/, '');
 const { Content, headings } = await draft.render();
-const cover = draft.data.cover || `/medias/featureimages/${(draft.id.length % 24) + 1}.jpg`;
+const cover = draft.data.cover || `/medias/featureimages/${draft.id.length % 24}.jpg`;
 const wordCount = getWordCount(draft.body || '');
 const readingMinutes = getReadingMinutes(draft.body || '');
 const plantumlImages = plantumlManifest[slug] || [];

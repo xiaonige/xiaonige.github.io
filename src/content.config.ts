@@ -2,6 +2,7 @@ import { defineCollection, z } from 'astro:content';
 
 const postSchema = z.object({
   title: z.string(),
+  legacySlug: z.string().optional(),
   date: z.coerce.date(),
   updated: z.coerce.date().optional(),
   categories: z.array(z.string()).default(['学习']),

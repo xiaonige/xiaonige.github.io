@@ -7,6 +7,8 @@ const dist = path.resolve('dist');
 const target = path.join(pub, 'astro-preview');
 const msg = process.argv.slice(2).join(' ') || '更新 Astro 预览';
 
+execFileSync('npm', ['run', 'build:preview'], { stdio: 'inherit' });
+
 await fs.rm(target, { recursive: true, force: true });
 await fs.mkdir(target, { recursive: true });
 await copyDir(dist, target);
@@ -39,8 +41,16 @@ async function prefixPreview(root) {
     s = s.replace(/fetch\(['"]\/site-data\.json['"]\)/g, "fetch('/astro-preview/site-data.json')");
     s = s.replace(/href="\//g, 'href="/astro-preview/');
     s = s.replace(/src="\//g, 'src="/astro-preview/');
+    s = s.replace(/content="\//g, 'content="/astro-preview/');
     s = s.replace(/url\('\//g, "url('/astro-preview/");
+    s = s.replace(/url\("\//g, 'url("/astro-preview/');
     s = s.replace(/url\(\//g, 'url(/astro-preview/');
+    s = s.replace(/<url>\//g, '<url>/astro-preview/');
+    s = s.replace(/<link>\//g, '<link>/astro-preview/');
+    s = s.replace(/<guid>\//g, '<guid>/astro-preview/');
+    s = s.replace(/&#34;\//g, '&#34;/astro-preview/');
+    s = s.replace(/&quot;\//g, '&quot;/astro-preview/');
+    s = s.replace(/"\//g, '"/astro-preview/');
     s = s.replace(/https:\/\/xiaonige\.github\.io\//g, 'https://xiaonige.github.io/astro-preview/');
     while (s.includes('/astro-preview/astro-preview/')) s = s.replaceAll('/astro-preview/astro-preview/', '/astro-preview/');
     await fs.writeFile(file, s, 'utf8');

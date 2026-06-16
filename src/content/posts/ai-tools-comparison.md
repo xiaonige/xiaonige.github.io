@@ -1,5 +1,6 @@
 ---
 title: 2026主流AI工具深度对比：Claude、Codex、OpenCode、OpenClaw与HermesAgent
+legacySlug: 2026-05-20-ai-tools-comparison
 date: 2026-05-20 16:00:00
 categories:
   - 学习

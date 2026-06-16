@@ -1,5 +1,6 @@
 ---
 title: OpenClaw 完全指南：打造你的个人AI智能体平台
+legacySlug: 2026-05-20-openclaw-tutorial
 date: 2026-05-20 15:30:00
 categories:
   - 学习

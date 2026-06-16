@@ -59,6 +59,11 @@
       return `<a class="search-hit" href="${item.url}"><strong>${highlight(item.title, q)}</strong><span>${highlight(clean, q)}...</span></a>`;
     }).join('');
   }
+  function highlight(str, q) {
+    const safe = escapeHtml(str);
+    const escaped = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return safe.replace(new RegExp(`(${escaped})`, 'ig'), '<mark>$1</mark>');
+  }
   function escapeHtml(str) {
     return str.replace(/[&<>'"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
   }

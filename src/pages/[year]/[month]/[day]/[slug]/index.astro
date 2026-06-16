@@ -3,7 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import ArticleToc from '@/components/ArticleToc.astro';
 import PostNav from '@/components/PostNav.astro';
 import PostExtras from '@/components/PostExtras.astro';
-import { getPosts, formatDate, getDateParts, getWordCount, getReadingMinutes, getAdjacentPosts, getRelatedPosts } from '@/lib/posts';
+import { getPosts, getSlug, formatDate, getDateParts, getWordCount, getReadingMinutes, getAdjacentPosts, getRelatedPosts } from '@/lib/posts';
 export async function getStaticPaths() {
   const posts = await getPosts();
   return posts.map((post) => {
@@ -13,7 +13,7 @@ export async function getStaticPaths() {
         year,
         month,
         day,
-        slug: post.id.replace(/\.mdx?$/, '')
+        slug: getSlug(post)
       },
       props: { post, posts }
     };
@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 }
 const { post, posts } = Astro.props;
 const { Content, headings } = await post.render();
-const cover = post.data.cover || `/medias/featureimages/${(post.id.length % 24) + 1}.jpg`;
+const cover = post.data.cover || `/medias/featureimages/${post.id.length % 24}.jpg`;
 const wordCount = getWordCount(post.body || '');
 const readingMinutes = getReadingMinutes(post.body || '');
 const { newer, older } = getAdjacentPosts(posts, post);

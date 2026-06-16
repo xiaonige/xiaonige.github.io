@@ -3,7 +3,7 @@
 ## 切换前
 
 - [ ] `npm run scan` 通过。
-- [ ] `npm run build` 通过。
+- [ ] `npm run build:formal` 通过。
 - [ ] `npm run check:links` 通过。
 - [ ] `dist/sitemap.xml` 存在。
 - [ ] `dist/rss.xml` 存在。
