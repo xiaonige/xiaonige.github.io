@@ -1,0 +1,15 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getPosts, uniqueSorted } from '@/lib/posts';
+const posts = await getPosts();
+const categories = uniqueSorted(posts.flatMap((p) => p.data.categories || []));
+---
+<BaseLayout title="分类">
+  <section class="content-card">
+    <p class="eyebrow">CATEGORIES</p>
+    <h1>分类</h1>
+    <div class="tag-cloud">
+      {categories.map((category) => <a href={`/categories/${encodeURIComponent(category)}/`}>{category}</a>)}
+    </div>
+  </section>
+</BaseLayout>

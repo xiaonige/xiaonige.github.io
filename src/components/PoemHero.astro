@@ -1,0 +1,21 @@
+---
+import { site } from '@/lib/site';
+const { postsCount = 0 } = Astro.props;
+---
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">XIAONIGE · ASTRO BLOG</p>
+    <h1>把复杂问题写清楚，把长期热爱留下来。</h1>
+    <p class="hero-subtitle">一个更轻、更快、更安全的 GitHub Pages 博客发布器试点。</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#latest-posts">看最新文章</a>
+      <a class="btn ghost" href="/archives/">浏览归档</a>
+    </div>
+  </div>
+  <aside class="poem-card">
+    <span>今日诗词</span>
+    <blockquote>“{site.poem.text}”</blockquote>
+    <cite>—— {site.poem.from}</cite>
+    <small>已迁移文章 {postsCount} 篇 · 音乐模块预留</small>
+  </aside>
+</section>

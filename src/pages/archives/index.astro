@@ -1,0 +1,14 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getPosts, getPostUrl, formatDate } from '@/lib/posts';
+const posts = await getPosts();
+---
+<BaseLayout title="归档">
+  <section class="content-card">
+    <p class="eyebrow">ARCHIVES</p>
+    <h1>文章归档</h1>
+    <div class="list">
+      {posts.map((post) => <a href={getPostUrl(post)}><strong>{post.data.title}</strong><span>{formatDate(post.data.date)}</span></a>)}
+    </div>
+  </section>
+</BaseLayout>

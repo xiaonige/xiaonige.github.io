@@ -1,0 +1,20 @@
+---
+import { formatDate, getExcerpt, getPostUrl } from '@/lib/posts';
+const { post, featured = false } = Astro.props;
+const url = getPostUrl(post);
+const cover = post.data.cover || `/medias/featureimages/${(post.id.length % 24) + 1}.jpg`;
+const excerpt = post.data.description || getExcerpt(post.body || '', featured ? 180 : 110);
+---
+<article class:list={["post-card", { featured }]}>
+  <a class="post-cover" href={url} style={`background-image:url('${cover}')`} aria-label={post.data.title}>
+    <span>{post.data.categories?.[0] || '文章'}</span>
+  </a>
+  <div class="post-card-body">
+    <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+    <h2><a href={url}>{post.data.title}</a></h2>
+    <p>{excerpt}</p>
+    <div class="chips">
+      {post.data.tags?.slice(0, 5).map((tag) => <a href={`/tags/${encodeURIComponent(tag)}/`}>#{tag}</a>)}
+    </div>
+  </div>
+</article>

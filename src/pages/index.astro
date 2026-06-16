@@ -1,0 +1,22 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PoemHero from '@/components/PoemHero.astro';
+import PostCard from '@/components/PostCard.astro';
+import { getPosts } from '@/lib/posts';
+const posts = await getPosts();
+---
+<BaseLayout>
+  <PoemHero postsCount={posts.length} />
+  <section id="latest-posts">
+    <div class="section-head">
+      <div>
+        <h2>最新文章</h2>
+        <p>卡片式首页，先保留核心阅读体验；音乐模块稍后再补。</p>
+      </div>
+      <a class="btn ghost" href="/archives/">全部归档</a>
+    </div>
+    <div class="post-grid">
+      {posts.map((post, index) => <PostCard post={post} featured={index === 0} />)}
+    </div>
+  </section>
+</BaseLayout>

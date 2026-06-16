@@ -1,0 +1,35 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getPosts, formatDate, getDateParts } from '@/lib/posts';
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => {
+    const { year, month, day } = getDateParts(post.data.date);
+    return {
+      params: {
+        year,
+        month,
+        day,
+        slug: post.id.replace(/\.mdx?$/, '')
+      },
+      props: { post }
+    };
+  });
+}
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+<BaseLayout title={post.data.title} description={post.data.description}>
+  <article class="content-card prose">
+    <p class="eyebrow">ARTICLE</p>
+    <h1>{post.data.title}</h1>
+    <div class="meta-line">
+      <span>{formatDate(post.data.date)}</span>
+      <span>·</span>
+      <span>{post.data.categories?.join(' / ')}</span>
+      <span>·</span>
+      <span>{post.data.tags?.join('，')}</span>
+    </div>
+    <Content />
+  </article>
+</BaseLayout>
