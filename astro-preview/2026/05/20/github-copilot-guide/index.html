@@ -352,7 +352,7 @@ Copyright © <span id="year">2023-2026</span> <a href="/astro-preview/about/">�
     }
     result.innerHTML = hits.map((item) => {
       const clean = item.content.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim().slice(0, 150);
-      return `<a class="search-hit" href="${item.url}"><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(clean)}...</span></a>`;
+      return `<a class="search-hit" href="${item.url}"><strong>${highlight(item.title, q)}</strong><span>${highlight(clean, q)}...</span></a>`;
     }).join('');
   }
   function escapeHtml(str) {
@@ -374,4 +374,33 @@ Copyright © <span id="year">2023-2026</span> <a href="/astro-preview/about/">�
       if (el) el.textContent = `本站已运行 ${days} 天`;
       const y = document.getElementById('year');
       if (y) y.textContent = `2023-${now.getFullYear()}`;
+
+      // Matery-like: daily/random banner background.
+      const cover = document.querySelector('.matery-cover');
+      if (cover) {
+        const idx = now.getDay();
+        cover.style.backgroundImage = `url('/astro-preview/medias/banner/${idx}.jpg'), linear-gradient(135deg,#20c997,#2f80ed,#9b51e0)`;
+      }
+
+      // Nav becomes denser after scrolling.
+      const nav = document.getElementById('headNav');
+      const onScroll = () => nav?.classList.toggle('nav-scrolled', window.scrollY > 30);
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      // TOC active state.
+      const tocLinks = Array.from(document.querySelectorAll('.article-toc a'));
+      const headings = tocLinks.map((a) => document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1)))).filter(Boolean);
+      const updateToc = () => {
+        let active = headings[0];
+        for (const h of headings) {
+          if (h.getBoundingClientRect().top < 130) active = h;
+          else break;
+        }
+        tocLinks.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === `#${active?.id}`));
+      };
+      if (tocLinks.length) {
+        updateToc();
+        window.addEventListener('scroll', updateToc, { passive: true });
+      }
     </script> </body> </html>
