@@ -1,8 +1,8 @@
 ---
 import { site } from '@/lib/site';
 import { getPostUrl } from '@/lib/posts';
-const { post } = Astro.props;
-const url = getPostUrl(post);
+const { post, url: urlOverride } = Astro.props;
+const url = urlOverride || getPostUrl(post);
 ---
 <section class="post-extra-card">
   <div class="post-copyright">

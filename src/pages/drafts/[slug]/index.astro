@@ -44,7 +44,7 @@ const plantumlImages = plantumlManifest[slug] || [];
     </article>
     <ArticleToc headings={headings} />
   </div>
-  <div class="container"><PostExtras post={draft} /></div>
+  <div class="container"><PostExtras post={draft} url={`/drafts/${slug}/`} /></div>
   <script is:inline>
     const article = document.querySelector('.draft-content');
     const plantumlImages = JSON.parse(article?.dataset.plantumlImages || '[]');
