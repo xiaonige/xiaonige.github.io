@@ -10,9 +10,14 @@ export async function getStaticPaths() {
 const { category, posts } = Astro.props;
 ---
 <BaseLayout title={`分类：${category}`}>
-  <section class="content-card">
-    <p class="eyebrow">CATEGORY</p>
-    <h1>{category}</h1>
-    <div class="post-grid">{posts.map((post) => <PostCard post={post} />)}</div>
+  <section class="page-hero small-hero category-hero">
+    <div class="cover-overlay"></div>
+    <div class="page-hero-content">
+      <h1>{category}</h1>
+      <p>共 {posts.length} 篇文章</p>
+    </div>
+  </section>
+  <section class="container articles list-page-articles">
+    <div class="row article-row">{posts.map((post) => <PostCard post={post} />)}</div>
   </section>
 </BaseLayout>

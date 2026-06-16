@@ -5,11 +5,17 @@ const posts = await getPosts();
 const categories = uniqueSorted(posts.flatMap((p) => p.data.categories || []));
 ---
 <BaseLayout title="分类">
-  <section class="content-card">
-    <p class="eyebrow">CATEGORIES</p>
-    <h1>分类</h1>
-    <div class="tag-cloud">
-      {categories.map((category) => <a href={`/categories/${encodeURIComponent(category)}/`}>{category}</a>)}
+  <section class="page-hero small-hero category-hero">
+    <div class="cover-overlay"></div>
+    <div class="page-hero-content">
+      <h1>分类</h1>
+      <p>把内容放进合适的抽屉。</p>
+    </div>
+  </section>
+  <section class="content-card list-card">
+    <p class="eyebrow"><i class="fas fa-list"></i> CATEGORIES</p>
+    <div class="category-grid">
+      {categories.map((category) => <a class="category-box" href={`/categories/${encodeURIComponent(category)}/`}><i class="fas fa-book"></i><strong>{category}</strong><span>{posts.filter((p) => p.data.categories?.includes(category)).length} 篇文章</span></a>)}
     </div>
   </section>
 </BaseLayout>

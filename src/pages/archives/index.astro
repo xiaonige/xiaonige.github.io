@@ -1,14 +1,29 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { getPosts, getPostUrl, formatDate } from '@/lib/posts';
+import PostList from '@/components/PostList.astro';
+import { getPosts } from '@/lib/posts';
 const posts = await getPosts();
+const byYear = posts.reduce((acc, post) => {
+  const year = String(post.data.date.getUTCFullYear());
+  (acc[year] ||= []).push(post);
+  return acc;
+}, {});
 ---
 <BaseLayout title="归档">
-  <section class="content-card">
-    <p class="eyebrow">ARCHIVES</p>
-    <h1>文章归档</h1>
-    <div class="list">
-      {posts.map((post) => <a href={getPostUrl(post)}><strong>{post.data.title}</strong><span>{formatDate(post.data.date)}</span></a>)}
+  <section class="page-hero small-hero archive-hero">
+    <div class="cover-overlay"></div>
+    <div class="page-hero-content">
+      <h1>文章归档</h1>
+      <p>把时间线摊开，看看一路写下了什么。</p>
     </div>
+  </section>
+  <section class="content-card list-card">
+    <p class="eyebrow"><i class="fas fa-archive"></i> ARCHIVES</p>
+    {Object.entries(byYear).map(([year, items]) => (
+      <section class="year-section">
+        <h2>{year}</h2>
+        <PostList posts={items} />
+      </section>
+    ))}
   </section>
 </BaseLayout>

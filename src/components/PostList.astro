@@ -1,0 +1,13 @@
+---
+import { formatDate, getPostUrl } from '@/lib/posts';
+const { posts = [] } = Astro.props;
+---
+<div class="timeline-list">
+  {posts.map((post) => (
+    <a class="timeline-item" href={getPostUrl(post)}>
+      <span class="timeline-date"><i class="far fa-calendar-alt"></i>{formatDate(post.data.date)}</span>
+      <strong>{post.data.title}</strong>
+      <em>{post.data.categories?.join(' / ')}</em>
+    </a>
+  ))}
+</div>
