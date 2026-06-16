@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ArticleToc from '@/components/ArticleToc.astro';
-import { getPosts, formatDate, getDateParts } from '@/lib/posts';
+import PostNav from '@/components/PostNav.astro';
+import { getPosts, formatDate, getDateParts, getWordCount, getReadingMinutes, getAdjacentPosts, getRelatedPosts } from '@/lib/posts';
 export async function getStaticPaths() {
   const posts = await getPosts();
   return posts.map((post) => {
@@ -13,15 +14,19 @@ export async function getStaticPaths() {
         day,
         slug: post.id.replace(/\.mdx?$/, '')
       },
-      props: { post }
+      props: { post, posts }
     };
   });
 }
-const { post } = Astro.props;
+const { post, posts } = Astro.props;
 const { Content, headings } = await post.render();
 const cover = post.data.cover || `/medias/featureimages/${(post.id.length % 24) + 1}.jpg`;
+const wordCount = getWordCount(post.body || '');
+const readingMinutes = getReadingMinutes(post.body || '');
+const { newer, older } = getAdjacentPosts(posts, post);
+const related = getRelatedPosts(posts, post);
 ---
-<BaseLayout title={post.data.title} description={post.data.description}>
+<BaseLayout title={post.data.title} description={post.data.description} image={cover}>
   <section class="page-hero article-hero" style={`background-image:url('${cover}')`}>
     <div class="cover-overlay"></div>
     <div class="page-hero-content container">
@@ -30,6 +35,8 @@ const cover = post.data.cover || `/medias/featureimages/${(post.id.length % 24) 
         <span><i class="far fa-clock"></i> {formatDate(post.data.date)}</span>
         <span><i class="fas fa-bookmark"></i> {post.data.categories?.join(' / ')}</span>
         <span><i class="fas fa-tags"></i> {post.data.tags?.join('，')}</span>
+        <span><i class="fas fa-font"></i> {wordCount.toLocaleString('zh-CN')} 字</span>
+        <span><i class="far fa-hourglass-half"></i> 约 {readingMinutes} 分钟</span>
       </div>
     </div>
   </section>
@@ -39,15 +46,19 @@ const cover = post.data.cover || `/medias/featureimages/${(post.id.length % 24) 
     </article>
     <ArticleToc headings={headings} />
   </div>
+  <div class="container"><PostNav newer={newer} older={older} related={related} /></div>
   <script is:inline>
     document.querySelectorAll('pre').forEach((pre) => {
       if (pre.querySelector('.copy-code')) return;
+      const code = pre.querySelector('code');
+      const lang = Array.from(code?.classList || []).find((c) => c.startsWith('language-'))?.replace('language-', '') || 'code';
+      pre.setAttribute('data-lang', lang);
       const btn = document.createElement('button');
       btn.className = 'copy-code';
       btn.type = 'button';
       btn.textContent = '复制';
       btn.addEventListener('click', async () => {
-        const text = pre.innerText.replace(/^复制\n?/, '');
+        const text = code?.innerText || pre.innerText.replace(/^复制\n?/, '');
         try {
           await navigator.clipboard.writeText(text);
           btn.textContent = '已复制';

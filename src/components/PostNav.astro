@@ -1,0 +1,19 @@
+---
+import PostCard from '@/components/PostCard.astro';
+import { getPostUrl } from '@/lib/posts';
+const { newer, older, related = [] } = Astro.props;
+---
+<section class="post-nav-card">
+  <div class="post-nav-links">
+    {older ? <a class="post-nav-link prev" href={getPostUrl(older)}><span>上一篇</span><strong>{older.data.title}</strong></a> : <span class="post-nav-link disabled"><span>上一篇</span><strong>没有更早文章了</strong></span>}
+    {newer ? <a class="post-nav-link next" href={getPostUrl(newer)}><span>下一篇</span><strong>{newer.data.title}</strong></a> : <span class="post-nav-link disabled"><span>下一篇</span><strong>已经是最新文章</strong></span>}
+  </div>
+  {related.length > 0 && (
+    <div class="related-posts">
+      <h2><i class="fas fa-link"></i> 相关文章</h2>
+      <div class="related-grid">
+        {related.map((post) => <PostCard post={post} />)}
+      </div>
+    </div>
+  )}
+</section>
