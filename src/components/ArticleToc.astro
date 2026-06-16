@@ -1,0 +1,12 @@
+---
+const { headings = [] } = Astro.props;
+const visible = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
+---
+{visible.length > 0 && (
+  <aside class="article-toc">
+    <div class="toc-title"><i class="fas fa-list-ul"></i> 文章目录</div>
+    <nav>
+      {visible.map((h) => <a class={`depth-${h.depth}`} href={`#${h.slug}`}>{h.text}</a>)}
+    </nav>
+  </aside>
+)}

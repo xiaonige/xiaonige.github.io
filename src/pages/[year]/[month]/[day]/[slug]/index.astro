@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import ArticleToc from '@/components/ArticleToc.astro';
 import { getPosts, formatDate, getDateParts } from '@/lib/posts';
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -17,19 +18,45 @@ export async function getStaticPaths() {
   });
 }
 const { post } = Astro.props;
-const { Content } = await post.render();
+const { Content, headings } = await post.render();
+const cover = post.data.cover || `/medias/featureimages/${(post.id.length % 24) + 1}.jpg`;
 ---
 <BaseLayout title={post.data.title} description={post.data.description}>
-  <article class="content-card prose">
-    <p class="eyebrow">ARTICLE</p>
-    <h1>{post.data.title}</h1>
-    <div class="meta-line">
-      <span>{formatDate(post.data.date)}</span>
-      <span>·</span>
-      <span>{post.data.categories?.join(' / ')}</span>
-      <span>·</span>
-      <span>{post.data.tags?.join('，')}</span>
+  <section class="page-hero article-hero" style={`background-image:url('${cover}')`}>
+    <div class="cover-overlay"></div>
+    <div class="page-hero-content container">
+      <h1>{post.data.title}</h1>
+      <div class="meta-line hero-meta">
+        <span><i class="far fa-clock"></i> {formatDate(post.data.date)}</span>
+        <span><i class="fas fa-bookmark"></i> {post.data.categories?.join(' / ')}</span>
+        <span><i class="fas fa-tags"></i> {post.data.tags?.join('，')}</span>
+      </div>
     </div>
-    <Content />
-  </article>
+  </section>
+  <div class="article-layout container">
+    <article class="content-card prose article-content-page">
+      <Content />
+    </article>
+    <ArticleToc headings={headings} />
+  </div>
+  <script is:inline>
+    document.querySelectorAll('pre').forEach((pre) => {
+      if (pre.querySelector('.copy-code')) return;
+      const btn = document.createElement('button');
+      btn.className = 'copy-code';
+      btn.type = 'button';
+      btn.textContent = '复制';
+      btn.addEventListener('click', async () => {
+        const text = pre.innerText.replace(/^复制\n?/, '');
+        try {
+          await navigator.clipboard.writeText(text);
+          btn.textContent = '已复制';
+          setTimeout(() => btn.textContent = '复制', 1200);
+        } catch {
+          btn.textContent = '失败';
+        }
+      });
+      pre.appendChild(btn);
+    });
+  </script>
 </BaseLayout>

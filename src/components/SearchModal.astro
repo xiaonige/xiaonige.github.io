@@ -1,0 +1,73 @@
+<div class="search-modal" id="searchModal" aria-hidden="true">
+  <div class="search-backdrop" data-close-search></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-labelledby="searchTitle">
+    <div class="search-header">
+      <span class="title" id="searchTitle"><i class="fas fa-search"></i> 搜索</span>
+      <button class="search-close" type="button" data-close-search aria-label="关闭搜索"><i class="fas fa-times"></i></button>
+      <input class="search-input" id="searchInput" placeholder="请输入搜索关键字，例如 Astro、AI、Copilot" type="search" autocomplete="off" />
+    </div>
+    <div id="searchResult" class="search-result">
+      <p class="search-empty">输入关键词，开始搜索文章标题与摘要。</p>
+    </div>
+  </div>
+</div>
+<script is:inline>
+(() => {
+  const modal = document.getElementById('searchModal');
+  const input = document.getElementById('searchInput');
+  const result = document.getElementById('searchResult');
+  let entries = [];
+  let loaded = false;
+  const open = async () => {
+    modal?.classList.add('active');
+    modal?.setAttribute('aria-hidden', 'false');
+    setTimeout(() => input?.focus(), 80);
+    if (!loaded) await loadSearch();
+  };
+  const close = () => {
+    modal?.classList.remove('active');
+    modal?.setAttribute('aria-hidden', 'true');
+  };
+  async function loadSearch() {
+    loaded = true;
+    try {
+      const res = await fetch('/search.xml');
+      const text = await res.text();
+      const xml = new DOMParser().parseFromString(text, 'text/xml');
+      entries = Array.from(xml.querySelectorAll('entry')).map((entry) => ({
+        title: entry.querySelector('title')?.textContent || '',
+        url: entry.querySelector('url')?.textContent || entry.querySelector('link')?.getAttribute('href') || '#',
+        content: entry.querySelector('content')?.textContent || ''
+      }));
+    } catch (e) {
+      result.innerHTML = '<p class="search-empty">搜索索引加载失败，稍后再试。</p>';
+    }
+  }
+  function render(keyword) {
+    const q = keyword.trim().toLowerCase();
+    if (!q) {
+      result.innerHTML = '<p class="search-empty">输入关键词，开始搜索文章标题与摘要。</p>';
+      return;
+    }
+    const hits = entries.filter((item) => `${item.title} ${item.content}`.toLowerCase().includes(q)).slice(0, 12);
+    if (!hits.length) {
+      result.innerHTML = '<p class="search-empty">没找到匹配内容，换个关键词试试。</p>';
+      return;
+    }
+    result.innerHTML = hits.map((item) => {
+      const clean = item.content.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim().slice(0, 150);
+      return `<a class="search-hit" href="${item.url}"><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(clean)}...</span></a>`;
+    }).join('');
+  }
+  function escapeHtml(str) {
+    return str.replace(/[&<>'"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+  }
+  document.querySelectorAll('[data-open-search]').forEach((el) => el.addEventListener('click', (e) => { e.preventDefault(); open(); }));
+  document.querySelectorAll('[data-close-search]').forEach((el) => el.addEventListener('click', close));
+  input?.addEventListener('input', () => render(input.value));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') close();
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); open(); }
+  });
+})();
+</script>

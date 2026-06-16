@@ -1,0 +1,31 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/lib/site';
+---
+<BaseLayout title="关于">
+  <section class="page-hero small-hero">
+    <div class="cover-overlay"></div>
+    <div class="page-hero-content">
+      <h1>关于这个博客</h1>
+      <p>记录技术、工具、思考和成长。先把事情写清楚，再把时间交给长期主义。</p>
+    </div>
+  </section>
+  <section class="content-card prose about-card">
+    <div class="profile-box">
+      <img src="/medias/avatar.jpg" alt="avatar" />
+      <div>
+        <h2>{site.author}</h2>
+        <p>{site.description}</p>
+      </div>
+    </div>
+    <h2>正在迁移到 Astro</h2>
+    <p>这个页面属于 Astro 预览版。目标是保留 Matery 的完整站点体验，同时把发布流程升级为更现代、更可检查、更安全的静态生成方式。</p>
+    <h2>当前保留能力</h2>
+    <ul>
+      <li>首页封面、诗词、文章卡片、推荐文章。</li>
+      <li>标签、分类、归档、搜索索引、RSS。</li>
+      <li>构建前敏感词扫描。</li>
+      <li>音乐模块预留，后续再接入。</li>
+    </ul>
+  </section>
+</BaseLayout>

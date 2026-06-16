@@ -1,5 +1,6 @@
 ---
 import { site } from '@/lib/site';
+import SearchModal from '@/components/SearchModal.astro';
 const { title = site.title, description = site.description } = Astro.props;
 const fullTitle = title === site.title ? title : `${title} - ${site.title}`;
 ---
@@ -27,9 +28,17 @@ const fullTitle = title === site.title ? title : `${title} - ${site.title}`;
           <ul class="right nav-menu">
             {site.nav.map((item) => (
               <li class="nav-item">
-                <a class:list={["waves", { disabled: item.disabled }]} href={item.disabled ? '#' : item.href}>
+                <a class:list={["waves", { disabled: item.disabled }]} href={item.disabled ? '#' : item.href} data-open-search={item.label === '搜索' ? true : undefined}>
                   <i class={item.icon}></i><span>{item.label}</span>
                 </a>
+                {item.label === '分类' && (
+                  <ul class="sub-nav">
+                    <li><a href="/categories/学习/"><i class="fas fa-book"></i><span>学习</span></a></li>
+                    <li><a href="#" class="disabled"><i class="fas fa-briefcase"></i><span>工作</span></a></li>
+                    <li><a href="#" class="disabled"><i class="fas fa-image"></i><span>图片</span></a></li>
+                    <li><a href="#" class="disabled"><i class="fas fa-music"></i><span>音乐</span></a></li>
+                  </ul>
+                )}
               </li>
             ))}
           </ul>
@@ -71,6 +80,7 @@ const fullTitle = title === site.title ? title : `${title} - ${site.title}`;
         </div>
       </div>
     </footer>
+    <SearchModal />
     <button class="scroll-top" aria-label="回到顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
     <script is:inline>
       const start = new Date('2023-12-25T00:00:00+08:00');

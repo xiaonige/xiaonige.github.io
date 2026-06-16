@@ -19,7 +19,7 @@ export const site = {
     { href: '/tags/', label: '标签', icon: 'fas fa-tags' },
     { href: '/categories/', label: '分类', icon: 'fas fa-list' },
     { href: '/archives/', label: '归档', icon: 'fas fa-archive' },
-    { href: '/about/', label: '关于', icon: 'fas fa-user-circle', disabled: true },
+    { href: '/about/', label: '关于', icon: 'fas fa-user-circle' },
     { href: '#search', label: '搜索', icon: 'fas fa-search' }
   ]
 };
