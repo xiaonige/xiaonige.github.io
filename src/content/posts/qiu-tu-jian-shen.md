@@ -14,30 +14,6 @@ legacySlug: qiu-tu-jian-shen
 ---
 
 <p><img src="/2023/12/27/qiu-tu-jian-shen/qtjs.png" alt="qtjs"></p>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
-<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
-<li>第一部分 <a href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-%E9%A2%84%E5%A4%87">预备</a><ul>
-<li><a href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%8A%9B%E9%87%8F%E4%B9%8B%E6%97%85%E5%90%AF%E7%A8%8B">第一章 力量之旅：启程</a> </li>
-<li><a href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%A4%B1%E4%BC%A0%E7%9A%84%E6%8A%80%E8%89%BA%E8%80%81%E6%B4%BE%E4%BD%93%E6%93%8D">第二章 失传的技艺：老派体操</a> </li>
-<li><a href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%87%AA%E8%BA%AB%E4%BD%93%E9%87%8D%E9%94%BB%E7%82%BC%E4%B8%8E%E7%8E%B0%E4%BB%A3%E5%81%A5%E8%BA%AB%E6%96%B9%E6%B3%95">第三章 自身体重锻炼与现代健身方法</a> </li>
-<li><a href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%85%B3%E4%BA%8E%E6%9C%AC%E4%B9%A6">第四章 关于本书</a></li>
-</ul>
-</li>
-<li>第二部分 <a href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86-%E5%85%AD%E8%89%BA">六艺</a><ul>
-<li><a href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E9%93%A0%E7%94%B2%E8%88%AC%E7%9A%84%E8%83%B8%E8%82%8C%E4%B8%8E%E9%92%A2%E9%93%81%E8%88%AC%E7%9A%84%E8%82%B1%E4%B8%89%E5%A4%B4%E8%82%8C">第五章 铠甲般的胸肌与钢铁般的肱三头肌</a> </li>
-<li><a href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%8D%87%E9%99%8D%E6%9C%BA%E8%88%AC%E7%9A%84%E5%A4%A7%E8%85%BF">第六章 升降机般的大腿</a> </li>
-<li><a href="#%E7%AC%AC%E4%B8%83%E7%AB%A0-%E4%BB%93%E9%97%A8%E8%88%AC%E7%9A%84%E8%83%8C%E9%83%A8%E4%B8%8E%E5%A4%A7%E7%82%AE%E8%88%AC%E7%9A%84%E8%82%B1%E4%BA%8C%E5%A4%B4%E8%82%8C">第七章 仓门般的背部与大炮般的肱二头肌</a> </li>
-<li><a href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E9%AD%94%E9%AC%BC%E5%85%AD%E5%9D%97%E4%B8%BE%E8%85%BF">第八章 魔鬼六块：举腿</a> </li>
-<li><a href="#%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E4%B8%A5%E9%98%B5%E4%BB%A5%E5%BE%85%E7%9A%84%E8%84%8A%E6%9F%B1%E6%A1%A5">第九章 严阵以待的脊柱：桥</a> </li>
-<li><a href="#%E7%AC%AC%E5%8D%81%E7%AB%A0-%E5%81%A5%E5%BA%B7%E5%BC%BA%E5%8A%9B%E7%9A%84%E8%82%A9%E8%86%80%E5%80%92%E7%AB%8B%E6%92%91">第十章 健康、强力的肩膀：倒立撑</a></li>
-</ul>
-</li>
-<li>第三部分 <a href="#%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86-%E8%87%AA%E6%88%91%E6%8C%87%E5%AF%BC">自我指导</a><ul>
-<li><a href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E9%87%91%E7%A7%91%E7%8E%89%E5%BE%8B%E8%BA%AB%E4%BD%93%E7%9A%84%E6%99%BA%E6%85%A7">第十一章 金科玉律：身体的智慧</a> </li>
-<li><a href="#%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0-%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E6%97%A5%E7%A8%8B">第十二章 训练计划：日程</a></li>
-</ul>
-</li>
-</ul>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​	1969年的一天，两位和尚正在发表关于冥想和开悟的演讲，而一位年轻气盛的剑桥大学本科生则静静地坐在那里。</p>
 <p>​	两位和尚看上去平静而安适，他们的眼睛周围长满了代表幽默的皱纹，好像他们的内心正享受着永恒的快乐，对他们来说无物不美，别无所求。他们的话冲击着那个年轻人的心（基本已荒芜），此时，焦躁不安的情绪充斥着他的大脑。</p>
 <p>​	其中一位和尚谈到冥想能带来的精神自由时，打了个比方：“你被绑着关在囚室中，但此时你仍然享有精神自由，谁也无法将其夺走。”</p>

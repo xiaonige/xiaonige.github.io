@@ -4,6 +4,7 @@ import ArticleToc from '@/components/ArticleToc.astro';
 import PostNav from '@/components/PostNav.astro';
 import PostExtras from '@/components/PostExtras.astro';
 import { getPosts, getSlug, formatDate, getDateParts, getWordCount, getReadingMinutes, getAdjacentPosts, getRelatedPosts } from '@/lib/posts';
+import { slug as githubSlug } from 'github-slugger';
 import plantumlManifest from '../../../../../../public/generated/plantuml/manifest.json';
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -29,6 +30,35 @@ const wordCount = getWordCount(post.body || '');
 const readingMinutes = getReadingMinutes(post.body || '');
 const { newer, older } = getAdjacentPosts(posts, post);
 const related = getRelatedPosts(posts, post);
+const tocHeadings = mergeHeadings(headings, post.body || '');
+
+function stripHtml(value) {
+  return value
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .trim();
+}
+
+function mergeHeadings(markdownHeadings, body) {
+  const map = new Map((markdownHeadings || [])
+    .filter((h) => h.depth >= 2 && h.depth <= 3)
+    .map((h) => [h.slug, h]));
+  const rawHtmlHeadings = Array.from(body.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi))
+    .map((match) => {
+      const text = stripHtml(match[3]);
+      const id = match[2] || githubSlug(text);
+      return { depth: Number(match[1]), slug: id, text };
+    })
+    .filter((h) => h.text && h.slug && h.text !== '目录');
+  for (const h of rawHtmlHeadings) {
+    if (!map.has(h.slug)) map.set(h.slug, h);
+  }
+  return Array.from(map.values());
+}
 ---
 <BaseLayout title={post.data.title} description={post.data.description} image={cover}>
   <section class="page-hero article-hero" style={`background-image:url('${cover}')`}>
@@ -48,7 +78,7 @@ const related = getRelatedPosts(posts, post);
     <article class="content-card prose article-content-page" data-plantuml-images={JSON.stringify(plantumlImages)}>
       <Content />
     </article>
-    <ArticleToc headings={headings} />
+    <ArticleToc headings={tocHeadings} />
   </div>
   <div class="container"><PostExtras post={post} /><PostNav newer={newer} older={older} related={related} /></div>
   <script is:inline>
