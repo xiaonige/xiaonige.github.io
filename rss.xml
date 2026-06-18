@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"><channel><title>海阔天空</title><description>一个关注 AI、开发效率、工程实践和个人成长的技术博客。</description><link>https://xiaonige.github.io</link>
     <item>
+      <title>Resume Copilot：一个用 Spring AI 打造的开源 AI 简历优化工作台</title>
+      <link>https://xiaonige.github.io/2026/06/18/resume-copilot-open-source-recommendation/</link>
+      <guid>https://xiaonige.github.io/2026/06/18/resume-copilot-open-source-recommendation/</guid>
+      <pubDate>Thu, 18 Jun 2026 16:46:00 GMT</pubDate>
+      <description>前言 如果你最近正在找工作，或者正在学习如何把大模型能力真正落到业务系统里，那我想推荐一个很适合上手研究的开源项目：Resume Copilot。 项目地址： 它不是一个“套壳聊天页”，而是一个围绕真实求职流程设计的 AI 简历优化工作台：从零生成简历、润色已有简历、分析岗位 JD 匹配度、保存不同版本、导出 Markdown / DOCX，再到模拟面试练习…</description>
+    </item>
+
+    <item>
       <title>Java 设计模式详解：21 种经典模式的结构、场景与代码示例</title>
       <link>https://xiaonige.github.io/2026/06/16/design-patterns/</link>
       <guid>https://xiaonige.github.io/2026/06/16/design-patterns/</guid>

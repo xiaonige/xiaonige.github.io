@@ -2,6 +2,13 @@
 <search>
 
     <entry>
+      <title>Resume Copilot：一个用 Spring AI 打造的开源 AI 简历优化工作台</title>
+      <link href="/2026/06/18/resume-copilot-open-source-recommendation/"/>
+      <url>/2026/06/18/resume-copilot-open-source-recommendation/</url>
+      <content type="html"><![CDATA[前言 如果你最近正在找工作，或者正在学习如何把大模型能力真正落到业务系统里，那我想推荐一个很适合上手研究的开源项目：Resume Copilot。 项目地址： 它不是一个“套壳聊天页”，而是一个围绕真实求职流程设计的 AI 简历优化工作台：从零生成简历、润色已有简历、分析岗位 JD 匹配度、保存不同版本、导出 Markdown / DOCX，再到模拟面试练习，基本覆盖了求职者从“我该怎么写”到“我该怎么答”的完整链路。 更重要的是，这个项目的底线非常清晰：优化表达，不编造经历。这句话看起来朴素，但对于 AI 简历工具来说，简直就是安全带。毕竟简历可以润色，人生不能 Ctrl+C / Ctrl+V。 一、Resume Copilot 是什么 Resume Copilot 是一个基于 Spring Boot 4.1.0 + Spring AI 2.0.0 构建的开源 AI 简历优化项目，技术栈以 Java 21 为核心，搭配 WebFlux、Spring Data JDBC、H2、Apache Tika、Apache POI，以及原生 HTML / CSS / JavaScript 前端。…]]></content>
+    </entry>
+
+    <entry>
       <title>Java 设计模式详解：21 种经典模式的结构、场景与代码示例</title>
       <link href="/2026/06/16/design-patterns/"/>
       <url>/2026/06/16/design-patterns/</url>
