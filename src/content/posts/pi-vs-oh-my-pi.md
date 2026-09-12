@@ -13,7 +13,7 @@ description: "Pi 与 oh-my-pi（omp）是什么关系？从定位、安装、模
 cover: /medias/featureimages/14.jpg
 wide: true
 ---
-<div id="piomp-root">
+<div id="piomp-root" class="html-embed-root">
 <style>
 #piomp-root{
   --bg: #0c0e13;

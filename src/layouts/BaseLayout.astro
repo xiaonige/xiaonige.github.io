@@ -20,6 +20,24 @@ const canonical = new URL(Astro.url.pathname, Astro.site || 'https://xiaonige.gi
     <meta name="twitter:card" content="summary_large_image" />
     <title>{fullTitle}</title>
     <link rel="icon" href="/favicon.png" />
+    <script is:inline>
+      // Resolve theme before first paint to avoid a flash. Priority: ?theme= > localStorage > auto (19:00-07:00 dark).
+      (function () {
+        try {
+          var q = new URLSearchParams(location.search).get('theme');
+          var t;
+          if (q === 'dark' || q === 'light') { t = q; try { localStorage.setItem('theme', t); } catch (e) {} }
+          else { t = localStorage.getItem('theme'); }
+          if (t !== 'dark' && t !== 'light') {
+            var h = new Date().getHours();
+            t = (h >= 19 || h < 7) ? 'dark' : 'light';
+          }
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" />
     <link rel="stylesheet" href="/styles.css" />
   </head>
@@ -51,6 +69,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site || 'https://xiaonige.gi
               </li>
             ))}
           </ul>
+          <button class="theme-toggle" id="themeToggle" type="button" title="深色/浅色模式" aria-label="切换深色或浅色模式">
+            <i class="fas fa-moon"></i>
+          </button>
         </div>
       </nav>
     </header>
@@ -148,6 +169,24 @@ const canonical = new URL(Astro.url.pathname, Astro.site || 'https://xiaonige.gi
         updateToc();
         window.addEventListener('scroll', updateToc, { passive: true });
       }
+
+      // Light/dark theme toggle.
+      const rootEl = document.documentElement;
+      const toggleBtn = document.getElementById('themeToggle');
+      const syncToggleIcon = () => {
+        const icon = toggleBtn?.querySelector('i');
+        if (!icon) return;
+        const dark = rootEl.getAttribute('data-theme') === 'dark';
+        icon.classList.toggle('fa-moon', !dark);
+        icon.classList.toggle('fa-sun', dark);
+      };
+      syncToggleIcon();
+      toggleBtn?.addEventListener('click', () => {
+        const next = rootEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        rootEl.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+        syncToggleIcon();
+      });
     </script>
   </body>
 </html>
