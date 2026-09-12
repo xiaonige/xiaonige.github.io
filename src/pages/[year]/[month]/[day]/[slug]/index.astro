@@ -74,11 +74,11 @@ function mergeHeadings(markdownHeadings, body) {
       </div>
     </div>
   </section>
-  <div class="article-layout container">
-    <article class="content-card prose article-content-page" data-plantuml-images={JSON.stringify(plantumlImages)}>
+  <div class:list={["article-layout", "container", { "article-layout-wide": post.data.wide }]}>
+    <article class:list={["content-card", "prose", "article-content-page", { "content-card-wide": post.data.wide }]} data-plantuml-images={JSON.stringify(plantumlImages)}>
       <Content />
     </article>
-    <ArticleToc headings={tocHeadings} />
+    {!post.data.wide && <ArticleToc headings={tocHeadings} />}
   </div>
   <div class="container"><PostExtras post={post} /><PostNav newer={newer} older={older} related={related} /></div>
   <script is:inline>

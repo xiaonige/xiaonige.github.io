@@ -11,6 +11,7 @@ tags:
   - 开源工具
 description: "Pi 与 oh-my-pi（omp）是什么关系？从定位、安装、模型提供商、工具链、hashline 编辑格式、权限沙箱到扩展生态，一次讲清上游 harness 与它的 batteries-included fork 的差异与选择。"
 cover: /medias/featureimages/14.jpg
+wide: true
 ---
 <div id="piomp-root">
 <style>

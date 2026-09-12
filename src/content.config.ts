@@ -10,7 +10,8 @@ const postSchema = z.object({
   cover: z.string().optional(),
   description: z.string().optional(),
   draft: z.boolean().default(false),
-  markmap: z.boolean().optional()
+  markmap: z.boolean().optional(),
+  wide: z.boolean().optional()
 });
 
 const posts = defineCollection({ type: 'content', schema: postSchema });
