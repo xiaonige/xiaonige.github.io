@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"><channel><title>海阔天空</title><description>一个关注 AI、开发效率、工程实践和个人成长的技术博客。</description><link>https://xiaonige.github.io</link>
     <item>
+      <title>Pi vs oh-my-pi · 开源 Coding Agent 横向对比指南</title>
+      <link>https://xiaonige.github.io/2026/09/12/pi-vs-oh-my-pi/</link>
+      <guid>https://xiaonige.github.io/2026/09/12/pi-vs-oh-my-pi/</guid>
+      <pubDate>Sat, 12 Sep 2026 14:25:00 GMT</pubDate>
+      <description>Pi 与 oh-my-pi（omp）是什么关系？从定位、安装、模型提供商、工具链、hashline 编辑格式、权限沙箱到扩展生态，一次讲清上游 harness 与它的 batteries-included fork 的差异与选择。</description>
+    </item>
+
+    <item>
       <title>Resume Copilot：一个用 Spring AI 打造的开源 AI 简历优化工作台</title>
       <link>https://xiaonige.github.io/2026/06/18/resume-copilot-open-source-recommendation/</link>
       <guid>https://xiaonige.github.io/2026/06/18/resume-copilot-open-source-recommendation/</guid>

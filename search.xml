@@ -2,6 +2,13 @@
 <search>
 
     <entry>
+      <title>Pi vs oh-my-pi · 开源 Coding Agent 横向对比指南</title>
+      <link href="/2026/09/12/pi-vs-oh-my-pi/"/>
+      <url>/2026/09/12/pi-vs-oh-my-pi/</url>
+      <content type="html"><![CDATA[piomproot bg: 0c0e13; bgsoft: 14121f; ink: edebf0; inkdim: 9691a1; line: 2a2540; violet: a78bfa; violetdim: 8b5cf6; rose: fb7185; emerald: 10b981; blue: 38bdf8; amber: f59e0b; display: 'Syne', 'Noto Sans SC', sansserif; mono: 'DM Mono', uimonospace, Menlo, Consolas, monospace; sans: 'Noto Sans SC', applesystem, BlinkMacSystemFont, sansserif; piomproot boxsizing:borderbox;margin:0;padding:0piomprootpiomprootbackground:varbg;color:varink;fontfamily:varsans;webkitfontsmoothing:antialiased;overflowx…]]></content>
+    </entry>
+
+    <entry>
       <title>Resume Copilot：一个用 Spring AI 打造的开源 AI 简历优化工作台</title>
       <link href="/2026/06/18/resume-copilot-open-source-recommendation/"/>
       <url>/2026/06/18/resume-copilot-open-source-recommendation/</url>
