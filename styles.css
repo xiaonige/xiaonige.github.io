@@ -265,3 +265,113 @@ a { color: inherit; text-decoration: none; }
   .article-layout-wide { width: calc(100% - 16px); }
   .content-card-wide { margin-top: 46px; }
 }
+
+/* Phase 9: light/dark theme + theme-aware embedded HTML articles */
+:root { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+
+.theme-toggle {
+  flex: 0 0 auto;
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  margin-left: 6px;
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(255,255,255,.14);
+  cursor: pointer;
+  font-size: 16px;
+  transition: background .2s ease, transform .2s ease;
+}
+.theme-toggle:hover { background: rgba(255,255,255,.28); transform: translateY(-1px); }
+.nav-wrapper { gap: 10px; }
+
+/* —— Dark theme surfaces & text —— */
+:root[data-theme="dark"] body { background: #0f141b; color: #c6cedb; }
+:root[data-theme="dark"] {
+  --card: #181f2a;
+  --text: #d7dde8;
+  --muted: #93a0b2;
+  --line: rgba(255,255,255,.10);
+  --shadow: 0 10px 34px rgba(0,0,0,.5);
+}
+:root[data-theme="dark"] .card-panel,
+:root[data-theme="dark"] .card,
+:root[data-theme="dark"] .dream-card,
+:root[data-theme="dark"] .recommend,
+:root[data-theme="dark"] .content-card,
+:root[data-theme="dark"] .related-posts,
+:root[data-theme="dark"] .post-copyright,
+:root[data-theme="dark"] .comment-placeholder,
+:root[data-theme="dark"] .article-toc,
+:root[data-theme="dark"] .profile-box,
+:root[data-theme="dark"] .timeline-item,
+:root[data-theme="dark"] .list a,
+:root[data-theme="dark"] .search-panel,
+:root[data-theme="dark"] .plantuml-rendered,
+:root[data-theme="dark"] .plantuml-source-details,
+:root[data-theme="dark"] .diagram-svg-frame,
+:root[data-theme="dark"] .diagram-preview-box {
+  background: #181f2a;
+  border-color: rgba(255,255,255,.08);
+  color: #d7dde8;
+}
+:root[data-theme="dark"] .dream-card .title,
+:root[data-theme="dark"] .section-title,
+:root[data-theme="dark"] .card-title,
+:root[data-theme="dark"] .toc-title,
+:root[data-theme="dark"] .copyright-title,
+:root[data-theme="dark"] .related-posts h2,
+:root[data-theme="dark"] .timeline-item strong,
+:root[data-theme="dark"] .search-header .title,
+:root[data-theme="dark"] .search-hit strong { color: #eef2f8; }
+:root[data-theme="dark"] .dream-card p,
+:root[data-theme="dark"] .summary,
+:root[data-theme="dark"] .post-copyright p,
+:root[data-theme="dark"] .comment-placeholder p,
+:root[data-theme="dark"] .related-posts,
+:root[data-theme="dark"] .timeline-date,
+:root[data-theme="dark"] .timeline-item em,
+:root[data-theme="dark"] .publish-info,
+:root[data-theme="dark"] .search-hit span,
+:root[data-theme="dark"] .search-empty,
+:root[data-theme="dark"] .article-toc a,
+:root[data-theme="dark"] .prose,
+:root[data-theme="dark"] .card-content,
+:root[data-theme="dark"] .muted { color: #aab6c6; }
+:root[data-theme="dark"] .prose h2 { border-bottom-color: rgba(255,255,255,.12); }
+:root[data-theme="dark"] .profile-box,
+:root[data-theme="dark"] .comment-placeholder { background: linear-gradient(180deg,#181f2a,#141b25); }
+:root[data-theme="dark"] .plantuml-rendered figcaption,
+:root[data-theme="dark"] .diagram-preview-actions { color: #aab6c6; }
+:root[data-theme="dark"] input,
+:root[data-theme="dark"] textarea { color-scheme: dark; }
+:root[data-theme="dark"] .scroll-top { box-shadow: 0 8px 22px rgba(0,0,0,.5); }
+
+/* —— Embedded HTML article: follow the site theme ——
+   Dark theme keeps the original cyber-dark panel. */
+:root[data-theme="dark"] #piomp-root,
+:root[data-theme="dark"] .html-embed-root {
+  --bg: #0c0e13;
+  --bg-soft: #14121f;
+  --ink: #edebf0;
+  --ink-dim: #9691a1;
+  --line: #2a2540;
+}
+/* Light theme: a soft light panel tuned to the blog palette instead of hard-coded near-black. */
+:root[data-theme="light"] #piomp-root,
+:root[data-theme="light"] .html-embed-root {
+  --bg: #eef1f6;
+  --bg-soft: #ffffff;
+  --ink: #1f2937;
+  --ink-dim: #5b6472;
+  --line: #dbe1ea;
+}
+:root[data-theme="light"] #piomp-root .code,
+:root[data-theme="light"] .html-embed-root .code { background: #0f172a; color: #e2e8f0; }
+:root[data-theme="light"] #piomp-root .code .cm,
+:root[data-theme="light"] .html-embed-root .code .cm { color: #94a3b8; }
+
+@media (max-width: 900px) {
+  .theme-toggle { width: 38px; height: 38px; margin-left: 0; }
+}
