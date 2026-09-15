@@ -36,14 +36,14 @@ const plantumlImages = plantumlManifest[slug] || [];
       </div>
     </div>
   </section>
-  <div class="article-layout container">
-    <article class="content-card prose article-content-page draft-content" data-plantuml-images={JSON.stringify(plantumlImages)}>
+  <div class:list={["article-layout", "container", { "article-layout-wide": draft.data.wide }]}>
+    <article class:list={["content-card", "prose", "article-content-page", "draft-content", { "content-card-wide": draft.data.wide }]} data-plantuml-images={JSON.stringify(plantumlImages)}>
       <div class="draft-notice">
         <strong>草稿说明：</strong>此页面仅用于 Astro 迁移预览，不在首页、归档、标签、分类、RSS、search.xml 中出现。PlantUML 已在构建期预渲染为 SVG，源码默认折叠保留。
       </div>
       <Content />
     </article>
-    <ArticleToc headings={headings} />
+    {!draft.data.wide && <ArticleToc headings={headings} />}
   </div>
   <div class="container"><PostExtras post={draft} url={`/drafts/${slug}/`} /></div>
   <script is:inline>
