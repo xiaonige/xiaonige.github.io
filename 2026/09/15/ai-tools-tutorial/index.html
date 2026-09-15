@@ -1,0 +1,1017 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="字节跳动 Trae、阿里云 Qoder、腾讯云 WorkBuddy 三款国内代表性 AI 编程/办公平台的横向对比与完整上手指南：产品矩阵、核心能力、安装到第一个 Agent 任务、适用场景与选型建议。"><link rel="canonical" href="https://xiaonige.github.io/2026/09/15/ai-tools-tutorial/"><meta property="og:title" content="Trae / Qoder / WorkBuddy 国内三大 AI 平台完全教程：从入门到选型 - 海阔天空"><meta property="og:description" content="字节跳动 Trae、阿里云 Qoder、腾讯云 WorkBuddy 三款国内代表性 AI 编程/办公平台的横向对比与完整上手指南：产品矩阵、核心能力、安装到第一个 Agent 任务、适用场景与选型建议。"><meta property="og:type" content="website"><meta property="og:image" content="/medias/featureimages/14.jpg"><meta name="twitter:card" content="summary_large_image"><title>Trae / Qoder / WorkBuddy 国内三大 AI 平台完全教程：从入门到选型 - 海阔天空</title><link rel="icon" href="/favicon.png"><script>
+      // Resolve theme before first paint to avoid a flash. Priority: ?theme= > localStorage > auto (19:00-07:00 dark).
+      (function () {
+        try {
+          var q = new URLSearchParams(location.search).get('theme');
+          var t;
+          if (q === 'dark' || q === 'light') { t = q; try { localStorage.setItem('theme', t); } catch (e) {} }
+          else { t = localStorage.getItem('theme'); }
+          if (t !== 'dark' && t !== 'light') {
+            var h = new Date().getHours();
+            t = (h >= 19 || h < 7) ? 'dark' : 'light';
+          }
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css"><link rel="stylesheet" href="/styles.css"></head> <body> <div class="reading-progress" id="readingProgress"></div> <header class="navbar-fixed"> <nav class="top-nav" id="headNav"> <div class="nav-wrapper container"> <a class="brand-logo" href="/"> <img alt="LOGO" class="logo-img" src="/medias/logo.png"> <span class="logo-span">海阔天空</span> </a> <input id="nav-toggle" type="checkbox"> <label class="sidenav-trigger" for="nav-toggle"><i class="fas fa-bars"></i></label> <ul class="right nav-menu"> <li class="nav-item"> <a class="waves" href="/"> <i class="fas fa-home"></i><span>首页</span> </a>  </li><li class="nav-item"> <a class="waves" href="/tags/"> <i class="fas fa-tags"></i><span>标签</span> </a>  </li><li class="nav-item"> <a class="waves" href="/categories/"> <i class="fas fa-list"></i><span>分类</span> </a> <ul class="sub-nav"> <li><a href="/categories/学习/"><i class="fas fa-book"></i><span>学习</span></a></li> <li><a href="#" class="disabled"><i class="fas fa-briefcase"></i><span>工作</span></a></li> <li><a href="#" class="disabled"><i class="fas fa-image"></i><span>图片</span></a></li> <li><a href="#" class="disabled"><i class="fas fa-music"></i><span>音乐</span></a></li> </ul> </li><li class="nav-item"> <a class="waves" href="/archives/"> <i class="fas fa-archive"></i><span>归档</span> </a>  </li><li class="nav-item"> <a class="waves" href="/about/"> <i class="fas fa-user-circle"></i><span>关于</span> </a>  </li><li class="nav-item"> <a class="waves" href="#search" data-open-search="true"> <i class="fas fa-search"></i><span>搜索</span> </a>  </li> </ul> <button class="theme-toggle" id="themeToggle" type="button" title="深色/浅色模式" aria-label="切换深色或浅色模式"> <i class="fas fa-moon"></i> </button> </div> </nav> </header> <main>  <section class="page-hero article-hero" style="background-image:url('/medias/featureimages/14.jpg')"> <div class="cover-overlay"></div> <div class="page-hero-content container"> <h1>Trae / Qoder / WorkBuddy 国内三大 AI 平台完全教程：从入门到选型</h1> <div class="meta-line hero-meta"> <span><i class="far fa-clock"></i> 2026-09-15</span> <span><i class="fas fa-bookmark"></i> 学习</span> <span><i class="fas fa-tags"></i> Trae，Qoder，WorkBuddy，AI 编程，AI IDE，教程</span> <span><i class="fas fa-font"></i> 13,921 字</span> <span><i class="far fa-hourglass-half"></i> 约 31 分钟</span> </div> </div> </section> <div class="article-layout container article-layout-wide"> <article class="content-card prose article-content-page content-card-wide" data-plantuml-images="[]"> <div id="ai-tools-root" class="html-embed-root">
+<style>
+#ai-tools-root{--bg:#fbfaf7;--ink:#1a1a1e;--ink-dim:#6b6870;--line:#e4e2e0;--line-bold:#c8c5c0;--trae:#ff5b1f;--trae-bg:rgba(255,91,31,.07);--trae-dim:rgba(255,91,31,.15);--qoder:#d97706;--qoder-bg:rgba(217,119,6,.07);--qoder-dim:rgba(217,119,6,.15);--emerald:#10b981;--blue:#3b82f6;--violet:#8b5cf6;--serif:'Noto Serif SC',Georgia,serif;--sans:'Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;--display:'Space Grotesk','Noto Sans SC',sans-serif;--mono:'DM Mono',ui-monospace,Menlo,Consolas,monospace}#ai-tools-root *{box-sizing:border-box;margin:0;padding:0}#ai-tools-root{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;scroll-behavior:smooth}#ai-tools-root .wrap{max-width:1320px;margin:0 auto;padding:0 40px;position:relative;z-index:2}#ai-tools-root .topbar{position:sticky;top:0;z-index:100;background:rgba(251,250,247,.92);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line)}#ai-tools-root .topbar .logo{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-.02em}#ai-tools-root .topbar .logo em{font-style:normal;background:linear-gradient(90deg,var(--trae),var(--qoder));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}#ai-tools-root .topbar nav{display:flex;gap:28px;align-items:center}#ai-tools-root .topbar nav a{color:var(--ink-dim);text-decoration:none;font-size:13px;transition:color .2s;font-family:var(--mono)}#ai-tools-root .topbar nav a:hover{color:var(--ink)}#ai-tools-root .topbar nav .bt{color:var(--trae)}#ai-tools-root .topbar nav .bq{color:var(--qoder)}#ai-tools-root .topbar .tag{padding:4px 12px;border:1px solid var(--line-bold);font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-family:var(--mono);color:var(--ink-dim)}#ai-tools-root .hero{padding:70px 0 40px;text-align:center}#ai-tools-root .hero-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:20px}#ai-tools-root .hero h1{font-family:var(--display);font-weight:700;font-size:clamp(32px,4.6vw,64px);line-height:1.12;letter-spacing:-.04em;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:0 4px}#ai-tools-root .hero h1 .t{color:var(--trae)}#ai-tools-root .hero h1 .q{color:var(--qoder)}#ai-tools-root .hero h1 .v{color:var(--line-bold);font-weight:300;font-family:var(--mono);font-size:clamp(18px,2.4vw,30px);display:inline-block;padding:0 10px}#ai-tools-root .hero-sub{margin:24px auto 0;max-width:760px;font-size:17px;line-height:1.7;color:var(--ink-dim)}#ai-tools-root .hero-sub b{color:var(--ink);font-weight:500}#ai-tools-root .hero-meta{margin-top:28px;display:flex;justify-content:center;gap:28px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--ink-dim)}#ai-tools-root .hero-meta span{display:flex;align-items:center;gap:6px}#ai-tools-root .dot{width:6px;height:6px;border-radius:50%;display:inline-block}#ai-tools-root .dot.t{background:var(--trae)}#ai-tools-root .dot.q{background:var(--qoder)}#ai-tools-root .jump-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:44px}#ai-tools-root .jump-card{border:1px solid var(--line-bold);padding:36px 32px;text-decoration:none;color:var(--ink);transition:transform .25s,border-color .25s;background:var(--bg)}#ai-tools-root .jump-card:hover{transform:translateY(-4px)}#ai-tools-root .jump-card.t{border-top:3px solid var(--trae)}#ai-tools-root .jump-card.q{border-top:3px solid var(--qoder)}#ai-tools-root .jump-card.t:hover{border-color:var(--trae)}#ai-tools-root .jump-card.q:hover{border-color:var(--qoder)}#ai-tools-root .jump-card .jci{font-size:36px;margin-bottom:10px}#ai-tools-root .jump-card .jcb{font-family:var(--mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:4px}#ai-tools-root .jump-card h3{font-family:var(--display);font-size:28px;font-weight:700;letter-spacing:-.03em}#ai-tools-root .jump-card.t h3 em{color:var(--trae);font-style:normal}#ai-tools-root .jump-card.q h3 em{color:var(--qoder);font-style:normal}#ai-tools-root .jump-card p{margin-top:10px;color:var(--ink-dim);font-size:14px;line-height:1.7}#ai-tools-root .jump-card .jcm{margin-top:16px;display:flex;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--ink-dim)}#ai-tools-root .jump-card .jcm b{color:var(--ink);font-weight:500}#ai-tools-root .jump-card .jcc{margin-top:20px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}#ai-tools-root .jump-card.t .jcc{color:var(--trae)}#ai-tools-root .jump-card.q .jcc{color:var(--qoder)}#ai-tools-root .jump-card .jcc .arr{transition:transform .25s;display:inline-block}#ai-tools-root .jump-card:hover .jcc .arr{transform:translateX(6px)}#ai-tools-root section{padding:70px 0}#ai-tools-root .sec-head{margin-bottom:36px}#ai-tools-root .sec-tag{font-family:var(--mono);font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:8px}#ai-tools-root .sec-title{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,44px);line-height:1.05;letter-spacing:-.03em}#ai-tools-root .sec-title em{font-style:normal}#ai-tools-root .sec-title.t em{color:var(--trae)}#ai-tools-root .sec-title.q em{color:var(--qoder)}#ai-tools-root .sec-desc{margin-top:10px;color:var(--ink-dim);font-size:15px;line-height:1.7;max-width:680px}#ai-tools-root .brand-banner{margin:70px 0 30px;padding:28px 36px;border:1px solid var(--line-bold);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;background:var(--bg);scroll-margin-top:60px}#ai-tools-root .brand-banner.t{border-left:4px solid var(--trae);background:linear-gradient(90deg,var(--trae-bg),transparent 60%)}#ai-tools-root .brand-banner.q{border-left:4px solid var(--qoder);background:linear-gradient(90deg,var(--qoder-bg),transparent 60%)}#ai-tools-root .brand-banner .bbl{display:flex;align-items:center;gap:20px}#ai-tools-root .brand-banner .bbi{font-size:44px}#ai-tools-root .brand-banner h2{font-family:var(--display);font-size:32px;font-weight:700;letter-spacing:-.03em}#ai-tools-root .brand-banner.t h2{color:var(--trae)}#ai-tools-root .brand-banner.q h2{color:var(--qoder)}#ai-tools-root .brand-banner .bbs{margin-top:4px;font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-dim)}#ai-tools-root .brand-banner .bbr{font-family:var(--mono);font-size:11px;color:var(--ink-dim);text-align:right;line-height:2}#ai-tools-root .brand-banner .bbr b{color:var(--ink);font-weight:500}#ai-tools-root .tut-nav{position:sticky;top:61px;z-index:50;background:rgba(251,250,247,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);display:flex;gap:10px;overflow-x:auto;padding:10px 0;scrollbar-width:none}#ai-tools-root .tut-nav::-webkit-scrollbar{display:none}#ai-tools-root .tut-nav .tn{flex-shrink:0;padding:6px 16px;border:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink-dim);text-decoration:none;transition:all .2s;background:var(--bg)}#ai-tools-root .tut-nav.t .tn:hover{color:var(--trae);border-color:var(--trae)}#ai-tools-root .tut-nav.q .tn:hover{color:var(--qoder);border-color:var(--qoder)}#ai-tools-root .split{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1px solid var(--line-bold);margin-top:28px}#ai-tools-root .sp{padding:36px 32px;display:flex;flex-direction:column}#ai-tools-root .sp+.sp{border-left:1px solid var(--line)}#ai-tools-root .sp .icon{font-size:32px;margin-bottom:10px}#ai-tools-root .sp .company{font-family:var(--mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:4px}#ai-tools-root .sp h3{font-family:var(--display);font-size:32px;font-weight:700;letter-spacing:-.03em;line-height:1.05}#ai-tools-root .sp h3 em{font-style:normal}#ai-tools-root .sp.t h3 em{color:var(--trae)}#ai-tools-root .sp.q h3 em{color:var(--qoder)}#ai-tools-root .sp p{margin-top:12px;color:var(--ink-dim);font-size:14px;line-height:1.7}#ai-tools-root .sp ul{margin-top:14px;list-style:none;font-family:var(--mono);font-size:12px}#ai-tools-root .sp ul li{padding:5px 0;color:var(--ink-dim);display:flex;gap:8px;align-items:center}#ai-tools-root .sp ul li::before{content:"▸";font-weight:700}#ai-tools-root .sp.t ul li::before{color:var(--trae)}#ai-tools-root .sp.q ul li::before{color:var(--qoder)}#ai-tools-root .sp.t{border-top:3px solid var(--trae)}#ai-tools-root .sp.q{border-top:3px solid var(--qoder)}#ai-tools-root .dive-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}#ai-tools-root .dive-card{border:1px solid var(--line);padding:32px 28px;background:var(--bg);transition:border-color .25s}#ai-tools-root .dive-card:hover{border-color:var(--line-bold)}#ai-tools-root .dive-card .dct{font-family:var(--mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:10px}#ai-tools-root .dive-card h4{font-family:var(--display);font-size:22px;font-weight:700;letter-spacing:-.02em}#ai-tools-root .dive-card h4 em{font-style:normal}#ai-tools-root .dive-card.t h4 em{color:var(--trae)}#ai-tools-root .dive-card.q h4 em{color:var(--qoder)}#ai-tools-root .dive-card p{margin-top:12px;color:var(--ink-dim);font-size:14px;line-height:1.7}#ai-tools-root .dive-card ul{margin-top:10px;padding-left:0;list-style:none}#ai-tools-root .dive-card ul li{padding:6px 0;font-size:14px;color:var(--ink-dim);display:flex;gap:8px;border-bottom:1px solid var(--line)}#ai-tools-root .dive-card ul li:last-child{border-bottom:none}#ai-tools-root .dive-card ul li::before{content:"→";font-weight:700;flex-shrink:0}#ai-tools-root .dive-card.t ul li::before{color:var(--trae)}#ai-tools-root .dive-card.q ul li::before{color:var(--qoder)}#ai-tools-root .dive-card .hl-box{margin-top:12px;padding:12px 16px;font-family:var(--mono);font-size:12px;line-height:1.6}#ai-tools-root .dive-card.t .hl-box{background:var(--trae-bg);border-left:2px solid var(--trae)}#ai-tools-root .dive-card.q .hl-box{background:var(--qoder-bg);border-left:2px solid var(--qoder)}#ai-tools-root .tbl-wrap{overflow-x:auto;border:1px solid var(--line-bold)}#ai-tools-root table.comparison{width:100%;border-collapse:collapse;font-size:14px;min-width:800px}#ai-tools-root .comparison th{font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.02em;text-align:left;padding:14px 18px;border-bottom:2px solid var(--line-bold);background:var(--bg)}#ai-tools-root .comparison th.t-h{color:var(--trae)}#ai-tools-root .comparison th.q-h{color:var(--qoder)}#ai-tools-root .comparison th.d-h{color:var(--ink-dim);font-weight:400}#ai-tools-root .comparison td{padding:12px 18px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.6}#ai-tools-root .comparison tr:last-child td{border-bottom:none}#ai-tools-root .comparison td:first-child{font-family:var(--mono);font-size:12px;color:var(--ink-dim);white-space:nowrap;font-weight:500}#ai-tools-root .comparison td:nth-child(2){background:var(--trae-bg)}#ai-tools-root .comparison td:nth-child(3){background:var(--qoder-bg)}#ai-tools-root .tag-c{display:inline-block;font-size:10px;padding:2px 8px;font-family:var(--mono);letter-spacing:.05em}#ai-tools-root .tag-c.g{border:1px solid #22c55e;color:#16a34a;background:rgba(34,197,94,.08)}#ai-tools-root .tag-c.y{border:1px solid #eab308;color:#ca8a04;background:rgba(234,179,8,.08)}#ai-tools-root .tag-c.b{border:1px solid #3b82f6;color:#2563eb;background:rgba(59,130,246,.08)}#ai-tools-root .sc-item{border:1px solid var(--line);padding:28px 32px;margin-top:12px;display:grid;grid-template-columns:180px 1fr 1fr;gap:24px;align-items:start;background:var(--bg);transition:border-color .25s}#ai-tools-root .sc-item:hover{border-color:var(--line-bold)}#ai-tools-root .sc-item .si{font-size:28px}#ai-tools-root .sc-item .st{font-family:var(--display);font-weight:600;font-size:18px;letter-spacing:-.01em;line-height:1.2}#ai-tools-root .sc-item .sr{font-size:14px;line-height:1.6}#ai-tools-root .sc-item .sr b{font-weight:600}#ai-tools-root .sc-item .sr .bt{color:var(--trae)}#ai-tools-root .sc-item .sr .bq{color:var(--qoder)}#ai-tools-root .verdict-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}#ai-tools-root .vc{border:1px solid var(--line);padding:32px 28px;position:relative;overflow:hidden}#ai-tools-root .vc.t{border-top:3px solid var(--trae)}#ai-tools-root .vc.q{border-top:3px solid var(--qoder)}#ai-tools-root .vc .vi{font-size:24px;margin-bottom:8px}#ai-tools-root .vc h4{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-.02em}#ai-tools-root .vc h4 em{font-style:normal}#ai-tools-root .vc.t h4 em{color:var(--trae)}#ai-tools-root .vc.q h4 em{color:var(--qoder)}#ai-tools-root .vc p{color:var(--ink-dim);font-size:14px;line-height:1.7;margin-top:10px}#ai-tools-root .vc .vbest{margin-top:14px;padding:10px 14px;font-family:var(--mono);font-size:12px;line-height:1.6}#ai-tools-root .vc.t .vbest{background:var(--trae-bg);border-left:2px solid var(--trae)}#ai-tools-root .vc.q .vbest{background:var(--qoder-bg);border-left:2px solid var(--qoder)}#ai-tools-root .prods{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:16px}#ai-tools-root .pc{border:1px solid var(--line);padding:28px 24px;background:var(--bg);transition:transform .3s,border-color .3s}#ai-tools-root .pc:hover{transform:translateY(-3px);border-color:var(--line-bold)}#ai-tools-root .pc .pi{font-family:var(--mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-dim)}#ai-tools-root .pc h5{font-family:var(--display);font-size:28px;font-weight:700;letter-spacing:-.02em;margin-top:4px}#ai-tools-root .pc h5 code{font-family:var(--mono);font-size:18px;font-weight:600;padding:2px 8px;border:1px solid}#ai-tools-root .pc.t h5 code{background:var(--trae-bg);color:var(--trae);border-color:var(--trae-dim)}#ai-tools-root .pc.q h5 code{background:var(--qoder-bg);color:var(--qoder);border-color:var(--qoder-dim)}#ai-tools-root .pc .ptl{margin-top:6px;font-family:var(--mono);font-size:11px;color:var(--violet);letter-spacing:.08em}#ai-tools-root .pc .pdesc{margin-top:12px;color:var(--ink-dim);font-size:13px;line-height:1.7}#ai-tools-root .pc .pdesc b{color:var(--ink);font-weight:500}#ai-tools-root .pc .pcb{margin-top:14px;background:rgba(0,0,0,.03);border:1px solid var(--line);padding:12px 14px;font-family:var(--mono);font-size:12px;line-height:1.7}#ai-tools-root .pc .pcb .cm{color:var(--ink-dim)}#ai-tools-root .pc .pcb .kw{color:var(--blue)}#ai-tools-root .pc.t .pcb .v{color:var(--trae)}#ai-tools-root .pc.q .pcb .v{color:var(--qoder)}#ai-tools-root .pc .ptags{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px}#ai-tools-root .pc .ptags .ch{font-family:var(--mono);font-size:10px;padding:3px 8px;border:1px solid var(--line);color:var(--ink-dim)}#ai-tools-root .pc.t .ptags .ch.hot{border-color:var(--trae);color:var(--trae);background:var(--trae-bg)}#ai-tools-root .pc.q .ptags .ch.hot{border-color:var(--qoder);color:var(--qoder);background:var(--qoder-bg)}#ai-tools-root .pc .ptags .ch.new{border-color:var(--emerald);color:var(--emerald);background:rgba(16,185,129,.06)}#ai-tools-root .pc-r1{grid-column:span 7}#ai-tools-root .pc-r2{grid-column:span 5}#ai-tools-root .pc-r3{grid-column:span 5}#ai-tools-root .pc-r4{grid-column:span 7}#ai-tools-root .pc-sum{grid-column:span 12}#ai-tools-root .steps{border-top:1px solid var(--line)}#ai-tools-root .step{display:grid;grid-template-columns:90px 1fr;gap:28px;padding:32px 0;border-bottom:1px solid var(--line);align-items:start}#ai-tools-root .step .sn{font-family:var(--display);font-weight:700;font-size:48px;letter-spacing:-.06em;line-height:1}#ai-tools-root .step.t .sn{color:var(--trae);opacity:.35}#ai-tools-root .step.q .sn{color:var(--qoder);opacity:.35}#ai-tools-root .step .sb h5{font-family:var(--display);font-size:20px;font-weight:600;letter-spacing:-.02em}#ai-tools-root .step.t .sb h5 em{color:var(--trae);font-style:normal}#ai-tools-root .step.q .sb h5 em{color:var(--qoder);font-style:normal}#ai-tools-root .step .sb .sm{font-family:var(--mono);font-size:11px;color:var(--ink-dim);margin-top:4px;letter-spacing:.1em}#ai-tools-root .step .sb p{margin-top:10px;color:var(--ink-dim);font-size:14px;line-height:1.8}#ai-tools-root .step .sb code{font-family:var(--mono);background:rgba(0,0,0,.03);padding:2px 8px;border:1px solid var(--line);font-size:12px}#ai-tools-root .step.t .sb code{color:var(--trae)}#ai-tools-root .step.q .sb code{color:var(--qoder)}#ai-tools-root .step .sb ul{margin-top:8px;padding-left:18px;color:var(--ink-dim);font-size:13px;line-height:1.8}#ai-tools-root .step .sq{margin-top:12px;font-family:var(--serif);font-size:16px;font-style:italic;padding:14px 16px;border:1px solid var(--line);line-height:1.6}#ai-tools-root .step.t .sq{color:var(--trae);background:var(--trae-bg);border-color:var(--trae-dim)}#ai-tools-root .step.q .sq{color:var(--qoder);background:var(--qoder-bg);border-color:var(--qoder-dim)}#ai-tools-root .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:16px}#ai-tools-root .wg{border:1px solid var(--line);padding:28px 24px;background:var(--bg);transition:border-color .3s}#ai-tools-root .wg:hover{border-color:var(--line-bold)}#ai-tools-root .wg .wb{font-family:var(--display);font-size:36px;font-weight:700;letter-spacing:-.04em;line-height:1}#ai-tools-root .wg.t .wb em{color:var(--trae);font-style:normal}#ai-tools-root .wg.q .wb em{color:var(--qoder);font-style:normal}#ai-tools-root .wg .wl{font-family:var(--mono);font-size:10px;color:var(--violet);margin-top:8px;letter-spacing:.2em;text-transform:uppercase}#ai-tools-root .wg .wt{margin-top:6px;color:var(--ink-dim);font-size:13px;line-height:1.7}#ai-tools-root .wg.full{grid-column:span 2}#ai-tools-root .modes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}#ai-tools-root .mode{border:1px solid var(--line);padding:28px 24px;background:var(--bg);transition:transform .3s,border-color .3s;position:relative;overflow:hidden}#ai-tools-root .mode:hover{transform:translateY(-4px);border-color:var(--line-bold)}#ai-tools-root .mode::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--line);transition:background .3s}#ai-tools-root .mode.t:hover::before{background:var(--trae)}#ai-tools-root .mode.q:hover::before{background:var(--qoder)}#ai-tools-root .mode .mt{font-family:var(--mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:10px}#ai-tools-root .mode .mt em{color:var(--emerald);font-style:normal}#ai-tools-root .mode h4{font-family:var(--display);font-size:24px;font-weight:700;letter-spacing:-.02em}#ai-tools-root .mode.t h4 span{color:var(--trae)}#ai-tools-root .mode.q h4 span{color:var(--qoder)}#ai-tools-root .mode .mc{margin-top:8px;font-family:var(--mono);font-size:11px;padding:3px 8px;display:inline-block;border:1px solid}#ai-tools-root .mode.t .mc{background:var(--trae-bg);color:var(--trae);border-color:var(--trae-dim)}#ai-tools-root .mode.q .mc{background:var(--qoder-bg);color:var(--qoder);border-color:var(--qoder-dim)}#ai-tools-root .mode .mc.free{background:rgba(16,185,129,.08);color:var(--emerald);border-color:rgba(16,185,129,.2)}#ai-tools-root .mode p{margin-top:12px;color:var(--ink-dim);font-size:13px;line-height:1.7}#ai-tools-root .mode ul{margin-top:12px;list-style:none;font-size:12px;font-family:var(--mono)}#ai-tools-root .mode ul li{padding:5px 0;color:var(--ink-dim);display:flex;gap:8px}#ai-tools-root .mode.t ul li::before{content:"→";color:var(--trae)}#ai-tools-root .mode.q ul li::before{content:"→";color:var(--qoder)}#ai-tools-root .faq-list{margin-top:16px}#ai-tools-root .faq{border-bottom:1px solid var(--line);padding:20px 0;display:grid;grid-template-columns:48px 1fr;gap:16px;transition:padding-left .3s}#ai-tools-root .faq:hover{padding-left:8px}#ai-tools-root .faq .fi{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.15em}#ai-tools-root .faq.t .fi{color:var(--trae)}#ai-tools-root .faq.q .fi{color:var(--qoder)}#ai-tools-root .faq .fq{font-family:var(--display);font-size:18px;font-weight:600;letter-spacing:-.01em}#ai-tools-root .faq .fa{margin-top:8px;color:var(--ink-dim);font-size:13px;line-height:1.7}#ai-tools-root .faq .fa code{font-family:var(--mono);background:rgba(0,0,0,.03);padding:2px 8px;border:1px solid var(--line);font-size:12px}#ai-tools-root .faq.t .fa code{color:var(--trae)}#ai-tools-root .faq.q .fa code{color:var(--qoder)}#ai-tools-root .rel-d{border:1px solid var(--line);padding:32px 28px;margin-top:24px;background:var(--bg)}#ai-tools-root .rel-g{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}#ai-tools-root .rel-i{text-align:center;padding:20px 12px;border:1px solid var(--line);background:var(--bg);transition:all .3s}#ai-tools-root .rel-i:hover{border-color:var(--line-bold);transform:scale(1.03)}#ai-tools-root .rel-i .re{font-size:28px;margin-bottom:6px}#ai-tools-root .rel-i .rn{font-family:var(--display);font-weight:700;font-size:16px}#ai-tools-root .rel-i.t .rn{color:var(--trae)}#ai-tools-root .rel-i.q .rn{color:var(--qoder)}#ai-tools-root .rel-i .rs{font-family:var(--mono);font-size:10px;color:var(--ink-dim);margin-top:4px;letter-spacing:.08em}#ai-tools-root .rel-d .rnote{margin-top:20px;text-align:center;color:var(--ink-dim);font-size:12px;font-family:var(--mono);letter-spacing:.05em}#ai-tools-root footer{border-top:1px solid var(--line);padding:40px 0 28px;margin-top:50px}#ai-tools-root .fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:28px}#ai-tools-root .fb{font-family:var(--display);font-weight:700;font-size:24px;letter-spacing:-.02em}#ai-tools-root .fb em{background:linear-gradient(90deg,var(--trae),var(--qoder));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal}#ai-tools-root .fb p{margin-top:8px;color:var(--ink-dim);font-size:12px;font-family:var(--mono);line-height:1.6;max-width:260px;font-weight:400}#ai-tools-root .fc h6{font-family:var(--mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:10px}#ai-tools-root .fc a{display:block;color:var(--ink-dim);text-decoration:none;padding:3px 0;font-size:13px;transition:color .2s}#ai-tools-root .fc a:hover{color:var(--ink)}#ai-tools-root .fbot{border-top:1px dashed var(--line);padding-top:14px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--ink-dim);letter-spacing:.1em;text-transform:uppercase}#ai-tools-root .rv{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}#ai-tools-root .rv.on{opacity:1;transform:none}@media (max-width:900px){#ai-tools-root .split,#ai-tools-root .jump-grid,#ai-tools-root .verdict-grid,#ai-tools-root .dive-row,#ai-tools-root .why-grid,#ai-tools-root .modes{grid-template-columns:1fr}#ai-tools-root .sp+.sp{border-left:none;border-top:1px solid var(--line)}#ai-tools-root .sc-item{grid-template-columns:1fr;gap:10px}#ai-tools-root .fg{grid-template-columns:1fr 1fr}#ai-tools-root .wrap{padding:0 20px}#ai-tools-root .prods{grid-template-columns:1fr}#ai-tools-root .pc-r1,#ai-tools-root .pc-r2,#ai-tools-root .pc-r3,#ai-tools-root .pc-r4,#ai-tools-root .pc-sum{grid-column:span 1}#ai-tools-root .step{grid-template-columns:1fr;gap:10px}#ai-tools-root .topbar nav{display:none}#ai-tools-root .brand-banner{flex-direction:column;align-items:flex-start}#ai-tools-root .brand-banner .bbr{text-align:left}#ai-tools-root .rel-g{grid-template-columns:repeat(2,1fr)}#ai-tools-root .wg.full{grid-column:span 1}}#ai-tools-root{--wb:#0052d9;--wb-bg:rgba(0,82,217,.07);--wb-dim:rgba(0,82,217,.15)}#ai-tools-root .sec-title.w em{color:#0052d9}#ai-tools-root .brand-banner.w{border-left:4px solid #0052d9;background:linear-gradient(90deg,rgba(0,82,217,.07),transparent 60%)}#ai-tools-root .brand-banner.w h2{color:#0052d9}#ai-tools-root .tut-nav.w .tn:hover{color:#0052d9;border-color:#0052d9}#ai-tools-root .sp.w{border-top:3px solid #0052d9}#ai-tools-root .sp.w h3 em{color:#0052d9}#ai-tools-root .sp.w ul li::before{color:#0052d9}#ai-tools-root .pc.w h5 code{background:rgba(0,82,217,.07);color:#0052d9;border-color:rgba(0,82,217,.15)}#ai-tools-root .pc.w .pcb .v{color:#0052d9}#ai-tools-root .pc.w .ptags .ch.hot{border-color:#0052d9;color:#0052d9;background:rgba(0,82,217,.07)}#ai-tools-root .wg.w .wb em{color:#0052d9}#ai-tools-root .mode.w h4 span{color:#0052d9}#ai-tools-root .mode.w .mc{background:rgba(0,82,217,.07);color:#0052d9;border-color:rgba(0,82,217,.15)}#ai-tools-root .mode.w:hover::before{background:#0052d9}#ai-tools-root .mode.w ul li::before{content:"\2192";color:#0052d9}#ai-tools-root .step.w .sn{color:#0052d9;opacity:.35}#ai-tools-root .step.w .sb h5 em{color:#0052d9}#ai-tools-root .step.w .sb code{color:#0052d9}#ai-tools-root .step.w .sq{color:#0052d9;background:rgba(0,82,217,.07);border-color:rgba(0,82,217,.15)}#ai-tools-root .faq.w .fi{color:#0052d9}#ai-tools-root .faq.w .fa code{color:#0052d9}#ai-tools-root .rel-i.w .rn{color:#0052d9}#ai-tools-root .vc.w{border-top:3px solid #0052d9}#ai-tools-root .vc.w h4 em{color:#0052d9}#ai-tools-root .vc.w .vbest{background:rgba(0,82,217,.07);border-left:2px solid #0052d9}#ai-tools-root .hl-box.w{background:rgba(0,82,217,.07);border-left:2px solid #0052d9}#ai-tools-root .skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}#ai-tools-root .skill{border:1px solid var(--line);padding:26px 22px;background:var(--bg);transition:transform .3s,border-color .3s}#ai-tools-root .skill:hover{transform:translateY(-3px);border-color:#0052d9}#ai-tools-root .skill .skc{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim)}#ai-tools-root .skill h5{font-family:var(--display);font-size:22px;font-weight:700;letter-spacing:-.02em;margin-top:4px;color:#0052d9}#ai-tools-root .skill p{margin-top:10px;color:var(--ink-dim);font-size:13px;line-height:1.7}#ai-tools-root .skill .skn{margin-top:12px;font-family:var(--mono);font-size:22px;font-weight:600;color:#0052d9}#ai-tools-root .skill .skl{font-family:var(--mono);font-size:10px;color:var(--ink-dim);letter-spacing:.1em}@media (max-width:900px){#ai-tools-root .skill-grid{grid-template-columns:1fr}}
+#ai-tools-root{width:100%;max-width:100%;min-width:0;overflow:hidden;margin:0 0 8px;border:1px solid var(--line,#2a2540);isolation:isolate;}
+#ai-tools-root .rv{opacity:1!important;transform:none!important;}
+#ai-tools-root .topbar{display:none;}
+#ai-tools-root .wrap{width:100%;max-width:100%;min-width:0;padding:0 22px;}
+#ai-tools-root section{max-width:100%;min-width:0;padding:52px 0;}
+#ai-tools-root .hero{padding:42px 0 40px;}
+#ai-tools-root .hero h1{font-size:clamp(32px,6vw,60px);}
+#ai-tools-root .hero-sub{font-size:15px;}
+#ai-tools-root .capsule-nav{margin-top:32px;max-width:100%;}
+#ai-tools-root footer{padding:44px 0 28px;margin-top:24px;}
+#ai-tools-root .fb{font-size:34px;}
+#ai-tools-root .grid3,#ai-tools-root .grid2,#ai-tools-root .grid4,#ai-tools-root .prods,#ai-tools-root .stats{min-width:0;}
+#ai-tools-root .card,#ai-tools-root .p-card,#ai-tools-root .callout,#ai-tools-root .step-item .body,#ai-tools-root .faq-q>div:last-child,#ai-tools-root .hero-meta span,#ai-tools-root .fc{min-width:0;}
+#ai-tools-root h1,#ai-tools-root h2,#ai-tools-root h4,#ai-tools-root h5,#ai-tools-root p,#ai-tools-root li,#ai-tools-root td,#ai-tools-root th{overflow-wrap:break-word;}
+#ai-tools-root code{overflow-wrap:anywhere;}
+#ai-tools-root .code,#ai-tools-root .tbl-wrap{max-width:100%;width:100%;-webkit-overflow-scrolling:touch;}
+@media(max-width:1024px){#ai-tools-root .grid3,#ai-tools-root .grid4,#ai-tools-root .prods,#ai-tools-root .stats{grid-template-columns:1fr 1fr;}}
+@media(max-width:640px){#ai-tools-root{margin-left:-6px;margin-right:-6px;}#ai-tools-root .wrap{padding:0 14px;}#ai-tools-root section{padding:36px 0;}#ai-tools-root .grid3,#ai-tools-root .grid2,#ai-tools-root .grid4,#ai-tools-root .prods,#ai-tools-root .stats{grid-template-columns:1fr;}#ai-tools-root .hero h1{font-size:clamp(26px,8.5vw,38px);}#ai-tools-root .step-item{grid-template-columns:1fr;gap:10px;}}
+</style>
+<div class="wrap">
+<header class="topbar"><div class="logo">AI 工具 <em>完全手册 · Trae / Qoder / WorkBuddy</em></div>
+<nav><a href="#overview">对比概览</a><a href="#trae-tutorial" class="bt">Trae</a><a href="#qoder-tutorial" class="bq">Qoder</a><a href="#workbuddy-tutorial" style="color:#0052d9">WorkBuddy</a></nav>
+<div class="tag">2026.09 · 国内双雄</div></header>
+<section class="hero">
+<div class="hero-eyebrow">ByteDance vs Alibaba · AI-Native IDE Complete Guide</div>
+<h1><span class="t">Trae</span><span class="v">/</span><span class="q">Qoder</span><span class="v">/</span><span style="color:#0052d9">WorkBuddy</span></h1>
+<p class="hero-sub"><b>字节跳动 Trae</b>、<b>阿里云 Qoder</b> 与 <b>腾讯云 WorkBuddy</b> 是国内 AI 工具赛道最具代表性的三款产品。本手册从<b>横向对比</b>到<b>各自的完整使用教程</b>，一站式帮你掌握三大平台的核心能力、产品矩阵、上手指南与选型建议。</p>
+<div class="hero-meta">
+<span><span class="dot t"></span> Trae · 字节跳动</span>
+<span><span class="dot q"></span> Qoder · 阿里云</span>
+<span style="display:inline-flex;align-items:center;gap:6px"><span class="dot" style="background:#0052d9"></span> WorkBuddy · 腾讯云</span>
+<span>更新日期 · 2026.09</span>
+</div>
+<div class="jump-grid">
+<a href="#trae-tutorial" class="jump-card t"><div class="jci">⚡</div><div class="jcb">ByteDance · 国内版</div><h3>Trae <em>完全教程</em></h3><p>TraeCode、TraeCode CLI、TraeWork 三大核心产品详解，从安装到第一个 Agent 任务四步上手。</p><div class="jcm"><span><b>5</b> 章节</span><span><b>3</b> 产品</span><span><b>5</b> FAQ</span></div><div class="jcc">开始阅读 <span class="arr">→</span></div></a>
+<a href="#qoder-tutorial" class="jump-card q"><div class="jci">🌐</div><div class="jcb">Alibaba Cloud · 国内版</div><h3>Qoder <em>完全教程</em></h3><p>Ask / Agent / Quest 三大模式，IDE / 插件 / CLI / QoderWork 四款产品全解析，四步上手。</p><div class="jcm"><span><b>6</b> 章节</span><span><b>4</b> 产品</span><span><b>5</b> FAQ</span></div>
+</a><a href="#workbuddy-tutorial" class="jump-card" style="border-top:3px solid #0052d9">
+<div class="jci">🐧</div>
+<div class="jcb">Tencent Cloud · 国内版</div>
+<h3><em style="color:#0052d9;font-style:normal">WorkBuddy</em> 完全教程</h3>
+<p>腾讯云 AI 办公工作台，8万+ SkillHub 技能市场、腾讯生态深度集成、办公+编程一体。</p>
+<div class="jcm"><span><b>5</b> 章节</span><span><b>3</b> 产品</span><span><b>SkillHub</b></span></div>
+<div class="jcc" style="color:#0052d9">开始阅读 <span class="arr">→</span></div>
+</a>
+</div></section>
+<!-- ============ PART 1 : OVERVIEW & COMPARISON ============ -->
+<section id="overview">
+<div class="sec-head">
+<div class="sec-tag">第一部分 · 横向对比</div>
+<h2 class="sec-title">三大平台 <em>快速概览</em></h2>
+<p class="sec-desc">先看全貌，再深入细节。从产品定位、账号体系、设计能力、团队协作、对比表、场景推荐六个维度快速了解两者差异。</p>
+</div>
+<div class="split">
+<div class="sp t"><div class="icon">⚡</div><div class="company">ByteDance · 国内版</div>
+<h3>Trae <em>国内版</em></h3>
+<p>字节跳动推出的 AI 原生 IDE，基于 VS Code 内核构建。主打 Agent 自主编程、CLI 终端工具、TraeWork 全自动交付。</p>
+<ul><li>豆包 1.5 pro · DeepSeek R1/V3 国产模型</li>
+<li>TraeWork（原 SOLO）：三端协同 + 全自动交付</li>
+<li>TraeCode CLI：终端原生 AI 编程代理（旗舰版）</li>
+<li>Trae 企业版：团队工作流 + 审计 + SSO</li></ul></div>
+<div class="sp q"><div class="icon">🌐</div><div class="company">Alibaba Cloud · 国内版</div>
+<h3>Qoder <em>国内版</em></h3>
+<p>阿里巴巴推出的 Agents 编程平台（前身通义灵码），多端覆盖，Quest 模式实现 Spec 驱动开发，QoderWork CN 独有 Code as Design。</p>
+<ul><li>Qwen · DeepSeek · GLM · Kimi 多模型切换</li>
+<li>Quest 工作区：Spec 驱动 + 原型验证</li>
+<li>QoderWork CN：Code as Design + 100+ 风格</li>
+<li>社区版免费 · 企业级按席位订阅</li></ul></div>
+<div class="sp" style="border-top:3px solid #0052d9">
+<div class="icon">🐧</div><div class="company">Tencent Cloud · 国内版</div>
+<h3 style="color:#0052d9">WorkBuddy <em style="color:#0052d9;font-style:normal">办公工作台</em></h3>
+<p>腾讯云推出的全场景 AI 办公工作台，隶属 CodeBuddy 产品矩阵。办公、代码、设计三位一体，SkillHub 8 万+ 技能随取随用。</p>
+<ul>
+<li>混元 · DeepSeek · GLM · Kimi 多模型</li>
+<li>SkillHub 技能市场 · 8 万+ Skills</li>
+<li>腾讯文档 / 网盘 / 乐享 深度集成</li>
+<li>CodeBuddy IDE · 专业编程工具</li>
+</ul></div>
+</div></section>
+<section id="accounts">
+<div class="sec-head"><div class="sec-tag">账号体系</div>
+<h2 class="sec-title">登录方式 · 账号互通 · <em>跨端协同</em></h2>
+<p class="sec-desc">账号体系决定了团队加入成本、跨设备协同体验和生态集成深度。</p></div>
+<div class="dive-row">
+<div class="dive-card t rv"><div class="dct">Trae · 字节生态</div>
+<h4>手机号 / 抖音 / 飞书 <em>三通道</em></h4>
+<p>Trae 国内版账号体系与字节跳动生态深度绑定。</p>
+<ul><li><b>手机号验证码</b> — 最基础的登录方式</li>
+<li><b>抖音扫码</b> — 零成本注册</li>
+<li><b>飞书账号</b> — 企业用户组织架构同步</li>
+<li><b>微信扫码</b> — 部分版本支持</li></ul>
+<div class="hl-box">一句话：一个账号走遍三端（桌面 IDE / 手机 App / Web）。手机端可远程向桌面端派发任务，进度实时同步。</div></div>
+<div class="dive-card q rv"><div class="dct">Qoder · 阿里云生态</div>
+<h4>阿里云 / 邮箱 / GitHub <em>三通道</em></h4>
+<p>Qoder 依托阿里云账号体系，覆盖个人和企业两类场景。</p>
+<ul><li><b>阿里云账号</b> — 企业用户入口</li>
+<li><b>邮箱注册</b> — 个人开发者快速开箱</li>
+<li><b>GitHub 快捷登录</b> — 海外/开源友好</li>
+<li><b>RAM 子账号</b> — 企业级细粒度权限管控</li></ul>
+<div class="hl-box">一句话：阿里云账号一站式打通百炼大模型平台、企业知识库、云资源管理。四端共享同一套 Credits 配额。</div></div>
+</div></section>
+<section id="design">
+<div class="sec-head"><div class="sec-tag">设计能力</div>
+<h2 class="sec-title">Code as Design · <em>谁在填补设计→代码的鸿沟？</em></h2>
+<p class="sec-desc">传统的"设计图 → 前端代码"流程割裂严重。两家呈现出不同的产品思路。</p></div>
+<div class="dive-row">
+<div class="dive-card t rv"><div class="dct">Trae · 编码驱动</div>
+<h4>TraeWork Design 模式 <em>— 设计稿 + 图片编辑 + 代码生成</em></h4>
+<p>TraeWork Design 模式支持设计稿生成、图片编辑与一键转代码。</p>
+<ul><li><b>设计稿生成</b> — 自然语言 → 设计稿</li>
+<li><b>自然语言批量修改</b> — 选中元素文字提意见</li>
+<li><b>设计系统管理</b> — 组件级复用</li>
+<li><b>设计稿转代码</b> — 直接生成可运行前端代码</li></ul>
+<div class="hl-box">定位：编码能力向设计侧的延伸，核心还是围绕代码生成。</div></div>
+<div class="dive-card q rv"><div class="dct">Qoder · 设计原生</div>
+<h4>QoderWork CN · Code as Design <em>— 100+ 风格</em></h4>
+<p>设计工作台是独立产品形态，核心理念是 "Code as Design"。</p>
+<ul><li><b>4 个工作台</b>：通用 / 设计 / 写作 / 幻灯片</li>
+<li><b>100+ 设计风格参考</b>：从 Apple 到赛博朋克</li>
+<li><b>多组件库支持</b>：Ant Design / Element Plus / Tailwind</li>
+<li><b>产物一键交付</b>：设计稿 → 工程 → IDE 继续开发</li>
+<li><b>暗黑/亮白模式</b>：实时切换预览</li></ul>
+<div class="hl-box">定位：独立的设计工作站，产品/设计/前端共用工具链。</div></div>
+</div></section>
+<section id="team">
+<div class="sec-head"><div class="sec-tag">团队协作</div>
+<h2 class="sec-title">工作流编排 · 企业管控 · <em>审计合规</em></h2>
+<p class="sec-desc">团队场景是两款产品从"个人工具"升级为"企业平台"的关键能力。</p></div>
+<div class="dive-row">
+<div class="dive-card t rv"><div class="dct">Trae 企业版</div>
+<h4>TraeWork + 企业控制台 <em>两大协作引擎</em></h4>
+<ul><li><b>人员与席位管理</b>：邀请/批量添加/移除，自动释放席位</li>
+<li><b>数据分析看板</b>：活跃趋势、AI 生成率、模型调用分布</li>
+<li><b>企业文档集</b>：内部知识库规范 AI 输出</li>
+<li><b>企业智能体</b>：专属 AI Agent 编排</li>
+<li><b>审计与日志</b>：管理员操作日志与追溯</li>
+<li><b>安全策略</b>：命令黑名单、IP 白名单（旗舰版）</li>
+<li><b>SSO / 共享额度池</b>：旗舰版支持</li>
+<li><b>飞书 MCP 对接</b>：知识库/文档/审批流打通</li></ul>
+<div class="hl-box">小结：企业控制台 + TraeWork + 飞书生态，从管理到审计到 IM 协同形成闭环。</div></div>
+<div class="dive-card q rv"><div class="dct">Qoder · 阿里云生态</div>
+<h4>知识库 + Rules + Skills <em>三大协作基石</em></h4>
+<ul><li><b>企业知识库增强</b>：AI 基于企业标准生成代码</li>
+<li><b>Rules 规则引擎</b>：.qoder/rules/ 定义团队编码规范</li>
+<li><b>Skills 技能市场</b>：复用第三方技能，团队共享</li>
+<li><b>MCP 扩展</b>：连接 GitHub/Figma 等外部服务</li>
+<li><b>RAM 权限管理</b>：阿里云 RAM 细粒度角色控制</li>
+<li><b>Credits 团队管理</b>：Teams / VPC 订阅统一配额</li>
+<li><b>Cloud Agents</b>：全托管 AI Agent 平台，API 调用</li>
+<li><b>QoderWork 连接器</b>：钉钉/飞书/微信 IM 集成</li></ul>
+<div class="hl-box">小结：Rules + Skills + 知识库形成"规范→执行→复用"闭环，阿里云 RAM 支撑企业管理。</div></div>
+</div></section>
+<section id="compare-table">
+<div class="sec-head"><div class="sec-tag">完整对比 · 28 个维度</div>
+<h2 class="sec-title">全方位 <em>横向对比表</em></h2></div>
+<div class="tbl-wrap rv"><table class="comparison">
+<thead><tr><th class="d-h">维度</th><th class="t-h">Trae 国内版</th><th class="q-h">Qoder 国内版</th><th style="color:#0052d9">WorkBuddy</th></tr></thead>
+<tbody>
+<tr><td>厂商</td><td>字节跳动</td><td>阿里巴巴（阿里云）</td><td style="background:rgba(0,82,217,.06)">腾讯云（Tencent）</td></tr>
+<tr><td>前身</td><td>全新产品（2025 年底上线）</td><td>通义灵码（Lingma）升级</td><td style="background:rgba(0,82,217,.06)">腾讯云 CodeBuddy 系列升级</td></tr>
+<tr><td>最新版本</td><td>TraeWork v0.1.52 / TraeCode v3.3.98</td><td>Qoder CN v1.26.0（原通义灵码）</td><td style="background:rgba(0,82,217,.06)">WorkBuddy 持续迭代 / CodeBuddy 4.9.15</td></tr>
+<tr><td>产品矩阵</td><td><span class="tag-c g">IDE</span> <span class="tag-c b">Work</span> <span class="tag-c y">插件</span> <span class="tag-c b">CLI</span></td><td><span class="tag-c g">IDE</span> <span class="tag-c b">Work</span> <span class="tag-c y">插件</span> <span class="tag-c b">CLI</span></td><td style="background:rgba(0,82,217,.06)"><span class="tag-c g">WorkBuddy</span> <span class="tag-c b">CodeBuddy</span> <span class="tag-c y">Agents</span></td></tr>
+<tr><td>内核</td><td>VS Code 开源内核</td><td>VS Code 内核 + 兼容 VS Code / JetBrains</td><td style="background:rgba(0,82,217,.06)">桌面客户端 + 浏览器 + VS Code 插件</td></tr>
+<tr><td>默认模型</td><td>豆包 1.5 pro</td><td>Qwen Max</td><td style="background:rgba(0,82,217,.06)">腾讯混元（Hunyuan）</td></tr>
+<tr><td>可选模型</td><td>豆包 1.5 pro · DeepSeek R1/V3</td><td>Qwen Max · DeepSeek V3/R1 · GLM · Kimi</td><td style="background:rgba(0,82,217,.06)">混元 · DeepSeek · GLM · Kimi</td></tr>
+<tr><td>Agent 模式</td><td>Agent 智能体（Solo+Builder 合并）· 支持 /goal /plan /spec</td><td>Agent / Quest（Spec 驱动 · 先规划后执行）</td><td style="background:rgba(0,82,217,.06)">WorkBuddy 智能体（自然语言驱动）</td></tr>
+<tr><td>Chat 模式</td><td>Chat（只问不改）+ Builder with MCP</td><td>Ask（低消耗 · 代码问答与解释）</td><td style="background:rgba(0,82,217,.06)">自然语言对话 · 多模态支持</td></tr>
+<tr><td>免费模式</td><td>免费版 + 四档速通权益</td><td>社区版免费 · Pro 59元/月（2000 Credits）</td><td style="background:rgba(0,82,217,.06)">体验版免费 · 每月 500 积分</td></tr>
+<tr><td>付费方式</td><td>免费版 + 四档速通权益（Pro/Pro+/Ultra/Express）</td><td>社区版免费 · Pro 59元/月 · 企业标准版 99元/席位 · VPC 199元/席位</td><td style="background:rgba(0,82,217,.06)">标准版 99 / 高级版 199 / 旗舰版 999 元/月</td></tr>
+<tr><td>配额机制</td><td>速通次数（月度配额，付费免排队）</td><td>Credits 按消耗计费</td><td style="background:rgba(0,82,217,.06)">积分制 · 按月发放</td></tr>
+<tr><td>CLI 工具</td><td>TraeCode CLI（企业旗舰版）</td><td>Qoder CN CLI（独立产品，npm 安装）</td><td style="background:rgba(0,82,217,.06)">—（CodeBuddy 侧支持）</td></tr>
+<tr><td>团队协作</td><td>企业控制台 · 人员/数据/审计/SSO</td><td>Rules · Skills · 知识库 · Teams/VPC（50席位起）</td><td style="background:rgba(0,82,217,.06)">企业旗舰版 / 专享版 · 统一管理</td></tr>
+<tr><td>设计能力</td><td>TraeWork Design 模式</td><td>QoderWork CN · Code as Design · 100+ 风格</td><td style="background:rgba(0,82,217,.06)">多模态生成（图像/PPT/文档）</td></tr>
+<tr><td>账号体系</td><td>手机号 / 抖音 / 飞书 / 微信</td><td>阿里云 / 邮箱 / GitHub / RAM</td><td style="background:rgba(0,82,217,.06)">腾讯云账号 · 微信扫码</td></tr>
+<tr><td>移动端</td><td><span class="tag-c g">iOS/Android</span> App · 远程控制桌面</td><td>Web 端移动适配</td><td style="background:rgba(0,82,217,.06)"><span class="tag-c g">小程序/App</span> · 多端同步</td></tr>
+<tr><td>多端同步</td><td>手机 → 桌面远程控制 · 实时同步</td><td>云端 Agent · 浏览器关闭不中断</td><td style="background:rgba(0,82,217,.06)">桌面端 + 浏览器 + 小程序</td></tr>
+<tr><td>VSCode 迁移</td><td><span class="tag-c g">一键导入</span> 设置/插件/快捷键</td><td><span class="tag-c g">一键导入</span> + 插件零迁移</td><td style="background:rgba(0,82,217,.06)"><span class="tag-c g">CodeBuddy 插件</span> · 兼容 VS Code</td></tr>
+<tr><td>JetBrains 支持</td><td>—</td><td><span class="tag-c g">Qoder CN 插件</span> · IDEA/PyCharm/GoLand</td><td style="background:rgba(0,82,217,.06)">—</td></tr>
+<tr><td>MCP 协议</td><td><span class="tag-c g">支持</span> · OAuth 授权</td><td><span class="tag-c g">支持</span> · 连接外部服务</td><td style="background:rgba(0,82,217,.06)">SkillHub 扩展 · 8万+ 技能</td></tr>
+<tr><td>IM 集成</td><td>飞书：MCP 对接文档/审批</td><td>钉钉/飞书/微信（QoderWork）</td><td style="background:rgba(0,82,217,.06)">企业微信 · 腾讯会议 · 腾讯文档</td></tr>
+<tr><td>知识库</td><td>企业文档集</td><td>企业知识库</td><td style="background:rgba(0,82,217,.06)">企业知识库 · 腾讯文档集成</td></tr>
+<tr><td>私有化部署</td><td><span class="tag-c g">支持</span>（企业版）</td><td>企业专属版 · 私域智控 PDC（三级安全模式）</td><td style="background:rgba(0,82,217,.06)"><span class="tag-c g">支持</span> · 信创环境适配</td></tr>
+<tr><td>数据合规</td><td>数据不出境 · 国内存储</td><td>阿里云背书 · 国内存储</td><td style="background:rgba(0,82,217,.06)">腾讯云背书 · 国内存储 · 信创</td></tr>
+<tr><td>开放 API</td><td>OpenAPI（成员/数据/审计）</td><td>Admin API · Cloud Agents API</td><td style="background:rgba(0,82,217,.06)">WorkBuddy Managed Agents API</td></tr>
+<tr><td>用户规模</td><td>用户数快速增长 · 2026 持续扩展</td><td>通义灵码基数 + Qoder 新用户</td><td style="background:rgba(0,82,217,.06)">月访问量 2000 万+ · 2026</td></tr>
+<tr><td>官网</td><td>trae.com.cn</td><td>qoder.com.cn</td><td style="background:rgba(0,82,217,.06)">workbuddy.cn / codebuddy.cn</td></tr>
+</tbody></table></div></section>
+<section id="scenarios">
+<div class="sec-head"><div class="sec-tag">场景推荐</div>
+<h2 class="sec-title">不同场景 <em>该选谁</em></h2>
+<p class="sec-desc">没有绝对的"更好"，只有"更适合"。</p></div>
+<div class="sc-item rv"><div class="si">📊</div><div class="st">办公自动化 · 文档/PPT/报表</div><div class="sr"><b style="color:#0052d9">→ 选 WorkBuddy</b> — 腾讯生态深度集成，文档/PPT/表格/周报全自动，SkillHub 8万+技能即取即用。<br><b class="bt">→ Trae / Qoder</b> — 偏代码场景，办公能力较弱。</div></div>
+<div class="sc-item rv"><div class="si">🐚</div><div class="st">终端 / SSH / 远程开发</div><div class="sr"><b class="bt">→ 选 Trae</b> — TraeCode CLI 是终端原生 Code Agent，适合服务器开发、Vim 用户。仅企业旗舰版可用。<br><b class="bq">→ Qoder</b> — Qoder CN CLI 为独立产品，npm 安装即可使用。</div></div>
+<div class="sc-item rv"><div class="si">🎨</div><div class="st">设计 → 代码 · 快速原型</div><div class="sr"><b class="bq">→ 选 Qoder</b> — QoderWork CN 设计工作台是独有优势：100+ 风格、多组件库、产物一键交付 IDE。<br><b class="bt">→ Trae</b> — TraeWork Design 模式（支持图片编辑），设计生态快速迭代中。</div></div>
+<div class="sc-item rv"><div class="si">🤖</div><div class="st">全自动端到端交付</div><div class="sr"><b class="bt">→ 选 Trae</b> — TraeWork Code 模式是国内最完整的 Autopilot 实现，从需求到部署全自动。<br><b class="bq">→ Qoder</b> — Quest/Agent 偏人机协作，强调"可审查性"。</div></div>
+<div class="sc-item rv"><div class="si">🧩</div><div class="st">存量 IDE 用户（VS Code / IDEA）</div><div class="sr"><b class="bq">→ 选 Qoder</b> — Qoder CN 插件直接装在现有 IDE 中，零迁移成本。JetBrains 全家桶尤其适合。<br><b class="bt">→ Trae</b> — 独立 IDE，虽支持一键导入，但需要安装新应用。</div></div>
+<div class="sc-item rv"><div class="si">📋</div><div class="st">团队协作与工作流</div><div class="sr"><b class="bt">→ 选 Trae</b> — 企业控制台提供完整管理能力 + 飞书 MCP 打通。<br><b class="bq">→ 选 Qoder</b> — Rules 规则治理 + Skills 复用 + 企业知识库，阿里云 RAM 支撑权限管控。</div></div>
+<div class="sc-item rv"><div class="si">🏢</div><div class="st">企业合规 / 国内部署</div><div class="sr"><b>二者均适合</b> — 都支持数据不出境、国内模型。生态选择是关键：<b class="bt">飞书/抖音 → Trae</b>，<b class="bq">阿里云/钉钉 → Qoder</b>。</div></div>
+<div class="sc-item rv"><div class="si">🆓</div><div class="st">预算敏感 · 个人开发者</div><div class="sr"><b class="bt">→ 选 Trae</b> — 个人免费版可用基础功能，付费速通 Pro ¥59/月起（100次/月）。<br><b class="bq">→ 选 Qoder</b> — 社区版免费，Pro 59元/月，含 2000 Credits，体验版含 2 周 Pro 试用 + 300 Credits。</div></div>
+</section>
+<section id="verdict">
+<div class="sec-head"><div class="sec-tag">对比小结</div>
+<h2 class="sec-title">没有唯一答案，<em>按需选择</em></h2></div>
+<div class="verdict-grid">
+<div class="vc t rv"><div class="vi">⚡</div>
+<h4>Trae 更适合你，如果：<em>……</em></h4>
+<p>你追求"少说话多干活"——TraeWork 端到端交付省心；你是终端重度用户；团队需要正式的管理控制台、审计、安全策略；你用飞书/抖音生态；免费版就能满足日常需求。</p>
+<div class="vbest"><b>最佳场景</b>：全自动交付 · 终端开发 · 企业管控 · 飞书生态 · 低门槛入门</div></div>
+<div class="vc q rv"><div class="vi">🌐</div>
+<h4>Qoder 更适合你，如果：<em>……</em></h4>
+<p>你已有 VS Code/IDEA 不想换，装个插件就用；工作流包含"设计→代码"的原型环节；喜欢"先出方案再执行"的 Spec 驱动模式；你用阿里云/钉钉生态；团队靠"规则治理"。</p>
+<div class="vbest"><b>最佳场景</b>：存量 IDE 增强 · 快速原型设计 · 规则驱动团队 · 阿里云生态 · JetBrains 用户</div></div>
+<div class="vc rv" style="border-top:3px solid #0052d9">
+<div class="vi">🐧</div>
+<h4>WorkBuddy 更适合你，如果：<em style="color:#0052d9;font-style:normal">……</em></h4>
+<p>你想要"一个工具搞定所有"——办公、编程、设计都能用；你的团队重度依赖腾讯生态（企业微信、腾讯文档、腾讯会议）；你需要丰富的技能市场快速扩展能力；你是产品/运营/设计等非纯技术岗位。</p>
+<div class="vbest" style="background:rgba(0,82,217,.07);border-left:2px solid #0052d9"><b style="color:#0052d9">最佳场景</b>：办公自动化 · 腾讯生态 · 全场景 AI 助手 · 技能市场 · 非技术岗位</div>
+</div>
+</div></section>
+<!-- ============ PART 2 : TRAE TUTORIAL ============ -->
+<div class="brand-banner t" id="trae-tutorial">
+<div class="bbl"><div class="bbi">⚡</div><div>
+<h2>Trae 完全教程</h2>
+<div class="bbs">ByteDance · AI-Native IDE · 国内版</div></div></div>
+<div class="bbr"><div><b>TraeWork v0.1.52</b> / TraeCode v3.3.x</div>
+<div>模型：豆包 · DeepSeek R1/V3</div>
+<div>平台：Win / macOS / Linux</div></div></div>
+<nav class="tut-nav t">
+<a class="tn" href="#trae-versions">版本对比</a>
+<a class="tn" href="#trae-products">核心产品</a>
+<a class="tn" href="#trae-howto">四步上手</a>
+<a class="tn" href="#trae-why">为什么选 Trae</a>
+<a class="tn" href="#trae-faq">常见问题</a>
+</nav>
+<section id="trae-versions">
+<div class="sec-head"><div class="sec-tag">Trae · Chapter 01</div>
+<h2 class="sec-title t">先厘清 <em>两个版本</em>：国际版与国内版</h2>
+<p class="sec-desc">Trae 目前有两个并行发行版本，代码内核一致，但在模型、账号、生态与合规策略上有明显差异。</p></div>
+<div class="split">
+<div class="sp"><div class="icon">🌍</div><div class="company">International Edition</div>
+<h3 style="color:var(--blue)">Trae <em style="color:var(--blue)">国际版</em></h3>
+<p>面向海外开发者，接入 Claude、GPT、Gemini 等国际主流大模型。Google/Apple/GitHub 账号登录，英文优先。</p>
+<ul style="list-style:none">
+<li>官网 <b style="color:var(--ink)">trae.ai</b></li>
+<li>登录 <b style="color:var(--ink)">Google / GitHub</b></li>
+<li>模型 <b style="color:var(--ink)">Claude · GPT · Gemini</b></li>
+<li>适合 <b style="color:var(--ink)">海外 / 出海项目</b></li></ul></div>
+<div class="sp t"><div class="icon">🇨🇳</div><div class="company">Chinese Edition · 本教程重点</div>
+<h3>Trae <em>国内版</em></h3>
+<p>面向国内开发者深度定制，内置豆包、DeepSeek、Qwen 等国产模型，中文交互流畅、访问速度快、企业合规。</p>
+<ul>
+<li>官网 <b style="color:var(--ink)">trae.com.cn</b></li>
+<li>登录 <b style="color:var(--ink)">手机号 / 抖音 / 飞书</b></li>
+<li>模型 <b style="color:var(--ink)">豆包 1.5 pro · DeepSeek R1 · DeepSeek V3</b></li>
+<li>适合 <b style="color:var(--ink)">国内团队 / 中文项目</b></li></ul></div>
+</div></section>
+<section id="trae-products">
+<div class="sec-head"><div class="sec-tag">Trae · Chapter 02</div>
+<h2 class="sec-title t">国内版核心产品：<em>它们各是什么？</em></h2>
+<p class="sec-desc">Trae 国内版提供多个产品形态，分别对应命令行开发者、桌面 IDE 用户、以及全自动 Agent 交付。</p></div>
+<div class="prods">
+<article class="pc t pc-r1 rv"><div class="pi">Product · 01</div>
+<h5><code>TraeCode CLI</code></h5><div class="ptl">命令行 AI 编程工具 · Terminal Native</div>
+<p class="pdesc"><b>TraeCode CLI 是运行在终端里的 AI 编程代理</b>。无需打开 IDE，Agent 就能读懂代码库、执行任务、生成 PR。适合服务器远程开发、SSH 场景、习惯 Vim/Neovim 的开发者。<b>注意：TraeCode CLI 目前仅企业旗舰版可用</b>。</p>
+<div class="pcb">
+<span class="cm"># Windows (PowerShell) 官方安装</span><br>
+<span class="kw">irm</span> <span class="v">https://trae.cn/trae-cli/install.ps1</span> | iex<br>
+<span class="cm"># macOS / Linux</span><br>
+sh -c <span class="v">"$(curl -L https://trae.cn/trae-cli/install.sh)"</span><br>
+<span class="cm"># 进入项目目录启动</span><br>TraeCode CLI</div>
+<div class="ptags"><span class="ch hot">终端原生</span><span class="ch">SSH 友好</span><span class="ch">脚本可编排</span><span class="ch">MCP 支持</span></div></article>
+<article class="pc t pc-r2 rv"><div class="pi">Product · 02</div>
+<h5><code>TraeCode</code></h5><div class="ptl">桌面 IDE 主程序 · Flagship</div>
+<p class="pdesc"><b>TraeCode 是国内版桌面客户端</b>，基于 VS Code 内核，中文界面 + 国产模型 + 内置 Agent 面板。兼容 VS Code 插件生态，一键从 Cursor / VS Code 迁移。</p>
+<div class="pcb">
+<span class="cm"># 官网下载安装：</span><br>
+<span class="kw">open</span> <span class="v">https://www.trae.com.cn/download</span><br>
+<span class="cm"># 或 winget / brew</span><br>winget install ByteDance.Trae</div>
+<div class="ptags"><span class="ch hot">桌面 IDE</span><span class="ch hot">豆包 1.5 pro</span><span class="ch">插件兼容</span></div></article>
+<article class="pc t pc-r3 rv"><div class="pi">Product · 03</div>
+<h5><code>TraeWork</code></h5><div class="ptl">AI 工作平台 · 全自动交付</div>
+<p class="pdesc"><b>TraeWork 是 Trae 最核心的 AI 工作平台</b>（原 SOLO 升级）。提供 Work/Code 双模式。Code 模式是"只出一张嘴"模式：需求 → 拆解 → 建仓 → 写码 → 测试 → 修 Bug → 部署全自动。支持三端协同、Design 模式、定时任务。</p>
+<div class="pcb">
+<span class="cm"># TraeCode 中激活 Work 面板</span><br>
+<span class="cm"># 或 CLI 企业旗舰版：</span><br>
+TraeCode CLI work run <span class="v">"做一个 Todo App"</span></div>
+<div class="ptags"><span class="ch hot">全自动</span><span class="ch hot">Agent 交付</span><span class="ch">三端协同</span><span class="ch">Design 模式</span></div></article>
+<article class="pc t pc-r4 rv"><div class="pi">Product · 04</div>
+<h5><code>Trae 插件</code></h5><div class="ptl">IDE 插件版 · 存量用户</div>
+<p class="pdesc"><b>Trae 也提供插件版</b>，可在现有 VS Code 中安装使用，保留原有编辑器习惯。适合不想切换 IDE 的开发者。注意：完整 Agent 能力推荐使用 TraeCode 桌面版。</p>
+<div class="pcb">
+<span class="cm"># VS Code 扩展市场搜索：</span><br>
+<span class="kw">Trae</span> <span class="cm">by ByteDance</span><br>
+<span class="cm"># 安装后用国内账号登录即可</span></div>
+<div class="ptags"><span class="ch">VS Code 插件</span><span class="ch">零迁移</span><span class="ch">Chat 模式</span></div></article>
+<div class="pc t pc-sum rv"><div class="pi">Product Matrix · 产品关系</div>
+<h5 style="font-size:24px">产品矩阵关系图</h5>
+<div class="rel-d" style="margin-top:14px;border:none;padding:0;background:transparent">
+<div class="rel-g">
+<div class="rel-i t"><div class="re">💻</div><div class="rn">TraeCode</div><div class="rs">桌面端 · 全功能</div></div>
+<div class="rel-i t"><div class="re">⚡</div><div class="rn">TraeWork</div><div class="rs">AI 工作平台 · 嵌入 IDE</div></div>
+<div class="rel-i t"><div class="re">🐚</div><div class="rn">TraeCode CLI</div><div class="rs">终端 · 旗舰版</div></div>
+<div class="rel-i t"><div class="re">🧩</div><div class="rn">Trae 插件</div><div class="rs">VS Code 扩展</div></div>
+</div><div class="rnote">核心产品 · TraeCode 为桌面主入口，TraeWork 为 Agent 大脑</div></div></div>
+</div></section>
+<section id="trae-howto">
+<div class="sec-head"><div class="sec-tag">Trae · Chapter 03</div>
+<h2 class="sec-title t">四步上手：<em>从安装到第一个 Agent 任务</em></h2>
+<p class="sec-desc">以 TraeCode 桌面版 + TraeWork 为例，四步完成你的第一次 AI 辅助编程。</p></div>
+<div class="steps">
+<div class="step t"><div class="sn">01</div><div class="sb">
+<h5>下载安装 <em>TraeCode 国内版</em></h5>
+<div class="sm">INSTALL · 约 5 分钟</div>
+<p>访问 <code>trae.com.cn</code> 或 <code>www.trae.com.cn/download</code> 下载对应系统版本（Windows / macOS / Linux）。启动后选择"国内版"，使用手机号 / 抖音 / 飞书任一方式登录。</p>
+<div class="sq">提示：Trae 支持一键从 VS Code / Cursor 导入设置、插件、快捷键与主题，迁移几乎零成本。</div>
+</div></div>
+<div class="step t"><div class="sn">02</div><div class="sb">
+<h5>选择工作模式：<em>Chat / Builder / Work</em></h5>
+<div class="sm">MODE · 选择你的工作流</div>
+<p>Trae 提供多种工作模式，按需选择：</p>
+<ul>
+<li><b>Chat 模式</b>：只问不改，适合代码答疑、原理讲解、方案讨论（不消耗速通次数）</li>
+<li><b>Builder 模式</b>：AI 可以修改代码，适合具体编码任务（消耗速通次数）</li>
+<li><b>TraeWork</b>：全自动端到端交付，适合从 0 到 1 项目或大型重构（消耗速通次数）</li>
+</ul>
+<div class="sq">新手上路推荐：先用 Chat 熟悉模型风格，再用 Builder 处理具体文件任务，熟练后再尝试 TraeWork。</div>
+</div></div>
+<div class="step t"><div class="sn">03</div><div class="sb">
+<h5>第一个任务：<em>用 TraeWork 建一个 Todo App</em></h5>
+<div class="sm">FIRST TASK · 约 10 分钟</div>
+<p>在 TraeCode 左侧边栏点击"TraeWork"图标，选择"Code 模式"，输入你的需求：</p>
+<ul>
+<li>用 React + TypeScript 做一个带本地存储的 Todo 应用</li>
+<li>支持增删改查、标记完成、筛选</li>
+<li>使用 Tailwind CSS 美化界面</li>
+</ul>
+<p>TraeWork 会自动：拆解需求 → 创建项目 → 编写代码 → 运行测试 → 修复问题 → 启动预览。你只需要在关键节点确认即可。</p>
+<div class="sq">核心心法：描述越清晰（技术栈、功能点、约束条件），AI 交付的结果越精准。"模糊的需求得到模糊的结果"。</div>
+</div></div>
+<div class="step t"><div class="sn">04</div><div class="sb">
+<h5>进阶：<em>用好 MCP、企业文档集与规则</em></h5>
+<div class="sm">ADVANCED · 持续提升</div>
+<p>熟练掌握基础后，可以进一步探索：</p>
+<ul>
+<li><b>MCP 服务</b>：连接 GitHub、飞书、数据库等外部工具，让 Agent 能力延伸到你的工作流</li>
+<li><b>@ 引用上下文</b>：用 <code>@文件</code>、<code>@文件夹</code>、<code>@代码符号</code> 精准控制 AI 的参考范围</li>
+<li><b>企业文档集</b>：上传团队规范、API 文档，让 AI 生成的代码符合团队标准</li>
+<li><b>企业智能体</b>：通过提示词 + 工具集编排专属的 AI Agent</li>
+<li><b>Design 模式</b>：用自然语言生成设计稿，再一键转为代码</li>
+</ul>
+<div class="sq">进阶路径：个人开发者 → 用好 MCP 扩展能力；团队用户 → 用好文档集 + 智能体统一标准。</div>
+</div></div>
+</div></section>
+<section id="trae-why">
+<div class="sec-head"><div class="sec-tag">Trae · Chapter 04</div>
+<h2 class="sec-title t">为什么选 <em>Trae</em>？四大核心理由</h2>
+<p class="sec-desc">国内 AI 工具很多，Trae 的差异化优势在哪里？</p></div>
+<div class="why-grid">
+<div class="wg t rv"><div class="wb">端到端 <em>Autopilot</em></div><div class="wl">TraeWork · Code 模式</div>
+<div class="wt">国内最完整的全自动编程体验。从一句需求到可运行项目，AI 自主完成拆解、编码、测试、修复、部署全流程，开发者只在关键节点确认。</div></div>
+<div class="wg t rv"><div class="wb">三端 <em>协同</em></div><div class="wl">桌面 · 手机 · Web</div>
+<div class="wt">手机 App 语音下任务，桌面端自动执行，Web 端查看进度。出门在外也能"指挥"AI 干活，回来直接验收成果。</div></div>
+<div class="wg t rv"><div class="wb">国产模型 <em>深度优化</em></div><div class="wl">Doubao · Seed · DeepSeek · Qwen</div>
+<div class="wt">与国内多家头部大模型厂商深度合作，中文理解和国内场景适配度高。访问速度快、延迟低，且完全符合国内数据合规要求。</div></div>
+<div class="wg t rv"><div class="wb">企业级 <em>管控</em></div><div class="wl">控制台 · 审计 · SSO</div>
+<div class="wt">企业控制台提供完整的团队管理、数据分析、安全策略、审计日志能力。飞书 MCP 深度集成，适合中大型企业的规范化使用。</div></div>
+</div></section>
+<section id="trae-faq">
+<div class="sec-head"><div class="sec-tag">Trae · Chapter 05</div>
+<h2 class="sec-title t">常见问题 <em>FAQ</em></h2></div>
+<div class="faq-list">
+<div class="faq t"><div class="fi">Q01</div><div>
+<div class="fq">Trae 国内版和国际版有什么区别？可以互通吗？</div>
+<div class="fa">两者是独立发行版本，账号体系不互通。国内版使用国产模型、面向国内合规；国际版使用 Claude/GPT/Gemini、面向海外。数据和账号完全独立，需分别注册。安装时根据所选区域确定版本。</div></div></div>
+<div class="faq t"><div class="fi">Q02</div><div>
+<div class="fq">免费版够用吗？速通次数是什么意思？</div>
+<div class="fa">Trae 个人免费版包含基础 Chat 和 Builder 功能，以及一定的 TraeWork 配额。<code>速通次数</code>是 TraeWork 的调用配额，付费用户有更高的月度额度并享有免排队特权。普通日常开发免费版基本够用，重度用户建议 Pro 及以上。</div></div></div>
+<div class="faq t"><div class="fi">Q03</div><div>
+<div class="fq">TraeWork 生成的代码质量如何？能直接上生产吗？</div>
+<div class="fa">TraeWork 在常见项目类型（前端应用、工具脚本、API 服务）上表现出色，代码可直接运行。但对于复杂业务逻辑、性能敏感场景、安全要求高的系统，仍需人工 review 和测试。建议作为"超级初级开发者"使用，而非完全替代人类工程师。</div></div></div>
+<div class="faq t"><div class="fi">Q04</div><div>
+<div class="fq">TraeCode CLI 和 TraeCode 有什么关系？都需要装吗？</div>
+<div class="fa">两者是独立产品。<code>TraeCode</code> 是图形界面的完整开发环境，适合大多数开发者；<code>TraeCode CLI</code> 是命令行工具，适合终端用户和自动化场景。大多数情况下只需要 TraeCode 即可。注意：TraeCode CLI 目前仅企业旗舰版可用。</div></div></div>
+<div class="faq t"><div class="fi">Q05</div><div>
+<div class="fq">企业版和个人版有什么区别？怎么选型？</div>
+<div class="fa">个人版适合独立开发者和小团队；企业版增加了企业控制台（人员管理、数据分析、审计日志、安全策略、SSO）、企业文档集、企业智能体、飞书 MCP 集成等能力。10 人以上团队或有合规要求的企业建议评估企业版。</div></div></div>
+</div></section>
+<!-- ============ PART 3 : QODER TUTORIAL ============ -->
+<div class="brand-banner q" id="qoder-tutorial">
+<div class="bbl"><div class="bbi">🌐</div><div>
+<h2>Qoder 完全教程</h2>
+<div class="bbs">Alibaba Cloud · Agents 编程平台 · 国内版</div></div></div>
+<div class="bbr"><div><b>Qoder CN v1.26.0</b> · 2026.08 更新</div>
+<div>模型：Qwen · DeepSeek · GLM · Kimi</div>
+<div>平台：Win / macOS / Linux / Web</div></div></div>
+<nav class="tut-nav q">
+<a class="tn" href="#qoder-intro">产品概述</a>
+<a class="tn" href="#qoder-modes">三大模式</a>
+<a class="tn" href="#qoder-products">产品矩阵</a>
+<a class="tn" href="#qoder-howto">四步上手</a>
+<a class="tn" href="#qoder-why">为什么选 Qoder</a>
+<a class="tn" href="#qoder-faq">常见问题</a>
+</nav>
+<section id="qoder-intro">
+<div class="sec-head"><div class="sec-tag">Qoder · Chapter 01</div>
+<h2 class="sec-title q">什么是 <em>Qoder</em>？Agents 编程平台</h2>
+<p class="sec-desc">Qoder 是阿里云推出的 AI-Native 编程平台，前身是"通义灵码"。2026 年 5 月由通义灵码更名为 Qoder CN，定位从"代码助手"升级为"Agents 编程平台"。</p></div>
+<div class="split">
+<div class="sp q"><div class="icon">🚀</div><div class="company">产品定位</div>
+<h3>从 <em>Co-pilot</em> 到 <em>Auto-pilot</em></h3>
+<p>Qoder 不再只是补全代码的助手，而是能够自主完成需求分析、方案设计、编码实现、测试验证的 AI Agent 平台。支持 Ask / Agent / Quest 三种工作模式，逐步提升自动化程度。</p>
+<ul>
+<li>Ask：问答模式，低消耗</li>
+<li>Agent：代理模式，自动改代码</li>
+<li>Quest：任务模式，先规划后执行</li>
+</ul></div>
+<div class="sp q"><div class="icon">🧩</div><div class="company">多端覆盖</div>
+<h3><em>4 款产品</em> · 全场景覆盖</h3>
+<p>Qoder 提供 4 款不同形态的产品，适配不同的使用场景和用户习惯。从桌面 IDE 到浏览器插件，从 CLI 到 Web 工作台，总有一款适合你。</p>
+<ul>
+<li>Qoder 桌面 IDE — 完整 AI 原生开发环境</li>
+<li>Qoder CN 插件 — 存量 IDE 用户零迁移</li>
+<li>Qoder CN CLI — 命令行 AI 编程工具</li>
+<li>QoderWork CN — Code as Design 工作台</li>
+</ul></div>
+</div></section>
+<section id="qoder-modes">
+<div class="sec-head"><div class="sec-tag">Qoder · Chapter 02</div>
+<h2 class="sec-title q">三大模式：<em>Ask / Agent / Quest</em></h2>
+<p class="sec-desc">Qoder 提供三种递进式的工作模式，从简单问答到全自动任务，按需切换。不同模式消耗的 Credits 不同。</p></div>
+<div class="modes">
+<div class="mode q rv"><div class="mt"><em>●</em> 模式一</div>
+<h4><span>Ask</span> 问答模式</h4>
+<div class="mc free">低消耗 · 免费额度够用</div>
+<p>只问不改的代码问答模式。解释代码、讲解原理、排查思路、方案讨论。AI 不会修改你的文件，安全可控。</p>
+<ul><li>代码解释与原理讲解</li>
+<li>Bug 排查思路分析</li>
+<li>技术方案讨论</li>
+<li>学习与答疑</li></ul></div>
+<div class="mode q rv"><div class="mt"><em>●</em> 模式二</div>
+<h4><span>Agent</span> 代理模式</h4>
+<div class="mc">中等消耗 · 可直接改代码</div>
+<p>AI 可以主动操作文件、运行命令、调试代码。适合具体的编码任务：重构、加功能、修 Bug。你可以随时介入和干预。</p>
+<ul><li>文件级别的编码任务</li>
+<li>自动运行和调试</li>
+<li>多步骤代码修改</li>
+<li>实时审查和干预</li></ul></div>
+<div class="mode q rv"><div class="mt"><em>●</em> 模式三</div>
+<h4><span>Quest</span> 任务模式</h4>
+<div class="mc">较高消耗 · Spec 驱动</div>
+<p>先出方案（Spec），你确认后再执行。适合大型任务和复杂项目。AI 先拆解需求、制定计划，经你审核后再分步落地。</p>
+<ul><li>Spec 先行 · 可审查</li>
+<li>复杂任务拆解与编排</li>
+<li>人类确认关键节点</li>
+<li>大型重构 / 新功能开发</li></ul></div>
+</div>
+<div style="margin-top:24px;padding:20px 24px;border:1px solid var(--line);background:var(--qoder-bg);border-left:3px solid var(--qoder);font-family:var(--mono);font-size:12px;line-height:1.7">
+<b style="color:var(--qoder)">选型建议：</b>日常问答用 Ask（省 Credits），具体改代码用 Agent（高效），大型项目用 Quest（可控）。三种模式可以在对话中随时切换。
+</div></section>
+<section id="qoder-products">
+<div class="sec-head"><div class="sec-tag">Qoder · Chapter 03</div>
+<h2 class="sec-title q">产品矩阵：<em>四款产品全解析</em></h2>
+<p class="sec-desc">Qoder 提供 4 款不同形态的产品，覆盖从桌面到终端、从编码到设计的全场景。</p></div>
+<div class="prods">
+<article class="pc q pc-r1 rv"><div class="pi">Product · 01</div>
+<h5><code>Qoder 桌面 IDE</code></h5><div class="ptl">AI-Native IDE · 旗舰产品</div>
+<p class="pdesc"><b>Qoder 桌面 IDE 是 Qoder 的旗舰产品</b>，基于 VS Code 内核打造的 AI 原生开发环境。内置所有 AI 能力，支持 Ask / Agent / Quest 三种模式，一键导入 VS Code 配置。适合希望获得完整体验的开发者。</p>
+<div class="pcb">
+<span class="cm"># 官网下载：</span><br>
+<span class="kw">open</span> <span class="v">https://www.qoder.com.cn</span><br>
+<span class="cm"># 支持 Win / macOS / Linux</span></div>
+<div class="ptags"><span class="ch hot">全功能 IDE</span><span class="ch hot">三模式</span><span class="ch">VS Code 兼容</span></div></article>
+<article class="pc q pc-r2 rv"><div class="pi">Product · 02</div>
+<h5><code>Qoder CN 插件</code></h5><div class="ptl">VS Code / JetBrains 插件 · 零迁移</div>
+<p class="pdesc"><b>Qoder CN 插件</b>可以直接安装在你现有的 VS Code 或 JetBrains IDE（IDEA / PyCharm / GoLand 等）中，零迁移成本享受 AI 编程能力。适合不想换 IDE 的团队和个人。</p>
+<div class="pcb">
+<span class="cm"># VS Code 扩展市场搜索：</span><br>
+<span class="kw">Qoder CN</span><br>
+<span class="cm"># JetBrains 插件市场搜索：</span><br>Qoder CN</div>
+<div class="ptags"><span class="ch hot">零迁移</span><span class="ch hot">JetBrains 支持</span><span class="ch">VS Code 插件</span></div></article>
+<article class="pc q pc-r3 rv"><div class="pi">Product · 03</div>
+<h5><code>Qoder CN CLI</code></h5><div class="ptl">命令行工具 · Terminal AI</div>
+<p class="pdesc"><b>Qoder CN CLI</b>是独立的命令行 AI 编程工具，npm 一键安装。适合终端开发者、SSH 远程开发、CI/CD 集成场景。在终端中就能获得 AI 编程能力。</p>
+<div class="pcb">
+<span class="cm"># npm 全局安装：</span><br>
+<span class="kw">npm</span> install -g @qoder/cn-cli<br>
+<span class="cm"># 启动交互模式：</span><br>qoder chat</div>
+<div class="ptags"><span class="ch hot">CLI 原生</span><span class="ch">npm 安装</span><span class="ch">SSH 友好</span></div></article>
+<article class="pc q pc-r4 rv"><div class="pi">Product · 04</div>
+<h5><code>QoderWork CN</code></h5><div class="ptl">Design Workstation · Code as Design</div>
+<p class="pdesc"><b>QoderWork CN 是 Qoder 的设计工作台</b>，核心理念是 "Code as Design"。提供通用/设计/写作/幻灯片 4 个工作台，100+ 设计风格参考，支持多种组件库。设计稿一键生成完整工程并交付到 IDE。</p>
+<div class="pcb">
+<span class="cm"># 直接在浏览器中使用：</span><br>
+<span class="kw">open</span> <span class="v">https://work.qoder.com.cn</span><br>
+<span class="cm"># 或 Qoder IDE 中打开</span></div>
+<div class="ptags"><span class="ch hot">Code as Design</span><span class="ch hot">100+ 风格</span><span class="ch">4 个工作台</span><span class="ch new">Web 端可用</span></div></article>
+<div class="pc q pc-sum rv"><div class="pi">Product Matrix · 产品关系</div>
+<h5 style="font-size:24px">产品矩阵关系图</h5>
+<div class="rel-d" style="margin-top:14px;border:none;padding:0;background:transparent">
+<div class="rel-g">
+<div class="rel-i q"><div class="re">💻</div><div class="rn">Qoder IDE</div><div class="rs">桌面端 · 全功能</div></div>
+<div class="rel-i q"><div class="re">🧩</div><div class="rn">Qoder CN 插件</div><div class="rs">VS Code / JetBrains</div></div>
+<div class="rel-i q"><div class="re">🐚</div><div class="rn">Qoder CN CLI</div><div class="rs">命令行 · npm</div></div>
+<div class="rel-i q"><div class="re">🎨</div><div class="rn">QoderWork CN</div><div class="rs">设计工作台 · Web</div></div>
+</div><div class="rnote">核心产品 · 统一账号 · 共享 Credits 配额</div></div></div>
+</div></section>
+<section id="qoder-howto">
+<div class="sec-head"><div class="sec-tag">Qoder · Chapter 04</div>
+<h2 class="sec-title q">四步上手：<em>从安装到第一个 Quest</em></h2>
+<p class="sec-desc">以 Qoder 桌面 IDE 为例，四步体验完整的 AI 编程工作流。</p></div>
+<div class="steps">
+<div class="step q"><div class="sn">01</div><div class="sb">
+<h5>下载安装 <em>Qoder 并登录</em></h5>
+<div class="sm">INSTALL · 约 3 分钟</div>
+<p>访问 <code>qoder.com.cn</code> 下载 Qoder 桌面 IDE。支持 Windows / macOS / Linux。安装后使用阿里云账号、邮箱或 GitHub 账号登录。首次登录可领取社区版免费额度。</p>
+<div class="sq">提示：如果不想换 IDE，可以直接在 VS Code / JetBrains 中安装「Qoder CN」插件，零迁移上手。</div>
+</div></div>
+<div class="step q"><div class="sn">02</div><div class="sb">
+<h5>选择模式：<em>从 Ask 开始，逐步升级</em></h5>
+<div class="sm">MODE SELECTION · 按需切换</div>
+<p>Qoder 提供三种模式，建议新手按以下顺序探索：</p>
+<ul>
+<li><b>Step 1 — Ask 模式</b>：先试试代码问答、解释原理，熟悉 AI 风格</li>
+<li><b>Step 2 — Agent 模式</b>：让 AI 帮你改具体文件、加小功能、修 Bug</li>
+<li><b>Step 3 — Quest 模式</b>：交给 AI 一个较大的任务，先看它的方案（Spec），确认后再执行</li>
+</ul>
+<div class="sq">心法：小问题用 Ask，改文件用 Agent，大任务用 Quest。三种模式可以随时切换，灵活搭配。</div>
+</div></div>
+<div class="step q"><div class="sn">03</div><div class="sb">
+<h5>第一个 Quest：<em>做一个博客系统后端</em></h5>
+<div class="sm">FIRST QUEST · 约 15 分钟</div>
+<p>切换到 Quest 模式，描述你的需求：</p>
+<ul>
+<li>用 Node.js + Express 做一个博客 API 服务</li>
+<li>支持用户注册登录（JWT）、文章 CRUD、评论功能</li>
+<li>使用 SQLite 数据库，RESTful API 设计</li>
+<li>包含单元测试和 README 文档</li>
+</ul>
+<p>Qoder 会先生成 <b>Spec 方案文档</b>（技术选型、目录结构、API 设计、测试方案），你审核确认后，AI 才开始逐步执行编码。每一步你都可以介入修改。</p>
+<div class="sq">Quest 模式的核心价值是「可审查」——AI 先出方案，人类拍板后再干。这样既高效又可控。</div>
+</div></div>
+<div class="step q"><div class="sn">04</div><div class="sb">
+<h5>进阶：<em>Rules + Skills + 知识库 + MCP</em></h5>
+<div class="sm">ADVANCED · 持续优化</div>
+<p>掌握基础后，可以通过 Qoder 的扩展能力进一步提升效率：</p>
+<ul>
+<li><b>Rules 规则</b>：在 <code>.qoder/rules/</code> 目录下定义团队编码规范，AI 自动遵守</li>
+<li><b>Skills 技能</b>：从技能市场安装第三方能力，或创建自定义技能</li>
+<li><b>企业知识库</b>：上传团队文档、API 规范，让 AI 基于企业标准生成代码</li>
+<li><b>MCP 扩展</b>：连接 GitHub、Figma、数据库等外部服务</li>
+<li><b>@ 引用上下文</b>：<code>@file</code> / <code>@folder</code> / <code>@rules</code> 精准控制参考范围</li>
+<li><b>QoderWork 设计</b>：用设计工作台快速出原型，再一键转到 IDE 开发</li>
+</ul>
+<div class="sq">团队进阶路径：先定 Rules 规范 → 再建企业知识库 → 积累 Skills 技能库 → 最后用 MCP 连接工具链。</div>
+</div></div>
+</div></section>
+<section id="qoder-why">
+<div class="sec-head"><div class="sec-tag">Qoder · Chapter 05</div>
+<h2 class="sec-title q">为什么选 <em>Qoder</em>？五大核心理由</h2>
+<p class="sec-desc">在众多 AI 工具中，Qoder 的差异化优势在哪里？</p></div>
+<div class="why-grid">
+<div class="wg q rv"><div class="wb">零迁移 <em>成本</em></div><div class="wl">VS Code / JetBrains 插件</div>
+<div class="wt">Qoder CN 插件直接装在你现有的 IDE 中，VS Code 和 JetBrains 全家桶都支持。不用换编辑器、不用改习惯，装上就能用。</div></div>
+<div class="wg q rv"><div class="wb">Quest <em>Spec 驱动</em></div><div class="wl">先规划 · 后执行</div>
+<div class="wt">Quest 模式独创"先出方案再执行"的工作流。AI 先输出 Spec 文档，人类审核确认后再分步编码。既高效又可控，特别适合团队协作。</div></div>
+<div class="wg q rv"><div class="wb">Code as <em>Design</em></div><div class="wl">QoderWork · 100+ 风格</div>
+<div class="wt">QoderWork CN 是目前国内最完整的"设计即代码"工作台。100+ 设计风格、4 个工作台、多组件库支持，产品/设计/前端共用一条工具链。</div></div>
+<div class="wg q rv"><div class="wb">阿里云 <em>生态</em></div><div class="wl">百炼 · RAM · 云资源</div>
+<div class="wt">与阿里云百炼大模型平台、RAM 权限系统、云资源管理深度打通。企业用户可以在已有阿里云账号体系下无缝启用。</div></div>
+<div class="wg q full rv"><div class="wb">Rules + Skills + 知识库 · <em>三位一体</em></div><div class="wl">团队协作的完整闭环</div>
+<div class="wt">Rules 定义"怎么做"（编码规范）、Skills 封装"怎么做更快"（可复用技能）、知识库提供"做什么的依据"（企业标准）。三者结合，形成团队级 AI 编程的治理闭环。</div></div>
+</div></section>
+<section id="qoder-faq">
+<div class="sec-head"><div class="sec-tag">Qoder · Chapter 06</div>
+<h2 class="sec-title q">常见问题 <em>FAQ</em></h2></div>
+<div class="faq-list">
+<div class="faq q"><div class="fi">Q01</div><div>
+<div class="fq">Qoder 和通义灵码是什么关系？老用户要迁移吗？</div>
+<div class="fa">Qoder 是通义灵码的全面升级版本，从"代码助手"升级为"Agents 编程平台"。通义灵码的老用户可以平滑过渡到 Qoder，原有的使用习惯和数据基本兼容。建议直接升级体验更完整的 Agent 能力。</div></div></div>
+<div class="faq q"><div class="fi">Q02</div><div>
+<div class="fq">Credits 是什么？不同模式怎么消耗？</div>
+<div class="fa"><code>Credits</code>是 Qoder 的计费单位。不同模式消耗不同：Ask 模式消耗最低（适合日常问答），Agent 模式中等（适合编码任务），Quest 模式消耗较高（适合大型任务但产出也更完整）。社区版有免费额度，Pro 版 59 元/月含 2000 Credits，师生认证可额外领 4000 Credits。</div></div></div>
+<div class="faq q"><div class="fi">Q03</div><div>
+<div class="fq">Agent 模式和 Quest 模式有什么区别？怎么选？</div>
+<div class="fa"><b>Agent 模式</b>是"边干边看"——AI 直接动手改代码，你可以随时打断和调整，适合中小型任务。<b>Quest 模式</b>是"先规划再执行"——AI 先出 Spec 方案，你确认后再分步执行，适合大型任务和团队协作场景。简单一句话：改几个文件用 Agent，做整个模块/项目用 Quest。</div></div></div>
+<div class="faq q"><div class="fi">Q04</div><div>
+<div class="fq">QoderWork CN 和 TraeWork Design 有什么区别？</div>
+<div class="fa">QoderWork CN 是独立的设计工作台产品，核心理念是 "Code as Design"，提供 4 个工作台和 100+ 设计风格，产品/设计/前端都能用。TraeWork Design 是编码工具向设计侧的延伸功能，更偏向"设计稿转代码"。如果你重度依赖设计流程，QoderWork 更专业；如果只是偶尔需要设计稿，Trae 的 Design 模式够用。</div></div></div>
+<div class="faq q"><div class="fi">Q05</div><div>
+<div class="fq">企业团队怎么选型？Teams 版和 VPC 版有什么区别？</div>
+<div class="fa"><b>Teams 版</b>（99 元/人/月）适合中小团队，包含 Pro+ 全部功能 + 团队管理 + 企业知识库。<b>VPC 版</b>（199 元/人/月）适合大型企业，增加了 VPC 专属部署、更高安全等级、定制化支持。选型建议：10 人以下先用 Pro+ 试用，10-50 人上 Teams，50 人以上或有严格合规要求选 VPC。</div></div></div>
+</div></section>
+<!-- ============ PART 4 : WORKBUDDY TUTORIAL ============ -->
+<div class="brand-banner w" id="workbuddy-tutorial">
+<div class="bbl"><div class="bbi">🐧</div><div>
+<h2>WorkBuddy 完全教程</h2>
+<div class="bbs">Tencent Cloud · 全场景 AI 办公工作台 · 国内版</div></div></div>
+<div class="bbr"><div><b>Buddy AI 系列</b> · 2026 持续迭代</div>
+<div>模型：混元 · DeepSeek · GLM · Kimi</div>
+<div>平台：桌面 / 浏览器 / 小程序</div></div></div>
+<nav class="tut-nav w">
+<a class="tn" href="#wb-overview">产品概述</a>
+<a class="tn" href="#wb-skills">核心能力</a>
+<a class="tn" href="#wb-products">产品矩阵</a>
+<a class="tn" href="#wb-howto">四步上手</a>
+<a class="tn" href="#wb-why">为什么选</a>
+<a class="tn" href="#wb-faq">常见问题</a>
+</nav>
+<section id="wb-overview">
+<div class="sec-head"><div class="sec-tag">WorkBuddy · Chapter 01</div>
+<h2 class="sec-title w">什么是 <em>WorkBuddy</em>？AI 办公工作台</h2>
+<p class="sec-desc">WorkBuddy 是腾讯云推出的全场景 AI 办公工作台，隶属 Buddy AI 产品矩阵（与 CodeBuddy 同源）。它的定位不是"又一个编程工具"，而是"面向中文办公生态的综合调度台"。</p></div>
+<div class="split">
+<div class="sp w"><div class="icon">🧭</div><div class="company">产品定位</div>
+<h3><em>办公为主</em> · 编程为辅</h3>
+<p>WorkBuddy 的核心场景是办公自动化：文档、表格、PPT、周报、会议纪要、数据汇总。它通过自然语言驱动，自主拆解任务并交付可验收的成果。</p>
+<ul>
+<li>自然语言下达任务，无需学习指令</li>
+<li>自主规划执行，过程可校验修正</li>
+<li>交付完整成果而非代码片段</li>
+<li>编程为办公场景服务（脚本、自动化）</li>
+</ul></div>
+<div class="sp w"><div class="icon">🔗</div><div class="company">生态底座</div>
+<h3>腾讯办公套件 <em>深度打通</em></h3>
+<p>与腾讯文档、腾讯网盘、腾讯乐享等深度集成，形成 Agent 的"原生底座"，实现"读取 → 处理 → 回写"的双向闭环——这是它区别于通用 AI 助手的关键。</p>
+<ul>
+<li>腾讯文档：直接读写、批量处理</li>
+<li>腾讯网盘：文件读取与产出归档</li>
+<li>腾讯乐享：企业知识检索</li>
+<li>企业微信 / 腾讯会议：协同链路</li>
+</ul></div>
+<div class="sp w"><div class="icon">🧩</div><div class="company">能力扩展</div>
+<h3>SkillHub <em>技能市场</em></h3>
+<p>WorkBuddy 通过 SkillHub 扩展能力：收录 8 万+ AI Skills、100+ 领域专家。技能即插即用，并经过三线并行安全审核机制，兼顾效率与安全。</p>
+<ul>
+<li>办公场景模板：周报、纪要、数据汇总</li>
+<li>领域专家：市场、法务、财务等</li>
+<li>技能市场随取随用，无需自建</li>
+<li>三线并行安全审核</li>
+</ul></div>
+</div></section>
+<section id="wb-skills">
+<div class="sec-head"><div class="sec-tag">WorkBuddy · Chapter 02</div>
+<h2 class="sec-title w">四大核心能力：<em>从"会聊天"到"能交付"</em></h2>
+<p class="sec-desc">WorkBuddy 与普通聊天式 AI 的差别，在于它能把一句话需求变成可验收的成品交付。</p></div>
+<div class="why-grid">
+<div class="wg w rv"><div class="wb">自然语言 <em>理解</em></div><div class="wl">Zero Learning Curve</div>
+<div class="wt">无需学习专门的指令或语法，以日常语言描述需求即可。WorkBuddy 能准确理解意图并作出响应，显著降低使用门槛——产品、运营、行政等非技术岗位也能直接上手。</div></div>
+<div class="wg w rv"><div class="wb">自主规划 <em>执行</em></div><div class="wl">Think · Plan · Act</div>
+<div class="wt">将复杂任务自动拆解为多个步骤，依次调用相应工具执行，并在过程中自我校验与修正。它不是"一步问答"，而是"多步交付"。</div></div>
+<div class="wg w rv"><div class="wb">多模态 <em>生成</em></div><div class="wl">Text · Image · Table · Code</div>
+<div class="wt">支持对文字、图像、表格、代码等多种内容的理解与生成，可直接产出图片、视频、PPT、报表等多模态成果，覆盖"从素材到成品"的全过程。</div></div>
+<div class="wg w rv"><div class="wb">本地文件 <em>读写</em></div><div class="wl">Authorized Directory</div>
+<div class="wt">在用户授权目录范围内直接读写本地文件。能真正操作你电脑上的资料，而不只是"给建议"。建议仅授权必要目录，并注意权限范围与数据安全。</div></div>
+</div>
+<div class="skill-grid">
+<div class="skill rv"><div class="skc">SkillHub · Scale</div><h5>技能市场</h5><div class="skn">8 万+</div><div class="skl">AI SKILLS 即取即用</div>
+<p>覆盖办公、市场、财务、法务等高频场景，技能经过安全审核，装完即生效。</p></div>
+<div class="skill rv"><div class="skc">SkillHub · Experts</div><h5>领域专家</h5><div class="skn">100+</div><div class="skl">DOMAIN EXPERTS</div>
+<p>针对垂直岗位预设的专业 Agent 角色，直接以"专家身份"完成领域任务。</p></div>
+<div class="skill rv"><div class="skc">Delivery · Deploy</div><h5>交付模式</h5><div class="skn">全栈</div><div class="skl">SAAS → 私有化信创</div>
+<p>从 SaaS 公有云到私有化本地部署（信创环境）全覆盖，满足企业合规要求。</p></div>
+</div></section>
+<section id="wb-products">
+<div class="sec-head"><div class="sec-tag">WorkBuddy · Chapter 03</div>
+<h2 class="sec-title w">产品矩阵：<em>Buddy AI 三件套</em></h2>
+<p class="sec-desc">WorkBuddy 并非孤立产品，而是腾讯云 Buddy AI 体系的一环。三款产品可独立使用，也可在企业内统一管理协同。</p></div>
+<div class="prods">
+<article class="pc w pc-r1 rv"><div class="pi">Product · 01</div>
+<h5><code>WorkBuddy</code></h5><div class="ptl">AI 办公工作台 · 全员可用</div>
+<p class="pdesc"><b>WorkBuddy 是面向全员的 AI 办公工作台</b>。用自然语言完成文档写作、数据分析、PPT 生成、周报纪要等日常办公任务。与腾讯文档/网盘/乐享深度打通，是腾讯生态里的"AI 调度台"。适合产品、运营、行政、市场等非技术岗位。</p>
+<div class="pcb">
+<span class="cm"># 访问官网下载桌面端 / 使用网页版</span><br>
+<span class="kw">open</span> <span class="v">https://www.workbuddy.cn</span><br>
+<span class="cm"># 微信扫码登录即可开始</span></div>
+<div class="ptags"><span class="ch hot">办公自动化</span><span class="ch hot">腾讯生态</span><span class="ch">多模态</span></div></article>
+<article class="pc w pc-r2 rv"><div class="pi">Product · 02</div>
+<h5><code>CodeBuddy</code></h5><div class="ptl">智能编码工具 · 面向开发者</div>
+<p class="pdesc"><b>CodeBuddy 是 Buddy AI 体系里面向开发者的智能编码工具</b>，提供 IDE 与插件两种形态。如果你的核心需求是专业编程——多文件工程、Git 管理、复杂调试，CodeBuddy 比 WorkBuddy 更合适。WorkBuddy 用户可在同一体系内无缝升级到 CodeBuddy。</p>
+<div class="pcb">
+<span class="cm"># CodeBuddy IDE 更新记录（示例）</span><br>
+<span class="kw">4.9.14 - 4.9.15</span> <span class="cm">功能更新</span><br>
+<span class="cm"># 安全检测自动 / 一键安装</span></div>
+<div class="ptags"><span class="ch hot">专业编程</span><span class="ch">IDE + 插件</span><span class="ch">Git 管理</span></div></article>
+<article class="pc w pc-r3 rv" style="grid-column:span 12"><div class="pi">Product · 03</div>
+<h5><code>WorkBuddy Managed Agents</code></h5><div class="ptl">智能体托管与规模化运行服务 · Enterprise</div>
+<p class="pdesc"><b>Managed Agents 是面向企业的智能体托管平台</b>，负责 Agent 的规模化运行、统一调度与集中管控。企业可以把 WorkBuddy 里验证过的 Agent 工作流沉淀为可复用、可托管的服务，在全组织范围内运行，并提供开放 API 供业务系统调用。它是 WorkBuddy 从"个人效率工具"升级为"企业级 AI 平台"的关键组件。</p>
+<div class="pcb">
+<span class="cm"># 企业侧：统一管理 + 托管运行 + API 调用</span><br>
+<span class="kw">WorkBuddy Enterprise</span> <span class="cm">/ 企业旗舰版 · 专享版</span></div>
+<div class="ptags"><span class="ch hot">企业级</span><span class="ch hot">Agent 托管</span><span class="ch">开放 API</span><span class="ch new">规模化运行</span></div></article>
+</div>
+<div class="rel-d rv"><div class="dct" style="font-family:var(--mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:12px">Buddy AI · 产品关系</div>
+<div class="rel-g">
+<div class="rel-i w"><div class="re">🐧</div><div class="rn">WorkBuddy</div><div class="rs">全员 · AI 办公</div></div>
+<div class="rel-i w"><div class="re">💻</div><div class="rn">CodeBuddy</div><div class="rs">开发者 · 专业编码</div></div>
+<div class="rel-i w"><div class="re">⚙️</div><div class="rn">Managed Agents</div><div class="rs">企业 · 托管运行</div></div>
+<div class="rel-i w"><div class="re">☁️</div><div class="rn">腾讯云底座</div><div class="rs">文档 / 网盘 / 乐享</div></div>
+</div><div class="rnote">三款产品可独立使用，也可在企业内统一管理协同</div></div></section>
+<section id="wb-howto">
+<div class="sec-head"><div class="sec-tag">WorkBuddy · Chapter 04</div>
+<h2 class="sec-title w">四步上手：<em>从登录到第一份自动交付</em></h2>
+<p class="sec-desc">WorkBuddy 的上手门槛很低——不需要编程基础。四步完成你的第一次 AI 办公交付。</p></div>
+<div class="steps">
+<div class="step w"><div class="sn">01</div><div class="sb">
+<h5>下载安装 <em>并用微信 / 腾讯云账号登录</em></h5>
+<div class="sm">INSTALL · 约 3 分钟</div>
+<p>访问 <code>workbuddy.cn</code> 下载桌面端，或直接使用网页版 / 小程序。微信扫码或腾讯云账号登录即可开始。体验版免费，每月 500 积分。</p>
+<div class="sq">提示：桌面端才能获得"读写本地文件"的完整能力；纯网页端适合轻量任务。</div>
+</div></div>
+<div class="step w"><div class="sn">02</div><div class="sb">
+<h5>配置 <em>SkillHub 技能</em> 与授权目录</h5>
+<div class="sm">SETUP · 按需安装</div>
+<p>进入技能市场（SkillHub），按岗位需要安装技能。办公场景可直接选用「周报」「会议纪要」「数据汇总」等模板；垂直岗位可选用对应的领域专家。</p>
+<ul>
+<li><b>技能选择</b>：8 万+ Skills 中挑高频场景的先装 2-3 个</li>
+<li><b>领域专家</b>：100+ 专家角色，按岗位匹配</li>
+<li><b>目录授权</b>：只授权必要的文件夹，避免全盘放开</li>
+<li><b>腾讯文档授权</b>：打通后可读写云端文档</li>
+</ul>
+<div class="sq">安全提醒：WorkBuddy 可在授权目录内读写本地文件。建议按最小必要原则授权，并定期检查授权范围。</div>
+</div></div>
+<div class="step w"><div class="sn">03</div><div class="sb">
+<h5>第一个任务：<em>把一份会议录音变成完整周报</em></h5>
+<div class="sm">FIRST TASK · 约 5 分钟</div>
+<p>用日常语言直接下达任务，WorkBuddy 会自主拆解并分步执行：</p>
+<ul>
+<li>"读取 <code>D:/工作/本周会议记录</code> 里的文件，汇总成本周项目周报"</li>
+<li>"按'进展 / 风险 / 下周计划'三段式结构组织"</li>
+<li>"生成一份 PPT，配色用公司蓝，输出到同目录"</li>
+</ul>
+<p>它会自动完成：读取文件 → 理解内容 → 归集整理 → 生成文档与 PPT → 写回指定目录。你只需在关键节点确认。</p>
+<div class="sq">核心心法：把"背景 + 目标 + 格式 + 输出位置"说清楚，交付质量会明显提升。模糊的需求只会得到模糊的结果。</div>
+</div></div>
+<div class="step w"><div class="sn">04</div><div class="sb">
+<h5>进阶：<em>沉淀技能 · 知识库 · Managed Agents</em></h5>
+<div class="sm">ADVANCED · 团队放大</div>
+<p>个人效率跑通后，可以把能力放大到团队：</p>
+<ul>
+<li><b>沉淀自定义技能</b>：把跑通的流程固化成团队可复用的 Skill</li>
+<li><b>企业知识库</b>：接入腾讯文档/乐享，让 AI 基于企业资料作答</li>
+<li><b>统一权限管理</b>：企业旗舰版/专享版集中管控账号与数据</li>
+<li><b>Managed Agents</b>：把验证过的 Agent 托管运行，开放 API 供业务系统调用</li>
+<li><b>信创私有化</b>：合规要求高的企业可选择专有云部署</li>
+</ul>
+<div class="sq">进阶路径：个人提效 → 团队复用技能 → 企业知识库 → Managed Agents 规模化。</div>
+</div></div>
+</div></section>
+<section id="wb-why">
+<div class="sec-head"><div class="sec-tag">WorkBuddy · Chapter 05</div>
+<h2 class="sec-title w">为什么选 <em>WorkBuddy</em>？五大理由</h2>
+<p class="sec-desc">如果你的场景是"办公提效"而不是"写代码"，WorkBuddy 的差异优势非常明显。</p></div>
+<div class="why-grid">
+<div class="wg w rv"><div class="wb">腾讯生态 <em>原生底座</em></div><div class="wl">Docs · Drive · Lexiang</div>
+<div class="wt">与腾讯文档、腾讯网盘、腾讯乐享深度集成，实现"读取 → 处理 → 回写"的双向闭环。这是通用 AI 助手做不到的——它能真正在你的办公套件里干活。</div></div>
+<div class="wg w rv"><div class="wb">SkillHub <em>即取即用</em></div><div class="wl">8 万+ Skills · 100+ 专家</div>
+<div class="wt">不需要从零写提示词。办公模板、领域专家、垂直技能都在市场里，装完即生效。技能经过三线并行安全审核，扩展能力的同时兼顾安全。</div></div>
+<div class="wg w rv"><div class="wb">零门槛 <em>上手</em></div><div class="wl">Natural Language First</div>
+<div class="wt">不用学语法、不用记指令、不用懂编程。产品、运营、行政、市场等岗位用日常语言就能指挥 AI 完成复杂任务，团队铺开成本极低。</div></div>
+<div class="wg w rv"><div class="wb">多模态 <em>成品交付</em></div><div class="wl">From Prompt to Deliverable</div>
+<div class="wt">不只给建议，而是直接产出文档、表格、PPT、图片、视频。它交付的是"可直接验收的成果"，而不是"需要你再加工的半成品"。</div></div>
+<div class="wg w full rv"><div class="wb">全栈 <em>交付模式</em> · 从 SaaS 到信创私有化</div><div class="wl">Enterprise Ready</div>
+<div class="wt">个人可用免费体验版；企业可从 SaaS 公有云起步，逐步过渡到企业旗舰版、专享版，最终落地私有化本地部署（信创环境）。配合 Managed Agents 实现 Agent 的规模化运行与统一管控——这条从个人到企业的路径是完整的。</div></div>
+</div>
+<div style="margin-top:20px;padding:20px 24px;border:1px solid var(--line);background:rgba(0,82,217,.05);border-left:3px solid #0052d9;font-size:13px;line-height:1.8;color:var(--ink-dim)">
+<b style="color:#0052d9">选择建议：</b>WorkBuddy 的强项是<b style="color:var(--ink)">办公自动化、腾讯生态打通、多模态成品交付</b>；但在<b style="color:var(--ink)">专业大型项目开发、多文件工程调试、Git 管理</b>方面，弱于以代码为核心的 Trae / Qoder。重度开发者应优先考虑 Trae、Qoder 或同门的 CodeBuddy；办公与业务岗位、需要"一个工具全覆盖"的团队，WorkBuddy 更合适。
+</div></section>
+<section id="wb-faq">
+<div class="sec-head"><div class="sec-tag">WorkBuddy · Chapter 06</div>
+<h2 class="sec-title w">常见问题 <em>FAQ</em></h2></div>
+<div class="faq-list">
+<div class="faq w"><div class="fi">Q01</div><div>
+<div class="fq">WorkBuddy 和 CodeBuddy 是什么关系？应该装哪个？</div>
+<div class="fa">两者同属腾讯云 <b>Buddy AI</b> 产品矩阵。<code>WorkBuddy</code> 面向全员的 AI 办公工作台，主打文档、数据、PPT、自动化；<code>CodeBuddy</code> 面向开发者的智能编码工具，主打多文件工程、Git 管理、复杂调试。<b>办公需求选 WorkBuddy，写代码选 CodeBuddy</b>，两者可在同一体系内协同。</div></div></div>
+<div class="faq w"><div class="fi">Q02</div><div>
+<div class="fq">WorkBuddy 和 Trae / Qoder 有什么本质区别？</div>
+<div class="fa">定位不同：<b>WorkBuddy 是"办公工作台"</b>，核心竞争力在办公协同、腾讯生态、多模态成品交付；<b>Trae / Qoder 是"编程工具"</b>，核心竞争力在代码生成、工程理解、Agent 自主编程。简单判断：你的任务以"文档/表格/PPT/数据"为主 → WorkBuddy；以"写代码/改工程"为主 → Trae 或 Qoder。办公岗位与全场景需求，WorkBuddy 更合适。</div></div></div>
+<div class="faq w"><div class="fi">Q03</div><div>
+<div class="fq">积分（Credits）怎么算？免费版够用吗？</div>
+<div class="fa">WorkBuddy 体验版免费，每月 500 积分。付费版按月发放不同数量积分，用于调用高级模型或执行复杂任务。所有付费版本均包含<b>无限次代码实时补全</b>。个人订阅自 2026 年 7 月起分为标准版、高级版、旗舰版三档：<code>标准版 99 元/月</code>、<code>高级版 199 元/月</code>、<code>旗舰版 999 元/月</code>（连续包年分别为 672 / 1344 / 6720 元，年付更省）。轻度使用体验版够用，高频使用建议标准版起步。</div></div></div>
+<div class="faq w"><div class="fi">Q04</div><div>
+<div class="fq">SkillHub 是什么？和 MCP 是一回事吗？</div>
+<div class="fa"><code>SkillHub</code> 是 WorkBuddy 的技能市场，收录 8 万+ AI Skills 与 100+ 领域专家，通过"技能"的方式扩展 AI 能力，支持随取随用。可以理解为面向办公场景的能力扩展体系；MCP 更偏向"连接外部工具/数据源"的协议层标准。WorkBuddy 通过 SkillHub 提供开箱即用的能力，通过腾讯生态集成提供深度连接，两者互补。</div></div></div>
+<div class="faq w"><div class="fi">Q05</div><div>
+<div class="fq">读本地文件安全吗？企业部署有哪些选择？</div>
+<div class="fa">WorkBuddy 只在你<b>授权的目录范围</b>内读写本地文件，不会主动越权。但仍建议遵循最小必要原则授权，并定期检查授权范围。<br><br>企业部署有三条路径：<b>企业旗舰版</b>（SaaS 公有云，快速启用）、<b>企业专享版</b>（专有云，数据隔离）、<b>私有化本地部署</b>（信创环境适配，满足严格合规要求）。配合 Managed Agents 可实现智能体的统一托管与规模化运行。</div></div></div>
+</div></section>
+<!-- ============ FOOTER ============ -->
+<footer>
+<div class="fg">
+<div class="fb">AI IDE <em>完全手册</em>
+<p>国内三大 AI 平台一站式对比与教程<br>Trae · Qoder · WorkBuddy 完全指南</p></div>
+<div class="fc"><h6>Trae 资源</h6>
+<a href="https://www.trae.com.cn" target="_blank">Trae 官网</a>
+<a href="https://www.trae.com.cn/download" target="_blank">下载中心</a>
+<a href="https://solo.trae.cn" target="_blank">TraeWork (Web)</a>
+<a href="https://www.trae.com.cn/docs" target="_blank">使用文档</a></div>
+<div class="fc"><h6>Qoder 资源</h6>
+<a href="https://www.qoder.com.cn" target="_blank">Qoder 官网</a>
+<a href="https://work.qoder.com.cn" target="_blank">QoderWork CN</a>
+<a href="https://help.qoder.com.cn" target="_blank">帮助中心</a>
+<a href="https://www.qoder.com.cn/pricing" target="_blank">定价方案</a></div>
+<div class="fc"><h6>WorkBuddy 资源</h6>
+<a href="https://www.workbuddy.cn" target="_blank">WorkBuddy 官网</a>
+<a href="https://www.codebuddy.cn" target="_blank">CodeBuddy 官网</a>
+<a href="https://www.workbuddy.cn/docs/" target="_blank">使用文档</a>
+<a href="https://cloud.tencent.com/product/workbuddy-enterprise" target="_blank">企业版</a></div>
+</div>
+<div class="fbot"><span>© 2026 AI IDE Guide</span><span>内容仅供参考 · 以官方为准</span></div>
+</footer>
+</div><!-- /wrap -->
+</div> </article>  </div> <div class="container"><section class="post-extra-card"> <div class="post-copyright"> <div class="copyright-title"><i class="fas fa-copyright"></i> 文章版权</div> <p><strong>作者：</strong>小倪哥</p> <p><strong>链接：</strong><a href="/2026/09/15/ai-tools-tutorial/">/2026/09/15/ai-tools-tutorial/</a></p> <p><strong>声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank">CC BY-NC-SA 4.0</a> 协议，转载请注明出处。</p> </div> <div class="comment-placeholder" id="comments"> <div> <i class="far fa-comments"></i> <strong>评论区预留</strong> <p>正式切换前可选择 Giscus / Gitalk / Twikoo。当前预览版暂不接入第三方脚本，避免干扰主站。</p> </div> </div> </section><section class="post-nav-card"> <div class="post-nav-links"> <a class="post-nav-link prev" href="/2026/09/12/pi-vs-oh-my-pi/"><span>上一篇</span><strong>Pi vs oh-my-pi · 开源 Coding Agent 横向对比指南</strong></a> <span class="post-nav-link disabled"><span>下一篇</span><strong>已经是最新文章</strong></span> </div> <div class="related-posts"> <h2><i class="fas fa-link"></i> 相关文章</h2> <div class="related-grid"> <div class="article col" data-aos="zoom-in"> <div class="card"> <a href="/2026/09/12/pi-vs-oh-my-pi/"> <div class="card-image" style="background-image:url('/medias/featureimages/14.jpg')"> <span class="card-title">Pi vs oh-my-pi · 开源 Coding Agent 横向对比指南</span> </div> </a> <div class="card-content article-content"> <div class="summary block-with-text">Pi 与 oh-my-pi（omp）是什么关系？从定位、安装、模型提供商、工具链、hashline 编辑格式、权限沙箱到扩展生态，一次讲清上游 harness 与它的 batteries-included fork 的差异与选择。</div> <div class="publish-info"> <span class="publish-date"><i class="far fa-clock fa-fw icon-date"></i>2026-09-12</span> <span class="publish-author"><i class="fas fa-bookmark fa-fw icon-category"></i>学习</span> </div> </div> <div class="card-action article-tags"> <a href="/tags/Pi/"><span class="chip bg-color">Pi</span></a><a href="/tags/oh-my-pi/"><span class="chip bg-color">oh-my-pi</span></a><a href="/tags/Coding%20Agent/"><span class="chip bg-color">Coding Agent</span></a><a href="/tags/AI%20%E7%BC%96%E7%A8%8B/"><span class="chip bg-color">AI 编程</span></a><a href="/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/"><span class="chip bg-color">开源工具</span></a> </div> </div> </div><div class="article col" data-aos="zoom-in"> <div class="card"> <a href="/2026/06/18/resume-copilot-open-source-recommendation/"> <div class="card-image" style="background-image:url('/medias/featureimages/16.jpg')"> <span class="card-title">Resume Copilot：一个用 Spring AI 打造的开源 AI 简历优化工作台</span> </div> </a> <div class="card-content article-content"> <div class="summary block-with-text">前言 如果你最近正在找工作，或者正在学习如何把大模型能力真正落到业务系统里，那我想推荐一个很适合上手研究的开源项目：Resume Copilot。 项目地址： 它不是一个“套壳聊天页”，而是一个围绕真实求职流程设计的 AI 简历优化工作台：…</div> <div class="publish-info"> <span class="publish-date"><i class="far fa-clock fa-fw icon-date"></i>2026-06-18</span> <span class="publish-author"><i class="fas fa-bookmark fa-fw icon-category"></i>学习</span> </div> </div> <div class="card-action article-tags"> <a href="/tags/Spring%20AI/"><span class="chip bg-color">Spring AI</span></a><a href="/tags/AI%20%E5%BA%94%E7%94%A8/"><span class="chip bg-color">AI 应用</span></a><a href="/tags/%E7%AE%80%E5%8E%86%E4%BC%98%E5%8C%96/"><span class="chip bg-color">简历优化</span></a><a href="/tags/Java/"><span class="chip bg-color">Java</span></a><a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"><span class="chip bg-color">开源项目</span></a> </div> </div> </div><div class="article col" data-aos="zoom-in"> <div class="card"> <a href="/2026/06/16/design-patterns/"> <div class="card-image" style="background-image:url('/medias/featureimages/8.jpg')"> <span class="card-title">Java 设计模式详解：21 种经典模式的结构、场景与代码示例</span> </div> </a> <div class="card-content article-content"> <div class="summary block-with-text">Java 设计模式详解：21 种经典模式的结构、场景与代码示例 本文只讲设计模式本身：它解决什么问题、结构是什么、Java 中如何落地、什么时候该用、什么时候别滥用。 文中的类名、对象名和流程均为通用示例，不绑定任何具体行业、公司、产品或项…</div> <div class="publish-info"> <span class="publish-date"><i class="far fa-clock fa-fw icon-date"></i>2026-06-16</span> <span class="publish-author"><i class="fas fa-bookmark fa-fw icon-category"></i>学习</span> </div> </div> <div class="card-action article-tags"> <a href="/tags/Java/"><span class="chip bg-color">Java</span></a><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="chip bg-color">设计模式</span></a><a href="/tags/PlantUML/"><span class="chip bg-color">PlantUML</span></a><a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"><span class="chip bg-color">面向对象</span></a><a href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"><span class="chip bg-color">架构设计</span></a> </div> </div> </div> </div> </div> </section></div> <script>
+    const article = document.querySelector('.article-content-page');
+    const plantumlImages = JSON.parse(article?.dataset.plantumlImages || '[]');
+    let plantumlIndex = 0;
+    document.querySelectorAll('pre').forEach((pre) => {
+      if (pre.querySelector('.copy-code')) return;
+      const code = pre.querySelector('code');
+      const lang = Array.from(code?.classList || []).find((c) => c.startsWith('language-'))?.replace('language-', '') || 'code';
+      const text = code?.innerText || '';
+      const isPlantUml = lang === 'plantuml' || text.trim().startsWith('@startuml');
+      pre.setAttribute('data-lang', isPlantUml ? 'plantuml' : lang);
+      const btn = document.createElement('button');
+      btn.className = 'copy-code';
+      btn.type = 'button';
+      btn.textContent = '复制';
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(text || pre.innerText.replace(/^复制\n?/, ''));
+          btn.textContent = '已复制';
+          setTimeout(() => btn.textContent = '复制', 1200);
+        } catch {
+          btn.textContent = '失败';
+        }
+      });
+      pre.appendChild(btn);
+
+      if (isPlantUml) {
+        const image = plantumlImages[plantumlIndex++];
+        const details = document.createElement('details');
+        details.className = 'plantuml-source-details';
+        const summary = document.createElement('summary');
+        summary.textContent = '查看 PlantUML 源码';
+        details.append(summary);
+        pre.parentNode.insertBefore(details, pre);
+        details.append(pre);
+        if (image?.src) {
+          const box = document.createElement('figure');
+          box.className = 'plantuml-rendered';
+          box.innerHTML = `<a href="${image.src}" target="_blank" rel="noopener"><img src="${image.src}" alt="PlantUML diagram ${image.index}" loading="lazy" /></a><figcaption>PlantUML 图 ${image.index} · 点击图片可新窗口查看 SVG</figcaption>`;
+          details.insertAdjacentElement('beforebegin', box);
+        }
+      }
+      if (lang === 'mermaid') {
+        pre.classList.add('mermaid-source');
+      }
+    });
+  </script>  </main> <footer class="page-footer bg-color"> <div class="music-placeholder"> <i class="fas fa-music"></i> <span>音乐播放器模块已预留，等主题稳定后再接入。</span> </div> <div class="footer-container"> <div class="footer-col copy-right"> <p>
+Copyright © <span id="year">2023-2026</span> <a href="/about/">小倪哥</a>
+| Powered by <a href="https://astro.build/" target="_blank">Astro</a>
+| Inspired by <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a> </p> <p> <i class="fas fa-chart-area"></i> 站点总字数: <span class="white-color" id="totalWords">计算中</span> <span class="split">|</span> <i class="fas fa-book"></i> 文章总数: <span class="white-color" id="totalPosts">计算中</span> <span class="split">|</span> <i class="far fa-eye"></i> 访问统计: <span class="white-color">预留</span> </p> <p id="sitetime">本站已运行 Loading ...</p> </div> <div class="footer-col footer-poem"> <strong>今日诗词</strong> <span>“天生我材必有用，千金散尽还复来。”</span> <small>—— 李白《将进酒》</small> </div> <div class="footer-col social-link social-statis"> <a title="访问我的 GitHub" href="https://github.com/xiaonige/" target="_blank"><i class="fab fa-github"></i></a> <a title="邮件联系我" href="mailto:991509326@qq.com" target="_blank"><i class="fas fa-envelope-open"></i></a> <a title="QQ 联系我" href="tencent://AddContact/?fromId=50&#38;fromSubId=1&#38;subcmd=all&#38;uin=991509326" target="_blank"><i class="fab fa-qq"></i></a> </div> </div> </footer> <div class="search-modal" id="searchModal" aria-hidden="true"> <div class="search-backdrop" data-close-search></div> <div class="search-panel" role="dialog" aria-modal="true" aria-labelledby="searchTitle"> <div class="search-header"> <span class="title" id="searchTitle"><i class="fas fa-search"></i> 搜索</span> <button class="search-close" type="button" data-close-search aria-label="关闭搜索"><i class="fas fa-times"></i></button> <input class="search-input" id="searchInput" placeholder="请输入搜索关键字，例如 Astro、AI、Copilot" type="search" autocomplete="off"> </div> <div id="searchResult" class="search-result"> <p class="search-empty">输入关键词，开始搜索文章标题与摘要。</p> </div> </div> </div> <script>
+(() => {
+  const modal = document.getElementById('searchModal');
+  const input = document.getElementById('searchInput');
+  const result = document.getElementById('searchResult');
+  let entries = [];
+  let loaded = false;
+  const open = async () => {
+    modal?.classList.add('active');
+    modal?.setAttribute('aria-hidden', 'false');
+    setTimeout(() => input?.focus(), 80);
+    if (!loaded) await loadSearch();
+  };
+  const close = () => {
+    modal?.classList.remove('active');
+    modal?.setAttribute('aria-hidden', 'true');
+  };
+  async function loadSearch() {
+    loaded = true;
+    try {
+      const res = await fetch('/search.xml');
+      const text = await res.text();
+      const xml = new DOMParser().parseFromString(text, 'text/xml');
+      entries = Array.from(xml.querySelectorAll('entry')).map((entry) => ({
+        title: entry.querySelector('title')?.textContent || '',
+        url: entry.querySelector('url')?.textContent || entry.querySelector('link')?.getAttribute('href') || '#',
+        content: entry.querySelector('content')?.textContent || ''
+      }));
+    } catch (e) {
+      result.innerHTML = '<p class="search-empty">搜索索引加载失败，稍后再试。</p>';
+    }
+  }
+  function render(keyword) {
+    const q = keyword.trim().toLowerCase();
+    if (!q) {
+      result.innerHTML = '<p class="search-empty">输入关键词，开始搜索文章标题与摘要。</p>';
+      return;
+    }
+    const hits = entries.filter((item) => `${item.title} ${item.content}`.toLowerCase().includes(q)).slice(0, 12);
+    if (!hits.length) {
+      result.innerHTML = '<p class="search-empty">没找到匹配内容，换个关键词试试。</p>';
+      return;
+    }
+    result.innerHTML = hits.map((item) => {
+      const clean = item.content.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim().slice(0, 150);
+      return `<a class="search-hit" href="${item.url}"><strong>${highlight(item.title, q)}</strong><span>${highlight(clean, q)}...</span></a>`;
+    }).join('');
+  }
+  function highlight(str, q) {
+    const safe = escapeHtml(str);
+    const escaped = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return safe.replace(new RegExp(`(${escaped})`, 'ig'), '<mark>$1</mark>');
+  }
+  function escapeHtml(str) {
+    return str.replace(/[&<>'"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+  }
+  document.querySelectorAll('[data-open-search]').forEach((el) => el.addEventListener('click', (e) => { e.preventDefault(); open(); }));
+  document.querySelectorAll('[data-close-search]').forEach((el) => el.addEventListener('click', close));
+  input?.addEventListener('input', () => render(input.value));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') close();
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); open(); }
+  });
+})();
+</script> <button class="scroll-top" aria-label="回到顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button> <script>
+      const start = new Date('2023-12-25T00:00:00+08:00');
+      const now = new Date();
+      const days = Math.max(0, Math.floor((now - start) / 86400000));
+      const el = document.getElementById('sitetime');
+      if (el) el.textContent = `本站已运行 ${days} 天`;
+      const y = document.getElementById('year');
+      if (y) y.textContent = `2023-${now.getFullYear()}`;
+
+      // Load site stats.
+      fetch('/site-data.json').then(r => r.json()).then((data) => {
+        const words = document.getElementById('totalWords');
+        const posts = document.getElementById('totalPosts');
+        if (words) words.textContent = Number(data.totalWords || 0).toLocaleString('zh-CN');
+        if (posts) posts.textContent = Number(data.posts || 0).toLocaleString('zh-CN');
+      }).catch(() => {});
+
+      // Matery-like: daily/random banner background.
+      const cover = document.querySelector('.matery-cover');
+      if (cover) {
+        const idx = now.getDay();
+        cover.style.backgroundImage = `url('/medias/banner/${idx}.jpg'), linear-gradient(135deg,#20c997,#2f80ed,#9b51e0)`;
+      }
+
+      // Nav becomes denser after scrolling.
+      const nav = document.getElementById('headNav');
+      const onScroll = () => nav?.classList.toggle('nav-scrolled', window.scrollY > 30);
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      // Reading progress.
+      const progress = document.getElementById('readingProgress');
+      const updateProgress = () => {
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = total > 0 ? Math.min(100, Math.max(0, window.scrollY / total * 100)) : 0;
+        if (progress) progress.style.width = `${ratio}%`;
+      };
+      updateProgress();
+      window.addEventListener('scroll', updateProgress, { passive: true });
+
+      // TOC active state.
+      const tocLinks = Array.from(document.querySelectorAll('.article-toc a'));
+      const headings = tocLinks.map((a) => document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1)))).filter(Boolean);
+      const updateToc = () => {
+        let active = headings[0];
+        for (const h of headings) {
+          if (h.getBoundingClientRect().top < 130) active = h;
+          else break;
+        }
+        tocLinks.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === `#${active?.id}`));
+      };
+      if (tocLinks.length) {
+        updateToc();
+        window.addEventListener('scroll', updateToc, { passive: true });
+      }
+
+      // Light/dark theme toggle.
+      const rootEl = document.documentElement;
+      const toggleBtn = document.getElementById('themeToggle');
+      const syncToggleIcon = () => {
+        const icon = toggleBtn?.querySelector('i');
+        if (!icon) return;
+        const dark = rootEl.getAttribute('data-theme') === 'dark';
+        icon.classList.toggle('fa-moon', !dark);
+        icon.classList.toggle('fa-sun', dark);
+      };
+      syncToggleIcon();
+      toggleBtn?.addEventListener('click', () => {
+        const next = rootEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        rootEl.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+        syncToggleIcon();
+      });
+    </script> </body> </html>
