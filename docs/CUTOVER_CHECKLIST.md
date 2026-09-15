@@ -34,19 +34,35 @@ find /root/workspace/xiaonige-astro-blog/dist/2026 -path '*/index.html'
 
 推荐使用 GitHub Actions 发布 `dist`，不要本地手动覆盖。
 
-当前 token 无 workflow scope，所以 workflow 文件保存在：
+**状态（2026-09-15）：** workflow 已就绪并本地验证，唯一阻塞是当前 PAT 只有 `repo` scope，
+无法推送 `.github/workflows/` 下的文件。
 
-```text
-docs/deploy.github-actions.yml
+### Workflow 行为
+
+一次构建产出单份 Pages 产物（`npm run build:actions`，脚本 `scripts/build-actions-artifact.mjs`）：
+
+- 根目录 `/`：正式站（不含草稿），等同 build:formal。
+- `/astro-preview/`：预览站（含草稿），URL 已加前缀（前缀逻辑抽至 `scripts/preview-prefix.mjs`，
+  与本地 publish:preview 共用）。
+- 自动写 `.nojekyll`。
+
+### 启用步骤（需要带 workflow scope 的 token）
+
+```bash
+# 1. 换用带 workflow scope 的 PAT 后：
+cd /root/workspace/xiaonige-astro-blog
+mkdir -p .github/workflows
+cp docs/deploy.github-actions.yml .github/workflows/deploy.yml
+git add .github/workflows/deploy.yml
+git commit -m "启用 GitHub Pages Actions 自动部署"
+git push origin astro-preview
 ```
 
-正式启用时将它复制到：
-
 ```text
-.github/workflows/deploy.yml
+2. GitHub 仓库 Settings → Pages → Build and deployment → Source 选 GitHub Actions。
+3. 确认 Actions 首次运行成功后，旧的 master 分支 Pages 部署即停止。
+4. 此后推 astro-preview 自动发布根站 + 预览；本地 publish:formal / publish:preview 作为备用。
 ```
-
-然后在 GitHub 仓库 Settings → Pages 中选择 GitHub Actions。
 
 ## 回滚
 
